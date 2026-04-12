@@ -68,7 +68,7 @@ body{font-family:var(--ff);background:var(--dark);color:#F0F0F8;cursor:none;over
 /* ── HERO ────────────────────────────────────────────────────── */
 .hero{
   min-height:100vh;
-  display:flex;flex-direction:column;justify-content:flex-end;
+  display:flex;flex-direction:column;justify-content:flex-end;align-items:center;
   padding:8rem 2.5rem 4rem;
   position:relative;overflow:hidden;
 }
