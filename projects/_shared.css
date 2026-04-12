@@ -68,7 +68,7 @@ body{font-family:var(--ff);background:var(--dark);color:#F0F0F8;cursor:none;over
 /* ── HERO ────────────────────────────────────────────────────── */
 .hero{
   min-height:100vh;
-  display:flex;flex-direction:column;justify-content:flex-end;align-items:center;
+  display:flex;flex-direction:column;justify-content:flex-end;
   padding:8rem 2.5rem 4rem;
   position:relative;overflow:hidden;
 }
@@ -90,7 +90,7 @@ body{font-family:var(--ff);background:var(--dark);color:#F0F0F8;cursor:none;over
   background:radial-gradient(circle,var(--accent-glow) 0%,transparent 70%);
   z-index:0;
 }
-.hero-content{position:relative;z-index:1;max-width:800px;margin:0 auto;text-align:center;}
+.hero-content{position:relative;z-index:1;width:100%;max-width:800px;margin:0 auto;text-align:center;}
 .hero-content .hero-eyebrow{justify-content:center;}
 .hero-content .hero-tags{justify-content:center;}
 .hero-content .hero-desc{margin-left:auto;margin-right:auto;}
