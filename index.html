@@ -914,7 +914,7 @@ function onScroll(){
   if (progress > 0.02) { lastSide = null; }
 
   // ── CABLE PLUG-IN ──
-  const cableT = Math.min(progress / 0.10, 1);
+  const cableT = Math.min(progress / 0.90, 1);
   const cEased = cableT < .5 ? 2*cableT*cableT : -1+(4-2*cableT)*cableT;
 
   const plugW = 14;
