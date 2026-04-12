@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Giant LEGO Minifigure — Vanessa Noel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;700;800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="_shared.css"/>
+</head>
+<body>
+
+<script>
+const PROJECT_CONFIG = { type: 'hw', blocks: [] };
+const _p={hw:['#2E8CF0','#5AAEFF'],sw:['#E8559A','#FF80BF'],both:['#7B5CEA','#A480FF']}[PROJECT_CONFIG.type];
+document.documentElement.style.setProperty('--accent',_p[0]);
+document.documentElement.style.setProperty('--accent2',_p[1]);
+document.documentElement.style.setProperty('--accent-glow',
+  PROJECT_CONFIG.type==='hw'?'rgba(46,140,240,.12)':
+  PROJECT_CONFIG.type==='sw'?'rgba(232,85,154,.12)':'rgba(123,92,234,.12)');
+</script>
+
+<div id="cur"></div>
+<div id="cur2"></div>
+
+<!-- TOP NAV -->
+<nav class="top-nav">
+  <a href="../index.html" class="nav-back">Back to Portfolio</a>
+  <div class="nav-title">Vanessa Noel</div>
+</nav>
+
+<!-- SECTION TABS -->
+<div class="tab-nav">
+  <a href="#purpose" class="tab-link" data-section="purpose">Purpose</a>
+  <a href="#process" class="tab-link" data-section="process">Process</a>
+  <a href="#result"  class="tab-link" data-section="result">Result</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-pattern"></div>
+  <div class="hero-accent-bg"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">3D Printing · Hobby</div>
+    <span class="hero-emo">🧱</span>
+    <h1 class="hero-title">Giant LEGO Minifigure</h1>
+    <p class="hero-desc">A fully 3D printed, 10× scale model of a LEGO Classic Space Minifigure. Every joint articulates exactly like the original — no glue, no hardware.</p>
+    <div class="hero-tags">
+      <span class="htag">3D Printing</span>
+      <span class="htag">SolidWorks</span>
+      <span class="htag">FDM</span>
+      <span class="htag">Tolerance Engineering</span>
+      <span class="htag">Hobby</span>
+    </div>
+  </div>
+</section>
+
+<!-- PURPOSE -->
+<section class="section" id="purpose">
+  <div class="section-label reveal">Purpose</div>
+  <h2 class="section-title reveal">Why I <em>built this.</em></h2>
+  <div class="section-body reveal">
+    <p>As a devoted LEGO fan, I wanted to recreate a LEGO Classic Space Minifigure (set 71037) at 10× scale while keeping it fully posable and 100% 3D printed — no adhesives or additional hardware. The challenge was engineering every joint to snap together and move just like the original, just bigger.</p>
+  </div>
+  <div class="img-placeholder reveal"><span class="ph-icon">🖼</span>Add your image here</div>
+</section>
+
+<!-- PROCESS -->
+<section class="section" id="process">
+  <div class="section-label reveal">Process</div>
+  <h2 class="section-title reveal">How I <em>built it.</em></h2>
+  <div class="section-body reveal">The project went through two major scale iterations before arriving at the final 10× model, with each phase refining tolerances and adding detail.</div>
+  <div class="steps reveal">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-content">
+        <h3>CAD Modelling</h3>
+        <p>Used SolidWorks to recreate every part of the minifigure from scratch, scaled to 10× the original dimensions. Reference calipers on the real piece were used extensively.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-content">
+        <h3>5× Prototype Print</h3>
+        <p>Printed a half-scale (5×) version first to validate proportions and joint fits before committing to full-scale printing time.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-content">
+        <h3>Tolerance Refinement</h3>
+        <p>Adjusted snap-fit tolerances based on prototype feedback. FDM printing introduces shrinkage and layer artifacts that affect fit — multiple iterations were needed per joint.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-content">
+        <h3>Detail Pass</h3>
+        <p>Added surface details — chest logos, helmet visor geometry, face details — at full 10× scale once proportions were confirmed.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">05</div>
+      <div class="step-content">
+        <h3>Full Scale Print</h3>
+        <p>Printed all parts at 10× scale across approximately 90 hours of total print time, in multiple filament colours matching the original.</p>
+      </div>
+    </div>
+  </div>
+  <div class="img-grid reveal">
+    <div class="img-placeholder"><span class="ph-icon">🖼</span>Process photo</div>
+    <div class="img-placeholder"><span class="ph-icon">🖼</span>Process photo</div>
+  </div>
+</section>
+
+<!-- OPTIONAL BLOCKS -->
+<div id="optional-blocks"></div>
+
+<!-- RESULT -->
+<section class="section" id="result">
+  <div class="section-label reveal">Result</div>
+  <h2 class="section-title reveal">What I <em>made.</em></h2>
+  <div class="section-body reveal"><p>The final minifigure is fully posable — every joint rotates exactly as the original. The project was a lesson in tolerance engineering at scale: what works at 1× does not automatically work at 10×.</p></div>
+  <div class="impact-grid reveal">
+    <div class="impact-stat">
+      <span class="impact-val">10×</span>
+      <span class="impact-label">Scale</span>
+    </div>
+    <div class="impact-stat">
+      <span class="impact-val">90 hrs</span>
+      <span class="impact-label">Print Time</span>
+    </div>
+    <div class="impact-stat">
+      <span class="impact-val">0</span>
+      <span class="impact-label">Hardware or Glue</span>
+    </div>
+    <div class="impact-stat">
+      <span class="impact-val">100%</span>
+      <span class="impact-label">3D Printed</span>
+    </div>
+  </div>
+  <div class="img-grid reveal">
+    <div class="img-placeholder"><span class="ph-icon">🖼</span>Final result</div>
+    <div class="img-placeholder"><span class="ph-icon">🖼</span>Final result</div>
+  </div>
+</section>
+
+<!-- PREV / NEXT -->
+<nav class="proj-nav">
+  <a href="happytappy.html" class="proj-nav-link prev">
+    <span class="proj-nav-dir">← Previous</span>
+    <span class="proj-nav-emo">💙</span>
+    <span class="proj-nav-name">Happy Tappy</span>
+  </a>
+  <a href="mech-flower.html" class="proj-nav-link next">
+    <span class="proj-nav-dir">Next →</span>
+    <span class="proj-nav-emo">🌸</span>
+    <span class="proj-nav-name">Mechanical Flower</span>
+  </a>
+</nav>
+
+<footer>
+  <p>© 2025 Vanessa Noel</p>
+  <div class="foot-links">
+    <a href="http://www.linkedin.com/in/vanessa-noel-engineering" target="_blank">LinkedIn</a>
+    <a href="../index.html">Portfolio</a>
+    <a href="https://6c19bc5f-e37a-4649-b889-ef6cf37ca9a5.filesusr.com/ugd/77f177_3542b777e2ac443dbf275dd2c4f3bb9b.pdf" target="_blank">Resume</a>
+  </div>
+</footer>
+
+<script src="_shell.js"></script>
+</body>
+</html>

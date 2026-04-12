@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Satellite Launches — Vanessa Noel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;700;800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="_shared.css"/>
+</head>
+<body>
+
+<script>
+const PROJECT_CONFIG = { type: 'hw', blocks: [] };
+const _p={hw:['#2E8CF0','#5AAEFF'],sw:['#E8559A','#FF80BF'],both:['#7B5CEA','#A480FF']}[PROJECT_CONFIG.type];
+document.documentElement.style.setProperty('--accent',_p[0]);
+document.documentElement.style.setProperty('--accent2',_p[1]);
+document.documentElement.style.setProperty('--accent-glow',
+  PROJECT_CONFIG.type==='hw'?'rgba(46,140,240,.12)':
+  PROJECT_CONFIG.type==='sw'?'rgba(232,85,154,.12)':'rgba(123,92,234,.12)');
+</script>
+
+<div id="cur"></div>
+<div id="cur2"></div>
+
+<!-- TOP NAV -->
+<nav class="top-nav">
+  <a href="../index.html" class="nav-back">Back to Portfolio</a>
+  <div class="nav-title">Vanessa Noel</div>
+</nav>
+
+<!-- SECTION TABS -->
+<div class="tab-nav">
+  <a href="#purpose" class="tab-link" data-section="purpose">Purpose</a>
+  <a href="#process" class="tab-link" data-section="process">Process</a>
+  <a href="#result"  class="tab-link" data-section="result">Result</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-pattern"></div>
+  <div class="hero-accent-bg"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Aerospace · Hardware</div>
+    <span class="hero-emo">🛰️</span>
+    <h1 class="hero-title">Satellite Launches</h1>
+    <p class="hero-desc">Small-scale satellites launched to the stratosphere via QSET, monitoring critical payload metrics throughout flight and returning data for mission analysis.</p>
+    <div class="hero-tags">
+      <span class="htag">Aerospace</span>
+      <span class="htag">Embedded Systems</span>
+      <span class="htag">Arduino</span>
+      <span class="htag">PCB Design</span>
+      <span class="htag">Python</span>
+      <span class="htag">Data Analysis</span>
+      <span class="htag">CSA</span>
+    </div>
+  </div>
+</section>
+
+<!-- PURPOSE -->
+<section class="section" id="purpose">
+  <div class="section-label reveal">Purpose</div>
+  <h2 class="section-title reveal">Why I <em>built this.</em></h2>
+  <div class="section-body reveal">
+    <p>Through the Queens Space Engineering Team (QSET) in partnership with the Canadian Space Agency, I helped design, build, and launch small satellites into the stratosphere. The mission: collect and analyse payload metrics — temperature, pressure, altitude, acceleration — throughout the flight envelope to improve future missions and give students real aerospace engineering experience.</p>
+  </div>
+  <div class="img-placeholder reveal"><span class="ph-icon">🖼</span>Add your image here</div>
+</section>
+
+<!-- PROCESS -->
+<section class="section" id="process">
+  <div class="section-label reveal">Process</div>
+  <h2 class="section-title reveal">How I <em>built it.</em></h2>
+  <div class="section-body reveal">Each satellite went through a full engineering lifecycle — design, build, test, launch, recover, analyse — compressed into a student program timeline.</div>
+  <div class="steps reveal">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-content">
+        <h3>Satellite Design</h3>
+        <p>Designed the satellite structure, sensor payload, and data logging system. Constraints: survive stratospheric temperatures, fit within weight limits, and survive landing impact.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-content">
+        <h3>PCB & Electronics</h3>
+        <p>Designed and soldered custom PCBs integrating temperature, pressure, altitude, and IMU sensors with an Arduino-based data logger.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-content">
+        <h3>Pre-Launch Testing</h3>
+        <p>Conducted thermal testing, vibration testing, and end-to-end data logging validation before each launch.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-content">
+        <h3>Launch & Recovery</h3>
+        <p>Launched via weather balloon to the stratosphere. Tracked via GPS. Recovered after descent for data retrieval.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">05</div>
+      <div class="step-content">
+        <h3>Data Analysis</h3>
+        <p>Analysed collected payload data in Python — graphing flight profiles, identifying anomalies, and writing mission reports to improve future iterations.</p>
+      </div>
+    </div>
+  </div>
+  <div class="img-grid reveal">
+    <div class="img-placeholder"><span class="ph-icon">🖼</span>Process photo</div>
+    <div class="img-placeholder"><span class="ph-icon">🖼</span>Process photo</div>
+  </div>
+</section>
+
+<!-- OPTIONAL BLOCKS -->
+<div id="optional-blocks"></div>
+
+<!-- RESULT -->
+<section class="section" id="result">
+  <div class="section-label reveal">Result</div>
+  <h2 class="section-title reveal">What I <em>made.</em></h2>
+  <div class="section-body reveal"><p>Multiple successful launches completed. The program expanded significantly under my management, growing from a small pilot to a full CSA-partnered initiative reaching at-risk youth across the region.</p></div>
+  <div class="impact-grid reveal">
+    <div class="impact-stat">
+      <span class="impact-val">$50K</span>
+      <span class="impact-label">CSA Grant Secured</span>
+    </div>
+    <div class="impact-stat">
+      <span class="impact-val">50%+</span>
+      <span class="impact-label">Retention Increase</span>
+    </div>
+    <div class="impact-stat">
+      <span class="impact-val">Multiple</span>
+      <span class="impact-label">Successful Launches</span>
+    </div>
+  </div>
+  <div class="img-grid reveal">
+    <div class="img-placeholder"><span class="ph-icon">🖼</span>Final result</div>
+    <div class="img-placeholder"><span class="ph-icon">🖼</span>Final result</div>
+  </div>
+</section>
+
+<!-- PREV / NEXT -->
+<nav class="proj-nav">
+  <a href="baymax.html" class="proj-nav-link prev">
+    <span class="proj-nav-dir">← Previous</span>
+    <span class="proj-nav-emo">🦾</span>
+    <span class="proj-nav-name">Baymax Robotic Arm</span>
+  </a>
+  <a href="masks.html" class="proj-nav-link next">
+    <span class="proj-nav-dir">Next →</span>
+    <span class="proj-nav-emo">🎭</span>
+    <span class="proj-nav-name">Zelda Masks</span>
+  </a>
+</nav>
+
+<footer>
+  <p>© 2025 Vanessa Noel</p>
+  <div class="foot-links">
+    <a href="http://www.linkedin.com/in/vanessa-noel-engineering" target="_blank">LinkedIn</a>
+    <a href="../index.html">Portfolio</a>
+    <a href="https://6c19bc5f-e37a-4649-b889-ef6cf37ca9a5.filesusr.com/ugd/77f177_3542b777e2ac443dbf275dd2c4f3bb9b.pdf" target="_blank">Resume</a>
+  </div>
+</footer>
+
+<script src="_shell.js"></script>
+</body>
+</html>

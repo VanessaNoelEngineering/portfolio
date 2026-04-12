@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mechanical Flower — Vanessa Noel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;700;800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="_shared.css"/>
+</head>
+<body>
+
+<script>
+const PROJECT_CONFIG = { type: 'hw', blocks: [] };
+const _p={hw:['#2E8CF0','#5AAEFF'],sw:['#E8559A','#FF80BF'],both:['#7B5CEA','#A480FF']}[PROJECT_CONFIG.type];
+document.documentElement.style.setProperty('--accent',_p[0]);
+document.documentElement.style.setProperty('--accent2',_p[1]);
+document.documentElement.style.setProperty('--accent-glow',
+  PROJECT_CONFIG.type==='hw'?'rgba(46,140,240,.12)':
+  PROJECT_CONFIG.type==='sw'?'rgba(232,85,154,.12)':'rgba(123,92,234,.12)');
+</script>
+
+<div id="cur"></div>
+<div id="cur2"></div>
+
+<!-- TOP NAV -->
+<nav class="top-nav">
+  <a href="../index.html" class="nav-back">Back to Portfolio</a>
+  <div class="nav-title">Vanessa Noel</div>
+</nav>
+
+<!-- SECTION TABS -->
+<div class="tab-nav">
+  <a href="#purpose" class="tab-link" data-section="purpose">Purpose</a>
+  <a href="#process" class="tab-link" data-section="process">Process</a>
+  <a href="#result"  class="tab-link" data-section="result">Result</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-pattern"></div>
+  <div class="hero-accent-bg"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Robotics · Mechanisms</div>
+    <span class="hero-emo">🌸</span>
+    <h1 class="hero-title">Mechanical Flower</h1>
+    <p class="hero-desc">A robotic lotus that blossoms when touched. Capacitive sensing, servo actuation, and compliant mechanisms combine for a smooth, organic bloom.</p>
+    <div class="hero-tags">
+      <span class="htag">Robotics</span>
+      <span class="htag">Arduino</span>
+      <span class="htag">Servo Control</span>
+      <span class="htag">Capacitive Sensing</span>
+      <span class="htag">Mechanisms</span>
+      <span class="htag">CAD</span>
+    </div>
+  </div>
+</section>
+
+<!-- PURPOSE -->
+<section class="section" id="purpose">
+  <div class="section-label reveal">Purpose</div>
+  <h2 class="section-title reveal">Why I <em>built this.</em></h2>
+  <div class="section-body reveal">
+    <p>The goal was to create a kinetic sculpture that feels alive — a flower that responds to human touch with a natural, organic blooming motion. The design challenge was making mechanical actuation feel soft and biological rather than robotic and rigid.</p>
+  </div>
+  <div class="img-placeholder reveal"><span class="ph-icon">🖼</span>Add your image here</div>
+</section>
+
+<!-- PROCESS -->
+<section class="section" id="process">
+  <div class="section-label reveal">Process</div>
+  <h2 class="section-title reveal">How I <em>built it.</em></h2>
+  <div class="section-body reveal">The design combined electrical sensing, mechanical linkage design, and firmware to create a seamless touch-to-bloom experience.</div>
+  <div class="steps reveal">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-content">
+        <h3>Petal Linkage Design</h3>
+        <p>Designed four-bar linkages for each petal that produce a curved, organic sweep rather than a linear open motion. Iterated in CAD before printing.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-content">
+        <h3>Capacitive Touch Sensing</h3>
+        <p>Integrated capacitive touch electrodes at the base of the stem. When a hand touches the stem, the sensor triggers the bloom sequence.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-content">
+        <h3>Servo Integration</h3>
+        <p>Selected and mounted micro-servos to drive each petal linkage. Tuned the servo sweep angles for a smooth, slow opening motion.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-content">
+        <h3>Arduino Firmware</h3>
+        <p>Wrote the control firmware — touch detection, servo sequencing, timing curves — to make the bloom feel natural rather than mechanical.</p>
+      </div>
+    </div>
+  </div>
+  <div class="img-grid reveal">
+    <div class="img-placeholder"><span class="ph-icon">🖼</span>Process photo</div>
+    <div class="img-placeholder"><span class="ph-icon">🖼</span>Process photo</div>
+  </div>
+</section>
+
+<!-- OPTIONAL BLOCKS -->
+<div id="optional-blocks"></div>
+
+<!-- RESULT -->
+<section class="section" id="result">
+  <div class="section-label reveal">Result</div>
+  <h2 class="section-title reveal">What I <em>made.</em></h2>
+  <div class="section-body reveal"><p>The flower opens slowly and gracefully when touched, holds open for a moment, then gently closes. The organic feel of the motion is what makes it special — visitors often touch it multiple times just to watch it bloom again.</p></div>
+  <div class="impact-grid reveal">
+    <div class="impact-stat">
+      <span class="impact-val">4</span>
+      <span class="impact-label">Petal Linkages</span>
+    </div>
+    <div class="impact-stat">
+      <span class="impact-val">1</span>
+      <span class="impact-label">Touch Trigger</span>
+    </div>
+    <div class="impact-stat">
+      <span class="impact-val">100%</span>
+      <span class="impact-label">Compliant Motion</span>
+    </div>
+  </div>
+  <div class="img-grid reveal">
+    <div class="img-placeholder"><span class="ph-icon">🖼</span>Final result</div>
+    <div class="img-placeholder"><span class="ph-icon">🖼</span>Final result</div>
+  </div>
+</section>
+
+<!-- PREV / NEXT -->
+<nav class="proj-nav">
+  <a href="lego-minifig.html" class="proj-nav-link prev">
+    <span class="proj-nav-dir">← Previous</span>
+    <span class="proj-nav-emo">🧱</span>
+    <span class="proj-nav-name">Giant LEGO Minifigure</span>
+  </a>
+  <a href="baymax.html" class="proj-nav-link next">
+    <span class="proj-nav-dir">Next →</span>
+    <span class="proj-nav-emo">🦾</span>
+    <span class="proj-nav-name">Baymax Robotic Arm</span>
+  </a>
+</nav>
+
+<footer>
+  <p>© 2025 Vanessa Noel</p>
+  <div class="foot-links">
+    <a href="http://www.linkedin.com/in/vanessa-noel-engineering" target="_blank">LinkedIn</a>
+    <a href="../index.html">Portfolio</a>
+    <a href="https://6c19bc5f-e37a-4649-b889-ef6cf37ca9a5.filesusr.com/ugd/77f177_3542b777e2ac443dbf275dd2c4f3bb9b.pdf" target="_blank">Resume</a>
+  </div>
+</footer>
+
+<script src="_shell.js"></script>
+</body>
+</html>

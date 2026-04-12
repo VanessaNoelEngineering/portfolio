@@ -1,0 +1,1577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Vanessa Noel — Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;700;800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --dark:#0D0D14; --dark2:#13131E;
+  --hw:#2E8CF0; --hw2:#5AAEFF;
+  --sw:#E8559A; --sw2:#FF80BF;
+  --both:#7B5CEA; --both2:#A480FF;
+  --ink:#1A1A2E;
+  --muted:rgba(240,240,248,.4);
+  --ff:'Cabinet Grotesk',sans-serif;
+  --fm:'JetBrains Mono',monospace;
+  --fs:'Instrument Serif',serif;
+}
+html{scroll-behavior:smooth;}
+body{font-family:var(--ff);background:var(--dark);color:#F0F0F8;overflow-x:hidden;cursor:none;}
+
+/* ── CURSOR ── */
+#cur{position:fixed;z-index:9999;pointer-events:none;width:10px;height:10px;border-radius:50%;background:var(--sw);transform:translate(-50%,-50%);mix-blend-mode:exclusion;transition:width .15s,height .15s;}
+#cur2{position:fixed;z-index:9998;pointer-events:none;width:36px;height:36px;border-radius:50%;border:1.5px solid rgba(255,255,255,.25);transform:translate(-50%,-50%);}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:300;padding:1.1rem 2.5rem;display:flex;justify-content:space-between;align-items:center;mix-blend-mode:exclusion;}
+.nav-logo{font-family:var(--ff);font-weight:900;font-size:.9rem;color:#fff;text-decoration:none;letter-spacing:-.02em;cursor:none;}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{font-family:var(--fm);font-size:.66rem;color:rgba(255,255,255,.55);text-decoration:none;letter-spacing:.07em;transition:color .2s;cursor:none;}
+.nav-links a:hover{color:#fff;}
+
+/* ══════════════════════════════════════
+   STICKY SCROLL CONTAINER
+══════════════════════════════════════ */
+#hero-scroll{height:350vh;position:relative;}
+
+#hero-sticky{
+  position:sticky;top:0;
+  width:100%;height:100vh;
+  overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+}
+
+#scene-wrap{
+  width:100%;height:100%;
+  display:flex;align-items:center;justify-content:center;
+  transition:none;
+}
+
+#scene-svg{
+  width:min(1100px,95vw);
+  height:auto;
+  cursor:none;
+  filter:drop-shadow(0 20px 60px rgba(0,0,0,.4));
+}
+
+.split-hint{
+  position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);
+  display:flex;gap:3rem;align-items:center;
+  font-family:var(--fm);font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(255,255,255,.3);pointer-events:none;
+  transition:opacity .4s;
+}
+.split-hint span{display:flex;align-items:center;gap:.4rem;}
+.split-hint .dot-hw{width:7px;height:7px;border-radius:50%;background:var(--hw);}
+.split-hint .dot-sw{width:7px;height:7px;border-radius:50%;background:var(--sw);}
+
+#click-laptop,#click-robot{
+  position:absolute;top:0;height:100%;
+  cursor:none;
+  pointer-events:none;
+}
+#click-laptop{left:0;width:50%;}
+#click-robot{right:0;width:50%;}
+
+#click-laptop:hover ~ #scene-svg .laptop-group,
+#click-robot:hover ~ #scene-svg .robot-group{opacity:.85;}
+
+/* ══════════════════════════════════════
+   TERMINAL OVERLAY
+══════════════════════════════════════ */
+#terminal-overlay{
+  position:fixed;inset:0;z-index:500;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(13,13,20,.7);
+  backdrop-filter:blur(6px);
+  opacity:0;pointer-events:none;
+  transition:opacity .35s;
+}
+#terminal-overlay.open{opacity:1;pointer-events:all;}
+
+#terminal-box{
+  width:min(680px,90vw);
+  background:#0A0A0F;
+  border:1px solid rgba(232,85,154,.3);
+  border-radius:8px;
+  overflow:hidden;
+  box-shadow:0 0 0 1px rgba(232,85,154,.1), 0 30px 80px rgba(0,0,0,.6);
+  transform:translateY(16px) scale(.97);
+  transition:transform .35s cubic-bezier(.23,1,.32,1);
+}
+#terminal-overlay.open #terminal-box{transform:none;}
+
+.term-bar{
+  background:#141420;border-bottom:1px solid rgba(255,255,255,.07);
+  padding:.65rem 1rem;display:flex;align-items:center;gap:.5rem;
+}
+.term-dot{width:11px;height:11px;border-radius:50%;cursor:none;}
+.term-dot.r{background:#FF5F56;}
+.term-dot.y{background:#FFBD2E;}
+.term-dot.g{background:#27C93F;}
+.term-title{font-family:var(--fm);font-size:.7rem;color:rgba(255,255,255,.3);margin-left:.5rem;letter-spacing:.06em;}
+
+#terminal-box.minimized #term-output,
+#terminal-box.minimized .term-input-row { display:none; }
+#terminal-box.minimized { width:min(680px,90vw); }
+
+#terminal-overlay.fullscreen { align-items:stretch; justify-content:stretch; padding:0; }
+#terminal-box.fullscreen {
+  width:100vw; height:100vh;
+  border-radius:0; border:none;
+  display:flex; flex-direction:column;
+}
+#terminal-box.fullscreen #term-output { flex:1; height:auto; }
+
+#term-output{
+  padding:1.25rem 1.5rem;
+  height:360px;overflow-y:auto;
+  font-family:var(--fm);font-size:.8rem;line-height:1.7;
+  color:rgba(240,240,255,.75);
+  scroll-behavior:smooth;
+}
+#term-output::-webkit-scrollbar{width:4px;}
+#term-output::-webkit-scrollbar-track{background:transparent;}
+#term-output::-webkit-scrollbar-thumb{background:rgba(232,85,154,.3);border-radius:2px;}
+
+.term-line{margin:0;white-space:pre-wrap;word-break:break-all;}
+.term-line.prompt::before{content:'vanessa@portfolio:~$ ';color:var(--sw);}
+.term-line.prompt.cwd::before{content:attr(data-cwd);}
+.term-line.out{color:rgba(240,240,255,.6);}
+.term-line.out.green{color:#6CFFC5;}
+.term-line.out.rust{color:var(--sw2);}
+.term-line.out.blue{color:var(--hw2);}
+.term-line.out.dim{color:rgba(240,240,255,.3);}
+.term-line.out.bold{color:#fff;font-weight:500;}
+.term-line.err{color:#FF6B6B;}
+
+.term-input-row{
+  display:flex;align-items:center;
+  padding:.75rem 1.5rem 1.1rem;
+  border-top:1px solid rgba(255,255,255,.06);
+  gap:.5rem;
+}
+.term-prompt-label{font-family:var(--fm);font-size:.8rem;color:var(--sw);white-space:nowrap;flex-shrink:0;}
+#term-input{
+  flex:1;background:transparent;border:none;outline:none;
+  font-family:var(--fm);font-size:.8rem;color:#fff;caret-color:var(--sw);
+}
+
+/* ══════════════════════════════════════
+   PORTFOLIO (below sticky)
+══════════════════════════════════════ */
+#portfolio{
+  position:relative;z-index:10;
+  background:var(--dark);
+}
+
+.portfolio-cap{
+  height:80px;
+  background:linear-gradient(to bottom,transparent,var(--dark));
+  margin-top:-80px;position:relative;z-index:11;pointer-events:none;
+}
+
+.section-wrap{max-width:1060px;margin:0 auto;padding:7rem 2.5rem;}
+
+.sec-eye{font-family:var(--fm);font-size:.66rem;letter-spacing:.16em;color:rgba(240,240,248,.28);display:flex;align-items:center;gap:.8rem;margin-bottom:1.5rem;}
+.sec-eye::before{content:'';width:22px;height:1px;background:currentColor;flex-shrink:0;}
+
+.sec-h{font-family:var(--ff);font-weight:900;font-size:clamp(2rem,4vw,3.2rem);letter-spacing:-.03em;line-height:1;color:#F0F0F8;margin-bottom:1rem;}
+.sec-h em{font-family:var(--fs);font-style:italic;font-weight:400;color:var(--sw);}
+.sec-sub{font-size:.97rem;color:rgba(240,240,248,.4);line-height:1.75;max-width:500px;margin-bottom:3.5rem;}
+
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .65s,transform .65s;}
+.reveal.in{opacity:1;transform:none;}
+
+/* PROJECTS TABS */
+.proj-tabs{display:flex;gap:0;margin-bottom:2.75rem;border-radius:5px;overflow:hidden;border:1px solid rgba(255,255,255,.08);width:fit-content;}
+.ptab{font-family:var(--fm);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;padding:.6rem 1.35rem;background:transparent;color:rgba(255,255,255,.3);border:none;cursor:none;transition:all .22s;}
+.ptab:hover{background:rgba(255,255,255,.04);color:rgba(255,255,255,.6);}
+.ptab.a-hw{background:rgba(46,140,240,.12);color:var(--hw2);}
+.ptab.a-sw{background:rgba(232,85,154,.14);color:var(--sw2);}
+.ptab.a-all{background:rgba(255,255,255,.07);color:rgba(255,255,255,.8);}
+.proj-panel{display:none;}
+.proj-panel.active{display:block;}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.35rem;}
+
+/* Cards */
+.pc{border-radius:7px;overflow:hidden;text-decoration:none;cursor:none;transition:transform .22s;display:flex;flex-direction:column;}
+.pc:hover{transform:translateY(-4px);}
+.pc-hw{background:rgba(46,140,240,.06);border:1px solid rgba(46,140,240,.12);}
+.pc-hw:hover{box-shadow:0 16px 40px rgba(0,0,0,.3);}
+.pc-sw{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);}
+.pc-sw:hover{background:rgba(255,255,255,.07);}
+
+.pc-emo{aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;font-size:3rem;}
+.pc-hw .pc-emo{background:rgba(46,140,240,.08);}
+.pc-sw .pc-emo{background:rgba(232,85,154,.08);}
+.pc-body{padding:1.35rem;flex:1;display:flex;flex-direction:column;}
+.pc-label{font-family:var(--fm);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.6rem;}
+.pc-hw .pc-label{color:var(--hw);}
+.pc-sw .pc-label{color:var(--sw2);}
+.pc-body h3{font-family:var(--ff);font-weight:800;font-size:1.05rem;margin-bottom:.55rem;letter-spacing:-.02em;}
+.pc-hw .pc-body h3{color:#F0F0F8;}
+.pc-sw .pc-body h3{color:#F0F0F8;}
+.pc-body p{font-size:.87rem;line-height:1.7;flex:1;margin-bottom:1rem;}
+.pc-hw .pc-body p{color:rgba(240,240,248,.4);}
+.pc-sw .pc-body p{color:rgba(240,240,248,.4);}
+.pc-arr{font-family:var(--fm);font-size:.67rem;letter-spacing:.06em;text-transform:uppercase;display:flex;align-items:center;gap:.35rem;transition:gap .2s;}
+.pc-hw .pc-arr{color:var(--hw);}
+.pc-sw .pc-arr{color:var(--sw2);}
+.pc:hover .pc-arr{gap:.65rem;}
+
+/* EXPERIENCE */
+#experience{border-top:1px solid rgba(255,255,255,.05);}
+.exp-item{display:grid;grid-template-columns:180px 1fr;gap:3rem;padding:2.75rem 0;border-bottom:1px solid rgba(255,255,255,.055);}
+.exp-item:last-child{border-bottom:none;}
+.exp-item:hover{background:rgba(255,255,255,.015);border-radius:6px;}
+.exp-period{font-family:var(--fm);font-size:.66rem;color:rgba(240,240,248,.28);letter-spacing:.08em;line-height:1.8;}
+.exp-type{display:inline-block;margin-top:.6rem;font-family:var(--fm);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;padding:.18rem .55rem;border-radius:3px;}
+.exp-type.hw{background:rgba(46,140,240,.12);color:var(--hw2);border:1px solid rgba(46,140,240,.2);}
+.exp-type.sw{background:rgba(232,85,154,.12);color:var(--sw2);border:1px solid rgba(232,85,154,.2);}
+.exp-type.both{background:rgba(123,92,234,.12);color:var(--both2);border:1px solid rgba(123,92,234,.2);}
+.exp-role{font-family:var(--ff);font-weight:800;font-size:1.25rem;color:#F0F0F8;letter-spacing:-.02em;margin-bottom:.22rem;}
+.exp-co{font-family:var(--fm);font-size:.7rem;color:var(--sw);letter-spacing:.06em;text-transform:uppercase;margin-bottom:.9rem;}
+.exp-desc{font-size:.93rem;color:rgba(240,240,248,.42);line-height:1.8;margin-bottom:.9rem;}
+.exp-badge{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--fm);font-size:.63rem;color:#F5A623;border:1px solid rgba(245,166,35,.2);padding:.18rem .6rem;background:rgba(245,166,35,.06);border-radius:3px;}
+
+/* SKILLS */
+#skills{border-top:1px solid rgba(255,255,255,.05);}
+.skills-split{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:rgba(255,255,255,.05);border-radius:10px;overflow:hidden;}
+.sk-col{padding:2.75rem;}
+.sk-col.hw{background:#080E1A;}
+.sk-col.sw{background:#0A0A14;}
+.sk-col-tag{font-family:var(--fm);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;display:flex;align-items:center;gap:.65rem;margin-bottom:.5rem;}
+.sk-col.hw .sk-col-tag{color:var(--hw);}
+.sk-col.sw .sk-col-tag{color:var(--sw2);}
+.sk-col-tag::before{content:'';width:16px;height:1px;background:currentColor;}
+.sk-col-title{font-family:var(--ff);font-weight:900;font-size:1.5rem;letter-spacing:-.03em;margin-bottom:1.75rem;}
+.sk-col.hw .sk-col-title{color:#F0F0F8;}
+.sk-col.sw .sk-col-title{color:#F0F0F8;}
+.sk-group{margin-bottom:1.4rem;}
+.sk-group h4{font-family:var(--ff);font-weight:700;font-size:.88rem;margin-bottom:.6rem;letter-spacing:-.01em;}
+.sk-col.hw .sk-group h4{color:#F0F0F8;}
+.sk-col.sw .sk-group h4{color:#F0F0F8;}
+.sk-pills{display:flex;flex-wrap:wrap;gap:.38rem;}
+.spill{font-family:var(--fm);font-size:.66rem;letter-spacing:.04em;padding:.28rem .7rem;border-radius:100px;}
+.sk-col.hw .spill{background:rgba(46,140,240,.09);color:var(--hw);border:1px solid rgba(46,140,240,.18);}
+.sk-col.sw .spill{background:rgba(232,85,154,.1);color:var(--sw2);border:1px solid rgba(232,85,154,.22);}
+
+/* EDUCATION */
+#education{border-top:1px solid rgba(255,255,255,.05);}
+.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.35rem;}
+.edu-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:8px;padding:2.25rem;transition:transform .2s,background .2s;position:relative;overflow:hidden;}
+.edu-card:hover{transform:translateY(-3px);background:rgba(255,255,255,.05);}
+.edu-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;transform:scaleX(0);transform-origin:left;transition:transform .4s;}
+.edu-card:hover::before{transform:scaleX(1);}
+.edu-card:nth-child(1)::before{background:linear-gradient(90deg,var(--sw),var(--sw2));}
+.edu-card:nth-child(2)::before{background:linear-gradient(90deg,var(--hw),var(--hw2));}
+.edu-yr{font-family:var(--fm);font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:.7rem;}
+.edu-card h3{font-family:var(--ff);font-weight:800;font-size:1.1rem;color:#F0F0F8;margin-bottom:.28rem;letter-spacing:-.02em;}
+.edu-card .school{font-family:var(--fm);font-size:.7rem;color:var(--sw);letter-spacing:.06em;text-transform:uppercase;margin-bottom:.9rem;}
+.edu-card p{font-size:.88rem;color:rgba(240,240,248,.38);line-height:1.75;}
+.edu-tags{display:flex;flex-wrap:wrap;gap:.38rem;margin-top:1.1rem;}
+.etag{font-family:var(--fm);font-size:.6rem;letter-spacing:.05em;text-transform:uppercase;padding:.18rem .55rem;border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.28);border-radius:3px;}
+
+/* RESUME STRIP */
+.resume-strip{position:relative;z-index:1;background:#08101A;padding:2.75rem 2.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;overflow:hidden;}
+.resume-strip::before{content:'';position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(46,140,240,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(46,140,240,.05) 1px,transparent 1px);background-size:32px 32px;}
+.rs-text{position:relative;}
+.rs-text p{font-size:.95rem;color:rgba(240,240,248,.4);margin-bottom:.28rem;}
+.rs-text h3{font-family:var(--ff);font-weight:900;font-size:1.7rem;color:#F0F0F8;letter-spacing:-.03em;}
+.rs-text h3 em{color:var(--hw);font-style:italic;font-family:var(--fs);}
+.btn-rust{position:relative;display:inline-flex;align-items:center;gap:.45rem;padding:.85rem 1.75rem;font-family:var(--ff);font-weight:800;font-size:.83rem;background:var(--hw);color:#fff;border:none;border-radius:4px;cursor:none;text-decoration:none;transition:all .2s;letter-spacing:-.01em;}
+.btn-rust:hover{background:var(--ink);transform:translateY(-2px);box-shadow:4px 4px 0 var(--hw);}
+.btn-blue{display:inline-flex;align-items:center;gap:.45rem;padding:.85rem 1.75rem;font-family:var(--ff);font-weight:800;font-size:.83rem;background:var(--sw);color:#fff;border:none;border-radius:4px;cursor:none;text-decoration:none;transition:all .2s;}
+.btn-blue:hover{background:#C9407A;transform:translateY(-2px);box-shadow:4px 4px 0 rgba(232,85,154,.4);}
+
+/* CONTACT */
+#contact{border-top:1px solid rgba(255,255,255,.05);}
+.contact-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:5rem;align-items:start;}
+.contact-lhs h2{font-family:var(--ff);font-weight:900;font-size:clamp(1.8rem,3.5vw,2.8rem);letter-spacing:-.03em;margin-bottom:.9rem;color:#F0F0F8;}
+.contact-lhs h2 em{font-family:var(--fs);font-style:italic;color:var(--sw);}
+.contact-lhs p{font-size:.93rem;color:rgba(240,240,248,.4);line-height:1.75;margin-bottom:1.75rem;}
+.slinks{display:flex;flex-direction:column;gap:.7rem;}
+.slink{display:flex;align-items:center;gap:.8rem;font-family:var(--fm);font-size:.73rem;color:rgba(240,240,248,.4);text-decoration:none;transition:color .2s;cursor:none;letter-spacing:.04em;}
+.slink:hover{color:#F0F0F8;}
+.slink-ic{width:34px;height:34px;border:1px solid rgba(255,255,255,.1);border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:.72rem;transition:border-color .2s;}
+.slink:hover .slink-ic{border-color:var(--sw);}
+.cf{display:flex;flex-direction:column;gap:1.05rem;}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.fg{display:flex;flex-direction:column;gap:.35rem;}
+.fg label{font-family:var(--fm);font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.22);}
+.fg input,.fg textarea,.fg select{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:4px;padding:.7rem .95rem;font-family:var(--ff);font-size:.92rem;color:#F0F0F8;outline:none;transition:border-color .2s;cursor:none;}
+.fg input::placeholder,.fg textarea::placeholder{color:rgba(255,255,255,.17);}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--sw);}
+.fg textarea{resize:vertical;min-height:105px;}
+.fg select option{background:var(--dark);}
+.ffoot{display:flex;align-items:center;gap:1rem;}
+.fnote{font-family:var(--fm);font-size:.63rem;color:rgba(255,255,255,.2);}
+.fsuccess{display:none;font-family:var(--fm);font-size:.73rem;color:#6CFFC5;padding:.7rem .95rem;border:1px solid rgba(108,255,197,.2);background:rgba(108,255,197,.06);border-radius:4px;}
+
+footer{background:#060608;border-top:1px solid rgba(255,255,255,.05);padding:1.6rem 2.5rem;display:flex;align-items:center;justify-content:space-between;}
+footer p{font-family:var(--fm);font-size:.63rem;color:rgba(255,255,255,.17);letter-spacing:.04em;}
+.fl{display:flex;gap:1.5rem;}
+.fl a{font-family:var(--fm);font-size:.63rem;color:rgba(255,255,255,.22);text-decoration:none;letter-spacing:.06em;text-transform:uppercase;transition:color .2s;cursor:none;}
+.fl a:hover{color:#fff;}
+
+@keyframes bh{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-5px)}}
+
+#screen-glow, #screen-text { transition: opacity .35s, fill .35s; }
+#robot-face   { transition: fill .35s; }
+#eye-l-glow, #eye-r-glow,
+#pupil-l, #pupil-r,
+#shine-l, #shine-r { transition: fill .35s; }
+#lid-l, #lid-r { transition: height .3s; }
+#led-1,#led-2,#led-3,#led-4,#led-5 { transition: fill .25s; }
+
+#robot-arm-l { transition: transform .5s cubic-bezier(.23,1,.32,1); }
+@keyframes wave {
+  0%   { transform: rotate(0deg);   }
+  18%  { transform: rotate(120deg); }
+  35%  { transform: rotate(105deg); }
+  50%  { transform: rotate(120deg); }
+  65%  { transform: rotate(105deg); }
+  80%  { transform: rotate(120deg); }
+  100% { transform: rotate(120deg); }
+}
+#robot-arm-l.waving { animation: wave 2.6s ease-in-out forwards; }
+
+/* ── PROJECT PREVIEW MODAL ── */
+#proj-preview {
+  position:fixed; inset:0; z-index:400;
+  display:flex; align-items:center; justify-content:center;
+  background:rgba(8,8,16,.8);
+  backdrop-filter:blur(8px);
+  opacity:0; pointer-events:none;
+  transition:opacity .3s;
+}
+#proj-preview.open { opacity:1; pointer-events:all; }
+
+.pp-modal {
+  background:#0E0E1A;
+  border:1px solid rgba(232,85,154,.2);
+  border-radius:12px;
+  box-shadow:0 30px 80px rgba(0,0,0,.6);
+  width:min(680px,90vw);
+  max-height:85vh;
+  overflow-y:auto;
+  transform:translateY(20px) scale(.97);
+  transition:transform .35s cubic-bezier(.23,1,.32,1);
+  position:relative;
+}
+#proj-preview.open .pp-modal { transform:none; }
+
+.pp-modal::-webkit-scrollbar{width:4px;}
+.pp-modal::-webkit-scrollbar-thumb{background:rgba(232,85,154,.3);border-radius:2px;}
+
+.pp-header {
+  display:flex; align-items:flex-start; gap:1.5rem;
+  padding:2rem 2rem 1.25rem;
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.pp-emo { font-size:3rem; line-height:1; flex-shrink:0; }
+.pp-header-text { flex:1; }
+.pp-label { font-family:var(--fm); font-size:.65rem; letter-spacing:.1em; text-transform:uppercase; margin-bottom:.4rem; }
+.pp-label.hw { color:var(--hw); }
+.pp-label.sw { color:var(--sw2); }
+.pp-title { font-family:var(--ff); font-weight:900; font-size:1.5rem; letter-spacing:-.03em; color:#F0F0F8; line-height:1.1; }
+.pp-close {
+  width:32px; height:32px; border-radius:50%;
+  background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.1);
+  color:rgba(255,255,255,.5); font-size:1rem;
+  display:flex; align-items:center; justify-content:center;
+  cursor:none; transition:all .2s; flex-shrink:0;
+}
+.pp-close:hover { background:rgba(255,255,255,.15); color:#fff; }
+
+.pp-body { padding:1.5rem 2rem 2rem; }
+.pp-desc { font-size:.97rem; color:rgba(240,240,248,.5); line-height:1.85; margin-bottom:1.5rem; }
+.pp-tags { display:flex; flex-wrap:wrap; gap:.4rem; margin-bottom:1.75rem; }
+.pp-tag { font-family:var(--fm); font-size:.65rem; letter-spacing:.06em; text-transform:uppercase; padding:.22rem .65rem; border-radius:100px; border:1px solid rgba(255,255,255,.1); color:rgba(255,255,255,.35); }
+.pp-actions { display:flex; gap:1rem; align-items:center; }
+.pp-btn { display:inline-flex; align-items:center; gap:.45rem; padding:.8rem 1.6rem; font-family:var(--ff); font-weight:800; font-size:.88rem; background:var(--sw); color:#fff; border:none; border-radius:4px; cursor:none; text-decoration:none; transition:all .2s; }
+.pp-btn:hover { background:#C9407A; transform:translateY(-2px); }
+.pp-btn.hw-btn { background:var(--hw); }
+.pp-btn.hw-btn:hover { background:var(--ink); box-shadow:3px 3px 0 var(--hw); }
+.pc.selected { outline:2px solid var(--sw); outline-offset:3px; }
+.pc-hw.selected { outline-color:var(--hw); }
+
+@media(max-width:700px){
+  nav{padding:1rem 1.5rem;}
+  .nav-links{gap:1.25rem;}
+  .section-wrap{padding:4.5rem 1.5rem;}
+  .skills-split,.edu-grid,.contact-grid{grid-template-columns:1fr;}
+  .exp-item{grid-template-columns:1fr;gap:1rem;}
+  .frow{grid-template-columns:1fr;}
+  .resume-strip{flex-direction:column;text-align:center;padding:2rem 1.5rem;}
+  footer{flex-direction:column;gap:1rem;text-align:center;}
+  #hero-scroll{height:auto;}
+  #hero-sticky{position:relative;height:auto;padding:5rem 1rem 2rem;}
+  .split-hint{display:none;}
+}
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+<div id="cur2"></div>
+
+<nav>
+  <a href="#" class="nav-logo">Vanessa Noel</a>
+  <ul class="nav-links">
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ══════════════════════════════════════
+     STICKY SCROLL HERO
+══════════════════════════════════════ -->
+<div id="hero-scroll">
+  <div id="hero-sticky">
+    <div id="scene-wrap">
+
+      <!-- THE SCENE SVG -->
+      <svg id="scene-svg" viewBox="0 0 1100 580" xmlns="http://www.w3.org/2000/svg" fill="none">
+        <defs>
+          <!-- SW pink grid left (laptop/digital side) -->
+          <pattern id="gridPaper" width="36" height="36" patternUnits="userSpaceOnUse">
+            <path d="M36 0H0V36" stroke="rgba(232,85,154,0.07)" stroke-width=".5" fill="none"/>
+          </pattern>
+          <!-- HW blue grid right (robot/physical side) -->
+          <pattern id="gridBlue" width="36" height="36" patternUnits="userSpaceOnUse">
+            <path d="M36 0H0V36" stroke="rgba(46,140,240,0.12)" stroke-width=".5" fill="none"/>
+          </pattern>
+          <!-- Cable gradient: SW pink → purple → HW blue -->
+          <linearGradient id="cableGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#E8559A" stop-opacity=".9"/>
+            <stop offset="50%" stop-color="#7B5CEA" stop-opacity=".9"/>
+            <stop offset="100%" stop-color="#2E8CF0" stop-opacity=".9"/>
+          </linearGradient>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="3" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+
+        <!-- ── BACKGROUND PANELS ── -->
+        <!-- Left: dark SW-tinted (digital/laptop side) -->
+        <rect x="0" y="0" width="550" height="580" fill="#0D0814" rx="12"/>
+        <rect x="0" y="0" width="550" height="580" fill="url(#gridPaper)" rx="12"/>
+        <!-- Right: dark HW-tinted (physical/robot side) -->
+        <rect x="550" y="0" width="550" height="580" fill="#080E18" rx="12"/>
+        <rect x="550" y="0" width="550" height="580" fill="url(#gridBlue)" rx="12"/>
+
+        <!-- Soft center blend -->
+        <rect x="490" y="0" width="120" height="580" fill="url(#centerBlend)" opacity=".4"/>
+        <defs>
+          <linearGradient id="centerBlend" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#0D0814"/>
+            <stop offset="100%" stop-color="#080E18"/>
+          </linearGradient>
+        </defs>
+
+        <!-- ── DESK SURFACE ── -->
+        <rect x="20" y="440" width="1060" height="18" fill="#1A1A2E" rx="3"/>
+        <rect x="20" y="455" width="1060" height="6" fill="#141428" rx="2"/>
+        <rect x="20" y="461" width="1060" height="4" fill="rgba(0,0,0,0.2)" rx="2"/>
+
+        <!-- Construction lines left — SW pink dashes -->
+        <line x1="275" y1="60" x2="275" y2="440" stroke="rgba(232,85,154,.08)" stroke-width=".8" stroke-dasharray="4 4"/>
+        <line x1="60" y1="290" x2="490" y2="290" stroke="rgba(232,85,154,.08)" stroke-width=".8" stroke-dasharray="4 4"/>
+
+        <!-- ── LAPTOP ── -->
+        <g class="laptop-group" transform="translate(155,190)" style="cursor:pointer">
+          <rect x="0" y="0" width="240" height="168" fill="#2A2A3A" stroke="#1A1A28" stroke-width="1.5" rx="8"/>
+          <rect x="6" y="6" width="228" height="150" fill="#0A0A12" rx="5"/>
+          <rect x="6" y="6" width="228" height="150" fill="#050508" rx="5" id="laptop-screen"/>
+          <rect id="screen-glow" x="6" y="6" width="228" height="150" fill="rgba(232,85,154,0)" rx="5"/>
+          <g id="screen-text" opacity="0">
+            <text x="16" y="28" font-family="JetBrains Mono,monospace" font-size="7" fill="rgba(232,85,154,.6)">vanessa@portfolio:~$</text>
+            <text x="16" y="40" font-family="JetBrains Mono,monospace" font-size="7" fill="rgba(240,240,248,.35)">ls projects/</text>
+            <text x="16" y="56" font-family="JetBrains Mono,monospace" font-size="6.5" fill="rgba(108,200,255,.5)">mechanical-flower/  baymax-arm/</text>
+            <text x="16" y="68" font-family="JetBrains Mono,monospace" font-size="6.5" fill="rgba(108,200,255,.5)">satellite-launches/  lego-minifig/</text>
+            <text x="16" y="84" font-family="JetBrains Mono,monospace" font-size="7" fill="rgba(232,85,154,.6)">vanessa@portfolio:~$</text>
+            <rect x="142" y="77" width="5" height="9" fill="rgba(232,85,154,.8)">
+              <animate attributeName="opacity" dur="1.1s" repeatCount="indefinite" values="1;0;1"/>
+            </rect>
+          </g>
+          <rect x="-4" y="168" width="248" height="8" fill="#222230" rx="2"/>
+          <rect x="-12" y="174" width="264" height="18" fill="#2A2A3A" stroke="#1A1A28" stroke-width="1" rx="4"/>
+          <rect x="90" y="178" width="80" height="10" fill="#222230" stroke="#1A1A28" stroke-width=".8" rx="2"/>
+          <rect x="6" y="6" width="228" height="150" fill="transparent" stroke="rgba(232,85,154,0)" stroke-width="2" rx="5" id="laptop-glow">
+            <animate attributeName="stroke-opacity" dur="2s" repeatCount="indefinite" values=".08;.25;.08"/>
+          </rect>
+        </g>
+
+        <!-- ══ CABLE ══ -->
+        <defs>
+          <linearGradient id="cordGrad" x1="543" y1="0" x2="557" y2="0" gradientUnits="userSpaceOnUse">
+            <stop offset="0%"   stop-color="#E8559A"/>
+            <stop offset="50%"  stop-color="#7B5CEA"/>
+            <stop offset="100%" stop-color="#2E8CF0"/>
+          </linearGradient>
+        </defs>
+        <g id="socket-left">
+          <rect x="407" y="367" width="10" height="12" fill="#1E1E2E" stroke="#444" stroke-width="1.5" rx="2"/>
+        </g>
+        <g id="socket-right">
+          <rect x="742" y="294" width="10" height="12" fill="#1E2A40" stroke="#444" stroke-width="1.5" rx="2"/>
+        </g>
+        <path id="cord" d="M 543,373 C 550,373 550,300 557,300" stroke="url(#cordGrad)" stroke-width="5" stroke-linecap="round" fill="none"/>
+        <!-- Left plug: SW pink -->
+        <rect id="plug-l" x="529" y="367" width="14" height="12" fill="#7A3A5E" stroke="#E8559A" stroke-width="1.5" rx="2"/>
+        <!-- Right plug: HW blue -->
+        <rect id="plug-r" x="557" y="294" width="14" height="12" fill="#1E3A5E" stroke="#2E8CF0" stroke-width="1.5" rx="2"/>
+
+        <!-- ── ROBOT ── -->
+        <g class="robot-group" transform="translate(756,120)" style="cursor:pointer">
+
+          <!-- Body / torso -->
+          <rect x="20" y="110" width="100" height="120" fill="#1E2A40" stroke="#2E3A50" stroke-width="1.5" rx="16"/>
+          <rect x="32" y="125" width="76" height="50" fill="rgba(46,140,240,.12)" stroke="rgba(46,140,240,.25)" stroke-width=".8" rx="6"/>
+          <rect x="42" y="135" width="56" height="6" fill="rgba(46,140,240,.2)" rx="3"/>
+          <circle cx="50" cy="138" r="2.5" fill="rgba(46,140,240,.5)"/>
+          <circle cx="60" cy="138" r="2.5" fill="rgba(46,140,240,.5)"/>
+          <circle cx="70" cy="138" r="2.5" fill="rgba(46,140,240,.5)"/>
+          <circle cx="80" cy="138" r="2.5" fill="rgba(46,140,240,.5)"/>
+          <circle cx="90" cy="138" r="2.5" fill="rgba(46,140,240,.5)"/>
+          <line x1="35" y1="155" x2="105" y2="155" stroke="rgba(46,140,240,.15)" stroke-width=".8"/>
+          <line x1="35" y1="161" x2="105" y2="161" stroke="rgba(46,140,240,.15)" stroke-width=".8"/>
+
+          <!-- Neck -->
+          <rect x="48" y="98" width="44" height="16" fill="#1A2438" stroke="#2A3448" stroke-width="1" rx="5"/>
+
+          <!-- Head -->
+          <rect x="10" y="30" width="120" height="90" fill="#1E2A40" stroke="#2E3A50" stroke-width="1.5" rx="28"/>
+          <rect id="robot-face" x="22" y="42" width="96" height="66" fill="#050810" stroke="rgba(46,140,240,.1)" stroke-width="1" rx="16"/>
+
+          <!-- Eyes -->
+          <ellipse cx="50" cy="72" rx="14" ry="10" fill="#050810"/>
+          <ellipse id="eye-l-glow" cx="50" cy="72" rx="11" ry="7" fill="rgba(46,140,240,0)"/>
+          <rect id="lid-l" x="36" y="63" width="28" height="14" fill="#050810" rx="4"/>
+          <ellipse cx="90" cy="72" rx="14" ry="10" fill="#050810"/>
+          <ellipse id="eye-r-glow" cx="90" cy="72" rx="11" ry="7" fill="rgba(46,140,240,0)"/>
+          <rect id="lid-r" x="76" y="63" width="28" height="14" fill="#050810" rx="4"/>
+          <circle id="pupil-l" cx="50" cy="72" r="4" fill="rgba(46,140,240,0)"/>
+          <circle id="pupil-r" cx="90" cy="72" r="4" fill="rgba(46,140,240,0)"/>
+          <circle id="shine-l" cx="54" cy="69" r="1.5" fill="rgba(255,255,255,0)"/>
+          <circle id="shine-r" cx="94" cy="69" r="1.5" fill="rgba(255,255,255,0)"/>
+
+          <!-- Ears -->
+          <rect x="-2" y="50" width="14" height="30" fill="#1A2438" stroke="#2A3448" stroke-width="1" rx="4"/>
+          <rect x="128" y="50" width="14" height="30" fill="#1A2438" stroke="#2A3448" stroke-width="1" rx="4"/>
+
+          <!-- Arms -->
+          <g id="robot-arm-l" style="transform-origin:4px 118px;">
+            <rect x="-10" y="115" width="28" height="80" fill="#1A2438" stroke="#2A3448" stroke-width="1.2" rx="12"/>
+            <rect x="-14" y="190" width="36" height="22" fill="#1E2A40" stroke="#2E3A50" stroke-width="1" rx="8"/>
+            <line x1="-4" y1="201" x2="20" y2="201" stroke="rgba(46,140,240,.3)" stroke-width="1.5"/>
+          </g>
+          <rect x="122" y="115" width="28" height="80" fill="#1A2438" stroke="#2A3448" stroke-width="1.2" rx="12"/>
+          <rect x="118" y="190" width="36" height="22" fill="#1E2A40" stroke="#2E3A50" stroke-width="1" rx="8"/>
+          <line x1="128" y1="201" x2="152" y2="201" stroke="rgba(46,140,240,.3)" stroke-width="1.5"/>
+
+          <!-- Mouth -->
+          <path id="robot-mouth" d="M 55 90 Q 70 90 85 90" stroke="rgba(46,140,240,0)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+
+          <!-- Chest LEDs -->
+          <rect x="42" y="135" width="56" height="6" fill="rgba(46,140,240,.05)" rx="3"/>
+          <circle id="led-1" cx="50" cy="138" r="2.5" fill="rgba(46,140,240,.05)"/>
+          <circle id="led-2" cx="60" cy="138" r="2.5" fill="rgba(46,140,240,.05)"/>
+          <circle id="led-3" cx="70" cy="138" r="2.5" fill="rgba(46,140,240,.05)"/>
+          <circle id="led-4" cx="80" cy="138" r="2.5" fill="rgba(46,140,240,.05)"/>
+          <circle id="led-5" cx="90" cy="138" r="2.5" fill="rgba(46,140,240,.05)"/>
+
+          <!-- Legs -->
+          <rect x="28" y="226" width="34" height="60" fill="#1A2438" stroke="#2A3448" stroke-width="1.2" rx="10"/>
+          <rect x="20" y="280" width="46" height="18" fill="#1E2A40" stroke="#2E3A50" stroke-width="1" rx="8"/>
+          <rect x="78" y="226" width="34" height="60" fill="#1A2438" stroke="#2A3448" stroke-width="1.2" rx="10"/>
+          <rect x="74" y="280" width="46" height="18" fill="#1E2A40" stroke="#2E3A50" stroke-width="1" rx="8"/>
+
+          <!-- Blueprint annotations -->
+          <line id="ann-head-line" x1="130" y1="60" x2="175" y2="40" stroke="rgba(46,140,240,.0)" stroke-width=".8" stroke-dasharray="3 2"/>
+          <text id="ann-head-text" x="178" y="37" font-family="JetBrains Mono,monospace" font-size="7" fill="rgba(46,140,240,.0)">VISION + EXPRESSION</text>
+          <line id="ann-arm-line" x1="-12" y1="155" x2="-55" y2="145" stroke="rgba(46,140,240,.0)" stroke-width=".8" stroke-dasharray="3 2"/>
+          <text id="ann-arm-text" x="-120" y="142" font-family="JetBrains Mono,monospace" font-size="7" fill="rgba(46,140,240,.0)">6-DOF ARM</text>
+          <line id="ann-torso-line" x1="122" y1="160" x2="170" y2="170" stroke="rgba(46,140,240,.0)" stroke-width=".8" stroke-dasharray="3 2"/>
+          <text id="ann-torso-text" x="173" y="167" font-family="JetBrains Mono,monospace" font-size="7" fill="rgba(46,140,240,.0)">SENSOR HUB</text>
+        </g>
+
+        <!-- ── BLUEPRINT CALLOUT ── -->
+        <line x1="910" y1="80" x2="1050" y2="60" stroke="rgba(46,140,240,.2)" stroke-width=".8" stroke-dasharray="4 3"/>
+        <text x="1053" y="57" font-family="JetBrains Mono,monospace" font-size="7" fill="rgba(46,140,240,.35)">REV 2.1</text>
+        <text x="880" y="520" font-family="JetBrains Mono,monospace" font-size="7" fill="rgba(46,140,240,.3)">SCALE 1:1  •  UNITS: mm</text>
+        <text x="880" y="532" font-family="JetBrains Mono,monospace" font-size="7" fill="rgba(46,140,240,.25)">DRAWN BY: VN  •  DATE: 2025</text>
+        <rect x="870" y="510" width="200" height="30" fill="none" stroke="rgba(46,140,240,.15)" stroke-width=".8"/>
+
+        <!-- ── DIGITAL / PHYSICAL labels ── -->
+        <text x="275" y="492" font-family="Cabinet Grotesk,sans-serif" font-weight="900" font-size="22" fill="rgba(232,85,154,.55)" text-anchor="middle" letter-spacing="-0.5">Digital</text>
+        <text x="825" y="492" font-family="Cabinet Grotesk,sans-serif" font-weight="900" font-size="22" fill="rgba(46,140,240,.6)" text-anchor="middle" letter-spacing="-0.5">Physical</text>
+        <text x="275" y="510" font-family="JetBrains Mono,monospace" font-size="11" font-weight="500" fill="rgba(232,85,154,.6)" text-anchor="middle" letter-spacing=".08em">CLICK TO EXPLORE</text>
+        <text x="825" y="510" font-family="JetBrains Mono,monospace" font-size="11" font-weight="500" fill="rgba(46,140,240,.7)" text-anchor="middle" letter-spacing=".08em">CLICK TO INSPECT</text>
+
+        <!-- Center divider -->
+        <line x1="550" y1="20" x2="550" y2="510" stroke="rgba(255,255,255,.1)" stroke-width="1" stroke-dasharray="6 4"/>
+        <circle cx="550" cy="265" r="8" stroke="rgba(255,255,255,.15)" stroke-width=".8" fill="none"/>
+        <line x1="550" y1="252" x2="550" y2="278" stroke="rgba(255,255,255,.15)" stroke-width=".8"/>
+        <line x1="537" y1="265" x2="563" y2="265" stroke="rgba(255,255,255,.15)" stroke-width=".8"/>
+
+      </svg><!-- end scene-svg -->
+
+    </div><!-- end scene-wrap -->
+
+    <div id="click-laptop" title="Open terminal"></div>
+    <div id="click-robot" title="Inspect robot"></div>
+
+    <div id="scroll-hint" style="position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);pointer-events:none;transition:opacity .4s;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3);">scroll to continue ↓</div>
+    </div>
+
+  </div><!-- end hero-sticky -->
+</div><!-- end hero-scroll -->
+
+<!-- ══════════════════════════════════════
+     TERMINAL OVERLAY
+══════════════════════════════════════ -->
+<div id="terminal-overlay">
+  <div id="terminal-box">
+    <div class="term-bar">
+      <div class="term-dot r" id="term-close"></div>
+      <div class="term-dot y" id="term-min"></div>
+      <div class="term-dot g" id="term-max"></div>
+      <span class="term-title">vanessa@portfolio — terminal</span>
+    </div>
+    <div id="term-output"></div>
+    <div class="term-input-row">
+      <span class="term-prompt-label" id="term-prompt-label">vanessa@portfolio:~$</span>
+      <input id="term-input" type="text" autocomplete="off" autocorrect="off" spellcheck="false" placeholder="type a command..."/>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PORTFOLIO
+══════════════════════════════════════ -->
+<div id="portfolio">
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-wrap">
+      <div class="sec-eye reveal">02 — Projects</div>
+      <h2 class="sec-h reveal">Things I've <em>built.</em></h2>
+      <p class="sec-sub reveal">I work in both worlds. Filter by which side of me you're curious about.</p>
+      <div class="proj-tabs reveal">
+        <button class="ptab a-hw" data-panel="hw">⚙️&nbsp; Hardware</button>
+        <button class="ptab" data-panel="sw">💻&nbsp; Software</button>
+        <button class="ptab" data-panel="all">✦&nbsp; All</button>
+      </div>
+      <div class="proj-panel active" id="panel-hw">
+        <div class="projects-grid">
+          <div class="pc pc-hw reveal" data-project="lego-minifig"><div class="pc-emo">🧱</div><div class="pc-body"><div class="pc-label">3D Printing · Hobby</div><h3>Giant LEGO Minifigure</h3><p>10× scale fully articulated 3D printed LEGO Classic. ~90 hour print time, every joint moves.</p><span class="pc-arr">Preview →</span></div></div>
+          <div class="pc pc-hw reveal" data-project="mech-flower"><div class="pc-emo">🌸</div><div class="pc-body"><div class="pc-label">Robotics · Mechanisms</div><h3>Mechanical Flower</h3><p>Robotic lotus that blossoms on touch — servo actuation, capacitive sensing, compliant mechanisms.</p><span class="pc-arr">Preview →</span></div></div>
+          <div class="pc pc-hw reveal" data-project="baymax"><div class="pc-emo">🦾</div><div class="pc-body"><div class="pc-label">Robotics · Human Interaction</div><h3>Baymax Robotic Arm</h3><p>Baymax arm replica designed for safe, compliant human interaction with custom force control.</p><span class="pc-arr">Preview →</span></div></div>
+          <div class="pc pc-hw reveal" data-project="satellite"><div class="pc-emo">🛰️</div><div class="pc-body"><div class="pc-label">Aerospace · Hardware</div><h3>Satellite Launches</h3><p>Small-scale satellites launched to the stratosphere via QSET, monitoring payload metrics in flight.</p><span class="pc-arr">Preview →</span></div></div>
+          <div class="pc pc-hw reveal" data-project="masks"><div class="pc-emo">🎭</div><div class="pc-body"><div class="pc-label">3D Printing · Hobby</div><h3>Majora's &amp; Deku Masks</h3><p>Zelda mask replicas — multi-part modeled, printed, and hand-finished.</p><span class="pc-arr">Preview →</span></div></div>
+          <div class="pc pc-hw reveal" data-project="minecraft"><div class="pc-emo">🐔</div><div class="pc-body"><div class="pc-label">3D Printing · Fun</div><h3>Minecraft Chicken</h3><p>Life-sized Minecraft chicken, because engineering should bring joy.</p><span class="pc-arr">Preview →</span></div></div>
+        </div>
+      </div>
+      <div class="proj-panel" id="panel-sw">
+        <div class="projects-grid">
+          <div class="pc pc-sw reveal" data-project="gesture-car"><div class="pc-emo">🚗</div><div class="pc-body"><div class="pc-label">Arduino · Firmware</div><h3>Gesture Controlled Car</h3><p>IMU wrist gesture recognition controls an Arduino RC car in real-time. No buttons.</p><span class="pc-arr">Preview →</span></div></div>
+          <div class="pc pc-sw reveal" data-project="canadarm"><div class="pc-emo">🤖</div><div class="pc-body"><div class="pc-label">Arduino · Controls</div><h3>LEGO Canadarm</h3><p>Wheel-motor interface, color-sensor height adjustment, force-sensitive gripper activation.</p><span class="pc-arr">Preview →</span></div></div>
+          <div class="pc pc-sw reveal" data-project="survey"><div class="pc-emo">🐍</div><div class="pc-body"><div class="pc-label">Python · Automation</div><h3>Survey Automation Tool</h3><p>4 hours → 2 minutes. 99.2% time saved via automated Python pipeline.</p><span class="pc-arr">Preview →</span></div></div>
+          <div class="pc pc-sw reveal" data-project="happytappy"><div class="pc-emo">💙</div><div class="pc-body"><div class="pc-label">Embedded · Open Source · WIP</div><h3>Happy Tappy</h3><p>Open-source EMDR tapper making therapy more affordable. Active development.</p><span class="pc-arr">Preview →</span></div></div>
+        </div>
+      </div>
+      <div class="proj-panel" id="panel-all">
+        <div class="projects-grid">
+          <div class="pc pc-hw reveal" data-project="lego-minifig"><div class="pc-emo">🧱</div><div class="pc-body"><div class="pc-label">3D Printing</div><h3>Giant LEGO Minifigure</h3><p>10× scale articulated LEGO Classic.</p><span class="pc-arr">Preview →</span></div></div>
+          <div class="pc pc-hw reveal" data-project="mech-flower"><div class="pc-emo">🌸</div><div class="pc-body"><div class="pc-label">Robotics</div><h3>Mechanical Flower</h3><p>Robotic lotus on touch.</p><span class="pc-arr">Preview →</span></div></div>
+          <div class="pc pc-hw reveal" data-project="baymax"><div class="pc-emo">🦾</div><div class="pc-body"><div class="pc-label">Robotics</div><h3>Baymax Robotic Arm</h3><p>Compliant human-interaction arm.</p><span class="pc-arr">Preview →</span></div></div>
+          <div class="pc pc-hw reveal" data-project="satellite"><div class="pc-emo">🛰️</div><div class="pc-body"><div class="pc-label">Aerospace</div><h3>Satellite Launches</h3><p>Stratosphere payload monitoring.</p><span class="pc-arr">Preview →</span></div></div>
+          <div class="pc pc-sw reveal" data-project="gesture-car"><div class="pc-emo">🚗</div><div class="pc-body"><div class="pc-label">Arduino</div><h3>Gesture Controlled Car</h3><p>IMU wrist gesture → RC car.</p><span class="pc-arr">Preview →</span></div></div>
+          <div class="pc pc-sw reveal" data-project="canadarm"><div class="pc-emo">🤖</div><div class="pc-body"><div class="pc-label">Controls</div><h3>LEGO Canadarm</h3><p>Multi-sensor robotic arm.</p><span class="pc-arr">Preview →</span></div></div>
+          <div class="pc pc-sw reveal" data-project="survey"><div class="pc-emo">🐍</div><div class="pc-body"><div class="pc-label">Python</div><h3>Survey Automation</h3><p>4h → 2min. 99.2% time saved.</p><span class="pc-arr">Preview →</span></div></div>
+          <div class="pc pc-sw reveal" data-project="happytappy"><div class="pc-emo">💙</div><div class="pc-body"><div class="pc-label">Embedded</div><h3>Happy Tappy</h3><p>Open-source EMDR tapper.</p><span class="pc-arr">Preview →</span></div></div>
+          <div class="pc pc-hw reveal" data-project="masks"><div class="pc-emo">🎭</div><div class="pc-body"><div class="pc-label">3D Printing</div><h3>Zelda Masks</h3><p>Multi-part replica masks.</p><span class="pc-arr">Preview →</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-wrap">
+      <div class="sec-eye reveal">03 — Experience</div>
+      <h2 class="sec-h reveal">Where I've <em>worked.</em></h2>
+      <div class="exp-list">
+        <div class="exp-item reveal"><div class="exp-meta"><div class="exp-period">May 2024<br>Present</div><div class="exp-type both">HW + SW</div></div><div><div class="exp-role">Mechanical Engineer</div><div class="exp-co">Launchpad Build · California</div><p class="exp-desc">Fast-moving startup owning projects end-to-end — CAD modeling, firmware, system testing. Designing complex robotic systems across mechanical, electrical, and software disciplines. Early-stage means wearing every hat and loving it.</p><div class="exp-badge">⚡ Current role</div></div></div>
+        <div class="exp-item reveal"><div class="exp-meta"><div class="exp-period">Sep 2023<br>Apr 2024</div><div class="exp-type hw">HW</div></div><div><div class="exp-role">Robotics Specialist</div><div class="exp-co">Queens Space Engineering Team (QSET)</div><p class="exp-desc">Created a free satellite program in partnership with the Canadian Space Agency for at-risk youth. Trained participants in PCB design, embedded systems, 3D CAD, and launch procedures. 50%+ team retention increase.</p><div class="exp-badge">🛰️ $50K CSA grant · 50%+ retention</div></div></div>
+        <div class="exp-item reveal"><div class="exp-meta"><div class="exp-period">Sep 2022<br>Aug 2023</div><div class="exp-type sw">SW</div></div><div><div class="exp-role">Engineering Intern</div><div class="exp-co">Connections · Queen's University</div><p class="exp-desc">Built Arduino robots achieving 95% satisfaction. Python automation reduced survey processing from 4 hours to 2 minutes. Wrote the grant proposal securing $50K from the Canadian Space Agency.</p><div class="exp-badge">🐍 99.2% time saved · $50K won</div></div></div>
+        <div class="exp-item reveal"><div class="exp-meta"><div class="exp-period">Apr 2021<br>Aug 2022</div><div class="exp-type sw">SW</div></div><div><div class="exp-role">Instructor & Content Creator</div><div class="exp-co">Connections · Queen's University</div><p class="exp-desc">Designed Python curriculum with ML projects. Ran 3D modeling workshops. Volunteered biweekly in LEGO League for underprivileged youth aged 8–12.</p></div></div>
+        <div class="exp-item reveal"><div class="exp-meta"><div class="exp-period">Sep 2020<br>Apr 2021</div><div class="exp-type both">Mgmt</div></div><div><div class="exp-role">Financial Officer</div><div class="exp-co">The Engineering Society · Queen's University</div><p class="exp-desc">Managed ~$250,000 in funding across ten student teams.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-wrap">
+      <div class="sec-eye reveal">04 — Skills</div>
+      <h2 class="sec-h reveal">Both <em>worlds.</em></h2>
+      <p class="sec-sub reveal">My value is the bridge — I speak hardware and software fluently.</p>
+      <div class="skills-split reveal">
+        <div class="sk-col hw">
+          <div class="sk-col-tag">Physical</div>
+          <div class="sk-col-title">Hardware</div>
+          <div class="sk-group"><h4>Mechanical Design</h4><div class="sk-pills"><span class="spill">SolidWorks</span><span class="spill">SolidEdge</span><span class="spill">Fusion 360</span><span class="spill">FEA / ANSYS</span><span class="spill">GD&T</span><span class="spill">DFM/DFA</span></div></div>
+          <div class="sk-group"><h4>Fabrication</h4><div class="sk-pills"><span class="spill">FDM 3D Printing</span><span class="spill">Laser AM</span><span class="spill">Rapid Prototyping</span></div></div>
+          <div class="sk-group"><h4>Electronics</h4><div class="sk-pills"><span class="spill">PCB Design</span><span class="spill">Soldering</span><span class="spill">Motor Control</span><span class="spill">Sensor Integration</span></div></div>
+          <div class="sk-group"><h4>Aerospace</h4><div class="sk-pills"><span class="spill">Satellite Design</span><span class="spill">Payload Systems</span><span class="spill">Launch Ops</span></div></div>
+        </div>
+        <div class="sk-col sw">
+          <div class="sk-col-tag">Digital</div>
+          <div class="sk-col-title">Software</div>
+          <div class="sk-group"><h4>Languages</h4><div class="sk-pills"><span class="spill">Python</span><span class="spill">C</span><span class="spill">C++</span><span class="spill">Arduino</span><span class="spill">MATLAB</span></div></div>
+          <div class="sk-group"><h4>Robotics &amp; Controls</h4><div class="sk-pills"><span class="spill">ROS / ROS2</span><span class="spill">Control Systems</span><span class="spill">Simulink</span><span class="spill">Kinematics</span></div></div>
+          <div class="sk-group"><h4>Simulation</h4><div class="sk-pills"><span class="spill">ANSYS</span><span class="spill">Gazebo</span><span class="spill">MATLAB</span></div></div>
+          <div class="sk-group"><h4>Automation &amp; Data</h4><div class="sk-pills"><span class="spill">Python automation</span><span class="spill">ML basics</span><span class="spill">Data analysis</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="section-wrap">
+      <div class="sec-eye reveal">05 — Education</div>
+      <h2 class="sec-h reveal">Where I <em>learned.</em></h2>
+      <div class="edu-grid">
+        <div class="edu-card reveal"><div class="edu-yr">Graduating 2025</div><h3>BASc Mechanical Engineering</h3><div class="school">Queen's University · Kingston, ON</div><p>Specialized in robotics & mechatronics. Coursework: manipulator dynamics & kinematics, control systems, microcontrollers, FEA, additive manufacturing, ANSYS, SolidWorks, MATLAB, Simulink.</p><div class="edu-tags"><span class="etag">Robotics</span><span class="etag">Mechatronics</span><span class="etag">FEA</span><span class="etag">SolidWorks</span><span class="etag">MATLAB</span><span class="etag">AM</span></div></div>
+        <div class="edu-card reveal"><div class="edu-yr">April 2024</div><h3>Certificate in Business</h3><div class="school">Queen's Smith School of Business</div><p>Finance, strategy, and organizational leadership — applied directly through $250K budget management, grant writing, and running multi-team programs.</p><div class="edu-tags"><span class="etag">Finance</span><span class="etag">Strategy</span><span class="etag">Leadership</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESUME -->
+  <div class="resume-strip reveal">
+    <div class="rs-text"><p>Want the full picture?</p><h3>Download my <em>resume.</em></h3></div>
+    <a href="https://6c19bc5f-e37a-4649-b889-ef6cf37ca9a5.filesusr.com/ugd/77f177_3542b777e2ac443dbf275dd2c4f3bb9b.pdf" target="_blank" class="btn-rust">↓ Download Resume</a>
+  </div>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-wrap">
+      <div class="sec-eye reveal">06 — Contact</div>
+      <div class="contact-grid">
+        <div class="contact-lhs reveal">
+          <h2>Let's build something <em>together.</em></h2>
+          <p>Project, role, or just want to talk robots — I'm all ears. Usually responds within a day.</p>
+          <div class="slinks">
+            <a href="http://www.linkedin.com/in/vanessa-noel-engineering" target="_blank" class="slink"><div class="slink-ic">in</div>vanessa-noel-engineering</a>
+            <a href="https://vanessa-noel.com" target="_blank" class="slink"><div class="slink-ic">↗</div>vanessa-noel.com</a>
+          </div>
+        </div>
+        <div class="reveal">
+          <form class="cf" id="cf" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            <div class="frow"><div class="fg"><label>Name</label><input type="text" name="name" placeholder="Jane Smith" required/></div><div class="fg"><label>Email</label><input type="email" name="email" placeholder="jane@co.com" required/></div></div>
+            <div class="fg"><label>Subject</label><select name="subject"><option value="">Select...</option><option>Job opportunity</option><option>Project collaboration</option><option>Consulting</option><option>Just saying hi</option></select></div>
+            <div class="fg"><label>Message</label><textarea name="message" placeholder="Tell me about your project or idea..." required></textarea></div>
+            <div class="ffoot"><button type="submit" class="btn-blue">Send Message →</button><span class="fnote">Within 24h</span></div>
+            <div class="fsuccess" id="fsuccess">✓ Sent! I'll be in touch soon.</div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Vanessa Noel · Pure HTML & CSS · No Wix, no fees.</p>
+    <div class="fl">
+      <a href="http://www.linkedin.com/in/vanessa-noel-engineering" target="_blank">LinkedIn</a>
+      <a href="https://vanessa-noel.com" target="_blank">Portfolio</a>
+      <a href="https://6c19bc5f-e37a-4649-b889-ef6cf37ca9a5.filesusr.com/ugd/77f177_3542b777e2ac443dbf275dd2c4f3bb9b.pdf" target="_blank">Resume</a>
+    </div>
+  </footer>
+
+<!-- ══════════════════════════════════════
+     PROJECT PREVIEW PANEL
+══════════════════════════════════════ -->
+<div id="proj-preview">
+  <div class="pp-modal">
+    <div class="pp-header">
+      <div class="pp-emo" id="pp-emo">🧱</div>
+      <div class="pp-header-text">
+        <div class="pp-label" id="pp-label">3D Printing</div>
+        <div class="pp-title" id="pp-title">Project Title</div>
+      </div>
+      <button class="pp-close" id="pp-close">✕</button>
+    </div>
+    <div class="pp-body">
+      <div class="pp-desc" id="pp-desc"></div>
+      <div class="pp-tags" id="pp-tags"></div>
+      <div class="pp-actions">
+        <a href="#" target="_blank" id="pp-link" class="pp-btn">View Full Project →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- end portfolio -->
+
+<script>
+// ══════════════════════════════════════
+// CURSOR
+// ══════════════════════════════════════
+const cur=document.getElementById('cur'),cur2=document.getElementById('cur2');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+(function loop(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;cur2.style.left=rx+'px';cur2.style.top=ry+'px';requestAnimationFrame(loop);})();
+document.querySelectorAll('a,button,input,textarea,select').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.width='18px';cur.style.height='18px';cur2.style.width='48px';cur2.style.height='48px';});
+  el.addEventListener('mouseleave',()=>{cur.style.width='10px';cur.style.height='10px';cur2.style.width='36px';cur2.style.height='36px';});
+});
+
+// ══════════════════════════════════════
+// HOVER & CLICK HELPERS
+// ══════════════════════════════════════
+function applyWake(on) {
+  ['lid-l','lid-r'].forEach(id =>
+    document.getElementById(id)?.setAttribute('height', on ? '10' : '14'));
+  ['eye-l-glow','eye-r-glow'].forEach(id =>
+    document.getElementById(id)?.setAttribute('fill', on ? 'rgba(46,140,240,.15)' : 'rgba(46,140,240,0)'));
+  ['pupil-l','pupil-r'].forEach(id =>
+    document.getElementById(id)?.setAttribute('fill', on ? 'rgba(46,140,240,.4)' : 'rgba(46,140,240,0)'));
+  ['shine-l','shine-r'].forEach(id =>
+    document.getElementById(id)?.setAttribute('fill', on ? 'rgba(255,255,255,.15)' : 'rgba(255,255,255,0)'));
+  const mouth = document.getElementById('robot-mouth');
+  if (mouth) {
+    mouth.setAttribute('d', 'M 52 95 Q 70 100 88 95');
+    mouth.setAttribute('stroke', on ? 'rgba(46,140,240,.35)' : 'rgba(46,140,240,0)');
+  }
+  document.getElementById('robot-face')?.setAttribute('fill', on ? 'rgb(10,16,32)' : '#050810');
+  document.getElementById('robot-face')?.setAttribute('stroke', on ? 'rgba(46,140,240,.3)' : 'rgba(46,140,240,.1)');
+  [1,2,3,4,5].forEach(n =>
+    document.getElementById(`led-${n}`)?.setAttribute('fill', on ? 'rgba(46,140,240,.5)' : 'rgba(46,140,240,.05)'));
+}
+
+function applyLaptop(on) {
+  document.getElementById('screen-glow')?.setAttribute('fill', on ? 'rgba(232,85,154,.08)' : 'rgba(232,85,154,0)');
+  document.getElementById('screen-text')?.setAttribute('opacity', on ? '1' : '0');
+}
+
+// ══════════════════════════════════════
+// HOVER & CLICK — scene mousemove/click
+// ══════════════════════════════════════
+const sceneSvg = document.getElementById('scene-svg');
+let lastSide = null;
+
+function getSide(e) {
+  const rect = sceneSvg.getBoundingClientRect();
+  return (e.clientX - rect.left) < rect.width / 2 ? 'left' : 'right';
+}
+
+sceneSvg.addEventListener('mousemove', e => {
+  const side = getSide(e);
+  if (side === lastSide) return;
+  lastSide = side;
+  if (side === 'left') {
+    applyLaptop(true); applyWake(false);
+    document.getElementById('robot-arm-l')?.classList.remove('waving');
+  } else {
+    applyLaptop(false); applyWake(true);
+    document.getElementById('robot-arm-l')?.classList.add('waving');
+  }
+});
+
+sceneSvg.addEventListener('mouseleave', () => {
+  lastSide = null;
+  applyLaptop(false); applyWake(false);
+  document.getElementById('robot-arm-l')?.classList.remove('waving');
+});
+
+sceneSvg.addEventListener('click', e => {
+  if (getSide(e) === 'left') openTerminal();
+});
+
+const heroScroll  = document.getElementById('hero-scroll');
+const sceneWrap   = document.getElementById('scene-wrap');
+
+function onScroll(){
+  const scrollY  = window.scrollY;
+  const totalH   = window.innerHeight * 2.5;
+  const progress = Math.min(Math.max(scrollY / totalH, 0), 1);
+
+  if (progress > 0.02) { lastSide = null; }
+
+  // ── CABLE PLUG-IN ──
+  const cableT = Math.min(progress / 0.10, 1);
+  const cEased = cableT < .5 ? 2*cableT*cableT : -1+(4-2*cableT)*cableT;
+
+  const plugW = 14;
+  const lpRight = 543 - cEased * (543 - 417);
+  const lpLeft  = lpRight - plugW;
+  const rpLeft  = 557 + cEased * (742 - 557);
+
+  const ly = 373, ry = 300;
+  const midX = (lpRight + rpLeft) / 2;
+  const cord  = document.getElementById('cord');
+  const plugL = document.getElementById('plug-l');
+  const plugR = document.getElementById('plug-r');
+  const grad  = document.getElementById('cordGrad');
+  if (cord)  cord.setAttribute('d', `M ${lpRight.toFixed(1)},${ly} C ${midX.toFixed(1)},${ly} ${midX.toFixed(1)},${ry} ${rpLeft.toFixed(1)},${ry}`);
+  if (plugL) plugL.setAttribute('x', lpLeft.toFixed(1));
+  if (plugR) plugR.setAttribute('x', rpLeft.toFixed(1));
+  if (grad) { grad.setAttribute('x1', lpRight.toFixed(1)); grad.setAttribute('x2', rpLeft.toFixed(1)); }
+
+  // ── WAKE-UP ──
+  const wake = Math.max(0, (cEased - 0.80) / 0.20);
+  const wE   = wake * wake;
+
+  const lidH = (14 - wE * 4).toFixed(1);
+  ['lid-l','lid-r'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.setAttribute('height', lidH);
+  });
+
+  ['eye-l-glow','eye-r-glow'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.setAttribute('fill', `rgba(46,140,240,${(wE * 0.15).toFixed(2)})`);
+  });
+
+  document.getElementById('pupil-l')?.setAttribute('fill', `rgba(46,140,240,${(wE * 0.4).toFixed(2)})`);
+  document.getElementById('pupil-r')?.setAttribute('fill', `rgba(46,140,240,${(wE * 0.4).toFixed(2)})`);
+  document.getElementById('shine-l')?.setAttribute('fill', `rgba(255,255,255,${(wE * 0.15).toFixed(2)})`);
+  document.getElementById('shine-r')?.setAttribute('fill', `rgba(255,255,255,${(wE * 0.15).toFixed(2)})`);
+
+  const mouth = document.getElementById('robot-mouth');
+  if (mouth) {
+    mouth.setAttribute('d', `M 52 95 Q 70 100 88 95`);
+    mouth.setAttribute('stroke', `rgba(46,140,240,${(wE * 0.35).toFixed(2)})`);
+    mouth.setAttribute('stroke-width', '1.8');
+  }
+
+  const face = document.getElementById('robot-face');
+  if (face) {
+    const r = Math.round(5  + wE * 5);
+    const g = Math.round(8  + wE * 8);
+    const b = Math.round(10 + wE * 22);
+    face.setAttribute('fill', `rgb(${r},${g},${b})`);
+    face.setAttribute('stroke', `rgba(46,140,240,${(wE * 0.3).toFixed(2)})`);
+  }
+
+  [1,2,3,4,5].forEach((n,i) => {
+    const el = document.getElementById(`led-${n}`);
+    if (!el) return;
+    const lit = wE > i / 5;
+    el.setAttribute('fill', lit ? 'rgba(46,140,240,.5)' : 'rgba(46,140,240,.05)');
+  });
+
+  const screenGlow = document.getElementById('screen-glow');
+  const screenText = document.getElementById('screen-text');
+  if (screenGlow) screenGlow.setAttribute('fill', `rgba(232,85,154,${(wE * 0.04).toFixed(2)})`);
+  if (screenText) screenText.setAttribute('opacity', wE.toFixed(2));
+
+  // Sockets flash green when connected
+  const sockL = document.querySelector('#socket-left rect');
+  const sockR = document.querySelector('#socket-right rect');
+  const connected = cEased > 0.97;
+  if (sockL) sockL.setAttribute('stroke', connected ? '#6CFFC5' : '#E8559A');
+  if (sockR) sockR.setAttribute('stroke', connected ? '#6CFFC5' : '#2E8CF0');
+
+  const fadeStart = 0.85;
+  const fadeT = Math.max((progress - fadeStart) / (1 - fadeStart), 0);
+  sceneWrap.style.transform = `scale(${1 - fadeT * 0.03})`;
+  sceneWrap.style.opacity = '1';
+
+  const sh = document.getElementById('scroll-hint');
+  if(sh) sh.style.opacity = progress > 0.05 ? '0' : '1';
+}
+
+window.addEventListener('scroll', onScroll, {passive:true});
+onScroll();
+
+// ══════════════════════════════════════
+// TERMINAL FILESYSTEM
+// ══════════════════════════════════════
+const FS = {
+  '~': {
+    type:'dir',
+    children:{
+      'projects': {
+        type:'dir',
+        children:{
+          'mechanical-flower.md':{type:'file', content:[
+            {t:'bold', v:'Mechanical Flower'},
+            {t:'dim',  v:'Robotics · Arduino · 2023'},
+            {t:'',     v:''},
+            {t:'out',  v:'A robotic lotus that blossoms upon touch.'},
+            {t:'out',  v:'Combines servo actuation, capacitive sensing,'},
+            {t:'out',  v:'and compliant soft mechanisms.'},
+            {t:'',     v:''},
+            {t:'blue', v:'→ vanessa-noel.com/mechanical-flower'},
+          ]},
+          'baymax-arm.md':{type:'file', content:[
+            {t:'bold', v:'Baymax Robotic Arm'},
+            {t:'dim',  v:'Robotics · Human Interaction · 2023'},
+            {t:'',     v:''},
+            {t:'out',  v:'A replica of Baymax\'s arm from Big Hero 6.'},
+            {t:'out',  v:'Designed for safe, compliant human interaction'},
+            {t:'out',  v:'with custom linkages and force control.'},
+            {t:'',     v:''},
+            {t:'blue', v:'→ vanessa-noel.com/all-projects/baymax-arm'},
+          ]},
+          'satellite-launches.md':{type:'file', content:[
+            {t:'bold', v:'Satellite Launches'},
+            {t:'dim',  v:'Aerospace · Hardware · 2023–24'},
+            {t:'',     v:''},
+            {t:'out',  v:'Small-scale satellites launched to the stratosphere'},
+            {t:'out',  v:'via Queens Space Engineering Team (QSET).'},
+            {t:'out',  v:'Monitored critical payload metrics throughout flight.'},
+            {t:'',     v:''},
+            {t:'rust', v:'★  Secured $50K Canadian Space Agency grant'},
+            {t:'blue', v:'→ vanessa-noel.com/qset'},
+          ]},
+          'lego-minifigure.md':{type:'file', content:[
+            {t:'bold', v:'Giant LEGO Minifigure'},
+            {t:'dim',  v:'3D Printing · Hobby · 2022'},
+            {t:'',     v:''},
+            {t:'out',  v:'A fully 3D printed 10× scale LEGO Classic.'},
+            {t:'out',  v:'Every joint articulates like the original.'},
+            {t:'out',  v:'~90 hour total print time.'},
+            {t:'',     v:''},
+            {t:'blue', v:'→ vanessa-noel.com/all-projects/giantminifigure'},
+          ]},
+          'gesture-car.md':{type:'file', content:[
+            {t:'bold', v:'Gesture Controlled Car'},
+            {t:'dim',  v:'Arduino · Firmware · 2023'},
+            {t:'',     v:''},
+            {t:'out',  v:'IMU-based wrist gesture recognition'},
+            {t:'out',  v:'controls an Arduino RC car in real-time.'},
+            {t:'out',  v:'No buttons needed.'},
+            {t:'',     v:''},
+            {t:'blue', v:'→ vanessa-noel.com/all-projects/gesture-controlled-car'},
+          ]},
+          'happy-tappy.md':{type:'file', content:[
+            {t:'bold', v:'Happy Tappy  [WIP]'},
+            {t:'dim',  v:'Embedded · Open Source · 2024–'},
+            {t:'',     v:''},
+            {t:'out',  v:'Open-source modular EMDR tapper.'},
+            {t:'out',  v:'Making therapy more affordable and accessible.'},
+            {t:'out',  v:'Active development.'},
+            {t:'',     v:''},
+            {t:'blue', v:'→ vanessa-noel.com/all-projects/happytappy'},
+          ]},
+          'survey-automation.md':{type:'file', content:[
+            {t:'bold', v:'Survey Automation Tool'},
+            {t:'dim',  v:'Python · Automation · 2023'},
+            {t:'',     v:''},
+            {t:'out',  v:'Reduced survey data analysis from'},
+            {t:'out',  v:'4 hours → 2 minutes.'},
+            {t:'rust', v:'★  99.2% time savings'},
+            {t:'out',  v:'Integrated with existing management software.'},
+          ]},
+        }
+      },
+      'skills': {
+        type:'dir',
+        children:{
+          'hardware.md':{type:'file', content:[
+            {t:'bold', v:'Hardware Skills'},
+            {t:'',     v:''},
+            {t:'blue', v:'Mechanical Design'},
+            {t:'out',  v:'  SolidWorks, SolidEdge, Fusion 360'},
+            {t:'out',  v:'  FEA / ANSYS, GD&T, DFM/DFA'},
+            {t:'',     v:''},
+            {t:'blue', v:'Fabrication'},
+            {t:'out',  v:'  FDM 3D Printing, Laser AM, Rapid Prototyping'},
+            {t:'',     v:''},
+            {t:'blue', v:'Electronics'},
+            {t:'out',  v:'  PCB Design, Soldering, Motor Control'},
+            {t:'out',  v:'  Sensor Integration'},
+            {t:'',     v:''},
+            {t:'blue', v:'Aerospace'},
+            {t:'out',  v:'  Satellite Design, Payload Systems, Launch Ops'},
+          ]},
+          'software.md':{type:'file', content:[
+            {t:'bold', v:'Software Skills'},
+            {t:'',     v:''},
+            {t:'rust', v:'Languages'},
+            {t:'out',  v:'  Python, C, C++, Arduino, MATLAB'},
+            {t:'',     v:''},
+            {t:'rust', v:'Robotics & Controls'},
+            {t:'out',  v:'  ROS / ROS2, Control Systems, Simulink'},
+            {t:'out',  v:'  Kinematics & Dynamics'},
+            {t:'',     v:''},
+            {t:'rust', v:'Simulation'},
+            {t:'out',  v:'  ANSYS, Gazebo, MATLAB/Simulink'},
+            {t:'',     v:''},
+            {t:'rust', v:'Automation & Data'},
+            {t:'out',  v:'  Python automation, ML basics, Data analysis'},
+          ]},
+        }
+      },
+      'experience': {
+        type:'dir',
+        children:{
+          'launchpad.md':{type:'file', content:[
+            {t:'bold', v:'Mechanical Engineer @ Launchpad Build'},
+            {t:'dim',  v:'May 2024 – Present · California'},
+            {t:'',     v:''},
+            {t:'out',  v:'Fast-moving startup. Own projects end-to-end:'},
+            {t:'out',  v:'CAD → firmware → system testing.'},
+            {t:'out',  v:'Early-stage = wearing every hat.'},
+            {t:'rust', v:'★  Current role'},
+          ]},
+          'qset.md':{type:'file', content:[
+            {t:'bold', v:'Robotics Specialist @ QSET'},
+            {t:'dim',  v:'Sep 2023 – Apr 2024'},
+            {t:'',     v:''},
+            {t:'out',  v:'Free satellite program for at-risk youth.'},
+            {t:'out',  v:'Partnership with Canadian Space Agency.'},
+            {t:'rust', v:'★  $50K CSA grant secured'},
+            {t:'rust', v:'★  50%+ team retention increase'},
+          ]},
+          'connections-intern.md':{type:'file', content:[
+            {t:'bold', v:'Engineering Intern @ Connections'},
+            {t:'dim',  v:'Sep 2022 – Aug 2023'},
+            {t:'',     v:''},
+            {t:'out',  v:'Arduino robots, Python automation.'},
+            {t:'out',  v:'95% customer satisfaction rate.'},
+            {t:'rust', v:'★  4h → 2min automation (99.2% saved)'},
+            {t:'rust', v:'★  $50K CSA grant proposal'},
+          ]},
+        }
+      },
+      'README.md':{type:'file', content:[
+        {t:'bold', v:'Hi, I\'m Vanessa Noel 👋'},
+        {t:'',     v:''},
+        {t:'out',  v:'Mechatronics & Robotics Engineer.'},
+        {t:'out',  v:'Currently @ Launchpad Build, California.'},
+        {t:'out',  v:'Queen\'s University BASc (graduating 2025).'},
+        {t:'',     v:''},
+        {t:'out',  v:'I build things that move, sense, and think.'},
+        {t:'out',  v:'I also 3D print Minecraft chickens.'},
+        {t:'',     v:''},
+        {t:'rust', v:'Where innovation meets purpose.'},
+        {t:'',     v:''},
+        {t:'dim',  v:'Try: ls  ·  cat README.md  ·  cd projects/'},
+        {t:'dim',  v:'     ls projects/  ·  cat projects/mechanical-flower.md'},
+      ]},
+    }
+  }
+};
+
+let cwd = '~';
+let cwdNode = FS['~'];
+let history = [];
+let histIdx = -1;
+
+const termOverlay  = document.getElementById('terminal-overlay');
+const termOutput   = document.getElementById('term-output');
+const termInput    = document.getElementById('term-input');
+const termPromptLbl= document.getElementById('term-prompt-label');
+const termClose    = document.getElementById('term-close');
+const termMin      = document.getElementById('term-min');
+const termMax      = document.getElementById('term-max');
+const termBox      = document.getElementById('terminal-box');
+const termOverlayEl= document.getElementById('terminal-overlay');
+
+function getCwdNode(path){
+  if(path==='~') return FS['~'];
+  const parts = path.replace('~/','').split('/');
+  let node = FS['~'];
+  for(const p of parts){
+    if(!node.children||!node.children[p]) return null;
+    node = node.children[p];
+  }
+  return node;
+}
+
+function appendLine(cls, text){
+  const p = document.createElement('p');
+  p.className = 'term-line ' + cls;
+  p.textContent = text;
+  termOutput.appendChild(p);
+  termOutput.scrollTop = termOutput.scrollHeight;
+}
+function appendPromptLine(cmd){
+  const p = document.createElement('p');
+  p.className = 'term-line prompt';
+  if(cwd!=='~'){p.classList.add('cwd');p.dataset.cwd=`vanessa@portfolio:${cwd}$ `;}
+  p.textContent = cmd;
+  termOutput.appendChild(p);
+}
+function blank(){appendLine('out dim','');}
+
+function updatePrompt(){
+  termPromptLbl.textContent = cwd==='~' ? 'vanessa@portfolio:~$' : `vanessa@portfolio:${cwd}$`;
+}
+
+function runCmd(raw){
+  const cmd = raw.trim();
+  if(!cmd) return;
+  history.unshift(cmd);
+  histIdx = -1;
+  appendPromptLine(cmd);
+  const parts = cmd.split(/\s+/);
+  const c = parts[0].toLowerCase();
+  const arg = parts.slice(1).join(' ');
+  if(c==='clear'){termOutput.innerHTML='';return;}
+  if(c==='whoami'){
+    blank();
+    appendLine('out bold','Vanessa Noel');
+    appendLine('out','Mechatronics & Robotics Engineer');
+    appendLine('out dim','Queen\'s University BASc · Graduating 2025');
+    appendLine('out dim','Currently @ Launchpad Build, California');
+    blank();
+    appendLine('out rust','★  $50K CSA grant secured');
+    appendLine('out rust','★  99.2% automation time savings');
+    appendLine('out rust','★  9+ projects built');
+    blank();
+    appendLine('out dim','linkedin: vanessa-noel-engineering');
+    blank();
+    return;
+  }
+  if(c==='help'){
+    blank();
+    appendLine('out bold','Available commands:');
+    blank();
+    appendLine('out','  whoami          — who is Vanessa?');
+    appendLine('out','  readme          — read the README');
+    appendLine('out','  ls              — list directory contents');
+    appendLine('out','  ls [dir]        — list specific directory');
+    appendLine('out','  cd [dir]        — change directory');
+    appendLine('out','  cd ..           — go up a level');
+    appendLine('out','  cat [file]      — read a file');
+    appendLine('out','  clear           — clear terminal');
+    appendLine('out','  help            — show this message');
+    blank();
+    appendLine('out dim','Tip: try  ls projects/  then  cat projects/mechanical-flower.md');
+    blank();
+    return;
+  }
+  if(c==='readme'){
+    const f = FS['~'].children['README.md'];
+    renderFile(f);
+    return;
+  }
+  if(c==='ls'){
+    let targetNode = cwdNode;
+    if(arg){
+      const resolved = resolvePath(arg);
+      if(!resolved){appendLine('err',`ls: ${arg}: No such file or directory`);return;}
+      if(resolved.type==='file'){appendLine('out',arg);return;}
+      targetNode = resolved;
+    }
+    if(!targetNode.children){appendLine('err','Not a directory.');return;}
+    blank();
+    const entries = Object.keys(targetNode.children);
+    const dirs  = entries.filter(e=>targetNode.children[e].type==='dir');
+    const files = entries.filter(e=>targetNode.children[e].type==='file');
+    dirs.forEach(d=>appendLine('out blue',d+'/'));
+    files.forEach(f=>appendLine('out green',f));
+    blank();
+    return;
+  }
+  if(c==='cd'){
+    if(!arg||arg==='~'){cwd='~';cwdNode=FS['~'];updatePrompt();return;}
+    if(arg==='..'){
+      if(cwd==='~'){return;}
+      const parts=cwd.split('/');
+      parts.pop();
+      cwd=parts.join('/')||'~';
+      cwdNode=getCwdNode(cwd);
+      updatePrompt();
+      return;
+    }
+    const resolved=resolvePath(arg);
+    if(!resolved){appendLine('err',`cd: ${arg}: No such file or directory`);return;}
+    if(resolved.type==='file'){appendLine('err',`cd: ${arg}: Not a directory`);return;}
+    if(arg.startsWith('~')){cwd=arg;}
+    else if(cwd==='~'){cwd='~/'+arg;}
+    else{cwd=cwd+'/'+arg;}
+    cwd=cwd.replace(/\/+/g,'/').replace(/\/$/,'');
+    cwdNode=resolved;
+    updatePrompt();
+    return;
+  }
+  if(c==='cat'){
+    if(!arg){appendLine('err','cat: missing operand');return;}
+    const resolved=resolvePath(arg);
+    if(!resolved){appendLine('err',`cat: ${arg}: No such file or directory`);return;}
+    if(resolved.type==='dir'){appendLine('err',`cat: ${arg}: Is a directory`);return;}
+    renderFile(resolved);
+    return;
+  }
+  appendLine('err',`command not found: ${cmd}`);
+  appendLine('out dim','Type  help  for available commands.');
+}
+
+function resolvePath(p){
+  if(p.startsWith('~')){
+    if(p==='~') return FS['~'];
+    const parts=p.replace('~/','').split('/');
+    let n=FS['~'];
+    for(const pt of parts){if(!n.children||!n.children[pt])return null;n=n.children[pt];}
+    return n;
+  }
+  const parts=p.split('/');
+  let n=cwdNode;
+  for(const pt of parts){
+    if(pt==='..')continue;
+    if(!n.children||!n.children[pt])return null;
+    n=n.children[pt];
+  }
+  return n;
+}
+
+function renderFile(f){
+  blank();
+  f.content.forEach(line=>{
+    const cls = line.t==='bold'?'out bold':line.t==='dim'?'out dim':line.t==='rust'?'out rust':line.t==='blue'?'out blue':'out';
+    appendLine(cls, line.v);
+  });
+  blank();
+}
+
+function openTerminal(){
+  termOverlay.classList.add('open');
+  setTimeout(()=>termInput.focus(),350);
+  if(termOutput.children.length===0){
+    appendLine('out dim','Welcome to Vanessa\'s portfolio terminal.');
+    appendLine('out dim','Type  help  to see available commands.');
+    appendLine('out dim','Or try  whoami  or  ls  to get started.');
+    blank();
+  }
+}
+function closeTerminal(){ termOverlay.classList.remove('open'); }
+
+termClose.addEventListener('click', closeTerminal);
+termMin.addEventListener('click', closeTerminal);
+termMax.addEventListener('click', () => {
+  const isFS = termBox.classList.contains('fullscreen');
+  termBox.classList.toggle('fullscreen');
+  termOverlayEl.classList.toggle('fullscreen');
+  if (!isFS) { termBox.classList.remove('minimized'); setTimeout(() => termInput.focus(), 50); }
+});
+termOverlay.addEventListener('click', e=>{if(e.target===termOverlay) closeTerminal();});
+document.addEventListener('keydown', e=>{
+  if(e.key==='Escape' && termOverlay.classList.contains('open')){closeTerminal();}
+});
+
+termInput.addEventListener('keydown', e=>{
+  if(e.key==='Enter'){const val=termInput.value;termInput.value='';runCmd(val);}
+  if(e.key==='ArrowUp'){e.preventDefault();if(histIdx<history.length-1){histIdx++;termInput.value=history[histIdx];}}
+  if(e.key==='ArrowDown'){e.preventDefault();if(histIdx>0){histIdx--;termInput.value=history[histIdx];}else if(histIdx===0){histIdx=-1;termInput.value='';}}
+  if(e.key==='Tab'){
+    e.preventDefault();
+    const val=termInput.value;
+    const parts=val.split(' ');
+    if(parts.length>=2){
+      const prefix=parts[parts.length-1];
+      const node=cwdNode;
+      if(node.children){
+        const matches=Object.keys(node.children).filter(k=>k.startsWith(prefix));
+        if(matches.length===1){parts[parts.length-1]=matches[0];termInput.value=parts.join(' ');}
+        else if(matches.length>1){appendPromptLine(val);matches.forEach(m=>appendLine('out dim',m));}
+      }
+    }
+  }
+});
+
+termOverlay.addEventListener('click', ()=>{
+  if(termOverlay.classList.contains('open')) termInput.focus();
+});
+
+// ══════════════════════════════════════
+// PROJECT PREVIEW PANEL
+// ══════════════════════════════════════
+const PROJECTS = {
+  'lego-minifig': {
+    emo:'🧱', type:'hw',
+    label:'3D Printing · Hobby',
+    title:'Giant LEGO Minifigure',
+    desc:'A fully 3D printed, 10× scale model of a LEGO Classic. Every joint articulates exactly like the original — from the rotating head to the movable arms and legs. Total print time was approximately 90 hours across multiple filament colours, with careful tolerance work to make all the snap-fit connections satisfying.',
+    tags:['3D Printing','FDM','SolidWorks','Hobby'],
+    url:'projects/lego-minifig.html'
+  },
+  'mech-flower': {
+    emo:'🌸', type:'hw',
+    label:'Robotics · Mechanisms',
+    title:'Mechanical Flower',
+    desc:'A robotic lotus that blossoms when touched. Combines capacitive touch sensing, servo actuation, and soft compliant mechanisms to create a smooth organic blooming motion. The challenge was designing linkages that mimic the natural movement of petals opening — no rigid snapping, just a gentle unfurl.',
+    tags:['Robotics','Arduino','Servo Control','Mechanisms','Capacitive Sensing'],
+    url:'projects/mech-flower.html'
+  },
+  'baymax': {
+    emo:'🦾', type:'hw',
+    label:'Robotics · Human Interaction',
+    title:'Baymax Robotic Arm',
+    desc:'An engineering replica of Baymax\'s arm from Big Hero 6, designed specifically for safe human interaction. Uses custom compliant linkages and force-controlled servos so the arm yields to external forces rather than resisting them. The goal was a robot that feels soft and safe to touch — like the real Baymax.',
+    tags:['Robotics','Force Control','Mechanisms','Arduino','Human-Robot Interaction'],
+    url:'projects/baymax.html'
+  },
+  'satellite': {
+    emo:'🛰️', type:'hw',
+    label:'Aerospace · Hardware',
+    title:'Satellite Launches',
+    desc:'Small-scale satellites designed, built, and launched into the stratosphere through the Queens Space Engineering Team (QSET). Each satellite monitored critical payload metrics throughout the flight — temperature, pressure, altitude, and acceleration. Data was collected, analysed in Python, and used to improve future missions.',
+    tags:['Aerospace','Embedded Systems','Arduino','PCB Design','Python','Data Analysis'],
+    url:'projects/satellite.html'
+  },
+  'masks': {
+    emo:'🎭', type:'hw',
+    label:'3D Printing · Hobby',
+    title:"Majora's & Deku Masks",
+    desc:'Faithful replicas of the iconic masks from The Legend of Zelda — Majora\'s Mask and the Deku Mask. Each was modelled in multiple interlocking parts, printed in different filament colours, and hand-finished with sanding, priming, and painting to achieve the game-accurate look.',
+    tags:['3D Printing','CAD Modelling','Hand Finishing','Painting','Hobby'],
+    url:'projects/masks.html'
+  },
+  'minecraft': {
+    emo:'🐔', type:'hw',
+    label:'3D Printing · Fun',
+    title:'Minecraft Chicken',
+    desc:'A life-sized, fully 3D printed Minecraft chicken. Modelled to exact Minecraft proportions and scaled up to real-world chicken size. Sometimes engineering is just about making something that brings people joy — and nothing brings more joy than a giant blocky chicken sitting in your room.',
+    tags:['3D Printing','FDM','Fun','Hobby'],
+    url:'projects/minecraft.html'
+  },
+  'gesture-car': {
+    emo:'🚗', type:'sw',
+    label:'Arduino · Firmware',
+    title:'Gesture Controlled Car',
+    desc:'An Arduino-based RC car controlled entirely by wrist gestures — no buttons, no joystick. An IMU worn on the hand detects tilt and orientation in real time, which is translated into steering and throttle commands transmitted wirelessly to the car. Tilt forward to accelerate, lean left to turn.',
+    tags:['Arduino','C++','IMU','Wireless Comms','Firmware','Embedded Systems'],
+    url:'projects/gesture-car.html'
+  },
+  'canadarm': {
+    emo:'🤖', type:'sw',
+    label:'Arduino · Controls',
+    title:'LEGO Canadarm',
+    desc:'A LEGO prototype of the Canadarm with a surprisingly sophisticated control system. A wheel-motor interface controls the main joint, a colour sensor adjusts height based on surface detection, and force-sensitive resistors in the gripper activate the clamp. Three different sensor modalities working together in one arm.',
+    tags:['Arduino','C++','Control Systems','Sensor Fusion','LEGO','Robotics'],
+    url:'projects/canadarm.html'
+  },
+  'survey': {
+    emo:'🐍', type:'sw',
+    label:'Python · Automation',
+    title:'Survey Automation Tool',
+    desc:'A Python pipeline that reduced survey data analysis from 4 hours of manual work to 2 minutes of automated processing — a 99.2% time saving. The tool also automated participant grouping and integrated directly with existing management software, eliminating manual data entry entirely.',
+    tags:['Python','Automation','Data Analysis','Scripting','Productivity'],
+    url:'#'
+  },
+  'happytappy': {
+    emo:'💙', type:'sw',
+    label:'Embedded · Open Source · WIP',
+    title:'Happy Tappy',
+    desc:'An open-source, modular EMDR tapper designed to make Eye Movement Desensitization and Reprocessing therapy more affordable and accessible. EMDR tappers can cost hundreds of dollars — Happy Tappy is designed to cost a fraction of that while being customisable and easy to build. Currently in active development.',
+    tags:['Embedded Systems','Arduino','Open Source','Healthcare','WIP'],
+    url:'projects/happytappy.html'
+  }
+};
+
+const preview   = document.getElementById('proj-preview');
+const ppEmo     = document.getElementById('pp-emo');
+const ppLabel   = document.getElementById('pp-label');
+const ppTitle   = document.getElementById('pp-title');
+const ppDesc    = document.getElementById('pp-desc');
+const ppTags    = document.getElementById('pp-tags');
+const ppLink    = document.getElementById('pp-link');
+const ppClose   = document.getElementById('pp-close');
+let   activeCard = null;
+
+function openPreview(id, card) {
+  const p = PROJECTS[id];
+  if (!p) return;
+  ppEmo.textContent   = p.emo;
+  ppLabel.textContent = p.label;
+  ppLabel.className   = `pp-label ${p.type}`;
+  ppTitle.textContent = p.title;
+  ppDesc.textContent  = p.desc;
+  ppTags.innerHTML    = p.tags.map(t=>`<span class="pp-tag">${t}</span>`).join('');
+  ppLink.href         = p.url;
+  ppLink.className    = `pp-btn ${p.type==='hw' ? 'hw-btn' : ''}`;
+  ppLink.style.display = p.url === '#' ? 'none' : '';
+  if (activeCard) activeCard.classList.remove('selected');
+  activeCard = card;
+  card.classList.add('selected');
+  preview.classList.add('open');
+}
+
+function closePreview() {
+  preview.classList.remove('open');
+  if (activeCard) { activeCard.classList.remove('selected'); activeCard = null; }
+}
+
+preview.addEventListener('wheel', e => e.preventDefault(), {passive:false});
+preview.addEventListener('touchmove', e => e.preventDefault(), {passive:false});
+
+document.addEventListener('click', e => {
+  const card = e.target.closest('[data-project]');
+  if (card) {
+    if (activeCard === card) { closePreview(); return; }
+    openPreview(card.dataset.project, card);
+    return;
+  }
+  if (e.target === preview) closePreview();
+});
+
+ppClose.addEventListener('click', closePreview);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closePreview(); });
+
+document.querySelectorAll('.ptab').forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    document.querySelectorAll('.ptab').forEach(t=>t.classList.remove('a-hw','a-sw','a-all'));
+    const p=tab.dataset.panel;
+    tab.classList.add(p==='hw'?'a-hw':p==='sw'?'a-sw':'a-all');
+    document.querySelectorAll('.proj-panel').forEach(panel=>panel.classList.remove('active'));
+    document.getElementById('panel-'+p).classList.add('active');
+    document.querySelectorAll('#panel-'+p+' .reveal').forEach(el=>el.classList.add('in'));
+  });
+});
+
+// ══════════════════════════════════════
+// SCROLL REVEAL
+// ══════════════════════════════════════
+const ro=new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('in'),i*55);ro.unobserve(e.target);}});
+},{threshold:.09});
+document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+
+// ══════════════════════════════════════
+// CONTACT FORM
+// ══════════════════════════════════════
+const cf=document.getElementById('cf'), succ=document.getElementById('fsuccess');
+cf.addEventListener('submit',async e=>{
+  e.preventDefault();
+  try{
+    const r=await fetch(cf.action,{method:'POST',body:new FormData(cf),headers:{Accept:'application/json'}});
+    if(r.ok){cf.reset();succ.style.display='block';setTimeout(()=>succ.style.display='none',5000);}
+  }catch(err){console.error(err);}
+});
+
+// NAV active
+const secs=document.querySelectorAll('section[id]'), nls=document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  secs.forEach(s=>{
+    const rect = s.getBoundingClientRect();
+    if(rect.top <= 140) cur = s.id;
+  });
+  nls.forEach(l=>{
+    const href = l.getAttribute('href');
+    l.style.color = (href === '#'+cur) ? 'rgba(255,255,255,0.9)' : '';
+  });
+},{passive:true});
+</script>
+</body>
+</html>
