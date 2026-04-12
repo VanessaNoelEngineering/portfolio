@@ -37,7 +37,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;padding:1.1rem 2.5rem;displa
 /* ══════════════════════════════════════
    STICKY SCROLL CONTAINER
 ══════════════════════════════════════ */
-#hero-scroll{height:200vh;position:relative;}
+#hero-scroll{height:140vh;position:relative;}
 
 #hero-sticky{
   position:sticky;top:0;
@@ -908,13 +908,13 @@ const sceneWrap   = document.getElementById('scene-wrap');
 
 function onScroll(){
   const scrollY  = window.scrollY;
-  const totalH   = window.innerHeight * 1.0;
+  const totalH   = window.innerHeight * 0.4;
   const progress = Math.min(Math.max(scrollY / totalH, 0), 1);
 
   if (progress > 0.02) { lastSide = null; }
 
   // ── CABLE PLUG-IN ──
-  const cableT = Math.min(progress / 0.90, 1);
+  const cableT = Math.min(progress, 1);
   const cEased = cableT < .5 ? 2*cableT*cableT : -1+(4-2*cableT)*cableT;
 
   const plugW = 14;
