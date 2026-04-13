@@ -1319,7 +1319,7 @@ const FS = {
             {t:'out',  v:'Combines servo actuation, capacitive sensing,'},
             {t:'out',  v:'and compliant soft mechanisms.'},
             {t:'',     v:''},
-            {t:'blue', v:'→ vanessa-noel.com/mechanical-flower'},
+            {t:'link', v:'→ View Project', url:'projects/mech-flower.html'},
           ]},
           'baymax-arm.md':{type:'file', content:[
             {t:'bold', v:'Baymax Robotic Arm'},
@@ -1329,7 +1329,7 @@ const FS = {
             {t:'out',  v:'Designed for safe, compliant human interaction'},
             {t:'out',  v:'with custom linkages and force control.'},
             {t:'',     v:''},
-            {t:'blue', v:'→ vanessa-noel.com/all-projects/baymax-arm'},
+            {t:'link', v:'→ View Project', url:'projects/baymax.html'},
           ]},
           'satellite-launches.md':{type:'file', content:[
             {t:'bold', v:'Satellite Launches'},
@@ -1340,7 +1340,7 @@ const FS = {
             {t:'out',  v:'Monitored critical payload metrics throughout flight.'},
             {t:'',     v:''},
             {t:'rust', v:'★  Secured $50K Canadian Space Agency grant'},
-            {t:'blue', v:'→ vanessa-noel.com/qset'},
+            {t:'link', v:'→ View Project', url:'projects/satellite.html'},
           ]},
           'lego-minifigure.md':{type:'file', content:[
             {t:'bold', v:'Giant LEGO Minifigure'},
@@ -1350,7 +1350,7 @@ const FS = {
             {t:'out',  v:'Every joint articulates like the original.'},
             {t:'out',  v:'~90 hour total print time.'},
             {t:'',     v:''},
-            {t:'blue', v:'→ vanessa-noel.com/all-projects/giantminifigure'},
+            {t:'link', v:'→ View Project', url:'projects/lego-minifig.html'},
           ]},
           'gesture-car.md':{type:'file', content:[
             {t:'bold', v:'Gesture Controlled Car'},
@@ -1360,7 +1360,7 @@ const FS = {
             {t:'out',  v:'controls an Arduino RC car in real-time.'},
             {t:'out',  v:'No buttons needed.'},
             {t:'',     v:''},
-            {t:'blue', v:'→ vanessa-noel.com/all-projects/gesture-controlled-car'},
+            {t:'link', v:'→ View Project', url:'projects/gesture-car.html'},
           ]},
           'happy-tappy.md':{type:'file', content:[
             {t:'bold', v:'Happy Tappy  [WIP]'},
@@ -1370,7 +1370,7 @@ const FS = {
             {t:'out',  v:'Making therapy more affordable and accessible.'},
             {t:'out',  v:'Active development.'},
             {t:'',     v:''},
-            {t:'blue', v:'→ vanessa-noel.com/all-projects/happytappy'},
+            {t:'link', v:'→ View Project', url:'projects/happytappy.html'},
           ]},
           'survey-automation.md':{type:'file', content:[
             {t:'bold', v:'Survey Automation Tool'},
@@ -1639,8 +1639,20 @@ function resolvePath(p){
 function renderFile(f){
   blank();
   f.content.forEach(line=>{
-    const cls = line.t==='bold'?'out bold':line.t==='dim'?'out dim':line.t==='rust'?'out rust':line.t==='blue'?'out blue':'out';
-    appendLine(cls, line.v);
+    if(line.t==='link'){
+      const p = document.createElement('p');
+      p.className = 'term-line out blue';
+      const a = document.createElement('a');
+      a.href = line.url;
+      a.textContent = line.v;
+      a.style.cssText = 'color:inherit;text-decoration:underline;text-underline-offset:3px;cursor:pointer;';
+      p.appendChild(a);
+      termOutput.appendChild(p);
+      termOutput.scrollTop = termOutput.scrollHeight;
+    } else {
+      const cls = line.t==='bold'?'out bold':line.t==='dim'?'out dim':line.t==='rust'?'out rust':line.t==='blue'?'out blue':'out';
+      appendLine(cls, line.v);
+    }
   });
   blank();
 }
