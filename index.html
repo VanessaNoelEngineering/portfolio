@@ -400,6 +400,89 @@ footer p{font-family:var(--fm);font-size:.63rem;color:rgba(255,255,255,.17);lett
 .pp-btn.hw-btn { background:var(--hw); }
 .pp-btn.hw-btn:hover { background:var(--ink); box-shadow:3px 3px 0 var(--hw); }
 .pc.selected { outline:2px solid var(--sw); outline-offset:3px; }
+
+/* ── ROBOT DEBUG PANEL ── */
+#robot-debug {
+  position:fixed; inset:0; z-index:500;
+  display:flex; align-items:center; justify-content:center;
+  background:rgba(8,14,24,.88); backdrop-filter:blur(6px);
+  opacity:0; pointer-events:none; transition:opacity .3s;
+}
+#robot-debug.rd-open { opacity:1; pointer-events:all; }
+.rd-panel {
+  background:#0A1628; border:1px solid rgba(46,140,240,.3);
+  border-radius:6px; width:min(880px,94vw); max-height:88vh;
+  overflow:hidden; display:flex; flex-direction:column;
+  transform:translateY(16px) scale(.97); transition:transform .3s;
+}
+#robot-debug.rd-open .rd-panel { transform:none; }
+.rd-bar {
+  background:#0D1F3C; padding:.7rem 1.25rem;
+  display:flex; align-items:center; justify-content:space-between;
+  border-bottom:1px solid rgba(46,140,240,.15); flex-shrink:0;
+}
+.rd-title {
+  font-family:var(--fm); font-size:.75rem; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--hw);
+}
+.rd-close {
+  background:none; border:1px solid rgba(46,140,240,.3); border-radius:3px;
+  color:rgba(240,244,255,.5); cursor:none; font-size:.75rem;
+  padding:.2rem .5rem; transition:all .2s;
+}
+.rd-close:hover { border-color:var(--hw); color:var(--hw); }
+.rd-tabs {
+  display:flex; border-bottom:1px solid rgba(46,140,240,.15); flex-shrink:0;
+}
+.rd-tab {
+  background:none; border:none; border-bottom:2px solid transparent;
+  font-family:var(--fm); font-size:.65rem; letter-spacing:.14em;
+  text-transform:uppercase; color:rgba(240,244,255,.35);
+  padding:.8rem 1.4rem; cursor:none; transition:all .2s;
+}
+.rd-tab:hover { color:rgba(240,244,255,.65); }
+.rd-tab.active { color:var(--hw); border-bottom-color:var(--hw); }
+.rd-pane { padding:1.25rem 1.5rem; overflow-y:auto; display:none; max-height:calc(88vh - 100px); }
+.rd-pane.active { display:block; }
+.rd-diag-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:.75rem; }
+.rd-module {
+  background:#0D1F3C; border:1px solid rgba(46,140,240,.18);
+  border-radius:4px; padding:1rem;
+}
+.rd-module-head {
+  display:flex; align-items:center; justify-content:space-between;
+  margin-bottom:.8rem;
+}
+.rd-mod-left { display:flex; align-items:center; gap:.6rem; }
+.rd-led {
+  width:8px; height:8px; border-radius:50%;
+  background:#2E8CF0; box-shadow:0 0 6px #2E8CF0; flex-shrink:0;
+}
+.rd-led.warn { background:#F0A020; box-shadow:0 0 6px #F0A020; }
+.rd-led.err  { background:#E84040; box-shadow:0 0 6px #E84040; animation:blink .8s steps(1) infinite; }
+.rd-mod-name { font-family:var(--fm); font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; color:rgba(240,244,255,.6); }
+.rd-badge {
+  font-family:var(--fm); font-size:.58rem; letter-spacing:.1em;
+  text-transform:uppercase; padding:.18rem .5rem; border-radius:100px;
+}
+.rd-badge.ok   { background:rgba(46,140,240,.12); color:var(--hw); border:1px solid rgba(46,140,240,.3); }
+.rd-badge.warn { background:rgba(240,160,32,.12); color:#F0A020; border:1px solid rgba(240,160,32,.3); }
+.rd-readings { display:grid; grid-template-columns:1fr 1fr; gap:.5rem .75rem; }
+.rd-val-row { display:flex; flex-direction:column; gap:.1rem; }
+.rd-key { font-family:var(--fm); font-size:.57rem; letter-spacing:.08em; text-transform:uppercase; color:rgba(46,140,240,.45); }
+.rd-val { font-family:var(--fm); font-size:.88rem; color:rgba(240,244,255,.85); }
+.rd-wire-wrap { padding:.5rem 0; }
+.rd-schematic { width:100%; height:auto; display:block; }
+#rd-log-out {
+  font-family:var(--fm); font-size:.72rem; line-height:1.65;
+  color:#4DFF91; background:#050D1A; border:1px solid rgba(46,140,240,.15);
+  border-radius:4px; padding:1rem; margin:0;
+  min-height:300px; max-height:420px; overflow-y:auto; white-space:pre-wrap;
+}
+@media(max-width:600px){
+  .rd-diag-grid{grid-template-columns:1fr;}
+  .rd-tab{padding:.7rem .9rem;font-size:.6rem;}
+}
 .pc-hw.selected { outline-color:var(--hw); }
 
 @media(max-width:700px){
@@ -828,6 +911,223 @@ footer p{font-family:var(--fm);font-size:.63rem;color:rgba(255,255,255,.17);lett
 
 </div><!-- end portfolio -->
 
+<!-- ══════════════════════════════════════
+     ROBOT DEBUG PANEL
+══════════════════════════════════════ -->
+<div id="robot-debug">
+  <div class="rd-panel">
+    <div class="rd-bar">
+      <span class="rd-title">⚙ ROBOT DIAGNOSTICS — HW-REV-3</span>
+      <button class="rd-close" id="rd-close">✕ CLOSE</button>
+    </div>
+    <div class="rd-tabs">
+      <button class="rd-tab active" data-tab="diag">DIAGNOSTICS</button>
+      <button class="rd-tab" data-tab="wire">WIRING</button>
+      <button class="rd-tab" data-tab="log">LOG</button>
+    </div>
+
+    <!-- DIAGNOSTICS -->
+    <div class="rd-pane active" id="rd-pane-diag">
+      <div class="rd-diag-grid">
+
+        <div class="rd-module">
+          <div class="rd-module-head">
+            <div class="rd-mod-left"><div class="rd-led" id="rd-led-cpu"></div><span class="rd-mod-name">CPU</span></div>
+            <span class="rd-badge ok" id="rd-badge-cpu">ONLINE</span>
+          </div>
+          <div class="rd-readings">
+            <div class="rd-val-row"><span class="rd-key">Load</span><span class="rd-val" id="rd-cpu-load">42%</span></div>
+            <div class="rd-val-row"><span class="rd-key">Temp</span><span class="rd-val" id="rd-cpu-temp">51°C</span></div>
+            <div class="rd-val-row"><span class="rd-key">Core</span><span class="rd-val">ARM M4</span></div>
+            <div class="rd-val-row"><span class="rd-key">Clock</span><span class="rd-val">168 MHz</span></div>
+          </div>
+        </div>
+
+        <div class="rd-module">
+          <div class="rd-module-head">
+            <div class="rd-mod-left"><div class="rd-led" id="rd-led-pwr"></div><span class="rd-mod-name">Power</span></div>
+            <span class="rd-badge ok" id="rd-badge-pwr">NOMINAL</span>
+          </div>
+          <div class="rd-readings">
+            <div class="rd-val-row"><span class="rd-key">24V Rail</span><span class="rd-val" id="rd-pwr-v24">24.1 V</span></div>
+            <div class="rd-val-row"><span class="rd-key">5V Rail</span><span class="rd-val" id="rd-pwr-v5">4.98 V</span></div>
+            <div class="rd-val-row"><span class="rd-key">Current</span><span class="rd-val" id="rd-pwr-curr">2.3 A</span></div>
+            <div class="rd-val-row"><span class="rd-key">Wattage</span><span class="rd-val" id="rd-pwr-watt">55.4 W</span></div>
+          </div>
+        </div>
+
+        <div class="rd-module">
+          <div class="rd-module-head">
+            <div class="rd-mod-left"><div class="rd-led" id="rd-led-sva"></div><span class="rd-mod-name">Servo Drive A</span></div>
+            <span class="rd-badge ok" id="rd-badge-sva">ONLINE</span>
+          </div>
+          <div class="rd-readings">
+            <div class="rd-val-row"><span class="rd-key">Position</span><span class="rd-val" id="rd-sva-pos">0.0°</span></div>
+            <div class="rd-val-row"><span class="rd-key">Velocity</span><span class="rd-val" id="rd-sva-vel">0 rpm</span></div>
+            <div class="rd-val-row"><span class="rd-key">Torque</span><span class="rd-val" id="rd-sva-tor">18 Nm</span></div>
+            <div class="rd-val-row"><span class="rd-key">Bus</span><span class="rd-val">CAN 1</span></div>
+          </div>
+        </div>
+
+        <div class="rd-module">
+          <div class="rd-module-head">
+            <div class="rd-mod-left"><div class="rd-led" id="rd-led-svb"></div><span class="rd-mod-name">Servo Drive B</span></div>
+            <span class="rd-badge ok" id="rd-badge-svb">ONLINE</span>
+          </div>
+          <div class="rd-readings">
+            <div class="rd-val-row"><span class="rd-key">Position</span><span class="rd-val" id="rd-svb-pos">0.0°</span></div>
+            <div class="rd-val-row"><span class="rd-key">Velocity</span><span class="rd-val" id="rd-svb-vel">0 rpm</span></div>
+            <div class="rd-val-row"><span class="rd-key">Torque</span><span class="rd-val" id="rd-svb-tor">21 Nm</span></div>
+            <div class="rd-val-row"><span class="rd-key">Bus</span><span class="rd-val">CAN 2</span></div>
+          </div>
+        </div>
+
+        <div class="rd-module">
+          <div class="rd-module-head">
+            <div class="rd-mod-left"><div class="rd-led" id="rd-led-sens"></div><span class="rd-mod-name">Sensors</span></div>
+            <span class="rd-badge ok" id="rd-badge-sens">READY</span>
+          </div>
+          <div class="rd-readings">
+            <div class="rd-val-row"><span class="rd-key">Distance</span><span class="rd-val" id="rd-sens-dist">340 mm</span></div>
+            <div class="rd-val-row"><span class="rd-key">Ambient</span><span class="rd-val" id="rd-sens-light">712 lux</span></div>
+            <div class="rd-val-row"><span class="rd-key">Protocol</span><span class="rd-val">I²C / ADC</span></div>
+            <div class="rd-val-row"><span class="rd-key">Status</span><span class="rd-val" id="rd-sens-stat">OK</span></div>
+          </div>
+        </div>
+
+        <div class="rd-module">
+          <div class="rd-module-head">
+            <div class="rd-mod-left"><div class="rd-led" id="rd-led-vis"></div><span class="rd-mod-name">Vision</span></div>
+            <span class="rd-badge ok" id="rd-badge-vis">ACTIVE</span>
+          </div>
+          <div class="rd-readings">
+            <div class="rd-val-row"><span class="rd-key">FPS</span><span class="rd-val" id="rd-vis-fps">30</span></div>
+            <div class="rd-val-row"><span class="rd-key">Objects</span><span class="rd-val" id="rd-vis-objs">2</span></div>
+            <div class="rd-val-row"><span class="rd-key">Confidence</span><span class="rd-val" id="rd-vis-conf">0.91</span></div>
+            <div class="rd-val-row"><span class="rd-key">Sensor</span><span class="rd-val">OV7670</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- WIRING -->
+    <div class="rd-pane" id="rd-pane-wire">
+      <div class="rd-wire-wrap">
+        <svg class="rd-schematic" viewBox="0 0 680 340" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arr" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+              <path d="M0,0 L6,3 L0,6 Z" fill="rgba(46,140,240,.6)"/>
+            </marker>
+          </defs>
+
+          <!-- PSU -->
+          <rect x="10" y="125" width="90" height="60" rx="3" fill="#0D1F3C" stroke="rgba(46,140,240,.45)" stroke-width="1.2"/>
+          <text x="55" y="151" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="rgba(240,244,255,.7)">PSU</text>
+          <text x="55" y="165" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8" fill="rgba(46,140,240,.55)">24V / 10A</text>
+          <text x="55" y="177" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="rgba(240,244,255,.35)">SMPS</text>
+
+          <!-- PLC -->
+          <rect x="135" y="100" width="115" height="90" rx="3" fill="#0D1F3C" stroke="rgba(46,140,240,.55)" stroke-width="1.5"/>
+          <text x="192" y="128" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="rgba(240,244,255,.8)">PLC / MCU</text>
+          <text x="192" y="142" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="rgba(46,140,240,.55)">ARM Cortex-M4</text>
+          <text x="192" y="154" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="rgba(240,244,255,.3)">168 MHz</text>
+          <text x="192" y="166" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="rgba(240,244,255,.3)">CAN · I²C · SPI</text>
+          <text x="192" y="178" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="rgba(240,244,255,.3)">ADC · UART</text>
+
+          <!-- Servo Drive A -->
+          <rect x="295" y="52" width="105" height="72" rx="3" fill="#0D1F3C" stroke="rgba(46,140,240,.4)" stroke-width="1.2"/>
+          <text x="347" y="78" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8.5" fill="rgba(240,244,255,.7)">Servo Drive A</text>
+          <text x="347" y="91" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="rgba(46,140,240,.5)">PWM + Encoder</text>
+          <text x="347" y="104" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="rgba(240,244,255,.3)">Max 24V / 5A</text>
+          <text x="347" y="116" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="rgba(240,244,255,.3)">CAN Node 0x01</text>
+
+          <!-- Servo Drive B -->
+          <rect x="295" y="178" width="105" height="72" rx="3" fill="#0D1F3C" stroke="rgba(46,140,240,.4)" stroke-width="1.2"/>
+          <text x="347" y="204" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8.5" fill="rgba(240,244,255,.7)">Servo Drive B</text>
+          <text x="347" y="217" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="rgba(46,140,240,.5)">PWM + Encoder</text>
+          <text x="347" y="230" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="rgba(240,244,255,.3)">Max 24V / 5A</text>
+          <text x="347" y="242" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="rgba(240,244,255,.3)">CAN Node 0x02</text>
+
+          <!-- Motor A -->
+          <rect x="450" y="60" width="85" height="55" rx="3" fill="#0D1F3C" stroke="rgba(46,140,240,.35)" stroke-width="1.2"/>
+          <text x="492" y="83" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8.5" fill="rgba(240,244,255,.7)">Motor A</text>
+          <text x="492" y="96" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="rgba(46,140,240,.45)">DC Servo</text>
+          <text x="492" y="108" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="rgba(240,244,255,.3)">+ Quadrature Enc</text>
+
+          <!-- Motor B -->
+          <rect x="450" y="185" width="85" height="55" rx="3" fill="#0D1F3C" stroke="rgba(46,140,240,.35)" stroke-width="1.2"/>
+          <text x="492" y="208" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8.5" fill="rgba(240,244,255,.7)">Motor B</text>
+          <text x="492" y="221" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="rgba(46,140,240,.45)">DC Servo</text>
+          <text x="492" y="233" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="rgba(240,244,255,.3)">+ Quadrature Enc</text>
+
+          <!-- Sensor Array -->
+          <rect x="295" y="295" width="105" height="35" rx="3" fill="#0D1F3C" stroke="rgba(46,140,240,.35)" stroke-width="1.2"/>
+          <text x="347" y="312" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8.5" fill="rgba(240,244,255,.7)">Sensor Array</text>
+          <text x="347" y="323" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="rgba(46,140,240,.45)">ToF · LDR · IMU</text>
+
+          <!-- Vision Module -->
+          <rect x="570" y="118" width="100" height="65" rx="3" fill="#0D1F3C" stroke="rgba(46,140,240,.35)" stroke-width="1.2"/>
+          <text x="620" y="142" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8.5" fill="rgba(240,244,255,.7)">Vision Module</text>
+          <text x="620" y="155" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="rgba(46,140,240,.45)">OV7670 Camera</text>
+          <text x="620" y="167" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="rgba(240,244,255,.3)">320×240 @ 30fps</text>
+          <text x="620" y="178" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="rgba(240,244,255,.3)">SPI / UART</text>
+
+          <!-- Wires -->
+          <!-- PSU → PLC (24V power) -->
+          <line x1="100" y1="155" x2="135" y2="150" stroke="rgba(46,140,240,.5)" stroke-width="1.5" marker-end="url(#arr)"/>
+          <text x="106" y="148" font-family="JetBrains Mono,monospace" font-size="7" fill="rgba(46,140,240,.55)">24V</text>
+
+          <!-- PLC → Servo Drive A (CAN) -->
+          <path d="M250,125 L280,125 L280,88 L295,88" fill="none" stroke="rgba(46,140,240,.45)" stroke-width="1.3" stroke-dasharray="4,2" marker-end="url(#arr)"/>
+          <text x="255" y="118" font-family="JetBrains Mono,monospace" font-size="7" fill="rgba(46,140,240,.5)">CAN</text>
+
+          <!-- PLC → Servo Drive B (CAN) -->
+          <path d="M250,165 L280,165 L280,214 L295,214" fill="none" stroke="rgba(46,140,240,.45)" stroke-width="1.3" stroke-dasharray="4,2" marker-end="url(#arr)"/>
+          <text x="255" y="182" font-family="JetBrains Mono,monospace" font-size="7" fill="rgba(46,140,240,.5)">CAN</text>
+
+          <!-- Servo Drive A → Motor A (PWM) -->
+          <line x1="400" y1="88" x2="450" y2="88" stroke="rgba(46,140,240,.4)" stroke-width="1.3" marker-end="url(#arr)"/>
+          <text x="409" y="82" font-family="JetBrains Mono,monospace" font-size="7" fill="rgba(46,140,240,.5)">PWM</text>
+
+          <!-- Motor A → Servo Drive A (ENC feedback) -->
+          <path d="M450,100 L430,100 L430,108 L400,108" fill="none" stroke="rgba(77,255,145,.35)" stroke-width="1" stroke-dasharray="3,2" marker-end="url(#arr)"/>
+          <text x="410" y="118" font-family="JetBrains Mono,monospace" font-size="6.5" fill="rgba(77,255,145,.5)">ENC</text>
+
+          <!-- Servo Drive B → Motor B (PWM) -->
+          <line x1="400" y1="214" x2="450" y2="212" stroke="rgba(46,140,240,.4)" stroke-width="1.3" marker-end="url(#arr)"/>
+          <text x="409" y="207" font-family="JetBrains Mono,monospace" font-size="7" fill="rgba(46,140,240,.5)">PWM</text>
+
+          <!-- Motor B → Servo Drive B (ENC feedback) -->
+          <path d="M450,225 L430,225 L430,233 L400,233" fill="none" stroke="rgba(77,255,145,.35)" stroke-width="1" stroke-dasharray="3,2" marker-end="url(#arr)"/>
+          <text x="410" y="243" font-family="JetBrains Mono,monospace" font-size="6.5" fill="rgba(77,255,145,.5)">ENC</text>
+
+          <!-- PLC → Sensor Array (I2C) -->
+          <path d="M192,190 L192,312 L295,312" fill="none" stroke="rgba(46,140,240,.35)" stroke-width="1.2" stroke-dasharray="4,2" marker-end="url(#arr)"/>
+          <text x="200" y="260" font-family="JetBrains Mono,monospace" font-size="7" fill="rgba(46,140,240,.45)">I²C/ADC</text>
+
+          <!-- PLC → Vision Module (SPI) -->
+          <path d="M250,145 L560,145 L560,150 L570,150" fill="none" stroke="rgba(46,140,240,.35)" stroke-width="1.2" stroke-dasharray="4,2" marker-end="url(#arr)"/>
+          <text x="480" y="140" font-family="JetBrains Mono,monospace" font-size="7" fill="rgba(46,140,240,.45)">SPI/UART</text>
+
+          <!-- Legend -->
+          <line x1="10" y1="325" x2="35" y2="325" stroke="rgba(46,140,240,.5)" stroke-width="1.5"/>
+          <text x="40" y="329" font-family="JetBrains Mono,monospace" font-size="7" fill="rgba(240,244,255,.4)">Power / Control</text>
+          <line x1="130" y1="325" x2="155" y2="325" stroke="rgba(46,140,240,.45)" stroke-width="1.3" stroke-dasharray="4,2"/>
+          <text x="160" y="329" font-family="JetBrains Mono,monospace" font-size="7" fill="rgba(240,244,255,.4)">CAN / Serial Bus</text>
+          <line x1="265" y1="325" x2="290" y2="325" stroke="rgba(77,255,145,.35)" stroke-width="1" stroke-dasharray="3,2"/>
+          <text x="295" y="329" font-family="JetBrains Mono,monospace" font-size="7" fill="rgba(240,244,255,.4)">Encoder Feedback</text>
+        </svg>
+      </div>
+    </div>
+
+    <!-- LOG -->
+    <div class="rd-pane" id="rd-pane-log">
+      <pre id="rd-log-out"></pre>
+    </div>
+  </div>
+</div>
+
 <script>
 // ══════════════════════════════════════
 // CURSOR
@@ -901,6 +1201,7 @@ sceneSvg.addEventListener('mouseleave', () => {
 
 sceneSvg.addEventListener('click', e => {
   if (getSide(e) === 'left') openTerminal();
+  else openRobotDebug();
 });
 
 const heroScroll  = document.getElementById('hero-scroll');
@@ -1527,6 +1828,156 @@ document.addEventListener('click', e => {
 
 ppClose.addEventListener('click', closePreview);
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closePreview(); });
+
+// ══════════════════════════════════════
+// ROBOT DEBUG PANEL
+// ══════════════════════════════════════
+const rdOverlay = document.getElementById('robot-debug');
+const rdLogOut  = document.getElementById('rd-log-out');
+
+function openRobotDebug() {
+  rdOverlay.classList.add('rd-open');
+  if (!rdOverlay._booted) { rdOverlay._booted = true; runLogBoot(); }
+}
+function closeRobotDebug() { rdOverlay.classList.remove('rd-open'); }
+
+document.getElementById('rd-close').addEventListener('click', closeRobotDebug);
+rdOverlay.addEventListener('click', e => { if (e.target === rdOverlay) closeRobotDebug(); });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && rdOverlay.classList.contains('rd-open')) closeRobotDebug();
+});
+
+document.querySelectorAll('.rd-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.rd-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.rd-pane').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('rd-pane-' + tab.dataset.tab).classList.add('active');
+  });
+});
+
+// Live diagnostics
+const diagState = {
+  cpu:    { load: 42, temp: 51 },
+  power:  { v24: 24.1, v5: 4.98, curr: 2.3 },
+  servoA: { pos: 0, vel: 0, torque: 18 },
+  servoB: { pos: 0, vel: 0, torque: 21 },
+  sens:   { dist: 340, light: 712 },
+  vis:    { fps: 30, objs: 2, conf: 0.91 },
+};
+
+function jit(val, range) { return Math.max(0, val + (Math.random()-.5)*range*2); }
+
+function tickDiag() {
+  if (!rdOverlay.classList.contains('rd-open')) { setTimeout(tickDiag, 900); return; }
+
+  diagState.cpu.load  = Math.round(jit(diagState.cpu.load, 4));
+  diagState.cpu.temp  = Math.round(jit(diagState.cpu.temp, 1.5));
+  diagState.power.v24 = +jit(diagState.power.v24, 0.05).toFixed(2);
+  diagState.power.v5  = +jit(diagState.power.v5, 0.02).toFixed(3);
+  diagState.power.curr= +jit(diagState.power.curr, 0.15).toFixed(2);
+  diagState.servoA.pos = +jit(diagState.servoA.pos, 3).toFixed(1);
+  diagState.servoA.vel = Math.round(jit(diagState.servoA.vel, 12));
+  diagState.servoB.pos = +jit(diagState.servoB.pos, 3).toFixed(1);
+  diagState.servoB.vel = Math.round(jit(diagState.servoB.vel, 12));
+  diagState.sens.dist  = Math.round(jit(diagState.sens.dist, 15));
+  diagState.sens.light = Math.round(jit(diagState.sens.light, 30));
+  diagState.vis.conf   = +jit(diagState.vis.conf, 0.04).toFixed(2);
+  diagState.vis.objs   = Math.round(jit(diagState.vis.objs, 0.6));
+
+  const watt = +(diagState.power.v24 * diagState.power.curr).toFixed(1);
+  const warn = diagState.cpu.temp > 60 || diagState.power.v24 < 23.5;
+
+  document.getElementById('rd-cpu-load').textContent  = diagState.cpu.load + '%';
+  document.getElementById('rd-cpu-temp').textContent  = diagState.cpu.temp + '°C';
+  document.getElementById('rd-pwr-v24').textContent   = diagState.power.v24 + ' V';
+  document.getElementById('rd-pwr-v5').textContent    = diagState.power.v5 + ' V';
+  document.getElementById('rd-pwr-curr').textContent  = diagState.power.curr + ' A';
+  document.getElementById('rd-pwr-watt').textContent  = watt + ' W';
+  document.getElementById('rd-sva-pos').textContent   = diagState.servoA.pos + '°';
+  document.getElementById('rd-sva-vel').textContent   = diagState.servoA.vel + ' rpm';
+  document.getElementById('rd-svb-pos').textContent   = diagState.servoB.pos + '°';
+  document.getElementById('rd-svb-vel').textContent   = diagState.servoB.vel + ' rpm';
+  document.getElementById('rd-sens-dist').textContent = diagState.sens.dist + ' mm';
+  document.getElementById('rd-sens-light').textContent= diagState.sens.light + ' lux';
+  document.getElementById('rd-vis-fps').textContent   = diagState.vis.fps;
+  document.getElementById('rd-vis-objs').textContent  = diagState.vis.objs;
+  document.getElementById('rd-vis-conf').textContent  = diagState.vis.conf.toFixed(2);
+
+  // CPU LED warning if hot
+  const cpuLed = document.getElementById('rd-led-cpu');
+  cpuLed.className = 'rd-led' + (diagState.cpu.temp > 62 ? ' warn' : '');
+
+  // Power LED warning
+  const pwrLed = document.getElementById('rd-led-pwr');
+  pwrLed.className = 'rd-led' + (diagState.power.v24 < 23.5 ? ' warn' : '');
+
+  setTimeout(tickDiag, 900);
+}
+tickDiag();
+
+// Boot log
+const BOOT_LINES = [
+  '[0000ms] SYS  POWER-ON SELF TEST',
+  '[0012ms] CPU  ARM Cortex-M4 @ 168MHz — OK',
+  '[0018ms] MEM  512KB flash / 128KB SRAM — OK',
+  '[0041ms] PWR  24V rail: 24.1V — NOMINAL',
+  '[0041ms] PWR  5V rail: 4.98V — NOMINAL',
+  '[0063ms] CAN  Bus init 1Mbit/s — OK',
+  '[0089ms] ENC  Encoder A quadrature — FOUND',
+  '[0091ms] ENC  Encoder B quadrature — FOUND',
+  '[0110ms] DRV  Servo Drive A — ONLINE',
+  '[0115ms] DRV  Servo Drive B — ONLINE',
+  '[0139ms] SENS ToF distance sensor — READY',
+  '[0144ms] SENS Ambient light — READY',
+  '[0201ms] VIS  OV7670 camera — FOUND',
+  '[0348ms] VIS  Frame buffer init 320x240',
+  '[0402ms] VIS  Object detection model loaded',
+  '[0500ms] SYS  All subsystems nominal',
+  '[0500ms] SYS  Entering IDLE state',
+  '─────────────────────────────────────',
+  'READY.',
+];
+
+const STATUS_MSGS = [
+  'SYS  Watchdog heartbeat: OK',
+  'SENS Distance reading: {dist}mm',
+  'DRV  Servo A position: {posA}deg',
+  'DRV  Servo B position: {posB}deg',
+  'VIS  Objects detected: {objs}',
+  'SYS  Loop cycle: {cyc}ms',
+  'PWR  Current draw: {curr}A',
+  'CPU  Load: {load}%',
+];
+
+function runLogBoot() {
+  BOOT_LINES.forEach((line, i) => {
+    setTimeout(() => {
+      rdLogOut.textContent += line + '\n';
+      rdLogOut.scrollTop = rdLogOut.scrollHeight;
+    }, i * 70);
+  });
+  setTimeout(startLogTick, BOOT_LINES.length * 70 + 600);
+}
+
+function startLogTick() {
+  setInterval(() => {
+    const msg = STATUS_MSGS[Math.floor(Math.random() * STATUS_MSGS.length)];
+    const ms  = String(Math.floor(Date.now() % 1e6)).padStart(7, '0');
+    const line = '[' + ms + 'ms] ' + msg
+      .replace('{dist}',  Math.round(300 + Math.random() * 80))
+      .replace('{posA}',  diagState.servoA.pos)
+      .replace('{posB}',  diagState.servoB.pos)
+      .replace('{objs}',  diagState.vis.objs)
+      .replace('{cyc}',   (8 + Math.random() * 2).toFixed(1))
+      .replace('{curr}',  diagState.power.curr)
+      .replace('{load}',  diagState.cpu.load + '%');
+    rdLogOut.textContent += line + '\n';
+    const lines = rdLogOut.textContent.split('\n');
+    if (lines.length > 130) rdLogOut.textContent = lines.slice(-100).join('\n');
+    rdLogOut.scrollTop = rdLogOut.scrollHeight;
+  }, 1800);
+}
 
 document.querySelectorAll('.ptab').forEach(tab=>{
   tab.addEventListener('click',()=>{
