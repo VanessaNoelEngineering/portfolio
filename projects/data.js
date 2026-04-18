@@ -81,31 +81,17 @@ window.PROJECTS_DATA = [
   },
 
   {
-    id:          'masks',
+    id:          'replica-props',
     published:   true,
     type:        'hw',
-    title:       "Majora's & Deku Masks",
+    title:       'Replica Props',
     emoji:       '🎭',
-    thumbnail:   null,
-    label:       '3D Printing · Hobby',
-    desc:        'Zelda mask replicas — multi-part modelled, printed, and hand-finished.',
-    previewDesc: "Faithful replicas of the iconic masks from The Legend of Zelda — Majora's Mask and the Deku Mask. Each was modelled in multiple interlocking parts, printed in different filament colours, and hand-finished with sanding, priming, and painting to achieve the game-accurate look.",
-    tags:        ['3D Printing', 'CAD Modelling', 'Hand Finishing', 'Painting', 'Hobby'],
+    thumbnail:   'https://res.cloudinary.com/dlxdxu3ac/image/upload/v1776541582/Untitled_design_1_f2sfld.png',
+    label:       '3D Printing · Prop Making',
+    desc:        "Zelda masks and a life-sized Minecraft chicken — multi-part CAD, FDM printing, and hand-finishing.",
+    previewDesc: "A collection of replica props built for the love of it. The Zelda set includes Majora's Mask and the Deku Mask — each modelled in multiple interlocking parts, printed in different filament colours, and hand-finished with sanding, priming, and painting to hit game-accurate detail. The Minecraft chicken is a life-sized recreation modelled to exact in-game proportions and scaled up to real-world size. Both projects are a reminder that engineering should bring joy.",
+    tags:        ['3D Printing', 'FDM', 'CAD Modelling', 'Hand Finishing', 'Painting', 'Prop Making'],
     url:         'projects/masks.html',
-  },
-
-  {
-    id:          'minecraft',
-    published:   true,
-    type:        'hw',
-    title:       'Minecraft Chicken',
-    emoji:       '🐔',
-    thumbnail:   null,
-    label:       '3D Printing · Fun',
-    desc:        'Life-sized Minecraft chicken, because engineering should bring joy.',
-    previewDesc: 'A life-sized, fully 3D printed Minecraft chicken. Modelled to exact Minecraft proportions and scaled up to real-world chicken size. Sometimes engineering is just about making something that brings people joy — and nothing brings more joy than a giant blocky chicken sitting in your room.',
-    tags:        ['3D Printing', 'FDM', 'Fun', 'Hobby'],
-    url:         'projects/minecraft.html',
   },
 
   {
