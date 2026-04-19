@@ -44,15 +44,15 @@ document.documentElement.style.setProperty('--accent-glow',
   <div class="hero-accent-bg"></div>
   <div class="hero-content">
     <span class="hero-emo">🌸</span>
-    <h1 class="hero-title">Mechanical Flower</h1>
-    <p class="hero-desc">A robotic lotus that blossoms when touched. Capacitive sensing, servo actuation, and compliant mechanisms combine for a smooth, organic bloom.</p>
+    <h1 class="hero-title">Mechanical <em>Flower.</em></h1>
+    <p class="hero-desc">A robotic lotus that opens to your touch — capacitive sensing, servo actuation, and a lot of iteration to make it feel alive.</p>
     <div class="hero-tags">
-      <span class="htag">Robotics</span>
       <span class="htag">Arduino</span>
+      <span class="htag">C++</span>
+      <span class="htag">CAD</span>
+      <span class="htag">3D Printing</span>
       <span class="htag">Servo Control</span>
       <span class="htag">Capacitive Sensing</span>
-      <span class="htag">Mechanisms</span>
-      <span class="htag">CAD</span>
     </div>
   </div>
 </section>
@@ -62,7 +62,8 @@ document.documentElement.style.setProperty('--accent-glow',
   <div class="section-label reveal">Purpose</div>
   <h2 class="section-title reveal">Why I <em>built this.</em></h2>
   <div class="section-body reveal">
-    <p>The goal was to create a kinetic sculpture that feels alive — a flower that responds to human touch with a natural, organic blooming motion. The design challenge was making mechanical actuation feel soft and biological rather than robotic and rigid.</p>
+    <p>The goal was to make something mechanical feel organic. Not just functional — genuinely responsive in a way that felt natural rather than programmed. A flower that opens when you touch it sounds simple. Getting it to feel right is the harder problem.</p>
+    <p>The sensor needed to respond to human presence without physical buttons. The motion needed to feel like unfolding, not actuating. Both of those constraints shaped every decision in the design.</p>
   </div>
   <div class="img-placeholder reveal"><span class="ph-icon">🖼</span>Add your image here</div>
 </section>
@@ -71,34 +72,34 @@ document.documentElement.style.setProperty('--accent-glow',
 <section class="section" id="process">
   <div class="section-label reveal">Process</div>
   <h2 class="section-title reveal">How I <em>built it.</em></h2>
-  <div class="section-body reveal">The design combined electrical sensing, mechanical linkage design, and firmware to create a seamless touch-to-bloom experience.</div>
+  <div class="section-body reveal">Sensor first, then mechanics, then the long work of making the motion feel right.</div>
   <div class="steps reveal">
     <div class="step">
       <div class="step-num">01</div>
       <div class="step-content">
-        <h3>Petal Linkage Design</h3>
-        <p>Designed four-bar linkages for each petal that produce a curved, organic sweep rather than a linear open motion. Iterated in CAD before printing.</p>
+        <h3>DIY capacitive touch sensor</h3>
+        <p>Rather than using an off-the-shelf touch module, I built a capacitive touch sensor from a spoon and a resistor — wired directly to an Arduino Uno analog pin. The spoon acts as the sensing electrode; when a hand gets close, the capacitance changes enough to trigger the input. Cheap, effective, and a good lesson in how touch sensing actually works at the circuit level.</p>
       </div>
     </div>
     <div class="step">
       <div class="step-num">02</div>
       <div class="step-content">
-        <h3>Capacitive Touch Sensing</h3>
-        <p>Integrated capacitive touch electrodes at the base of the stem. When a hand touches the stem, the sensor triggers the bloom sequence.</p>
+        <h3>Servo and LED circuit</h3>
+        <p>A single servo motor drives the petal opening mechanism. First touch: servo rotates, petals open, LED turns on. Second touch: reverse. The circuit was tested and validated before any mechanical assembly — catching a wiring issue with the LED early that would have been much harder to debug inside the assembled flower.</p>
       </div>
     </div>
     <div class="step">
       <div class="step-num">03</div>
       <div class="step-content">
-        <h3>Servo Integration</h3>
-        <p>Selected and mounted micro-servos to drive each petal linkage. Tuned the servo sweep angles for a smooth, slow opening motion.</p>
+        <h3>CAD and petal linkage</h3>
+        <p>All inner structural components were modeled and printed from scratch. The outer petal profile came from an existing file, but the stem, inner flower housing, and LED mount were original. Getting the linkage geometry right — so the petals open smoothly rather than snapping — took several print-and-test iterations, adjusting the pivot point positions each time.</p>
       </div>
     </div>
     <div class="step">
       <div class="step-num">04</div>
       <div class="step-content">
-        <h3>Arduino Firmware</h3>
-        <p>Wrote the control firmware — touch detection, servo sequencing, timing curves — to make the bloom feel natural rather than mechanical.</p>
+        <h3>Assembly and tuning</h3>
+        <p>Once all parts fit, the circuit was soldered (fixing the LED issue found in step 02), the servo was calibrated to the correct rotation range, and the capacitive threshold was tuned so the sensor responded reliably to a nearby hand without false triggers.</p>
       </div>
     </div>
   </div>
@@ -115,19 +116,21 @@ document.documentElement.style.setProperty('--accent-glow',
 <section class="section" id="result">
   <div class="section-label reveal">Result</div>
   <h2 class="section-title reveal">What I <em>made.</em></h2>
-  <div class="section-body reveal"><p>The flower opens slowly and gracefully when touched, holds open for a moment, then gently closes. The organic feel of the motion is what makes it special — visitors often touch it multiple times just to watch it bloom again.</p></div>
+  <div class="section-body reveal">
+    <p>A fully functional robotic lotus that opens and closes in response to human touch. The motion is slow and deliberate — more flower than machine. The DIY capacitive sensor proved reliable across repeated use, and the overall build cost was minimal. The most valuable outcome was the iteration on the linkage: learning how small changes in pivot geometry change the feel of motion entirely.</p>
+  </div>
   <div class="impact-grid reveal">
     <div class="impact-stat">
-      <span class="impact-val">4</span>
-      <span class="impact-label">Petal Linkages</span>
-    </div>
-    <div class="impact-stat">
       <span class="impact-val">1</span>
-      <span class="impact-label">Touch Trigger</span>
+      <span class="impact-label">Sensor (DIY, no module)</span>
     </div>
     <div class="impact-stat">
-      <span class="impact-val">100%</span>
-      <span class="impact-label">Compliant Motion</span>
+      <span class="impact-val">2</span>
+      <span class="impact-label">Touch States</span>
+    </div>
+    <div class="impact-stat">
+      <span class="impact-val">4</span>
+      <span class="impact-label">Linkage Iterations</span>
     </div>
   </div>
   <div class="img-grid reveal">
@@ -138,15 +141,15 @@ document.documentElement.style.setProperty('--accent-glow',
 
 <!-- PREV / NEXT -->
 <nav class="proj-nav">
-  <a href="lego-minifig.html" class="proj-nav-link prev">
+  <a href="baymax.html" class="proj-nav-link prev">
     <span class="proj-nav-dir">← Previous</span>
+    <span class="proj-nav-emo">🤖</span>
+    <span class="proj-nav-name">Baymax Robotic Arm</span>
+  </a>
+  <a href="lego-minifig.html" class="proj-nav-link next">
+    <span class="proj-nav-dir">Next →</span>
     <span class="proj-nav-emo">🧱</span>
     <span class="proj-nav-name">Giant LEGO Minifigure</span>
-  </a>
-  <a href="baymax.html" class="proj-nav-link next">
-    <span class="proj-nav-dir">Next →</span>
-    <span class="proj-nav-emo">🦾</span>
-    <span class="proj-nav-name">Baymax Robotic Arm</span>
   </a>
 </nav>
 

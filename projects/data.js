@@ -160,7 +160,7 @@ window.PROJECTS_DATA = [
     desc:        'Two real satellite launches to the stratosphere — 48.4km altitude, multi-cycle missions, data feeding future launches.',
     previewDesc: "As manager of Queen's Space Engineering Team, I led end-to-end development of stratospheric payloads across two launch cycles, from structural design and component selection through sensor integration, system validation, and post-flight data analysis.\n\nThe satellite \"Eggo\" flew to 48.4km, surviving temperatures from -28°C to +20.7°C over a 90-minute ascent, collecting pressure, temperature, and altitude data that directly informed the following year's mission. I used in-flight data and weather modeling to optimize future launches, reducing mission costs 15% year-over-year.\n\nI also developed a helium transport safety standard that streamlined regulatory approval for QSET's launches — reducing preparation delays and setting a reusable process for future teams.",
     tags:        ['Embedded Systems', 'Arduino', 'C++', 'Sensor Integration', 'Mission Planning', 'Data Analysis'],
-    url:         '#',
+    url:         'projects/qset-launches.html',
   },
 
   {
@@ -175,7 +175,7 @@ window.PROJECTS_DATA = [
     desc:        'A free satellite program for at-risk youth, built in partnership with the Canadian Space Agency — and I wrote the $50K grant that funded it.',
     previewDesc: "I co-founded and ran a program that gave at-risk youth real aerospace engineering experience — not simulations, not kits. Actual satellite design, wiring, coding, and launch.\n\nParticipants learned embedded systems, sensor integration, circuit wiring, and 3D CAD. The program culminated in a stratospheric balloon launch where student-built hardware went to the edge of the atmosphere and came back with data. It ran as a partnership between Connections (Queen's engineering outreach) and the Canadian Space Agency, supported by a $50K grant I wrote from scratch.\n\nThe program became a model for ongoing STEM-space collaboration between QSET and Connections, with future launches planned.",
     tags:        ['Program Design', 'Grant Writing', 'Aerospace Education', 'CSA Partnership'],
-    url:         '#',
+    url:         'projects/csa-outreach.html',
   },
 
   {
@@ -190,7 +190,7 @@ window.PROJECTS_DATA = [
     desc:        'A sold-out mechatronics program built from nothing — reaching thousands of students across robotics, space, and embedded systems.',
     previewDesc: "I joined Connections as an instructor and advanced to Mechatronics Engineer, building a program that hadn't existed before. Recognizing there was no hands-on mechatronics offering for high school students, I designed and launched one from scratch. It sold out.\n\nThe curriculum spanned Arduino robotics, Python and machine learning, 3D modeling and fabrication, and space engineering. Projects I designed and taught include a gesture-controlled car (highest-rated project in 20+ summer programs), a functional seismometer used in live bridge-testing workshops, a servo-actuated prosthetic hand, and a LEGO Canadarm with three control modalities.\n\nThe shaker table workshop: participants built earthquake-proof structures, then tested them on the motorized shaker table while their seismometers detected simulated seismic events in real time.",
     tags:        ['Curriculum Design', 'Arduino', 'C++', 'Python', 'ML', '3D Printing', 'Program Leadership'],
-    url:         '#',
+    url:         'projects/stem-connections.html',
   },
 
   {
@@ -205,7 +205,7 @@ window.PROJECTS_DATA = [
     desc:        'Two years mentoring Team 19528 — tools, wiring, CAD, debugging, mechanisms, algorithms, and four competition awards.',
     previewDesc: "I mentored Team 19528 (Tech Comet Lancers) for two full years, showing up 2–3 times a week through both build season and off-season. Also served as a competition judge.\n\nWhat I taught: safe use of hand tools and power tools, circuit wiring and multimeter debugging, component selection, mechanism design, control algorithm development, and CAD. About 10 students, consistently, over two years.\n\nYear 1 — Judges' Choice Award + 2nd Place Motivate Award. Winning awards in a rookie FTC year is rare and reflects how quickly the team developed both technically and culturally.\n\nYear 2 — Design Award + Connect Award. A meaningful jump in technical maturity and strategic presentation between seasons.",
     tags:        ['Robotics', 'FTC', 'Mentorship', 'Embedded Systems', 'Mechanism Design'],
-    url:         '#',
+    url:         'projects/first-robotics.html',
   },
 
 ];

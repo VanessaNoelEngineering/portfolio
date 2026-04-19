@@ -44,15 +44,13 @@ document.documentElement.style.setProperty('--accent-glow',
   <div class="hero-accent-bg"></div>
   <div class="hero-content">
     <span class="hero-emo">🎭</span>
-    <h1 class="hero-title">Replica Props</h1>
-    <p class="hero-desc">3D printed replicas built for the love of it — Zelda masks and a life-sized Minecraft chicken. Multi-part CAD, FDM printing, and hand-finishing from start to display.</p>
+    <h1 class="hero-title">Replica <em>Props.</em></h1>
+    <p class="hero-desc">Majora's Mask, the Deku Mask, and a life-sized Minecraft Chicken — built for fun, finished like they mean it.</p>
     <div class="hero-tags">
+      <span class="htag">CAD</span>
       <span class="htag">3D Printing</span>
-      <span class="htag">CAD Modelling</span>
-      <span class="htag">Prop Making</span>
-      <span class="htag">Hand Finishing</span>
-      <span class="htag">Painting</span>
-      <span class="htag">FDM</span>
+      <span class="htag">Surface Finishing</span>
+      <span class="htag">Multi-part Assembly</span>
     </div>
   </div>
 </section>
@@ -62,7 +60,8 @@ document.documentElement.style.setProperty('--accent-glow',
   <div class="section-label reveal">Purpose</div>
   <h2 class="section-title reveal">Why I <em>built these.</em></h2>
   <div class="section-body reveal">
-    <p>Not every project needs a practical application. These were built because they're fun — and because the process of faithfully recreating something you love is genuinely challenging. Majora's Mask and the Deku Mask required close attention to shape, colour blocking, and surface detail to feel true to the originals. The Minecraft Chicken required the opposite discipline: embracing deliberate blockiness at real-world scale. Both pushed the limits of what FDM printing and post-processing can achieve.</p>
+    <p>These projects exist because I wanted to, which is a perfectly good reason. But the skills involved are real: part splitting, print registration, multi-stage surface finishing, and the discipline to see a process through to a result that actually looks finished rather than just printed.</p>
+    <p>Replica work is unforgiving in a specific way — you're working toward a known reference, so there's no hiding a bad decision. Every stage either moves you closer to the target or compounds the error.</p>
   </div>
   <div class="img-placeholder reveal"><span class="ph-icon">🖼</span>Add your image here</div>
 </section>
@@ -71,35 +70,27 @@ document.documentElement.style.setProperty('--accent-glow',
 <section class="section" id="process">
   <div class="section-label reveal">Process</div>
   <h2 class="section-title reveal">How I <em>built them.</em></h2>
-  <div class="section-body reveal">Each piece followed the same core loop: reference → model → print → finish. The challenge was different for each.</div>
-
+  <div class="section-body reveal">Three props, three different finishing challenges — each one pushing a different part of the fabrication process.</div>
   <div class="steps reveal">
     <div class="step">
       <div class="step-num">01</div>
       <div class="step-content">
-        <h3>Reference & Proportions</h3>
-        <p>Collected high-resolution references from every angle — in-game screenshots, official art, merchandise, and fan documentation. Established accurate proportions before touching the CAD.</p>
+        <h3>Majora's Mask: part splitting for oversized geometry</h3>
+        <p>The mask exceeded my printer's build volume. The solution: split the model into sections at natural seam lines, print separately, and join with registration features to ensure alignment. Painted after assembly. The challenge is planning the splits so the seams are invisible in the final result.</p>
       </div>
     </div>
     <div class="step">
       <div class="step-num">02</div>
       <div class="step-content">
-        <h3>Multi-Part CAD Modelling</h3>
-        <p>Modelled each piece in interlocking parts — split by colour region where possible to avoid painting over printed detail, and designed with tolerances for clean assembly without hardware.</p>
+        <h3>Deku Mask: multi-stage surface finishing</h3>
+        <p>The Deku Mask went through a full finishing pipeline. 3D printed base → Bondo body filler applied and sanded to remove layer lines and refine the form → thin clay layer hand-sculpted over the Bondo to restore organic surface detail that the print couldn't capture → painted. Each material layer has to be planned in sequence because each one affects what comes next. You can't fix a bad Bondo stage with clay.</p>
       </div>
     </div>
     <div class="step">
       <div class="step-num">03</div>
       <div class="step-content">
-        <h3>FDM Printing</h3>
-        <p>Printed in the appropriate base filament colours for each section. Orientation and support placement were carefully chosen to minimise visible layer lines on hero surfaces.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-num">04</div>
-      <div class="step-content">
-        <h3>Hand Finishing</h3>
-        <p>Sanded, primed, and painted each piece by hand. The masks received layered paint, weathering, and a seal coat. The chicken stayed raw-printed to preserve the blocky aesthetic — no smoothing.</p>
+        <h3>Minecraft Chicken: voxel geometry to physical object</h3>
+        <p>The Chicken is a different problem — translating a deliberately blocky, voxel-based game asset into a real object that holds together structurally at life size. All geometry modeled from scratch. The design challenge is that voxel objects have no organic curves to hide seams in — every face is flat, every edge is sharp, so print quality and part joins are fully exposed.</p>
       </div>
     </div>
   </div>
@@ -117,7 +108,7 @@ document.documentElement.style.setProperty('--accent-glow',
   <div class="section-label reveal">Result</div>
   <h2 class="section-title reveal">What I <em>made.</em></h2>
   <div class="section-body reveal">
-    <p>Three display-quality prop replicas. The Zelda masks capture the character of the originals through careful painting and finishing — the 3D printer gets you 80% of the way, skilled hand finishing gets you the rest. The Minecraft Chicken is exactly what it sounds like: a giant blocky chicken that brings joy to everyone who sees it.</p>
+    <p>Three finished props, each one the product of a different process path. The Deku Mask's multi-stage finishing taught the most — understanding how Bondo, clay, and paint interact as a system rather than as separate steps is a skill that transfers directly to any multi-material surface work. The Chicken is the most structurally interesting. Majora's Mask is the most visually striking.</p>
   </div>
   <div class="impact-grid reveal">
     <div class="impact-stat">
@@ -125,12 +116,12 @@ document.documentElement.style.setProperty('--accent-glow',
       <span class="impact-label">Props Built</span>
     </div>
     <div class="impact-stat">
-      <span class="impact-val">Multi-Part</span>
-      <span class="impact-label">Construction</span>
+      <span class="impact-val">3</span>
+      <span class="impact-label">Distinct Finishing Processes</span>
     </div>
     <div class="impact-stat">
-      <span class="impact-val">Hand-Painted</span>
-      <span class="impact-label">Finish</span>
+      <span class="impact-val">1</span>
+      <span class="impact-label">From-scratch Geometry (Chicken)</span>
     </div>
   </div>
   <div class="img-grid reveal">
@@ -141,10 +132,10 @@ document.documentElement.style.setProperty('--accent-glow',
 
 <!-- PREV / NEXT -->
 <nav class="proj-nav">
-  <a href="satellite.html" class="proj-nav-link prev">
+  <a href="lego-minifig.html" class="proj-nav-link prev">
     <span class="proj-nav-dir">← Previous</span>
-    <span class="proj-nav-emo">🛰️</span>
-    <span class="proj-nav-name">Satellite Launches</span>
+    <span class="proj-nav-emo">🧱</span>
+    <span class="proj-nav-name">Giant LEGO Minifigure</span>
   </a>
   <a href="gesture-car.html" class="proj-nav-link next">
     <span class="proj-nav-dir">Next →</span>

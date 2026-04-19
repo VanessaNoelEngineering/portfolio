@@ -43,16 +43,15 @@ document.documentElement.style.setProperty('--accent-glow',
   <div class="hero-pattern"></div>
   <div class="hero-accent-bg"></div>
   <div class="hero-content">
-    <span class="hero-emo">🦾</span>
-    <h1 class="hero-title">Baymax Robotic Arm</h1>
-    <p class="hero-desc">An engineering replica of Baymax's arm from Big Hero 6, designed for safe, compliant human interaction using custom linkages and force control.</p>
+    <span class="hero-emo">🤖</span>
+    <h1 class="hero-title">Baymax Robotic <em>Arm.</em></h1>
+    <p class="hero-desc">A life-sized soft robotic arm designed for human interaction — engineered so the design itself prevents harm.</p>
     <div class="hero-tags">
-      <span class="htag">Robotics</span>
-      <span class="htag">Arduino</span>
-      <span class="htag">Force Control</span>
-      <span class="htag">Compliant Mechanisms</span>
-      <span class="htag">Human-Robot Interaction</span>
+      <span class="htag">Mechanisms</span>
       <span class="htag">CAD</span>
+      <span class="htag">Simulation</span>
+      <span class="htag">Fusion 360</span>
+      <span class="htag">Safety Design</span>
     </div>
   </div>
 </section>
@@ -62,7 +61,8 @@ document.documentElement.style.setProperty('--accent-glow',
   <div class="section-label reveal">Purpose</div>
   <h2 class="section-title reveal">Why I <em>built this.</em></h2>
   <div class="section-body reveal">
-    <p>Baymax from Big Hero 6 represents the ideal of a safe, gentle robot that can interact physically with humans without risk of harm. This project explored what it would take to engineer that — an arm that yields to external forces, feels soft to interact with, and prioritises safety over stiffness.</p>
+    <p>I was given a clear brief: design the elbow of a soft Baymax replica capable of meaningful gestures — fist bump, high-five, hug — while preserving the soft, friendly aesthetic that defines the character. Beyond the mechanics, there was a safety requirement baked into the premise: this robot would interact with people directly. The design had to be inherently safe, not just software-safe.</p>
+    <p>My responsibility was the elbow joint. The constraints were tight: 2 degrees of freedom, foldable for storage, proportionally faithful to Baymax, and soft enough that a person could touch it without risk.</p>
   </div>
   <div class="img-placeholder reveal"><span class="ph-icon">🖼</span>Add your image here</div>
 </section>
@@ -71,34 +71,27 @@ document.documentElement.style.setProperty('--accent-glow',
 <section class="section" id="process">
   <div class="section-label reveal">Process</div>
   <h2 class="section-title reveal">How I <em>built it.</em></h2>
-  <div class="section-body reveal">The arm design prioritises compliance — the ability to yield to external forces — over positional accuracy, which is the opposite of most industrial robot arms.</div>
+  <div class="section-body reveal">Two full design iterations, driven by simulation and hand calculations at each stage.</div>
   <div class="steps reveal">
     <div class="step">
       <div class="step-num">01</div>
       <div class="step-content">
-        <h3>Compliant Linkage Design</h3>
-        <p>Designed custom linkages that incorporate elastic elements, allowing the arm to deflect when it meets resistance rather than fighting back.</p>
+        <h3>Cable-driven universal joint (first iteration)</h3>
+        <p>My initial design used a cable-driven universal joint at the elbow: three cables spaced 120° apart, running through a hollow carbon fiber core, controlled by linear actuators in the upper arm. The top cable controlled vertical lift; the two side cables controlled lateral rotation, enabling a hug. Technically sound on paper — but simulation revealed it would compromise the arm's proportions to fit all the components.</p>
       </div>
     </div>
     <div class="step">
       <div class="step-num">02</div>
       <div class="step-content">
-        <h3>Force Sensing</h3>
-        <p>Integrated force-sensitive resistors at key joints to detect contact forces and trigger compliant responses in firmware.</p>
+        <h3>Belt-driven differential (second iteration)</h3>
+        <p>I redesigned around a belt-driven differential: two stepper motors in the shoulder driving through V-belts and bevel gears to give the elbow its 2 DOF. Same motors rotating in the same direction lifts the arm vertically; opposite rotation swings it laterally. Moving the motors to the shoulder dramatically reduced torque requirements on the forearm and kept the elbow slim enough to look right.</p>
       </div>
     </div>
     <div class="step">
       <div class="step-num">03</div>
       <div class="step-content">
-        <h3>Actuation System</h3>
-        <p>Selected servo motors with torque limits configured in firmware — the arm cannot overpower a human hand even at full command.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-num">04</div>
-      <div class="step-content">
-        <h3>Firmware & Control</h3>
-        <p>Wrote position control firmware with force feedback overlay — the arm moves to target positions but backs off when unexpected force is detected.</p>
+        <h3>Final assembly and integration</h3>
+        <p>The final arm: carbon fiber inner core for rigidity, three inflatable outer segments for softness and coverage, and a lightly pressurized polyethylene cover that gives Baymax his continuous balloon appearance. Hand cables route from fingers to shoulder through the hollow core. The soft exterior means no rigid surface is ever exposed to a user — the material is the safety system.</p>
       </div>
     </div>
   </div>
@@ -115,19 +108,25 @@ document.documentElement.style.setProperty('--accent-glow',
 <section class="section" id="result">
   <div class="section-label reveal">Result</div>
   <h2 class="section-title reveal">What I <em>made.</em></h2>
-  <div class="section-body reveal"><p>The arm can be pushed, redirected, and interacted with safely. It demonstrates that robotic arms designed for human-robot interaction require a fundamentally different engineering philosophy from industrial arms.</p></div>
+  <div class="section-body reveal">
+    <p>The belt-driven differential passed simulation testing and hand calculations, demonstrating both the strength and precision needed for repeatable gestures. The design also solved a secondary problem: by routing all actuation to the shoulder, the forearm stayed light and the shoulder motors stayed within torque limits. The iterative process — cable joint first, differential second — was the right call. The first design found the problem; the second solved it.</p>
+  </div>
   <div class="impact-grid reveal">
     <div class="impact-stat">
-      <span class="impact-val">Compliant</span>
-      <span class="impact-label">Actuation</span>
+      <span class="impact-val">2</span>
+      <span class="impact-label">Design Iterations</span>
     </div>
     <div class="impact-stat">
-      <span class="impact-val">Force-Limited</span>
-      <span class="impact-label">Torque</span>
+      <span class="impact-val">2 DOF</span>
+      <span class="impact-label">Elbow Articulation</span>
     </div>
     <div class="impact-stat">
-      <span class="impact-val">Safe</span>
-      <span class="impact-label">Human Interaction</span>
+      <span class="impact-val">3</span>
+      <span class="impact-label">Gesture Types</span>
+    </div>
+    <div class="impact-stat">
+      <span class="impact-val">0</span>
+      <span class="impact-label">Rigid Surfaces Exposed</span>
     </div>
   </div>
   <div class="img-grid reveal">
@@ -138,15 +137,15 @@ document.documentElement.style.setProperty('--accent-glow',
 
 <!-- PREV / NEXT -->
 <nav class="proj-nav">
-  <a href="mech-flower.html" class="proj-nav-link prev">
+  <a href="first-robotics.html" class="proj-nav-link prev">
     <span class="proj-nav-dir">← Previous</span>
+    <span class="proj-nav-emo">🏆</span>
+    <span class="proj-nav-name">FIRST Robotics Mentorship</span>
+  </a>
+  <a href="mech-flower.html" class="proj-nav-link next">
+    <span class="proj-nav-dir">Next →</span>
     <span class="proj-nav-emo">🌸</span>
     <span class="proj-nav-name">Mechanical Flower</span>
-  </a>
-  <a href="satellite.html" class="proj-nav-link next">
-    <span class="proj-nav-dir">Next →</span>
-    <span class="proj-nav-emo">🛰️</span>
-    <span class="proj-nav-name">Satellite Launches</span>
   </a>
 </nav>
 

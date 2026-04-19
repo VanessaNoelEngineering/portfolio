@@ -12,7 +12,7 @@
 <body>
 
 <script>
-const PROJECT_CONFIG = { type: 'sw', blocks: [] };
+const PROJECT_CONFIG = { type: 'both', blocks: [] };
 const _p={hw:['#2E8CF0','#5AAEFF'],sw:['#E8559A','#FF80BF'],both:['#7B5CEA','#A480FF']}[PROJECT_CONFIG.type];
 document.documentElement.style.setProperty('--accent',_p[0]);
 document.documentElement.style.setProperty('--accent2',_p[1]);
@@ -44,16 +44,14 @@ document.documentElement.style.setProperty('--accent-glow',
   <div class="hero-accent-bg"></div>
   <div class="hero-content">
     <span class="hero-emo">🚗</span>
-    <h1 class="hero-title">Gesture Controlled Car</h1>
-    <p class="hero-desc">An Arduino RC car controlled entirely by wrist gestures — no buttons, no joystick. Tilt your hand forward to accelerate, lean left to turn.</p>
+    <h1 class="hero-title">Gesture Controlled <em>Car.</em></h1>
+    <p class="hero-desc">A vehicle controlled entirely by wrist orientation — no buttons, no joystick. Built for outreach, became the program's most popular project.</p>
     <div class="hero-tags">
       <span class="htag">Arduino</span>
       <span class="htag">C++</span>
       <span class="htag">IMU</span>
-      <span class="htag">Wireless Comms</span>
-      <span class="htag">Firmware</span>
+      <span class="htag">Motor Control</span>
       <span class="htag">Embedded Systems</span>
-      <span class="htag">Sensor Fusion</span>
     </div>
   </div>
 </section>
@@ -63,7 +61,8 @@ document.documentElement.style.setProperty('--accent-glow',
   <div class="section-label reveal">Purpose</div>
   <h2 class="section-title reveal">Why I <em>built this.</em></h2>
   <div class="section-body reveal">
-    <p>The goal was to explore intuitive, gesture-based control for a physical system — removing the abstraction layer of buttons and joysticks and making the control feel direct. Tilting your wrist to steer a car feels natural in a way that pushing a joystick doesn't. This project was an exploration of that human-machine interface idea using accessible hardware.</p>
+    <p>I analyzed participant feedback from previous years at Connections Engineering Outreach and saw a consistent pattern: students wanted more technically advanced projects. The existing curriculum wasn't meeting them where they wanted to be.</p>
+    <p>So I designed something harder. The goal was a project that felt like real engineering to a high schooler: meaningful sensors, non-trivial code, a control interface that disappears and lets the user just drive. No buttons to learn. Tilt your wrist; the car goes that direction.</p>
   </div>
   <div class="img-placeholder reveal"><span class="ph-icon">🖼</span>Add your image here</div>
 </section>
@@ -72,41 +71,34 @@ document.documentElement.style.setProperty('--accent-glow',
 <section class="section" id="process">
   <div class="section-label reveal">Process</div>
   <h2 class="section-title reveal">How I <em>built it.</em></h2>
-  <div class="section-body reveal">The system has two halves: a wearable IMU controller and the car itself, communicating wirelessly in real time.</div>
+  <div class="section-body reveal">Two prototypes, one honest pivot, one final design built to be replicable by participants with varying experience.</div>
   <div class="steps reveal">
     <div class="step">
       <div class="step-num">01</div>
       <div class="step-content">
-        <h3>IMU Controller Build</h3>
-        <p>Built a wrist-worn controller around an MPU-6050 IMU (accelerometer + gyroscope) and an Arduino with a wireless transmitter.</p>
+        <h3>Component selection for a workshop context</h3>
+        <p>Component choices were constrained by two things: cost (each kit would be replicated across many participants) and reliability (every kit had to work the first time, in a crowded room, without debugging support). Chose Arduino Uno for compatibility and affordability, MPU-6050 accelerometer for gesture sensing, L298N H-bridge motor driver for the drive system.</p>
       </div>
     </div>
     <div class="step">
       <div class="step-num">02</div>
       <div class="step-content">
-        <h3>Sensor Fusion</h3>
-        <p>Implemented a complementary filter to combine accelerometer and gyroscope data for stable, drift-free orientation readings.</p>
+        <h3>First prototype: wireless, three motors</h3>
+        <p>Initial design used wireless communication between controller and car, with three motors. Testing revealed two problems: wireless was unreliable in a crowded RF environment, and three-motor drive was too mechanically complex for participants to assemble and debug independently. Both issues would have killed the workshop.</p>
       </div>
     </div>
     <div class="step">
       <div class="step-num">03</div>
       <div class="step-content">
-        <h3>Gesture Mapping</h3>
-        <p>Mapped pitch (forward/back tilt) to throttle and roll (left/right tilt) to steering angle. Added dead zones to prevent unintentional commands.</p>
+        <h3>Redesign: wired, four motors</h3>
+        <p>Replaced wireless with a wired tether (simpler, more reliable, cheaper), switched to four DC motors in a standard differential drive configuration. Four motors is actually a cleaner mechanical design — more stable, better turning, easier to wire. The redesign solved the failure modes without sacrificing the core experience.</p>
       </div>
     </div>
     <div class="step">
       <div class="step-num">04</div>
       <div class="step-content">
-        <h3>Wireless Protocol</h3>
-        <p>Implemented a lightweight wireless protocol between controller and car — fast enough for real-time control, robust to packet loss.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-num">05</div>
-      <div class="step-content">
-        <h3>Car Integration</h3>
-        <p>Integrated the receiver into the RC car chassis, replacing the original controller input with the gesture signal. Tuned response curves for natural feel.</p>
+        <h3>Code and calibration</h3>
+        <p>The IMU reads pitch and roll in real time. Pitch controls forward/back speed; roll controls turn rate. The code maps these values to PWM signals on the H-bridge, with a deadband in the center so the car holds still when the wrist is level. Threshold-tuned until control felt responsive without being twitchy.</p>
       </div>
     </div>
   </div>
@@ -123,19 +115,25 @@ document.documentElement.style.setProperty('--accent-glow',
 <section class="section" id="result">
   <div class="section-label reveal">Result</div>
   <h2 class="section-title reveal">What I <em>made.</em></h2>
-  <div class="section-body reveal"><p>A fully functional gesture-controlled car that responds naturally to wrist movements. The control feels intuitive after about 30 seconds of use — the learning curve is minimal because the mapping is physical and direct.</p></div>
+  <div class="section-body reveal">
+    <p>The gesture-controlled car became the highest-rated project in 20+ summer programs at Connections, with 95% participant satisfaction. More importantly, its success demonstrated that high schoolers could engage with — and succeed at — genuinely advanced embedded systems content. The program expanded as a direct result. The first prototype failing was the right outcome: it found the constraints early, and the redesign solved for the actual use case rather than the ideal one.</p>
+  </div>
   <div class="impact-grid reveal">
     <div class="impact-stat">
-      <span class="impact-val">Real-Time</span>
-      <span class="impact-label">Control Loop</span>
+      <span class="impact-val">#1</span>
+      <span class="impact-label">Rated of 20+ Projects</span>
     </div>
     <div class="impact-stat">
-      <span class="impact-val">No Buttons</span>
-      <span class="impact-label">Interface</span>
+      <span class="impact-val">95%</span>
+      <span class="impact-label">Participant Satisfaction</span>
     </div>
     <div class="impact-stat">
-      <span class="impact-val">6-DOF</span>
-      <span class="impact-label">Gesture Sensing</span>
+      <span class="impact-val">2</span>
+      <span class="impact-label">Prototype Iterations</span>
+    </div>
+    <div class="impact-stat">
+      <span class="impact-val">1</span>
+      <span class="impact-label">Program Expansion</span>
     </div>
   </div>
   <div class="img-grid reveal">
@@ -146,15 +144,15 @@ document.documentElement.style.setProperty('--accent-glow',
 
 <!-- PREV / NEXT -->
 <nav class="proj-nav">
-  <a href="minecraft.html" class="proj-nav-link prev">
+  <a href="masks.html" class="proj-nav-link prev">
     <span class="proj-nav-dir">← Previous</span>
-    <span class="proj-nav-emo">🐔</span>
-    <span class="proj-nav-name">Minecraft Chicken</span>
+    <span class="proj-nav-emo">🎭</span>
+    <span class="proj-nav-name">Replica Props</span>
   </a>
-  <a href="canadarm.html" class="proj-nav-link next">
+  <a href="happytappy.html" class="proj-nav-link next">
     <span class="proj-nav-dir">Next →</span>
-    <span class="proj-nav-emo">🤖</span>
-    <span class="proj-nav-name">LEGO Canadarm</span>
+    <span class="proj-nav-emo">💙</span>
+    <span class="proj-nav-name">Happy Tappy</span>
   </a>
 </nav>
 
