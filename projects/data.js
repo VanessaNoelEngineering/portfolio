@@ -12,7 +12,7 @@
      id          — matches the HTML filename  e.g. 'lego-minifig' → projects/lego-minifig.html
      published   — false hides it everywhere (cards, terminal, modal)
      type        — 'hw' | 'sw' | 'both'  (controls card colour theme)
-     tabs        — array of tab filters this card appears under: 'built' | 'led' | 'community'
+     tabs        — array of tab filters this card appears under: 'built' | 'led' | 'launched'
      wip         — true shows a WIP badge on the card
      title       — project name
      emoji       — fallback if no thumbnail
@@ -120,7 +120,7 @@ window.PROJECTS_DATA = [
     id:          'happy-tappy',
     published:   true,
     type:        'hw',
-    tabs:        ['built', 'community'],
+    tabs:        ['built', 'launched'],
     wip:         true,
     title:       'Happy Tappy',
     emoji:       '💙',
@@ -136,7 +136,7 @@ window.PROJECTS_DATA = [
     id:          'project-sonder',
     published:   true,
     type:        'both',
-    tabs:        ['built', 'led', 'community'],
+    tabs:        ['built', 'led', 'launched'],
     wip:         true,
     title:       'Project Sonder',
     emoji:       '✉️',
@@ -167,7 +167,7 @@ window.PROJECTS_DATA = [
     id:          'csa-outreach',
     published:   true,
     type:        'both',
-    tabs:        ['led', 'community'],
+    tabs:        ['led', 'launched'],
     title:       'CSA Satellite Program for At-Risk Youth',
     emoji:       '🚀',
     thumbnail:   null,
@@ -182,7 +182,7 @@ window.PROJECTS_DATA = [
     id:          'stem-connections',
     published:   true,
     type:        'both',
-    tabs:        ['built', 'led', 'community'],
+    tabs:        ['built', 'led', 'launched'],
     title:       'STEM Outreach — Connections',
     emoji:       '⚡',
     thumbnail:   null,
@@ -197,7 +197,7 @@ window.PROJECTS_DATA = [
     id:          'first-robotics',
     published:   true,
     type:        'hw',
-    tabs:        ['led', 'community'],
+    tabs:        ['led', 'launched'],
     title:       'FIRST Robotics — Team 19528',
     emoji:       '🏆',
     thumbnail:   null,
