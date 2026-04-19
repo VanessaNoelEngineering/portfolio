@@ -200,7 +200,7 @@ window.PROJECTS_DATA = [
     tabs:        ['led', 'launched'],
     title:       'FIRST Robotics — Team 19528',
     emoji:       '🏆',
-    thumbnail:   'https://res.cloudinary.com/dlxdxu3ac/image/upload/v1776611796/IMG_3124_oa4xnt.jpg',
+    thumbnail:   'https://res.cloudinary.com/dlxdxu3ac/image/upload/v1776612649/IMG_3124_oa4xnt.png',
     label:       'Led · Community · Robotics',
     desc:        'Two years mentoring Team 19528 — tools, wiring, CAD, debugging, mechanisms, algorithms, and four competition awards.',
     previewDesc: "I mentored Team 19528 (Tech Comet Lancers) for two full years, showing up 2–3 times a week through both build season and off-season. Also served as a competition judge.\n\nWhat I taught: safe use of hand tools and power tools, circuit wiring and multimeter debugging, component selection, mechanism design, control algorithm development, and CAD. About 10 students, consistently, over two years.\n\nYear 1 — Judges' Choice Award + 2nd Place Motivate Award. Winning awards in a rookie FTC year is rare and reflects how quickly the team developed both technically and culturally.\n\nYear 2 — Design Award + Connect Award. A meaningful jump in technical maturity and strategic presentation between seasons.",
