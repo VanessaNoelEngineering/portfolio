@@ -103,7 +103,7 @@ window.PROJECTS_DATA = [
 
   {
     id:          'survey-tool',
-    published:   true,
+    published:   false,
     type:        'sw',
     tabs:        ['built'],
     title:       'Survey Automation Tool',
