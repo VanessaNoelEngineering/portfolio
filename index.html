@@ -385,7 +385,6 @@ footer p{font-family:var(--fm);font-size:.63rem;color:rgba(255,255,255,.17);lett
   padding:2rem 2rem 1.25rem;
   border-bottom:1px solid rgba(255,255,255,.06);
 }
-.pp-emo { font-size:3rem; line-height:1; flex-shrink:0; }
 .pp-header-text { flex:1; }
 .pp-label { font-family:var(--fm); font-size:.65rem; letter-spacing:.1em; text-transform:uppercase; margin-bottom:.4rem; }
 .pp-label.hw { color:var(--hw); }
@@ -873,7 +872,6 @@ footer p{font-family:var(--fm);font-size:.63rem;color:rgba(255,255,255,.17);lett
 <div id="proj-preview">
   <div class="pp-modal">
     <div class="pp-header">
-      <div class="pp-emo" id="pp-emo">🧱</div>
       <div class="pp-header-text">
         <div class="pp-label" id="pp-label">3D Printing</div>
         <div class="pp-title" id="pp-title">Project Title</div>
@@ -1545,7 +1543,6 @@ const PROJECTS = {};
 // ══════════════════════════════════════
 
 const preview   = document.getElementById('proj-preview');
-const ppEmo     = document.getElementById('pp-emo');
 const ppLabel   = document.getElementById('pp-label');
 const ppTitle   = document.getElementById('pp-title');
 const ppDesc    = document.getElementById('pp-desc');
@@ -1557,7 +1554,6 @@ let   activeCard = null;
 function openPreview(id, card) {
   const p = PROJECTS[id];
   if (!p) return;
-  ppEmo.textContent   = p.emo;
   ppLabel.textContent = p.label;
   ppLabel.className   = `pp-label ${p.type}`;
   ppTitle.textContent = p.title;
