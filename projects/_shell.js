@@ -168,12 +168,46 @@ function setupTabs() {
   tabs[0].classList.add('active');
 }
 
+/* ── DYNAMIC PREV / NEXT NAV ─────────────────────────────────────
+   Reads PROJECTS_DATA (loaded via data.js) to build the prev/next
+   links based on the published array order — no hardcoding needed.
+──────────────────────────────────────────────────────────────── */
+function setupProjNav() {
+  if (!window.PROJECTS_DATA) return;
+  const navEl = document.querySelector('.proj-nav');
+  if (!navEl) return;
+
+  // Only published projects that have a local page file
+  const pub = PROJECTS_DATA.filter(p => p.published && (p.page || p.url.startsWith('projects/')));
+
+  // Resolve the local filename for a project entry
+  const pageFile = p => (p.page || p.url).split('/').pop();
+
+  const current = location.pathname.split('/').pop();
+  const idx = pub.findIndex(p => pageFile(p) === current);
+  if (idx === -1) return;
+
+  const prev = pub[(idx - 1 + pub.length) % pub.length];
+  const next = pub[(idx + 1) % pub.length];
+
+  navEl.innerHTML =
+    `<a href="${pageFile(prev)}" class="proj-nav-link prev">` +
+      `<span class="proj-nav-dir">← Previous</span>` +
+      `<span class="proj-nav-name">${prev.title}</span>` +
+    `</a>` +
+    `<a href="${pageFile(next)}" class="proj-nav-link next">` +
+      `<span class="proj-nav-dir">Next →</span>` +
+      `<span class="proj-nav-name">${next.title}</span>` +
+    `</a>`;
+}
+
 /* ── BOOT ────────────────────────────────────────────────────────
-   Order matters: inject → observe → cursor → tabs
+   Order matters: inject → observe → cursor → tabs → nav
 ──────────────────────────────────────────────────────────────── */
 injectBlocks();   // adds DOM first
 setupReveal();    // then observe all .reveal (incl. injected)
 setupCursor();
 setupTabs();
+setupProjNav();   // dynamic prev/next from data.js order
 
 })();

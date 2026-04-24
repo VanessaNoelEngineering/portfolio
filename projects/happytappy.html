@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Happy Tappy — Vanessa Noel</title>
+  <title>Happy Tappy â€” Vanessa Noel</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;700;800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
@@ -44,7 +44,7 @@ document.documentElement.style.setProperty('--accent-glow',
   <div class="hero-accent-bg"></div>
   <div class="hero-content">
     <h1 class="hero-title">Happy <em>Tappy.</em></h1>
-    <p class="hero-desc">Open-source EMDR tappers — therapeutic hardware that costs $500 commercially. This version costs under $50. Work in progress.</p>
+    <p class="hero-desc">Open-source EMDR tappers â€” therapeutic hardware that costs $500 commercially. This version costs under $50. Work in progress.</p>
     <div class="hero-tags">
       <span class="htag">Arduino</span>
       <span class="htag">PCB Design</span>
@@ -60,11 +60,11 @@ document.documentElement.style.setProperty('--accent-glow',
   <div class="section-label reveal">Purpose</div>
   <h2 class="section-title reveal">Why I <em>built this.</em></h2>
   <div class="section-body reveal">
-    <p>EMDR (Eye Movement Desensitization and Reprocessing) is a trauma therapy technique that uses bilateral stimulation — alternating sensory input on the left and right sides of the body — to help process difficult memories. Tappers are the hardware that delivers this stimulation: small handheld devices that vibrate alternately, sometimes paired with light or audio cues.</p>
-    <p>Commercial EMDR tappers cost hundreds of dollars. That price isn't justified by the electronics inside — it's a market access problem, not a complexity problem. A close friend benefited significantly from EMDR therapy, and watching the cost of the equipment be a barrier for other people made this project feel necessary.</p>
+    <p>EMDR (Eye Movement Desensitization and Reprocessing) is a trauma therapy technique that uses bilateral stimulation â€” alternating sensory input on the left and right sides of the body â€” to help process difficult memories. Tappers are the hardware that delivers this stimulation: small handheld devices that vibrate alternately, sometimes paired with light or audio cues.</p>
+    <p>Commercial EMDR tappers cost hundreds of dollars. That price isn't justified by the electronics inside â€” it's a market access problem, not a complexity problem. A close friend benefited significantly from EMDR therapy, and watching the cost of the equipment be a barrier for other people made this project feel necessary.</p>
     <p>Happy Tappy is an open-source alternative: full bilateral vibration, configurable light and audio feedback, adjustable intensity and frequency, target BOM under $50. Everything documented, everything modifiable, everything shareable.</p>
   </div>
-  <div class="img-placeholder reveal"><span class="ph-icon">🖼</span>Add your image here</div>
+  <div class="img-placeholder reveal"><span class="ph-icon">ðŸ–¼</span>Add your image here</div>
 </section>
 
 <!-- PROCESS -->
@@ -77,21 +77,21 @@ document.documentElement.style.setProperty('--accent-glow',
       <div class="step-num">01</div>
       <div class="step-content">
         <h3>Defining the spec</h3>
-        <p>Commercial tappers offer vibration, LED light bars, and audio tones — all configurable in intensity and frequency. The goal was to match that feature set at a fraction of the cost, using components anyone can source and assemble. Researched existing open-source EMDR projects to understand the gaps, then defined a target spec: bilateral vibration motors, RGB LEDs, configurable timing, sub-$50 BOM.</p>
+        <p>Commercial tappers offer vibration, LED light bars, and audio tones â€” all configurable in intensity and frequency. The goal was to match that feature set at a fraction of the cost, using components anyone can source and assemble. Researched existing open-source EMDR projects to understand the gaps, then defined a target spec: bilateral vibration motors, RGB LEDs, configurable timing, sub-$50 BOM.</p>
       </div>
     </div>
     <div class="step">
       <div class="step-num">02</div>
       <div class="step-content">
         <h3>Breadboard prototype: tapper units</h3>
-        <p>Built the tapper units on breadboard — two handheld controllers, each with a vibration motor and LED, driven by a microcontroller. Tested the bilateral timing loop: motor and LED fire on one side, pause, fire on the other. Core functionality validated. The haptic feedback was the critical test — the sensation needs to feel distinct and rhythmic, not just vibration.</p>
+        <p>Built the tapper units on breadboard â€” two handheld controllers, each with a vibration motor and LED, driven by a microcontroller. Tested the bilateral timing loop: motor and LED fire on one side, pause, fire on the other. Core functionality validated. The haptic feedback was the critical test â€” the sensation needs to feel distinct and rhythmic, not just vibration.</p>
       </div>
     </div>
     <div class="step">
       <div class="step-num">03</div>
       <div class="step-content">
         <h3>Breadboard prototype: control unit</h3>
-        <p>Built the control unit: interface for setting frequency, intensity, and mode. Tested the full system end-to-end — control signals passing reliably to both tapper units, adjustments reflected in real time.</p>
+        <p>Built the control unit: interface for setting frequency, intensity, and mode. Tested the full system end-to-end â€” control signals passing reliably to both tapper units, adjustments reflected in real time.</p>
       </div>
     </div>
     <div class="step">
@@ -110,8 +110,8 @@ document.documentElement.style.setProperty('--accent-glow',
     </div>
   </div>
   <div class="img-grid reveal">
-    <div class="img-placeholder"><span class="ph-icon">🖼</span>Process photo</div>
-    <div class="img-placeholder"><span class="ph-icon">🖼</span>Process photo</div>
+    <div class="img-placeholder"><span class="ph-icon">ðŸ–¼</span>Process photo</div>
+    <div class="img-placeholder"><span class="ph-icon">ðŸ–¼</span>Process photo</div>
   </div>
 </section>
 
@@ -123,7 +123,7 @@ document.documentElement.style.setProperty('--accent-glow',
   <div class="section-label reveal">Result</div>
   <h2 class="section-title reveal">What I <em>made.</em></h2>
   <div class="section-body reveal">
-    <p>The tapper units are breadboarded and validated — the core experience works. PCB layout and enclosure design are the remaining steps before this becomes something anyone can build from the documentation. The project is ongoing. When it ships, all files will be open-source: schematics, PCB layout, firmware, enclosure STLs, and a full build guide.</p>
+    <p>The tapper units are breadboarded and validated â€” the core experience works. PCB layout and enclosure design are the remaining steps before this becomes something anyone can build from the documentation. The project is ongoing. When it ships, all files will be open-source: schematics, PCB layout, firmware, enclosure STLs, and a full build guide.</p>
   </div>
   <div class="impact-grid reveal">
     <div class="impact-stat">
@@ -144,25 +144,25 @@ document.documentElement.style.setProperty('--accent-glow',
     </div>
   </div>
   <div class="img-grid reveal">
-    <div class="img-placeholder"><span class="ph-icon">🖼</span>Final result</div>
-    <div class="img-placeholder"><span class="ph-icon">🖼</span>Final result</div>
+    <div class="img-placeholder"><span class="ph-icon">ðŸ–¼</span>Final result</div>
+    <div class="img-placeholder"><span class="ph-icon">ðŸ–¼</span>Final result</div>
   </div>
 </section>
 
 <!-- PREV / NEXT -->
 <nav class="proj-nav">
   <a href="gesture-car.html" class="proj-nav-link prev">
-    <span class="proj-nav-dir">← Previous</span>
+    <span class="proj-nav-dir">â† Previous</span>
     <span class="proj-nav-name">Gesture Controlled Car</span>
   </a>
   <a href="project-sonder.html" class="proj-nav-link next">
-    <span class="proj-nav-dir">Next →</span>
+    <span class="proj-nav-dir">Next â†’</span>
     <span class="proj-nav-name">Project Sonder</span>
   </a>
 </nav>
 
 <footer>
-  <p>© 2025 Vanessa Noel</p>
+  <p>Â© 2025 Vanessa Noel</p>
   <div class="foot-links">
     <a href="http://www.linkedin.com/in/vanessa-noel-engineering" target="_blank">LinkedIn</a>
     <a href="../index.html">Portfolio</a>
@@ -170,6 +170,7 @@ document.documentElement.style.setProperty('--accent-glow',
   </div>
 </footer>
 
+<script src="data.js"></script>
 <script src="_shell.js"></script>
 </body>
 </html>
