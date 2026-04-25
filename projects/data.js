@@ -87,6 +87,12 @@ window.PROJECTS_DATA = [
           body: 'Final build: 90+ hours of print time across both figures. Parts assembled in the designed sequence — joints clicked in, figures posed. No adhesive, no hardware.',
         },
       ],
+      blocks: [
+        {
+          type: 'cad',
+          url: 'https://queensu158.autodesk360.com/shares/public/SHd38bfQT1fb47330c99374753ba30fbfc3b?mode=embed',
+        },
+      ],
     },
     result: {
       heading: 'What I <em>made.</em>',

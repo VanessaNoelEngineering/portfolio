@@ -47,45 +47,31 @@ function imageZone(images, layout, size) {
 ──────────────────────────────────────────────────────────────── */
 const BLOCK_RENDERERS = {
 
-  video: b => `
-<section class="section reveal">
-  <div class="section-label">Demo</div>
-  <h2 class="section-title">See it <em>run.</em></h2>
-  <div class="video-wrap">
-    <iframe src="${b.url}" title="Project demo" allowfullscreen loading="lazy"></iframe>
-  </div>
-</section>`,
+  video: b => {
+    const label   = b.label   ? `<div class="section-label">${b.label}</div>` : '';
+    const heading = b.heading ? `<h2 class="section-title reveal">${b.heading}</h2>` : '';
+    return `${label}${heading}<div class="video-wrap reveal"><iframe src="${b.url}" title="Project demo" allowfullscreen loading="lazy"></iframe></div>`;
+  },
 
-  gallery: b => `
-<section class="section reveal">
-  <div class="section-label">Gallery</div>
-  <h2 class="section-title">The <em>photos.</em></h2>
-  <div class="gallery-grid">
-    ${(b.images || []).map(src =>
-      `<img src="${src}" loading="lazy" alt=""/>`
-    ).join('\n    ')}
-  </div>
-</section>`,
+  gallery: b => {
+    const label   = b.label   ? `<div class="section-label">${b.label}</div>` : '';
+    const heading = b.heading ? `<h2 class="section-title reveal">${b.heading}</h2>` : '';
+    const imgs = (b.images || []).map(src => `<img src="${src}" loading="lazy" alt=""/>`).join('');
+    return `${label}${heading}<div class="gallery-grid reveal">${imgs}</div>`;
+  },
 
-  code: b => `
-<section class="section reveal">
-  <div class="section-label">Code</div>
-  <h2 class="section-title">The <em>firmware.</em></h2>
-  <div class="code-wrap">
-    <div class="code-wrap-bar">snippet — ${b.file || ''}</div>
-    <pre><code>${b.snippet || ''}</code></pre>
-  </div>
-  ${b.github ? `<a href="${b.github}" class="btn-outline" target="_blank" rel="noopener">View on GitHub →</a>` : ''}
-</section>`,
+  code: b => {
+    const label   = b.label   ? `<div class="section-label">${b.label}</div>` : '';
+    const heading = b.heading ? `<h2 class="section-title reveal">${b.heading}</h2>` : '';
+    const ghLink  = b.github  ? `<a href="${b.github}" class="btn-outline" target="_blank" rel="noopener">View on GitHub →</a>` : '';
+    return `${label}${heading}<div class="code-wrap reveal"><div class="code-wrap-bar">snippet — ${b.file || ''}</div><pre><code>${b.snippet || ''}</code></pre></div>${ghLink}`;
+  },
 
-  cad: b => `
-<section class="section reveal">
-  <div class="section-label">CAD Model</div>
-  <h2 class="section-title">The <em>model.</em></h2>
-  <div class="cad-embed-wrap">
-    <iframe src="${b.url}" allowfullscreen loading="lazy" title="3D CAD Model"></iframe>
-  </div>
-</section>`,
+  cad: b => {
+    const label   = b.label   ? `<div class="section-label">${b.label}</div>` : '';
+    const heading = b.heading ? `<h2 class="section-title reveal">${b.heading}</h2>` : '';
+    return `${label}${heading}<div class="cad-embed-wrap reveal"><iframe src="${b.url}" allowfullscreen webkitallowfullscreen mozallowfullscreen loading="lazy" title="3D CAD Model"></iframe></div>`;
+  },
 
   image: b => `
 <figure class="reveal full-width-image">
