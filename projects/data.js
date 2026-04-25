@@ -52,15 +52,15 @@ window.PROJECTS_DATA = [
       heading: 'Why I <em>built this.</em>',
       body: [],
       blocks: [
-           {
-             type: 'split',
-             right: { type: 'image', align: 'top', nudge: '-80px', url: 'https://res.cloudinary.com/dlxdxu3ac/image/upload/v1777145303/Your_paragraph_text_ob8os9.png' },
-             left: { type: 'text', align: 'top', body: [
-               'I\'ve always loved LEGO. Set 71037 - the Brown Astronaut and Baby Benny the Spaceman is one of my favourite minifigure sets, and I wanted an enlarged version to display. The rule I gave myself: fully functional, no glue, no hardware. Every joint had to be posable, just like the real thing.',
-               'LEGO achieves their insane tolerances through injection molding. I had a 3D printer, so that would have to do. But scaling up creates problems that don\'t exist at standard size. PLA wears down with repeated use, so joints that start tight gradually loosen. Everything gets heavier, which puts more stress on the joints. And getting the chest logos to sit flush without a multi-colour printer meant dialling in settings precisely enough that the inlay would fit perfectly without protruding.',
-             ]},
-           },
-         ],
+         {
+            type: 'split',
+            right: { type: 'image', align: 'top', nudge: '-80px', url: 'https://res.cloudinary.com/dlxdxu3ac/image/upload/v1777145303/Your_paragraph_text_ob8os9.png' },
+            left: { type: 'text', align: 'top', body: [
+            'I\'ve always loved LEGO. Set 71037 - the Brown Astronaut and Baby Benny the Spaceman is one of my favourite minifigure sets, and I wanted an enlarged version to display. The rule I gave myself: fully functional, no glue, no hardware. Every joint had to be posable, just like the real thing.',
+            'LEGO achieves their insane tolerances through injection molding. I had a 3D printer, so that would have to do. But scaling up creates problems that don\'t exist at standard size. PLA wears down with repeated use, so joints that start tight gradually loosen. Everything gets heavier, which puts more stress on the joints. And getting the chest logos to sit flush without a multi-colour printer meant dialling in settings precisely enough that the inlay would fit perfectly without protruding.',
+            ]},
+         },
+      ],
     process: {
       heading: 'How I <em>built it.</em>',
       summary: 'Methodical scale-up with a 5× validation step before committing to the full 10× print.',
