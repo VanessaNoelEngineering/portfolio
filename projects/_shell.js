@@ -19,14 +19,16 @@
    If images has URLs → actual <img> tags.
    layout: 'single' | 'grid'
 ──────────────────────────────────────────────────────────────── */
-function imageZone(images, layout) {
+function imageZone(images, layout, size) {
   layout = layout || 'single';
+  size   = size   || 'full';
+  const wrapClass = 'img-wrap-' + size;
   if (images && images.length) {
     if (layout === 'grid') {
       return `<div class="img-grid reveal">${images.map(src =>
         `<img src="${src}" loading="lazy" alt=""/>`).join('')}</div>`;
     }
-    return `<img class="reveal" src="${images[0]}" loading="lazy" alt=""/>`;
+    return `<div class="${wrapClass} reveal"><img src="${images[0]}" loading="lazy" alt=""/></div>`;
   }
   if (layout === 'grid') {
     return `<div class="img-grid reveal">` +
@@ -118,7 +120,7 @@ function renderPage() {
     purposeEl.innerHTML =
       `<h2 class="section-title reveal">${d.heading}</h2>` +
       `<div class="section-body reveal">${bodyPs}</div>` +
-      imageZone(d.images, 'single');
+      imageZone(d.images, 'single', d.imageSize);
   }
 
   /* — Process — */
@@ -136,7 +138,7 @@ function renderPage() {
       `<h2 class="section-title reveal">${d.heading}</h2>` +
       `<div class="section-body reveal">${d.summary}</div>` +
       `<div class="steps reveal">${stepsHtml}</div>` +
-      imageZone(d.images, 'grid');
+      imageZone(d.images, 'grid', d.imageSize);
   }
 
   /* — Result — */
@@ -154,7 +156,7 @@ function renderPage() {
       `<h2 class="section-title reveal">${d.heading}</h2>` +
       `<div class="section-body reveal">${bodyPs}</div>` +
       (statsHtml ? `<div class="impact-grid reveal">${statsHtml}</div>` : '') +
-      imageZone(d.images, 'grid');
+      imageZone(d.images, 'grid', d.imageSize);
   }
 
   /* — Blocks — */
