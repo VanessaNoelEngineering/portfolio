@@ -108,6 +108,14 @@ const BLOCK_RENDERERS = {
           (s.caption ? `<p class="split-caption">${s.caption}</p>` : '') +
         `</div>`;
       }
+      if (s.type === 'cad') {
+        return `<div class="split-media${sideAlign(s)}"${nudgeStyle}>` +
+          `<div class="split-video-wrap">` +
+            `<iframe src="${s.url}" allowfullscreen webkitallowfullscreen mozallowfullscreen loading="lazy" title="CAD Model"></iframe>` +
+          `</div>` +
+          (s.caption ? `<p class="split-caption">${s.caption}</p>` : '') +
+        `</div>`;
+      }
       return '<div></div>';
     }
     const label    = b.label   ? `<div class="section-label">${b.label}</div>` : '';
@@ -162,17 +170,29 @@ function renderPage() {
   const processEl = document.getElementById('process-content');
   if (processEl && p.process) {
     const d = p.process;
-    const stepsHtml = (d.steps || []).map((s, i) => {
+    // Build steps, splitting into groups when a blockAfter is encountered
+    let stepsContent = '';
+    let group = [];
+    (d.steps || []).forEach((s, i) => {
       const num = String(i + 1).padStart(2, '0');
-      return `<div class="step">` +
-        `<div class="step-num">${num}</div>` +
-        `<div class="step-content"><h3>${s.title}</h3><p>${s.body}</p></div>` +
-      `</div>`;
-    }).join('');
+      group.push(
+        `<div class="step">` +
+          `<div class="step-num">${num}</div>` +
+          `<div class="step-content"><h3>${s.title}</h3><p>${s.body}</p></div>` +
+        `</div>`
+      );
+      if (s.blockAfter) {
+        stepsContent += `<div class="steps reveal">${group.join('')}</div>`;
+        stepsContent += renderBlocks([s.blockAfter]);
+        group = [];
+      }
+    });
+    if (group.length) stepsContent += `<div class="steps reveal">${group.join('')}</div>`;
+
     processEl.innerHTML =
       `<h2 class="section-title reveal">${d.heading}</h2>` +
       (d.summary ? `<div class="section-body reveal">${d.summary}</div>` : '') +
-      (stepsHtml ? `<div class="steps reveal">${stepsHtml}</div>` : '') +
+      stepsContent +
       imageZone(d.images, 'grid', d.imageSize) +
       renderBlocks(d.blocks);
   }

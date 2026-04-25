@@ -69,6 +69,11 @@ window.PROJECTS_DATA = [
         {
           title: 'CAD model from reference',
           body: 'Built both figures in CAD from the original LEGO set as reference. Focus on capturing the geometry accurately — proportions, joint shapes, connection interfaces — since everything downstream depends on getting this right.',
+          blockAfter: {
+            type: 'split',
+            left:  { type: 'cad', url: 'https://queensu158.autodesk360.com/shares/public/SHd38bfQT1fb47330c99374753ba30fbfc3b?mode=embed' },
+            right: { type: 'cad', url: 'https://queensu158.autodesk360.com/shares/public/SHd38bfQT1fb47330c99713edf926c420b55?mode=embed' },
+          },
         },
         {
           title: '5× prototype to validate proportions',
@@ -85,12 +90,6 @@ window.PROJECTS_DATA = [
         {
           title: 'Full print run and assembly',
           body: 'Final build: 90+ hours of print time across both figures. Parts assembled in the designed sequence — joints clicked in, figures posed. No adhesive, no hardware.',
-        },
-      ],
-      blocks: [
-        {
-          type: 'cad',
-          url: 'https://queensu158.autodesk360.com/shares/public/SHd38bfQT1fb47330c99374753ba30fbfc3b?mode=embed',
         },
       ],
     },
