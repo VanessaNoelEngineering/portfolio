@@ -68,11 +68,16 @@ window.PROJECTS_DATA = [
       steps: [
         {
           title: 'CAD model from reference',
-          body: 'Built both figures in CAD from the original LEGO set as reference. Focus on capturing the geometry accurately — proportions, joint shapes, connection interfaces — since everything downstream depends on getting this right.',
+          body: 'Built both figures in CAD from the original LEGO set as reference. The focus was on capturing the geometry accurately including the proportions, joint shapes, and connection interfaces.',
           blockAfter: {
             type: 'split',
             left:  { type: 'cad', url: 'https://queensu158.autodesk360.com/shares/public/SHd38bfQT1fb47330c99374753ba30fbfc3b?mode=embed' },
             right: { type: 'cad', url: 'https://queensu158.autodesk360.com/shares/public/SHd38bfQT1fb47330c99713edf926c420b55?mode=embed' },
+          },
+          blockAfter: {
+            type: 'split',
+            left:  { type: 'video', url: 'https://youtu.be/ir0tKuCpMhQ' },
+            right: { type: 'video', url: 'https://youtu.be/h5ZbaEFdA68' },
           },
         },
         {
