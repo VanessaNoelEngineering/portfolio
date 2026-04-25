@@ -2,119 +2,185 @@
    _shell.js — Vanessa Noel Portfolio
    Shared runtime for all project pages.
 
-   Expects window.PROJECT_CONFIG to be set by the inline <script>
-   at the top of each page's <body> BEFORE this file loads.
+   Expects window.PROJECT_CONFIG and window.PROJECTS_DATA to be
+   set before this file loads (data.js in <head>, inline script
+   sets PROJECT_CONFIG.type and PROJECT_CONFIG.id).
 
    PROJECT_CONFIG shape:
    {
-     type:   'hw' | 'sw' | 'both',
-     blocks: ['cad','components','code','gallery','video']  // any subset
+     type: 'hw' | 'sw' | 'both',
+     id:   'baymax'  // matches PROJECTS_DATA id
    }
 ═══════════════════════════════════════════════════════════════ */
 (function () {
 
-/* ── BLOCK TEMPLATES ─────────────────────────────────────────────
-   Each returns an HTML string.
-   Fill in YOUR_* placeholders in the generated HTML.
+/* ── IMAGE ZONE HELPER ───────────────────────────────────────────
+   If images array is null/empty → placeholders.
+   If images has URLs → actual <img> tags.
+   layout: 'single' | 'grid'
 ──────────────────────────────────────────────────────────────── */
-const BLOCKS = {
+function imageZone(images, layout) {
+  layout = layout || 'single';
+  if (images && images.length) {
+    if (layout === 'grid') {
+      return `<div class="img-grid reveal">${images.map(src =>
+        `<img src="${src}" loading="lazy" alt=""/>`).join('')}</div>`;
+    }
+    return `<img class="reveal" src="${images[0]}" loading="lazy" alt=""/>`;
+  }
+  if (layout === 'grid') {
+    return `<div class="img-grid reveal">` +
+      `<div class="img-placeholder"><span class="ph-icon">🖼</span>Photo</div>` +
+      `<div class="img-placeholder"><span class="ph-icon">🖼</span>Photo</div>` +
+    `</div>`;
+  }
+  return `<div class="img-placeholder reveal"><span class="ph-icon">🖼</span>Add your image here</div>`;
+}
 
-  /* Fusion 360 interactive model embed */
-  cad: () => `
-<section class="section reveal">
-  <div class="section-label">CAD Model</div>
-  <h2 class="section-title">The <em>model.</em></h2>
-  <div class="cad-embed-wrap">
-    <iframe
-      src="YOUR_FUSION_360_EMBED_URL"
-      allowfullscreen
-      loading="lazy"
-      title="3D CAD Model">
-    </iframe>
-  </div>
-</section>`,
+/* ── BLOCK RENDERERS ─────────────────────────────────────────────
+   Each receives the block data object and returns an HTML string.
+──────────────────────────────────────────────────────────────── */
+const BLOCK_RENDERERS = {
 
-  /* Visual bill of materials — image + name + description rows.
-     Duplicate .comp-row blocks to add more components.         */
-  components: () => `
-<section class="section reveal">
-  <div class="section-label">Components</div>
-  <h2 class="section-title">What's <em>inside.</em></h2>
-  <div class="comp-list">
-    <div class="comp-row">
-      <div class="comp-img-placeholder">🔩</div>
-      <div class="comp-info">
-        <strong class="comp-name">Component Name</strong>
-        <span class="comp-desc">Description — what it does and why it was chosen.</span>
-      </div>
-    </div>
-    <!-- Copy the .comp-row block above for each additional component.
-         Replace the placeholder emoji with:
-         <img src="images/component.jpg" class="comp-img" alt="Component name"/>  -->
-  </div>
-</section>`,
-
-  /* Code snippet with GitHub link */
-  code: () => `
-<section class="section reveal">
-  <div class="section-label">Code</div>
-  <h2 class="section-title">The <em>firmware.</em></h2>
-  <div class="code-wrap">
-    <div class="code-wrap-bar">snippet — YOUR_FILENAME</div>
-    <pre><code>// Paste a representative code snippet here.</code></pre>
-  </div>
-  <a href="YOUR_GITHUB_URL" class="btn-outline" target="_blank" rel="noopener">
-    View on GitHub →
-  </a>
-</section>`,
-
-  /* 3-column photo gallery */
-  gallery: () => `
-<section class="section reveal">
-  <div class="section-label">Gallery</div>
-  <h2 class="section-title">The <em>photos.</em></h2>
-  <div class="gallery-grid">
-    <div class="img-placeholder"><span class="ph-icon">🖼</span>Photo</div>
-    <div class="img-placeholder"><span class="ph-icon">🖼</span>Photo</div>
-    <div class="img-placeholder"><span class="ph-icon">🖼</span>Photo</div>
-    <!-- Replace .img-placeholder divs with:
-         <img src="images/photo.jpg" alt="Description" loading="lazy"/>  -->
-  </div>
-</section>`,
-
-  /* YouTube / Vimeo demo video */
-  video: () => `
+  video: b => `
 <section class="section reveal">
   <div class="section-label">Demo</div>
   <h2 class="section-title">See it <em>run.</em></h2>
   <div class="video-wrap">
-    <iframe
-      src="YOUR_YOUTUBE_OR_VIMEO_EMBED_URL"
-      title="Project demo"
-      allowfullscreen
-      loading="lazy">
-    </iframe>
+    <iframe src="${b.url}" title="Project demo" allowfullscreen loading="lazy"></iframe>
   </div>
 </section>`,
 
+  gallery: b => `
+<section class="section reveal">
+  <div class="section-label">Gallery</div>
+  <h2 class="section-title">The <em>photos.</em></h2>
+  <div class="gallery-grid">
+    ${(b.images || []).map(src =>
+      `<img src="${src}" loading="lazy" alt=""/>`
+    ).join('\n    ')}
+  </div>
+</section>`,
+
+  code: b => `
+<section class="section reveal">
+  <div class="section-label">Code</div>
+  <h2 class="section-title">The <em>firmware.</em></h2>
+  <div class="code-wrap">
+    <div class="code-wrap-bar">snippet — ${b.file || ''}</div>
+    <pre><code>${b.snippet || ''}</code></pre>
+  </div>
+  ${b.github ? `<a href="${b.github}" class="btn-outline" target="_blank" rel="noopener">View on GitHub →</a>` : ''}
+</section>`,
+
+  cad: b => `
+<section class="section reveal">
+  <div class="section-label">CAD Model</div>
+  <h2 class="section-title">The <em>model.</em></h2>
+  <div class="cad-embed-wrap">
+    <iframe src="${b.url}" allowfullscreen loading="lazy" title="3D CAD Model"></iframe>
+  </div>
+</section>`,
+
+  image: b => `
+<figure class="reveal full-width-image">
+  <img src="${b.url}" loading="lazy" alt="${b.caption || ''}"/>
+  ${b.caption ? `<figcaption>${b.caption}</figcaption>` : ''}
+</figure>`,
+
 };
 
-/* ── INJECT BLOCKS ───────────────────────────────────────────────
-   Runs synchronously. Must happen BEFORE setupReveal() so the
-   injected .reveal elements are seen by the IntersectionObserver.
+/* ── RENDER PAGE ─────────────────────────────────────────────────
+   Reads PROJECTS_DATA + PROJECT_CONFIG.id, populates all section
+   content divs.  Must run BEFORE setupReveal().
 ──────────────────────────────────────────────────────────────── */
-function injectBlocks() {
-  const el = document.getElementById('optional-blocks');
-  if (!el || !window.PROJECT_CONFIG) return;
-  el.innerHTML = (PROJECT_CONFIG.blocks || [])
-    .filter(k => BLOCKS[k])
-    .map(k => BLOCKS[k]())
-    .join('\n');
+function renderPage() {
+  if (!window.PROJECTS_DATA || !window.PROJECT_CONFIG) return;
+
+  const p = PROJECTS_DATA.find(x => x.id === PROJECT_CONFIG.id);
+  if (!p) return;
+
+  /* — Hero — */
+  const heroEl = document.getElementById('hero-content');
+  if (heroEl) {
+    heroEl.innerHTML =
+      `<h1 class="hero-title">${p.heroTitle}</h1>` +
+      `<p class="hero-desc">${p.desc}</p>` +
+      `<div class="hero-tags">${(p.tags || []).map(t =>
+        `<span class="htag">${t}</span>`).join('')}</div>`;
+  }
+
+  /* — Purpose — */
+  const purposeEl = document.getElementById('purpose-content');
+  if (purposeEl && p.purpose) {
+    const d = p.purpose;
+    const bodyPs = (d.body || []).map(t => `<p>${t}</p>`).join('');
+    purposeEl.innerHTML =
+      `<h2 class="section-title reveal">${d.heading}</h2>` +
+      `<div class="section-body reveal">${bodyPs}</div>` +
+      imageZone(d.images, 'single');
+  }
+
+  /* — Process — */
+  const processEl = document.getElementById('process-content');
+  if (processEl && p.process) {
+    const d = p.process;
+    const stepsHtml = (d.steps || []).map((s, i) => {
+      const num = String(i + 1).padStart(2, '0');
+      return `<div class="step">` +
+        `<div class="step-num">${num}</div>` +
+        `<div class="step-content"><h3>${s.title}</h3><p>${s.body}</p></div>` +
+      `</div>`;
+    }).join('');
+    processEl.innerHTML =
+      `<h2 class="section-title reveal">${d.heading}</h2>` +
+      `<div class="section-body reveal">${d.summary}</div>` +
+      `<div class="steps reveal">${stepsHtml}</div>` +
+      imageZone(d.images, 'grid');
+  }
+
+  /* — Result — */
+  const resultEl = document.getElementById('result-content');
+  if (resultEl && p.result) {
+    const d = p.result;
+    const bodyPs = (d.body || []).map(t => `<p>${t}</p>`).join('');
+    const statsHtml = (d.stats || []).map(s =>
+      `<div class="impact-stat">` +
+        `<span class="impact-val">${s.val}</span>` +
+        `<span class="impact-label">${s.label}</span>` +
+      `</div>`
+    ).join('');
+    resultEl.innerHTML =
+      `<h2 class="section-title reveal">${d.heading}</h2>` +
+      `<div class="section-body reveal">${bodyPs}</div>` +
+      (statsHtml ? `<div class="impact-grid reveal">${statsHtml}</div>` : '') +
+      imageZone(d.images, 'grid');
+  }
+
+  /* — Blocks — */
+  const blocks = p.blocks || [];
+  // Group by zone (default: 'process')
+  const byZone = {};
+  blocks.forEach(b => {
+    const zone = b.after || 'process';
+    if (!byZone[zone]) byZone[zone] = [];
+    byZone[zone].push(b);
+  });
+  Object.keys(byZone).forEach(zone => {
+    const container = document.getElementById('blocks-after-' + zone);
+    if (!container) return;
+    container.innerHTML = byZone[zone]
+      .map(b => {
+        const renderer = BLOCK_RENDERERS[b.type];
+        return renderer ? renderer(b) : '';
+      })
+      .join('\n');
+  });
 }
 
 /* ── REVEAL ANIMATION ────────────────────────────────────────────
    Staggered fade-up on scroll into view.
-   Must run AFTER injectBlocks().
+   Must run AFTER renderPage().
 ──────────────────────────────────────────────────────────────── */
 function setupReveal() {
   const ro = new IntersectionObserver(entries => {
@@ -202,12 +268,12 @@ function setupProjNav() {
 }
 
 /* ── BOOT ────────────────────────────────────────────────────────
-   Order matters: inject → observe → cursor → tabs → nav
+   renderPage first so .reveal elements exist before observer.
 ──────────────────────────────────────────────────────────────── */
-injectBlocks();   // adds DOM first
-setupReveal();    // then observe all .reveal (incl. injected)
+renderPage();
+setupReveal();
 setupCursor();
 setupTabs();
-setupProjNav();   // dynamic prev/next from data.js order
+setupProjNav();
 
 })();

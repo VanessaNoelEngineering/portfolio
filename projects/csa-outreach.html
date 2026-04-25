@@ -8,11 +8,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;700;800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="_shared.css"/>
+  <script src="data.js"></script>
 </head>
 <body>
 
 <script>
-const PROJECT_CONFIG = { type: 'hw', blocks: [] };
+const PROJECT_CONFIG = { type: 'both', id: 'csa-outreach' };
 const _p={hw:['#2E8CF0','#5AAEFF'],sw:['#E8559A','#FF80BF'],both:['#7B5CEA','#A480FF']}[PROJECT_CONFIG.type];
 document.documentElement.style.setProperty('--accent',_p[0]);
 document.documentElement.style.setProperty('--accent2',_p[1]);
@@ -24,140 +25,43 @@ document.documentElement.style.setProperty('--accent-glow',
 <div id="cur"></div>
 <div id="cur2"></div>
 
-<!-- TOP NAV -->
 <nav class="top-nav">
   <a href="../index.html" class="nav-back">Back to Portfolio</a>
   <div class="nav-title">Vanessa Noel</div>
 </nav>
 
-<!-- SECTION TABS -->
 <div class="tab-nav">
   <a href="#purpose" class="tab-link" data-section="purpose">Purpose</a>
   <a href="#process" class="tab-link" data-section="process">Process</a>
   <a href="#result"  class="tab-link" data-section="result">Result</a>
 </div>
 
-<!-- HERO -->
 <section class="hero" id="top">
   <div class="hero-bg"></div>
   <div class="hero-pattern"></div>
   <div class="hero-accent-bg"></div>
-  <div class="hero-content">
-    <h1 class="hero-title">CSA Satellite <em>Program.</em></h1>
-    <p class="hero-desc">A free satellite program for at-risk youth, built in partnership with the Canadian Space Agency â€” and I wrote the $50K grant that funded it.</p>
-    <div class="hero-tags">
-      <span class="htag">Program Design</span>
-      <span class="htag">Grant Writing</span>
-      <span class="htag">Aerospace Education</span>
-      <span class="htag">CSA Partnership</span>
-    </div>
-  </div>
+  <div class="hero-content" id="hero-content"></div>
 </section>
 
-<!-- PURPOSE -->
 <section class="section" id="purpose">
   <div class="section-label reveal">Purpose</div>
-  <h2 class="section-title reveal">Why I <em>built this.</em></h2>
-  <div class="section-body reveal">
-    <p>I had access to real aerospace engineering experience through QSET. Most high school students â€” especially those from underprivileged backgrounds â€” don't. I wanted to change that for at least one group of kids, and I had the tools to do it: a relationship with the Canadian Space Agency, a connection to the Kingston Robotics Lab, and the ability to write a grant.</p>
-    <p>So I built the program. At-risk youth designing, wiring, coding, and launching actual satellites. Not simulations. Not kits. Real hardware, real launch, real data.</p>
-  </div>
-  <div class="img-placeholder reveal"><span class="ph-icon">ðŸ–¼</span>Add your image here</div>
+  <div id="purpose-content"></div>
+  <div id="blocks-after-purpose"></div>
 </section>
 
-<!-- PROCESS -->
 <section class="section" id="process">
   <div class="section-label reveal">Process</div>
-  <h2 class="section-title reveal">How I <em>built it.</em></h2>
-  <div class="section-body reveal">Grant application, partnership formation, curriculum design, program delivery, and launch.</div>
-  <div class="steps reveal">
-    <div class="step">
-      <div class="step-num">01</div>
-      <div class="step-content">
-        <h3>Grant writing and funding</h3>
-        <p>Wrote the proposal that secured $50K from the Canadian Space Agency. The grant covered all program costs â€” components, tools, launch logistics â€” so participants paid nothing. Writing the proposal meant articulating the educational value, the partnership structure, and the technical feasibility of putting student-built hardware into the stratosphere.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-num">02</div>
-      <div class="step-content">
-        <h3>Partnership with CSA and Kingston Robotics Lab</h3>
-        <p>Established the formal partnership between Connections (Queen's engineering outreach), the Canadian Space Agency, and the Kingston Robotics Lab. Each partner brought something specific: CSA provided credibility and funding, Kingston Robotics Lab provided facilities and expertise, Connections provided the student pipeline and instructional framework.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-num">03</div>
-      <div class="step-content">
-        <h3>Curriculum design</h3>
-        <p>Designed the technical curriculum from scratch: embedded systems basics, sensor integration, circuit wiring and soldering, 3D CAD, and satellite structure design. The curriculum had to work for students with no prior engineering background and build to a working payload over the program duration.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-num">04</div>
-      <div class="step-content">
-        <h3>Program delivery and satellite build</h3>
-        <p>Ran the program with participants designing and assembling their own payload systems â€” writing code, wiring sensors, testing integration. Supported students through the debugging process; the goal was for them to own the technical decisions, not just assemble a kit.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-num">05</div>
-      <div class="step-content">
-        <h3>Launch</h3>
-        <p>Payload launched via stratospheric balloon. Student-built hardware went to the edge of the atmosphere and returned with data. For most participants, it was the first time something they built had ever physically left the ground.</p>
-      </div>
-    </div>
-  </div>
-  <div class="img-grid reveal">
-    <div class="img-placeholder"><span class="ph-icon">ðŸ–¼</span>Process photo</div>
-    <div class="img-placeholder"><span class="ph-icon">ðŸ–¼</span>Process photo</div>
-  </div>
+  <div id="process-content"></div>
+  <div id="blocks-after-process"></div>
 </section>
 
-<!-- OPTIONAL BLOCKS -->
-<div id="optional-blocks"></div>
-
-<!-- RESULT -->
 <section class="section" id="result">
   <div class="section-label reveal">Result</div>
-  <h2 class="section-title reveal">What I <em>made.</em></h2>
-  <div class="section-body reveal">
-    <p>The program ran successfully, culminated in a real launch, and established a model for ongoing STEM-space collaboration between QSET and Connections. The partnership continues, with future launches planned. The $50K grant covered everything â€” no cost to participants. The most important outcome wasn't the data the satellite collected. It was the students who saw their hardware come back from the stratosphere.</p>
-  </div>
-  <div class="impact-grid reveal">
-    <div class="impact-stat">
-      <span class="impact-val">$50K</span>
-      <span class="impact-label">Grant Secured</span>
-    </div>
-    <div class="impact-stat">
-      <span class="impact-val">1</span>
-      <span class="impact-label">Satellite Launched</span>
-    </div>
-    <div class="impact-stat">
-      <span class="impact-val">0</span>
-      <span class="impact-label">Cost to Participants</span>
-    </div>
-    <div class="impact-stat">
-      <span class="impact-val">3</span>
-      <span class="impact-label">Partner Organizations</span>
-    </div>
-  </div>
-  <div class="img-grid reveal">
-    <div class="img-placeholder"><span class="ph-icon">ðŸ–¼</span>Final result</div>
-    <div class="img-placeholder"><span class="ph-icon">ðŸ–¼</span>Final result</div>
-  </div>
+  <div id="result-content"></div>
+  <div id="blocks-after-result"></div>
 </section>
 
-<!-- PREV / NEXT -->
-<nav class="proj-nav">
-  <a href="qset-launches.html" class="proj-nav-link prev">
-    <span class="proj-nav-dir">â† Previous</span>
-    <span class="proj-nav-name">Stratospheric Satellite Launches</span>
-  </a>
-  <a href="stem-connections.html" class="proj-nav-link next">
-    <span class="proj-nav-dir">Next â†’</span>
-    <span class="proj-nav-name">STEM Outreach Program</span>
-  </a>
-</nav>
+<nav class="proj-nav"></nav>
 
 <footer>
   <p>Â© 2025 Vanessa Noel</p>
@@ -168,7 +72,6 @@ document.documentElement.style.setProperty('--accent-glow',
   </div>
 </footer>
 
-<script src="data.js"></script>
 <script src="_shell.js"></script>
 </body>
 </html>

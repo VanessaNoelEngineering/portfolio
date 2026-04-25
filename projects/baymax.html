@@ -8,11 +8,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;700;800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="_shared.css"/>
+  <script src="data.js"></script>
 </head>
 <body>
 
 <script>
-const PROJECT_CONFIG = { type: 'hw', blocks: [] };
+const PROJECT_CONFIG = { type: 'hw', id: 'baymax' };
 const _p={hw:['#2E8CF0','#5AAEFF'],sw:['#E8559A','#FF80BF'],both:['#7B5CEA','#A480FF']}[PROJECT_CONFIG.type];
 document.documentElement.style.setProperty('--accent',_p[0]);
 document.documentElement.style.setProperty('--accent2',_p[1]);
@@ -24,127 +25,43 @@ document.documentElement.style.setProperty('--accent-glow',
 <div id="cur"></div>
 <div id="cur2"></div>
 
-<!-- TOP NAV -->
 <nav class="top-nav">
   <a href="../index.html" class="nav-back">Back to Portfolio</a>
   <div class="nav-title">Vanessa Noel</div>
 </nav>
 
-<!-- SECTION TABS -->
 <div class="tab-nav">
   <a href="#purpose" class="tab-link" data-section="purpose">Purpose</a>
   <a href="#process" class="tab-link" data-section="process">Process</a>
   <a href="#result"  class="tab-link" data-section="result">Result</a>
 </div>
 
-<!-- HERO -->
 <section class="hero" id="top">
   <div class="hero-bg"></div>
   <div class="hero-pattern"></div>
   <div class="hero-accent-bg"></div>
-  <div class="hero-content">
-    <h1 class="hero-title">Baymax Robotic <em>Arm.</em></h1>
-    <p class="hero-desc">A life-sized soft robotic arm designed for human interaction â€” engineered so the design itself prevents harm.</p>
-    <div class="hero-tags">
-      <span class="htag">Mechanisms</span>
-      <span class="htag">CAD</span>
-      <span class="htag">Simulation</span>
-      <span class="htag">Fusion 360</span>
-      <span class="htag">Safety Design</span>
-    </div>
-  </div>
+  <div class="hero-content" id="hero-content"></div>
 </section>
 
-<!-- PURPOSE -->
 <section class="section" id="purpose">
   <div class="section-label reveal">Purpose</div>
-  <h2 class="section-title reveal">Why I <em>built this.</em></h2>
-  <div class="section-body reveal">
-    <p>I was given a clear brief: design the elbow of a soft Baymax replica capable of meaningful gestures â€” fist bump, high-five, hug â€” while preserving the soft, friendly aesthetic that defines the character. Beyond the mechanics, there was a safety requirement baked into the premise: this robot would interact with people directly. The design had to be inherently safe, not just software-safe.</p>
-    <p>My responsibility was the elbow joint. The constraints were tight: 2 degrees of freedom, foldable for storage, proportionally faithful to Baymax, and soft enough that a person could touch it without risk.</p>
-  </div>
-  <div class="img-placeholder reveal"><span class="ph-icon">ðŸ–¼</span>Add your image here</div>
+  <div id="purpose-content"></div>
+  <div id="blocks-after-purpose"></div>
 </section>
 
-<!-- PROCESS -->
 <section class="section" id="process">
   <div class="section-label reveal">Process</div>
-  <h2 class="section-title reveal">How I <em>built it.</em></h2>
-  <div class="section-body reveal">Two full design iterations, driven by simulation and hand calculations at each stage.</div>
-  <div class="steps reveal">
-    <div class="step">
-      <div class="step-num">01</div>
-      <div class="step-content">
-        <h3>Cable-driven universal joint (first iteration)</h3>
-        <p>My initial design used a cable-driven universal joint at the elbow: three cables spaced 120Â° apart, running through a hollow carbon fiber core, controlled by linear actuators in the upper arm. The top cable controlled vertical lift; the two side cables controlled lateral rotation, enabling a hug. Technically sound on paper â€” but simulation revealed it would compromise the arm's proportions to fit all the components.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-num">02</div>
-      <div class="step-content">
-        <h3>Belt-driven differential (second iteration)</h3>
-        <p>I redesigned around a belt-driven differential: two stepper motors in the shoulder driving through V-belts and bevel gears to give the elbow its 2 DOF. Same motors rotating in the same direction lifts the arm vertically; opposite rotation swings it laterally. Moving the motors to the shoulder dramatically reduced torque requirements on the forearm and kept the elbow slim enough to look right.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-num">03</div>
-      <div class="step-content">
-        <h3>Final assembly and integration</h3>
-        <p>The final arm: carbon fiber inner core for rigidity, three inflatable outer segments for softness and coverage, and a lightly pressurized polyethylene cover that gives Baymax his continuous balloon appearance. Hand cables route from fingers to shoulder through the hollow core. The soft exterior means no rigid surface is ever exposed to a user â€” the material is the safety system.</p>
-      </div>
-    </div>
-  </div>
-  <div class="img-grid reveal">
-    <div class="img-placeholder"><span class="ph-icon">ðŸ–¼</span>Process photo</div>
-    <div class="img-placeholder"><span class="ph-icon">ðŸ–¼</span>Process photo</div>
-  </div>
+  <div id="process-content"></div>
+  <div id="blocks-after-process"></div>
 </section>
 
-<!-- OPTIONAL BLOCKS -->
-<div id="optional-blocks"></div>
-
-<!-- RESULT -->
 <section class="section" id="result">
   <div class="section-label reveal">Result</div>
-  <h2 class="section-title reveal">What I <em>made.</em></h2>
-  <div class="section-body reveal">
-    <p>The belt-driven differential passed simulation testing and hand calculations, demonstrating both the strength and precision needed for repeatable gestures. The design also solved a secondary problem: by routing all actuation to the shoulder, the forearm stayed light and the shoulder motors stayed within torque limits. The iterative process â€” cable joint first, differential second â€” was the right call. The first design found the problem; the second solved it.</p>
-  </div>
-  <div class="impact-grid reveal">
-    <div class="impact-stat">
-      <span class="impact-val">2</span>
-      <span class="impact-label">Design Iterations</span>
-    </div>
-    <div class="impact-stat">
-      <span class="impact-val">2 DOF</span>
-      <span class="impact-label">Elbow Articulation</span>
-    </div>
-    <div class="impact-stat">
-      <span class="impact-val">3</span>
-      <span class="impact-label">Gesture Types</span>
-    </div>
-    <div class="impact-stat">
-      <span class="impact-val">0</span>
-      <span class="impact-label">Rigid Surfaces Exposed</span>
-    </div>
-  </div>
-  <div class="img-grid reveal">
-    <div class="img-placeholder"><span class="ph-icon">ðŸ–¼</span>Final result</div>
-    <div class="img-placeholder"><span class="ph-icon">ðŸ–¼</span>Final result</div>
-  </div>
+  <div id="result-content"></div>
+  <div id="blocks-after-result"></div>
 </section>
 
-<!-- PREV / NEXT -->
-<nav class="proj-nav">
-  <a href="first-robotics.html" class="proj-nav-link prev">
-    <span class="proj-nav-dir">â† Previous</span>
-    <span class="proj-nav-name">FIRST Robotics Mentorship</span>
-  </a>
-  <a href="mech-flower.html" class="proj-nav-link next">
-    <span class="proj-nav-dir">Next â†’</span>
-    <span class="proj-nav-name">Mechanical Flower</span>
-  </a>
-</nav>
+<nav class="proj-nav"></nav>
 
 <footer>
   <p>Â© 2025 Vanessa Noel</p>
@@ -155,7 +72,6 @@ document.documentElement.style.setProperty('--accent-glow',
   </div>
 </footer>
 
-<script src="data.js"></script>
 <script src="_shell.js"></script>
 </body>
 </html>

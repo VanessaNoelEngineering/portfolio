@@ -8,11 +8,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;700;800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="_shared.css"/>
+  <script src="data.js"></script>
 </head>
 <body>
 
 <script>
-const PROJECT_CONFIG = { type: 'hw', blocks: [] };
+const PROJECT_CONFIG = { type: 'hw', id: 'qset-launches' };
 const _p={hw:['#2E8CF0','#5AAEFF'],sw:['#E8559A','#FF80BF'],both:['#7B5CEA','#A480FF']}[PROJECT_CONFIG.type];
 document.documentElement.style.setProperty('--accent',_p[0]);
 document.documentElement.style.setProperty('--accent2',_p[1]);
@@ -24,142 +25,43 @@ document.documentElement.style.setProperty('--accent-glow',
 <div id="cur"></div>
 <div id="cur2"></div>
 
-<!-- TOP NAV -->
 <nav class="top-nav">
   <a href="../index.html" class="nav-back">Back to Portfolio</a>
   <div class="nav-title">Vanessa Noel</div>
 </nav>
 
-<!-- SECTION TABS -->
 <div class="tab-nav">
   <a href="#purpose" class="tab-link" data-section="purpose">Purpose</a>
   <a href="#process" class="tab-link" data-section="process">Process</a>
   <a href="#result"  class="tab-link" data-section="result">Result</a>
 </div>
 
-<!-- HERO -->
 <section class="hero" id="top">
   <div class="hero-bg"></div>
   <div class="hero-pattern"></div>
   <div class="hero-accent-bg"></div>
-  <div class="hero-content">
-    <h1 class="hero-title">Stratospheric Satellite <em>Launches.</em></h1>
-    <p class="hero-desc">Two real payloads, two real launches â€” stratosphere altitude, live data, and a 15% year-over-year cost reduction.</p>
-    <div class="hero-tags">
-      <span class="htag">Embedded Systems</span>
-      <span class="htag">Arduino</span>
-      <span class="htag">C++</span>
-      <span class="htag">Sensor Integration</span>
-      <span class="htag">Mission Planning</span>
-      <span class="htag">Data Analysis</span>
-    </div>
-  </div>
+  <div class="hero-content" id="hero-content"></div>
 </section>
 
-<!-- PURPOSE -->
 <section class="section" id="purpose">
   <div class="section-label reveal">Purpose</div>
-  <h2 class="section-title reveal">Why I <em>built this.</em></h2>
-  <div class="section-body reveal">
-    <p>As manager of Queen's Space Engineering Team, I led the development of stratospheric balloon payloads across two launch cycles. The goal was twofold: give QSET design team members real experience with end-to-end satellite development, and generate flight data that could actually inform future missions.</p>
-    <p>These weren't demonstrations. The hardware had to survive launch conditions, operate autonomously at altitude, and return usable data. The satellite nicknamed "Eggo" flew to 48.4km â€” well into the stratosphere â€” where temperatures swing from +20.7Â°C at launch to -28Â°C at peak altitude, and pressure drops to near nothing.</p>
-  </div>
-  <div class="img-placeholder reveal"><span class="ph-icon">ðŸ–¼</span>Add your image here</div>
+  <div id="purpose-content"></div>
+  <div id="blocks-after-purpose"></div>
 </section>
 
-<!-- PROCESS -->
 <section class="section" id="process">
   <div class="section-label reveal">Process</div>
-  <h2 class="section-title reveal">How I <em>built it.</em></h2>
-  <div class="section-body reveal">Full mission lifecycle, twice â€” design, build, validate, launch, analyze, improve.</div>
-  <div class="steps reveal">
-    <div class="step">
-      <div class="step-num">01</div>
-      <div class="step-content">
-        <h3>System design and component selection</h3>
-        <p>Chose components for reliability and cost-effectiveness within the team's constraints. Arduino Nano Every as core controller â€” compact, low power. BMP180 for barometric pressure, temperature, and altitude (operated outside its rated range but validated as reasonably accurate for the mission profile). TMP36 and precision thermistor for temperature redundancy. SD card reader for local data logging â€” no downlink capability, so reliable storage was critical.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-num">02</div>
-      <div class="step-content">
-        <h3>Build and integration</h3>
-        <p>Assembled and integrated all systems into the payload structure. Wired sensor harnesses, validated all connections, confirmed data logging was functioning correctly before enclosure. Structural design prioritized lightweight materials and survivability through the balloon burst and descent.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-num">03</div>
-      <div class="step-content">
-        <h3>Pre-launch validation and safety protocols</h3>
-        <p>Developed a helium transport safety standard for QSET â€” a formal procedure that satisfied regulatory requirements for moving pressurized gas to the launch site. This hadn't existed before. It streamlined approval for the 2024 launch and established a reusable process for future teams.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-num">04</div>
-      <div class="step-content">
-        <h3>Launch and flight</h3>
-        <p>2023 mission: 90-minute ascent, 41-minute descent, peak altitude 48.4km. Payload collected temperature, pressure, and altitude data across the full flight envelope. All data recovered successfully from SD card post-landing.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-num">05</div>
-      <div class="step-content">
-        <h3>Data analysis and mission improvement</h3>
-        <p>Analyzed flight data in Python/Colab â€” temperature range -28Â°C to +20.7Â°C, pressure 14.2 to 1007.2 hPa. Used data alongside weather prediction modeling to refine the 2024 mission plan. Cost reduced 15% year-over-year through improved trajectory modeling and launch timing decisions.</p>
-      </div>
-    </div>
-  </div>
-  <div class="img-grid reveal">
-    <div class="img-placeholder"><span class="ph-icon">ðŸ–¼</span>Process photo</div>
-    <div class="img-placeholder"><span class="ph-icon">ðŸ–¼</span>Process photo</div>
-  </div>
+  <div id="process-content"></div>
+  <div id="blocks-after-process"></div>
 </section>
 
-<!-- OPTIONAL BLOCKS -->
-<div id="optional-blocks"></div>
-
-<!-- RESULT -->
 <section class="section" id="result">
   <div class="section-label reveal">Result</div>
-  <h2 class="section-title reveal">What I <em>made.</em></h2>
-  <div class="section-body reveal">
-    <p>Two successful launches, data recovered from both, and a 15% cost reduction between cycles. The helium safety standard created for this program has since been adopted as a reusable process for future QSET launches. The 2024 mission also incorporated an on-board camera, adding visual documentation to the sensor data. The data from both flights is publicly available.</p>
-  </div>
-  <div class="impact-grid reveal">
-    <div class="impact-stat">
-      <span class="impact-val">48.4 km</span>
-      <span class="impact-label">Peak Altitude</span>
-    </div>
-    <div class="impact-stat">
-      <span class="impact-val">2</span>
-      <span class="impact-label">Successful Launches</span>
-    </div>
-    <div class="impact-stat">
-      <span class="impact-val">15%</span>
-      <span class="impact-label">Cost Reduction YoY</span>
-    </div>
-    <div class="impact-stat">
-      <span class="impact-val">90 min</span>
-      <span class="impact-label">Ascent Duration</span>
-    </div>
-  </div>
-  <div class="img-grid reveal">
-    <div class="img-placeholder"><span class="ph-icon">ðŸ–¼</span>Final result</div>
-    <div class="img-placeholder"><span class="ph-icon">ðŸ–¼</span>Final result</div>
-  </div>
+  <div id="result-content"></div>
+  <div id="blocks-after-result"></div>
 </section>
 
-<!-- PREV / NEXT -->
-<nav class="proj-nav">
-  <a href="project-sonder.html" class="proj-nav-link prev">
-    <span class="proj-nav-dir">â† Previous</span>
-    <span class="proj-nav-name">Project Sonder</span>
-  </a>
-  <a href="csa-outreach.html" class="proj-nav-link next">
-    <span class="proj-nav-dir">Next â†’</span>
-    <span class="proj-nav-name">CSA Satellite Program</span>
-  </a>
-</nav>
+<nav class="proj-nav"></nav>
 
 <footer>
   <p>Â© 2025 Vanessa Noel</p>
@@ -170,7 +72,6 @@ document.documentElement.style.setProperty('--accent-glow',
   </div>
 </footer>
 
-<script src="data.js"></script>
 <script src="_shell.js"></script>
 </body>
 </html>

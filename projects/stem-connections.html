@@ -8,11 +8,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;700;800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="_shared.css"/>
+  <script src="data.js"></script>
 </head>
 <body>
 
 <script>
-const PROJECT_CONFIG = { type: 'both', blocks: [] };
+const PROJECT_CONFIG = { type: 'both', id: 'stem-connections' };
 const _p={hw:['#2E8CF0','#5AAEFF'],sw:['#E8559A','#FF80BF'],both:['#7B5CEA','#A480FF']}[PROJECT_CONFIG.type];
 document.documentElement.style.setProperty('--accent',_p[0]);
 document.documentElement.style.setProperty('--accent2',_p[1]);
@@ -24,150 +25,43 @@ document.documentElement.style.setProperty('--accent-glow',
 <div id="cur"></div>
 <div id="cur2"></div>
 
-<!-- TOP NAV -->
 <nav class="top-nav">
   <a href="../index.html" class="nav-back">Back to Portfolio</a>
   <div class="nav-title">Vanessa Noel</div>
 </nav>
 
-<!-- SECTION TABS -->
 <div class="tab-nav">
   <a href="#purpose" class="tab-link" data-section="purpose">Purpose</a>
   <a href="#process" class="tab-link" data-section="process">Process</a>
   <a href="#result"  class="tab-link" data-section="result">Result</a>
 </div>
 
-<!-- HERO -->
 <section class="hero" id="top">
   <div class="hero-bg"></div>
   <div class="hero-pattern"></div>
   <div class="hero-accent-bg"></div>
-  <div class="hero-content">
-    <h1 class="hero-title">STEM Outreach <em>Program.</em></h1>
-    <p class="hero-desc">A sold-out mechatronics program built from nothing â€” thousands of students, robots, satellites, and a shaker table that tests their bridges.</p>
-    <div class="hero-tags">
-      <span class="htag">Curriculum Design</span>
-      <span class="htag">Arduino</span>
-      <span class="htag">C++</span>
-      <span class="htag">Python</span>
-      <span class="htag">ML</span>
-      <span class="htag">3D Printing</span>
-      <span class="htag">Program Leadership</span>
-    </div>
-  </div>
+  <div class="hero-content" id="hero-content"></div>
 </section>
 
-<!-- PURPOSE -->
 <section class="section" id="purpose">
   <div class="section-label reveal">Purpose</div>
-  <h2 class="section-title reveal">Why I <em>built this.</em></h2>
-  <div class="section-body reveal">
-    <p>When I joined Connections, the engineering outreach department at Queen's University, there was no mechatronics programming. Students could learn about bridges and mouse-trap cars. They couldn't build robots or write code for hardware that did something interesting.</p>
-    <p>I saw a gap and built into it. Starting with Python and machine learning courses during the pandemic, then expanding to a full mechatronics program once in-person teaching resumed. The test of whether it worked: it sold out.</p>
-  </div>
-  <div class="img-placeholder reveal"><span class="ph-icon">ðŸ–¼</span>Add your image here</div>
+  <div id="purpose-content"></div>
+  <div id="blocks-after-purpose"></div>
 </section>
 
-<!-- PROCESS -->
 <section class="section" id="process">
   <div class="section-label reveal">Process</div>
-  <h2 class="section-title reveal">How I <em>built it.</em></h2>
-  <div class="section-body reveal">Built the program in stages â€” curriculum first, then iterating each project based on what actually worked in the room with students.</div>
-  <div class="steps reveal">
-    <div class="step">
-      <div class="step-num">01</div>
-      <div class="step-content">
-        <h3>Python and machine learning curriculum (2021â€“2022)</h3>
-        <p>Started with free online courses during the pandemic: Python fundamentals, ML applications (letter recognition, animal classification), and building a virtual assistant. Designed to be accessible with no prior coding experience, and to show students that machine learning wasn't magic â€” it was pattern matching they could understand and implement.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-num">02</div>
-      <div class="step-content">
-        <h3>Mechatronics program development (2022 onwards)</h3>
-        <p>Designed the hands-on mechatronics curriculum from scratch: Arduino-based robotics, sensor integration, circuit wiring, and hardware debugging. The core question for each project was the same: does this teach something real, and does it feel like real engineering to a 16-year-old?</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-num">03</div>
-      <div class="step-content">
-        <h3>Gesture-controlled car</h3>
-        <p>Designed the gesture-controlled car project from participant feedback data (see full project page). It became the highest-rated project in 20+ summer programs. Its success demonstrated that advanced embedded systems content worked in an outreach context, and directly expanded the program.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-num">04</div>
-      <div class="step-content">
-        <h3>Seismometer and shaker table workshop</h3>
-        <p>Built a motorized LEGO shaker table and designed a workshop around it: participants built earthquake-proof structures from spaghetti/marshmallows or LEGO bricks, then wired and coded their own Arduino seismometers. The seismometer detected the simulated seismic events from the shaker table in real time, triggering an LED and buzzer alert. Real feedback loop, real engineering judgment required.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-num">05</div>
-      <div class="step-content">
-        <h3>LEGO Canadarm and prosthetic hand</h3>
-        <p>Designed two more projects exploring robotics and human-machine interaction. The LEGO Canadarm used three sensing modalities creatively: a wheel mapped to base rotation, a color sensor controlling arm height (red = lower, green = raise), and a force sensor driving the gripper (partial press = open, hard press = close). The prosthetic hand used the open-source e-NABLE framework, driven by Arduino and servo motors, with individual fingers controlled by buttons.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-num">06</div>
-      <div class="step-content">
-        <h3>Connections to Space</h3>
-        <p>Brought the satellite program into Connections â€” high school students learning mechatronics and space engineering, culminating in a launch. See the CSA Outreach project page for the full story.</p>
-      </div>
-    </div>
-  </div>
-  <div class="img-grid reveal">
-    <div class="img-placeholder"><span class="ph-icon">ðŸ–¼</span>Process photo</div>
-    <div class="img-placeholder"><span class="ph-icon">ðŸ–¼</span>Process photo</div>
-  </div>
+  <div id="process-content"></div>
+  <div id="blocks-after-process"></div>
 </section>
 
-<!-- OPTIONAL BLOCKS -->
-<div id="optional-blocks"></div>
-
-<!-- RESULT -->
 <section class="section" id="result">
   <div class="section-label reveal">Result</div>
-  <h2 class="section-title reveal">What I <em>made.</em></h2>
-  <div class="section-body reveal">
-    <p>A sold-out program that didn't exist when I started. Thousands of students reached across multiple years of delivery. Projects that were designed for the room â€” tested against real students, iterated based on what actually landed â€” rather than what seemed interesting on paper. The gesture-controlled car expansion, the seismometer workshop, and the satellite program are all downstream of decisions made about what real engineering education looks like for a high schooler who's never soldered anything.</p>
-  </div>
-  <div class="impact-grid reveal">
-    <div class="impact-stat">
-      <span class="impact-val">1</span>
-      <span class="impact-label">Program built from scratch</span>
-    </div>
-    <div class="impact-stat">
-      <span class="impact-val">6+</span>
-      <span class="impact-label">Projects designed and taught</span>
-    </div>
-    <div class="impact-stat">
-      <span class="impact-val">1000s</span>
-      <span class="impact-label">Students reached</span>
-    </div>
-    <div class="impact-stat">
-      <span class="impact-val">$50K</span>
-      <span class="impact-label">Grant funding secured</span>
-    </div>
-  </div>
-  <div class="img-grid reveal">
-    <div class="img-placeholder"><span class="ph-icon">ðŸ–¼</span>Final result</div>
-    <div class="img-placeholder"><span class="ph-icon">ðŸ–¼</span>Final result</div>
-  </div>
+  <div id="result-content"></div>
+  <div id="blocks-after-result"></div>
 </section>
 
-<!-- PREV / NEXT -->
-<nav class="proj-nav">
-  <a href="csa-outreach.html" class="proj-nav-link prev">
-    <span class="proj-nav-dir">â† Previous</span>
-    <span class="proj-nav-name">CSA Satellite Program</span>
-  </a>
-  <a href="first-robotics.html" class="proj-nav-link next">
-    <span class="proj-nav-dir">Next â†’</span>
-    <span class="proj-nav-name">FIRST Robotics Mentorship</span>
-  </a>
-</nav>
+<nav class="proj-nav"></nav>
 
 <footer>
   <p>Â© 2025 Vanessa Noel</p>
@@ -178,7 +72,6 @@ document.documentElement.style.setProperty('--accent-glow',
   </div>
 </footer>
 
-<script src="data.js"></script>
 <script src="_shell.js"></script>
 </body>
 </html>

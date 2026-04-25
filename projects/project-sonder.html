@@ -8,11 +8,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;700;800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="_shared.css"/>
+  <script src="data.js"></script>
 </head>
 <body>
 
 <script>
-const PROJECT_CONFIG = { type: 'both', blocks: [] };
+const PROJECT_CONFIG = { type: 'both', id: 'project-sonder' };
 const _p={hw:['#2E8CF0','#5AAEFF'],sw:['#E8559A','#FF80BF'],both:['#7B5CEA','#A480FF']}[PROJECT_CONFIG.type];
 document.documentElement.style.setProperty('--accent',_p[0]);
 document.documentElement.style.setProperty('--accent2',_p[1]);
@@ -24,142 +25,43 @@ document.documentElement.style.setProperty('--accent-glow',
 <div id="cur"></div>
 <div id="cur2"></div>
 
-<!-- TOP NAV -->
 <nav class="top-nav">
   <a href="../index.html" class="nav-back">Back to Portfolio</a>
   <div class="nav-title">Vanessa Noel</div>
 </nav>
 
-<!-- SECTION TABS -->
 <div class="tab-nav">
   <a href="#purpose" class="tab-link" data-section="purpose">Purpose</a>
   <a href="#process" class="tab-link" data-section="process">Process</a>
   <a href="#result"  class="tab-link" data-section="result">Result</a>
 </div>
 
-<!-- HERO -->
 <section class="hero" id="top">
   <div class="hero-bg"></div>
   <div class="hero-pattern"></div>
   <div class="hero-accent-bg"></div>
-  <div class="hero-content">
-    <h1 class="hero-title">Project <em>Sonder.</em></h1>
-    <p class="hero-desc">3D-printed letters with NFC tags, placed in mailboxes around LA. Scan it, read a stranger's note, leave your own.</p>
-    <div class="hero-tags">
-      <span class="htag">Web Dev</span>
-      <span class="htag">NFC</span>
-      <span class="htag">3D Printing</span>
-      <span class="htag">Full-Stack</span>
-      <span class="htag">Community Design</span>
-    </div>
-  </div>
+  <div class="hero-content" id="hero-content"></div>
 </section>
 
-<!-- PURPOSE -->
 <section class="section" id="purpose">
   <div class="section-label reveal">Purpose</div>
-  <h2 class="section-title reveal">Why I <em>built this.</em></h2>
-  <div class="section-body reveal">
-    <p>Sonder is a word for the realization that every person you pass on the street has a life as vivid and complex as your own â€” full of ambitions, fears, routines, and relationships you'll never know. It's the kind of thought that makes you feel more connected to strangers and less alone.</p>
-    <p>I wanted to build something that made people feel that. Not through a social media platform, not through an algorithm that curates what you see â€” through something physical, accidental, and unfiltered. You find a letter in a mailbox. You scan a tag. A stranger's words appear on your screen. Then you write back.</p>
-    <p>The project is a social experiment as much as an engineering one: what do people actually say when there's no audience, no likes, no followers â€” just a stranger who might read it?</p>
-  </div>
-  <div class="img-placeholder reveal"><span class="ph-icon">ðŸ–¼</span>Add your image here</div>
+  <div id="purpose-content"></div>
+  <div id="blocks-after-purpose"></div>
 </section>
 
-<!-- PROCESS -->
 <section class="section" id="process">
   <div class="section-label reveal">Process</div>
-  <h2 class="section-title reveal">How I <em>built it.</em></h2>
-  <div class="section-body reveal">Web platform built first and fully functional; physical system in production.</div>
-  <div class="steps reveal">
-    <div class="step">
-      <div class="step-num">01</div>
-      <div class="step-content">
-        <h3>Core concept and system design</h3>
-        <p>Mapped the full user experience: someone finds a physical letter, scans an NFC tag or QR code, lands on a web app, reads a stranger's letter, writes their own, puts the physical letter back. Designed the data model around this flow: letters stored with metadata but no user accounts, served randomly to new visitors, no filtering, no moderation algorithm.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-num">02</div>
-      <div class="step-content">
-        <h3>Web platform: frontend</h3>
-        <p>Built the full frontend experience â€” a scroll-to-open envelope animation that reveals a stranger's letter as you scroll down, followed by a reply form. Designed to feel like opening a real letter, not filling out a form. Hosted on Netlify. Live at project-sonder.netlify.app.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-num">03</div>
-      <div class="step-content">
-        <h3>Web platform: backend and database</h3>
-        <p>Built the backend: letter storage, random letter retrieval logic, submission handling. When you scan a tag and load the page, you get a random letter from the database. When you write one, it enters the pool for the next person who finds that mailbox. No accounts, no profiles, no history â€” just the exchange.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-num">04</div>
-      <div class="step-content">
-        <h3>NFC tag integration</h3>
-        <p>Each physical letter has an embedded NFC tag programmed to open the web URL on tap. QR code backup for devices without NFC. The tag is the bridge between the physical object and the digital experience â€” someone who doesn't know what NFC is can still just tap and have it work.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-num">05</div>
-      <div class="step-content">
-        <h3>Physical letter and mailbox design (in progress)</h3>
-        <p>Designing the 3D-printed letter form and mailbox enclosures for outdoor installation. The letter needs to be weather-resistant, durable, and feel intentional â€” something worth picking up and engaging with. The mailbox needs a flag mechanism (raised = there's mail) to signal to passersby that something is there.</p>
-      </div>
-    </div>
-  </div>
-  <div class="img-grid reveal">
-    <div class="img-placeholder"><span class="ph-icon">ðŸ–¼</span>Process photo</div>
-    <div class="img-placeholder"><span class="ph-icon">ðŸ–¼</span>Process photo</div>
-  </div>
+  <div id="process-content"></div>
+  <div id="blocks-after-process"></div>
 </section>
 
-<!-- OPTIONAL BLOCKS -->
-<div id="optional-blocks"></div>
-
-<!-- RESULT -->
 <section class="section" id="result">
   <div class="section-label reveal">Result</div>
-  <h2 class="section-title reveal">What I <em>made.</em></h2>
-  <div class="section-body reveal">
-    <p>The platform is fully built and live. The physical system is in production â€” letters and mailboxes being designed and printed for initial deployment around Los Angeles. First installations coming soon. The most interesting design decision in the whole project: no filters, no moderation, no algorithm. You get exactly what someone wrote. That's either the best or most naive thing about it, depending on who you ask.</p>
-  </div>
-  <div class="impact-grid reveal">
-    <div class="impact-stat">
-      <span class="impact-val">1</span>
-      <span class="impact-label">Platform (live)</span>
-    </div>
-    <div class="impact-stat">
-      <span class="impact-val">0</span>
-      <span class="impact-label">Algorithms deciding what you read</span>
-    </div>
-    <div class="impact-stat">
-      <span class="impact-val">0</span>
-      <span class="impact-label">User accounts required</span>
-    </div>
-    <div class="impact-stat">
-      <span class="impact-val">âˆž</span>
-      <span class="impact-label">Letters possible</span>
-    </div>
-  </div>
-  <div class="img-grid reveal">
-    <div class="img-placeholder"><span class="ph-icon">ðŸ–¼</span>Final result</div>
-    <div class="img-placeholder"><span class="ph-icon">ðŸ–¼</span>Final result</div>
-  </div>
+  <div id="result-content"></div>
+  <div id="blocks-after-result"></div>
 </section>
 
-<!-- PREV / NEXT -->
-<nav class="proj-nav">
-  <a href="happytappy.html" class="proj-nav-link prev">
-    <span class="proj-nav-dir">â† Previous</span>
-    <span class="proj-nav-name">Happy Tappy</span>
-  </a>
-  <a href="qset-launches.html" class="proj-nav-link next">
-    <span class="proj-nav-dir">Next â†’</span>
-    <span class="proj-nav-name">Stratospheric Satellite Launches</span>
-  </a>
-</nav>
+<nav class="proj-nav"></nav>
 
 <footer>
   <p>Â© 2025 Vanessa Noel</p>
@@ -170,7 +72,6 @@ document.documentElement.style.setProperty('--accent-glow',
   </div>
 </footer>
 
-<script src="data.js"></script>
 <script src="_shell.js"></script>
 </body>
 </html>
