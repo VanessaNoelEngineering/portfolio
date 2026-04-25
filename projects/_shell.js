@@ -147,6 +147,14 @@ function renderPage() {
         `<span class="htag">${t}</span>`).join('')}</div>`;
   }
 
+  /* — Helper: render an array of blocks in order — */
+  function renderBlocks(blocks) {
+    return (blocks || []).map(b => {
+      const renderer = BLOCK_RENDERERS[b.type];
+      return renderer ? renderer(b) : '';
+    }).join('\n');
+  }
+
   /* — Purpose — */
   const purposeEl = document.getElementById('purpose-content');
   if (purposeEl && p.purpose) {
@@ -154,8 +162,9 @@ function renderPage() {
     const bodyPs = (d.body || []).map(t => `<p>${t}</p>`).join('');
     purposeEl.innerHTML =
       `<h2 class="section-title reveal">${d.heading}</h2>` +
-      `<div class="section-body reveal">${bodyPs}</div>` +
-      imageZone(d.images, 'single', d.imageSize);
+      (bodyPs ? `<div class="section-body reveal">${bodyPs}</div>` : '') +
+      imageZone(d.images, 'single', d.imageSize) +
+      renderBlocks(d.blocks);
   }
 
   /* — Process — */
@@ -171,9 +180,10 @@ function renderPage() {
     }).join('');
     processEl.innerHTML =
       `<h2 class="section-title reveal">${d.heading}</h2>` +
-      `<div class="section-body reveal">${d.summary}</div>` +
-      `<div class="steps reveal">${stepsHtml}</div>` +
-      imageZone(d.images, 'grid', d.imageSize);
+      (d.summary ? `<div class="section-body reveal">${d.summary}</div>` : '') +
+      (stepsHtml ? `<div class="steps reveal">${stepsHtml}</div>` : '') +
+      imageZone(d.images, 'grid', d.imageSize) +
+      renderBlocks(d.blocks);
   }
 
   /* — Result — */
@@ -189,30 +199,11 @@ function renderPage() {
     ).join('');
     resultEl.innerHTML =
       `<h2 class="section-title reveal">${d.heading}</h2>` +
-      `<div class="section-body reveal">${bodyPs}</div>` +
+      (bodyPs ? `<div class="section-body reveal">${bodyPs}</div>` : '') +
       (statsHtml ? `<div class="impact-grid reveal">${statsHtml}</div>` : '') +
-      imageZone(d.images, 'grid', d.imageSize);
+      imageZone(d.images, 'grid', d.imageSize) +
+      renderBlocks(d.blocks);
   }
-
-  /* — Blocks — */
-  const blocks = p.blocks || [];
-  // Group by zone (default: 'process')
-  const byZone = {};
-  blocks.forEach(b => {
-    const zone = b.after || 'process';
-    if (!byZone[zone]) byZone[zone] = [];
-    byZone[zone].push(b);
-  });
-  Object.keys(byZone).forEach(zone => {
-    const container = document.getElementById('blocks-after-' + zone);
-    if (!container) return;
-    container.innerHTML = byZone[zone]
-      .map(b => {
-        const renderer = BLOCK_RENDERERS[b.type];
-        return renderer ? renderer(b) : '';
-      })
-      .join('\n');
-  });
 }
 
 /* ── REVEAL ANIMATION ────────────────────────────────────────────
