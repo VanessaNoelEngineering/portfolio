@@ -121,8 +121,9 @@ const BLOCK_RENDERERS = {
     }
     const label   = b.label   ? `<div class="section-label">${b.label}</div>` : '';
     const heading  = b.heading ? `<h2 class="section-title reveal">${b.heading}</h2>` : '';
-    const flipClass = b.mobileFlip ? ' mobile-flip' : '';
-    return `${label}${heading}<div class="split-block${flipClass} reveal">${renderSide(b.left)}${renderSide(b.right)}</div>`;
+    const flipClass  = b.mobileFlip ? ' mobile-flip' : '';
+    const alignClass = b.align === 'top' ? ' align-top' : b.align === 'bottom' ? ' align-bottom' : '';
+    return `${label}${heading}<div class="split-block${flipClass}${alignClass} reveal">${renderSide(b.left)}${renderSide(b.right)}</div>`;
   },
 
 };
