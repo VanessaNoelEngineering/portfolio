@@ -90,6 +90,44 @@ const BLOCK_RENDERERS = {
   ${b.caption ? `<figcaption>${b.caption}</figcaption>` : ''}
 </figure>`,
 
+  split: b => {
+    function renderSide(s) {
+      if (!s) return '<div></div>';
+      if (s.type === 'text') {
+        const bodyHtml = (s.body || []).map(t => `<p>${t}</p>`).join('');
+        return `<div class="split-text">` +
+          (s.heading ? `<h3>${s.heading}</h3>` : '') +
+          bodyHtml +
+        `</div>`;
+      }
+      if (s.type === 'image') {
+        return `<div class="split-media">` +
+          `<img src="${s.url}" loading="lazy" alt="${s.caption || ''}"/>` +
+          (s.caption ? `<p class="split-caption">${s.caption}</p>` : '') +
+        `</div>`;
+      }
+      if (s.type === 'video') {
+        return `<div class="split-media">` +
+          `<div class="split-video-wrap">` +
+            `<iframe src="${s.url}" allowfullscreen loading="lazy" title="Video"></iframe>` +
+          `</div>` +
+          (s.caption ? `<p class="split-caption">${s.caption}</p>` : '') +
+        `</div>`;
+      }
+      return '<div></div>';
+    }
+    const label = b.label ? `<div class="section-label">${b.label}</div>` : '';
+    const heading = b.heading ? `<h2 class="section-title">${b.heading}</h2>` : '';
+    return `
+<section class="section reveal">
+  ${label}${heading}
+  <div class="split-block">
+    ${renderSide(b.left)}
+    ${renderSide(b.right)}
+  </div>
+</section>`;
+  },
+
 };
 
 /* ── RENDER PAGE ─────────────────────────────────────────────────
