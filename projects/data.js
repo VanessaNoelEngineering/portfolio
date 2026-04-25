@@ -61,6 +61,7 @@ window.PROJECTS_DATA = [
             ]},
          },
       ],
+    },
     process: {
       heading: 'How I <em>built it.</em>',
       summary: 'Methodical scale-up with a 5× validation step before committing to the full 10× print.',
