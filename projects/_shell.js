@@ -23,13 +23,16 @@ function imageZone(images, layout, size) {
   layout = layout || 'single';
   size   = size   || 'full';
   const wrapClass = 'img-wrap-' + size;
-  if (images && images.length) {
+  // Only render if images were explicitly provided
+  if (!images) return '';
+  if (images.length) {
     if (layout === 'grid') {
       return `<div class="img-grid reveal">${images.map(src =>
         `<img src="${src}" loading="lazy" alt=""/>`).join('')}</div>`;
     }
     return `<div class="${wrapClass} reveal"><img src="${images[0]}" loading="lazy" alt=""/></div>`;
   }
+  // images was set but empty — show placeholder
   if (layout === 'grid') {
     return `<div class="img-grid reveal">` +
       `<div class="img-placeholder"><span class="ph-icon">🖼</span>Photo</div>` +
@@ -116,16 +119,10 @@ const BLOCK_RENDERERS = {
       }
       return '<div></div>';
     }
-    const label = b.label ? `<div class="section-label">${b.label}</div>` : '';
-    const heading = b.heading ? `<h2 class="section-title">${b.heading}</h2>` : '';
-    return `
-<section class="section reveal">
-  ${label}${heading}
-  <div class="split-block">
-    ${renderSide(b.left)}
-    ${renderSide(b.right)}
-  </div>
-</section>`;
+    const label   = b.label   ? `<div class="section-label">${b.label}</div>` : '';
+    const heading  = b.heading ? `<h2 class="section-title reveal">${b.heading}</h2>` : '';
+    const flipClass = b.mobileFlip ? ' mobile-flip' : '';
+    return `${label}${heading}<div class="split-block${flipClass} reveal">${renderSide(b.left)}${renderSide(b.right)}</div>`;
   },
 
 };
