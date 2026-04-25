@@ -55,6 +55,7 @@ window.PROJECTS_DATA = [
         'That constraint turned a fun idea into a real engineering problem. LEGO\'s tolerances are designed for injection molding at 1× scale. Scaling up by 10× doesn\'t just make parts bigger — it changes how every fit and joint behaves.',
       ],
        images:['https://res.cloudinary.com/dlxdxu3ac/image/upload/v1777145303/Your_paragraph_text_ob8os9.png'],
+       imageSize: 'md',
     },
     process: {
       heading: 'How I <em>built it.</em>',
