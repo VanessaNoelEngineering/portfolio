@@ -165,9 +165,9 @@ body{font-family:var(--ff);background:var(--dark);color:#F0F0F8;cursor:none;over
 }
 
 /* ── SPLIT BLOCK ─────────────────────────────────────────────── */
-.split-block{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;margin:2rem 0;}
-.split-block.align-top{align-items:start;}
-.split-block.align-bottom{align-items:end;}
+.split-block{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;margin:2rem 0;}
+.split-side-center{align-self:center;}
+.split-side-bottom{align-self:end;}
 .split-text{}
 .split-text h3{font-size:1.35rem;font-weight:700;color:#F0F4FF;margin-bottom:.75rem;line-height:1.3;}
 .split-text h3 em{font-family:var(--fs);font-style:italic;color:var(--accent);}

@@ -94,23 +94,27 @@ const BLOCK_RENDERERS = {
 </figure>`,
 
   split: b => {
+    function sideAlign(s) {
+      if (!s || !s.align || s.align === 'top') return '';
+      return s.align === 'bottom' ? ' split-side-bottom' : ' split-side-center';
+    }
     function renderSide(s) {
       if (!s) return '<div></div>';
       if (s.type === 'text') {
         const bodyHtml = (s.body || []).map(t => `<p>${t}</p>`).join('');
-        return `<div class="split-text">` +
+        return `<div class="split-text${sideAlign(s)}">` +
           (s.heading ? `<h3>${s.heading}</h3>` : '') +
           bodyHtml +
         `</div>`;
       }
       if (s.type === 'image') {
-        return `<div class="split-media">` +
+        return `<div class="split-media${sideAlign(s)}">` +
           `<img src="${s.url}" loading="lazy" alt="${s.caption || ''}"/>` +
           (s.caption ? `<p class="split-caption">${s.caption}</p>` : '') +
         `</div>`;
       }
       if (s.type === 'video') {
-        return `<div class="split-media">` +
+        return `<div class="split-media${sideAlign(s)}">` +
           `<div class="split-video-wrap">` +
             `<iframe src="${s.url}" allowfullscreen loading="lazy" title="Video"></iframe>` +
           `</div>` +
@@ -119,11 +123,10 @@ const BLOCK_RENDERERS = {
       }
       return '<div></div>';
     }
-    const label   = b.label   ? `<div class="section-label">${b.label}</div>` : '';
+    const label    = b.label   ? `<div class="section-label">${b.label}</div>` : '';
     const heading  = b.heading ? `<h2 class="section-title reveal">${b.heading}</h2>` : '';
-    const flipClass  = b.mobileFlip ? ' mobile-flip' : '';
-    const alignClass = b.align === 'top' ? ' align-top' : b.align === 'bottom' ? ' align-bottom' : '';
-    return `${label}${heading}<div class="split-block${flipClass}${alignClass} reveal">${renderSide(b.left)}${renderSide(b.right)}</div>`;
+    const flipClass = b.mobileFlip ? ' mobile-flip' : '';
+    return `${label}${heading}<div class="split-block${flipClass} reveal">${renderSide(b.left)}${renderSide(b.right)}</div>`;
   },
 
 };

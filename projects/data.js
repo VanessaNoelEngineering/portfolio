@@ -54,7 +54,6 @@ window.PROJECTS_DATA = [
       blocks: [
         {
           type: 'split',
-          align: 'top',
           left: { type: 'image', url: 'https://res.cloudinary.com/dlxdxu3ac/image/upload/v1777145303/Your_paragraph_text_ob8os9.png' },
           right: { type: 'text', body: [
             'LEGO set 71037 — Series 24, the Brown Astronaut and Baby Benny the Spaceman — holds a specific place in my heart. I wanted a version I could actually display, which meant scaling it up. But I had a constraint: 100% 3D printed, no glue, no fasteners. Every joint had to click together and stay posable, exactly like the real thing.',
