@@ -100,21 +100,22 @@ const BLOCK_RENDERERS = {
     }
     function renderSide(s) {
       if (!s) return '<div></div>';
+      const nudgeStyle = s.nudge ? ` style="margin-top:${s.nudge}"` : '';
       if (s.type === 'text') {
         const bodyHtml = (s.body || []).map(t => `<p>${t}</p>`).join('');
-        return `<div class="split-text${sideAlign(s)}">` +
+        return `<div class="split-text${sideAlign(s)}"${nudgeStyle}>` +
           (s.heading ? `<h3>${s.heading}</h3>` : '') +
           bodyHtml +
         `</div>`;
       }
       if (s.type === 'image') {
-        return `<div class="split-media${sideAlign(s)}">` +
+        return `<div class="split-media${sideAlign(s)}"${nudgeStyle}>` +
           `<img src="${s.url}" loading="lazy" alt="${s.caption || ''}"/>` +
           (s.caption ? `<p class="split-caption">${s.caption}</p>` : '') +
         `</div>`;
       }
       if (s.type === 'video') {
-        return `<div class="split-media${sideAlign(s)}">` +
+        return `<div class="split-media${sideAlign(s)}"${nudgeStyle}>` +
           `<div class="split-video-wrap">` +
             `<iframe src="${s.url}" allowfullscreen loading="lazy" title="Video"></iframe>` +
           `</div>` +

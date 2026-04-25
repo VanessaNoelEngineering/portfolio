@@ -118,7 +118,7 @@ body{font-family:var(--ff);background:var(--dark);color:#F0F0F8;cursor:none;over
 }
 
 /* ── SECTIONS ────────────────────────────────────────────────── */
-.section{padding:6rem 2.5rem;max-width:900px;margin:0 auto;}
+.section{padding:4rem 2.5rem;max-width:900px;margin:0 auto;}
 .section+.section{border-top:1px solid rgba(255,255,255,.06);}
 
 .section-label{
