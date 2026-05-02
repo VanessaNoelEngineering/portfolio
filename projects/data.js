@@ -78,6 +78,11 @@ window.PROJECTS_DATA = [
         {
           title: '5× prototype to validate proportions',
           body: 'Before committing to the full 10× print, I printed at 5× to check that the proportions read correctly and that the assembly logic worked. Caught fit issues at this stage that would have cost days of print time at full scale.',
+          blockAfter: {
+            type: 'split',
+            left:  { type: 'image', url: 'https://res.cloudinary.com/dlxdxu3ac/image/upload/v1777744199/small-brown-astronaut-minifigure-no-background_ugbjpb.png' },
+            right: { type: 'image', url: 'https://res.cloudinary.com/dlxdxu3ac/image/upload/v1777744099/baby-benny-minifigure-small-no-background_odxlxh.png' },
+          },
         },
         {
           title: 'Detail pass at 10×',
