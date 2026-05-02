@@ -96,6 +96,10 @@ window.PROJECTS_DATA = [
         {
           title: 'Joint tolerance testing',
           body: 'Printed individual joints and interfaces at full scale to test snap-fit clearances before running the full build. 3D-printed snap fits at this scale behave differently than injection-molded ones — stiffer, more brittle at thin sections. Adjusted clearances accordingly.',
+          blockAfter: {
+            type: 'image',
+            url: 'https://res.cloudinary.com/dlxdxu3ac/image/upload/v1777746844/IMG_4556_msfhuv.jpg',
+          },
         },
         {
           title: 'Full print run and assembly',
@@ -120,6 +124,15 @@ window.PROJECTS_DATA = [
         { val: '0',    label: 'Adhesives or Fasteners' },
       ],
       blocks: [
+        {
+          type: 'gallery',
+          images: [
+            'https://res.cloudinary.com/dlxdxu3ac/image/upload/v1777747059/Untitled_design_1_t5ziyo.jpg',
+            'https://res.cloudinary.com/dlxdxu3ac/image/upload/v1777747071/Untitled_design_2_omwb1l.jpg',
+            'https://res.cloudinary.com/dlxdxu3ac/image/upload/v1777747083/20240408_190537_fjp02s.jpg',
+            'https://res.cloudinary.com/dlxdxu3ac/image/upload/v1777747091/20240411_052327_1_la3755.jpg',
+          ],
+        },
         {
           type: 'split',
           left:  { type: 'cad', url: 'https://queensu158.autodesk360.com/shares/public/SHd38bfQT1fb47330c99374753ba30fbfc3b?mode=embed' },
