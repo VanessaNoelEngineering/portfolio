@@ -45,12 +45,26 @@ function imageZone(images, layout, size) {
 /* ── BLOCK RENDERERS ─────────────────────────────────────────────
    Each receives the block data object and returns an HTML string.
 ──────────────────────────────────────────────────────────────── */
+/* ── VIDEO URL HELPER ────────────────────────────────────────────
+   Appends autoplay/mute params and returns the allow attribute.
+──────────────────────────────────────────────────────────────── */
+function videoSrc(v) {
+  let url = v.url || '';
+  const params = [];
+  if (v.autoplay) params.push('autoplay=1');
+  if (v.mute)     params.push('mute=1');
+  if (params.length) url += (url.includes('?') ? '&' : '?') + params.join('&');
+  const allow = ['fullscreen', v.autoplay ? 'autoplay' : ''].filter(Boolean).join('; ');
+  return { url, allow };
+}
+
 const BLOCK_RENDERERS = {
 
   video: b => {
     const label   = b.label   ? `<div class="section-label">${b.label}</div>` : '';
     const heading = b.heading ? `<h2 class="section-title reveal">${b.heading}</h2>` : '';
-    return `${label}${heading}<div class="video-wrap reveal"><iframe src="${b.url}" title="Project demo" allowfullscreen loading="lazy"></iframe></div>`;
+    const { url, allow } = videoSrc(b);
+    return `${label}${heading}<div class="video-wrap reveal"><iframe src="${url}" title="Project demo" allow="${allow}" allowfullscreen loading="lazy"></iframe></div>`;
   },
 
   gallery: b => {
@@ -101,9 +115,10 @@ const BLOCK_RENDERERS = {
         `</div>`;
       }
       if (s.type === 'video') {
+        const { url, allow } = videoSrc(s);
         return `<div class="split-media${sideAlign(s)}"${nudgeStyle}>` +
           `<div class="split-video-wrap">` +
-            `<iframe src="${s.url}" allowfullscreen loading="lazy" title="Video"></iframe>` +
+            `<iframe src="${url}" allow="${allow}" allowfullscreen loading="lazy" title="Video"></iframe>` +
           `</div>` +
           (s.caption ? `<p class="split-caption">${s.caption}</p>` : '') +
         `</div>`;
