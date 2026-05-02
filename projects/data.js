@@ -94,15 +94,6 @@ window.PROJECTS_DATA = [
           },
         },
         {
-          title: 'Joint tolerance testing',
-          body: 'Printed individual joints and interfaces at full scale to test snap-fit clearances before running the full build. 3D-printed snap fits at this scale behave differently than injection-molded ones — stiffer, more brittle at thin sections. Adjusted clearances accordingly.',
-          blockAfter: {
-            type: 'image',
-            url: 'https://res.cloudinary.com/dlxdxu3ac/image/upload/v1777747407/IMG_4556_msfhuv.png',
-            size: 'md',
-          },
-        },
-        {
           title: 'Full print run and assembly',
           body: 'Final build: 90+ hours of print time across both figures. Parts assembled in the designed sequence — joints clicked in, figures posed. No adhesive, no hardware.',
           blockAfter: {
