@@ -127,6 +127,7 @@ window.PROJECTS_DATA = [
       blocks: [
         {
           type: 'gallery',
+          layout: 'collage',
           images: [
             'https://res.cloudinary.com/dlxdxu3ac/image/upload/v1777747059/Untitled_design_1_t5ziyo.jpg',
             'https://res.cloudinary.com/dlxdxu3ac/image/upload/v1777747071/Untitled_design_2_omwb1l.jpg',
@@ -135,6 +136,7 @@ window.PROJECTS_DATA = [
         },
         {
           type: 'split',
+          heading: 'Explore the <em>models.</em>',
           left:  { type: 'cad', url: 'https://queensu158.autodesk360.com/shares/public/SHd38bfQT1fb47330c99374753ba30fbfc3b?mode=embed' },
           right: { type: 'cad', url: 'https://queensu158.autodesk360.com/shares/public/SHd38bfQT1fb47330c99713edf926c420b55?mode=embed' },
         },

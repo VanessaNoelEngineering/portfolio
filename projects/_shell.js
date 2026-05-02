@@ -69,12 +69,13 @@ const BLOCK_RENDERERS = {
   },
 
   gallery: b => {
-    const label   = b.label   ? `<div class="section-label">${b.label}</div>` : '';
-    const heading = b.heading ? `<h2 class="section-title reveal">${b.heading}</h2>` : '';
+    const label     = b.label   ? `<div class="section-label">${b.label}</div>` : '';
+    const heading   = b.heading ? `<h2 class="section-title reveal">${b.heading}</h2>` : '';
+    const gridClass = b.layout === 'collage' ? 'gallery-collage' : 'gallery-grid';
     const imgs = (b.images || []).map(src =>
-      `<a href="${src}" target="_blank" rel="noopener"><img src="${src}" loading="lazy" alt=""/></a>`
+      `<a href="${src}"><img src="${src}" loading="lazy" alt=""/></a>`
     ).join('');
-    return `${label}${heading}<div class="gallery-grid reveal">${imgs}</div>`;
+    return `${label}${heading}<div class="${gridClass} reveal">${imgs}</div>`;
   },
 
   code: b => {
@@ -326,6 +327,64 @@ function setupProjNav() {
     `</a>`;
 }
 
+/* ── LIGHTBOX ────────────────────────────────────────────────────
+   Opens gallery images in an overlay with prev/next navigation.
+──────────────────────────────────────────────────────────────── */
+function setupLightbox() {
+  const lb = document.createElement('div');
+  lb.id = 'lb';
+  lb.innerHTML =
+    `<button id="lb-close">✕</button>` +
+    `<button id="lb-prev">&#8249;</button>` +
+    `<img id="lb-img" src="" alt=""/>` +
+    `<button id="lb-next">&#8250;</button>`;
+  document.body.appendChild(lb);
+
+  const lbImg  = document.getElementById('lb-img');
+  const lbPrev = document.getElementById('lb-prev');
+  const lbNext = document.getElementById('lb-next');
+  let srcs = [], idx = 0;
+
+  function show(i) {
+    idx = (i + srcs.length) % srcs.length;
+    lbImg.src = srcs[idx];
+    lbPrev.classList.toggle('hidden', srcs.length <= 1);
+    lbNext.classList.toggle('hidden', srcs.length <= 1);
+  }
+  function open(list, i) {
+    srcs = list;
+    show(i);
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function close() {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+    lbImg.src = '';
+  }
+
+  document.getElementById('lb-close').addEventListener('click', close);
+  lbPrev.addEventListener('click', () => show(idx - 1));
+  lbNext.addEventListener('click', () => show(idx + 1));
+  lb.addEventListener('click', e => { if (e.target === lb) close(); });
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape')     close();
+    if (e.key === 'ArrowLeft')  show(idx - 1);
+    if (e.key === 'ArrowRight') show(idx + 1);
+  });
+
+  // Wire up clicks on any gallery link
+  document.addEventListener('click', e => {
+    const a = e.target.closest('.gallery-grid a, .gallery-collage a');
+    if (!a) return;
+    e.preventDefault();
+    const grid  = a.closest('.gallery-grid, .gallery-collage');
+    const links = [...grid.querySelectorAll('a')];
+    open(links.map(l => l.href), links.indexOf(a));
+  });
+}
+
 /* ── BOOT ────────────────────────────────────────────────────────
    renderPage first so .reveal elements exist before observer.
 ──────────────────────────────────────────────────────────────── */
@@ -334,5 +393,6 @@ setupReveal();
 setupCursor();
 setupTabs();
 setupProjNav();
+setupLightbox();
 
 })();
