@@ -131,7 +131,6 @@ window.PROJECTS_DATA = [
             'https://res.cloudinary.com/dlxdxu3ac/image/upload/v1777747059/Untitled_design_1_t5ziyo.jpg',
             'https://res.cloudinary.com/dlxdxu3ac/image/upload/v1777747071/Untitled_design_2_omwb1l.jpg',
             'https://res.cloudinary.com/dlxdxu3ac/image/upload/v1777747083/20240408_190537_fjp02s.jpg',
-            'https://res.cloudinary.com/dlxdxu3ac/image/upload/v1777747091/20240411_052327_1_la3755.jpg',
           ],
         },
         {

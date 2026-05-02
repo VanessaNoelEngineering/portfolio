@@ -71,7 +71,9 @@ const BLOCK_RENDERERS = {
   gallery: b => {
     const label   = b.label   ? `<div class="section-label">${b.label}</div>` : '';
     const heading = b.heading ? `<h2 class="section-title reveal">${b.heading}</h2>` : '';
-    const imgs = (b.images || []).map(src => `<img src="${src}" loading="lazy" alt=""/>`).join('');
+    const imgs = (b.images || []).map(src =>
+      `<a href="${src}" target="_blank" rel="noopener"><img src="${src}" loading="lazy" alt=""/></a>`
+    ).join('');
     return `${label}${heading}<div class="gallery-grid reveal">${imgs}</div>`;
   },
 
