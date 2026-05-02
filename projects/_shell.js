@@ -88,11 +88,13 @@ const BLOCK_RENDERERS = {
     return `${label}${heading}<div class="cad-embed-wrap reveal"><iframe src="${b.url}" allowfullscreen webkitallowfullscreen mozallowfullscreen loading="lazy" title="3D CAD Model"></iframe></div>`;
   },
 
-  image: b => `
-<figure class="reveal full-width-image">
-  <img src="${b.url}" loading="lazy" alt="${b.caption || ''}"/>
-  ${b.caption ? `<figcaption>${b.caption}</figcaption>` : ''}
-</figure>`,
+  image: b => {
+    const wrapClass = 'img-wrap-' + (b.size || 'full');
+    return `<figure class="${wrapClass} reveal">` +
+      `<img src="${b.url}" loading="lazy" alt="${b.caption || ''}"/>` +
+      (b.caption ? `<figcaption>${b.caption}</figcaption>` : '') +
+    `</figure>`;
+  },
 
   split: b => {
     function sideAlign(s) {

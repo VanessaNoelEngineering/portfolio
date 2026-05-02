@@ -99,6 +99,7 @@ window.PROJECTS_DATA = [
           blockAfter: {
             type: 'image',
             url: 'https://res.cloudinary.com/dlxdxu3ac/image/upload/v1777746844/IMG_4556_msfhuv.jpg',
+            size: 'md',
           },
         },
         {
