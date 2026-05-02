@@ -71,13 +71,8 @@ window.PROJECTS_DATA = [
           body: 'Built both figures in CAD from the original LEGO set as reference. The focus was on capturing the geometry accurately including the proportions, joint shapes, and connection interfaces.',
           blockAfter: {
             type: 'split',
-            left:  { type: 'cad', url: 'https://queensu158.autodesk360.com/shares/public/SHd38bfQT1fb47330c99374753ba30fbfc3b?mode=embed' },
-            right: { type: 'cad', url: 'https://queensu158.autodesk360.com/shares/public/SHd38bfQT1fb47330c99713edf926c420b55?mode=embed' },
-          },
-          blockAfter: {
-            type: 'split',
-            left:  { type: 'video', url: 'https://youtu.be/ir0tKuCpMhQ' },
-            right: { type: 'video', url: 'https://youtu.be/h5ZbaEFdA68' },
+            left:  { type: 'video', url: 'https://www.youtube.com/embed/ir0tKuCpMhQ' },
+            right: { type: 'video', url: 'https://www.youtube.com/embed/h5ZbaEFdA68' },
           },
         },
         {
@@ -108,6 +103,13 @@ window.PROJECTS_DATA = [
         { val: '90+',  label: 'Hours of Print Time' },
         { val: '2',    label: 'Figures Built' },
         { val: '0',    label: 'Adhesives or Fasteners' },
+      ],
+      blocks: [
+        {
+          type: 'split',
+          left:  { type: 'cad', url: 'https://queensu158.autodesk360.com/shares/public/SHd38bfQT1fb47330c99374753ba30fbfc3b?mode=embed' },
+          right: { type: 'cad', url: 'https://queensu158.autodesk360.com/shares/public/SHd38bfQT1fb47330c99713edf926c420b55?mode=embed' },
+        },
       ],
     },
   },
