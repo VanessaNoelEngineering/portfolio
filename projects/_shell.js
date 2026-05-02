@@ -71,7 +71,8 @@ const BLOCK_RENDERERS = {
   gallery: b => {
     const label     = b.label   ? `<div class="section-label">${b.label}</div>` : '';
     const heading   = b.heading ? `<h2 class="section-title reveal">${b.heading}</h2>` : '';
-    const gridClass = b.layout === 'collage' ? 'gallery-collage' : 'gallery-grid';
+    const colClass  = b.columns ? ` cols-${b.columns}` : '';
+    const gridClass = b.layout === 'collage' ? 'gallery-collage' : 'gallery-grid' + colClass;
     const imgs = (b.images || []).map(src =>
       `<a href="${src}"><img src="${src}" loading="lazy" alt=""/></a>`
     ).join('');
