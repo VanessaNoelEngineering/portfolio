@@ -98,7 +98,7 @@ window.PROJECTS_DATA = [
           body: 'Printed individual joints and interfaces at full scale to test snap-fit clearances before running the full build. 3D-printed snap fits at this scale behave differently than injection-molded ones — stiffer, more brittle at thin sections. Adjusted clearances accordingly.',
           blockAfter: {
             type: 'image',
-            url: 'https://res.cloudinary.com/dlxdxu3ac/image/upload/v1777746844/IMG_4556_msfhuv.jpg',
+            url: 'https://res.cloudinary.com/dlxdxu3ac/image/upload/v1777747407/IMG_4556_msfhuv.png',
             size: 'md',
           },
         },
