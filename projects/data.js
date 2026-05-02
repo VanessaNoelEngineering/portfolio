@@ -89,8 +89,8 @@ window.PROJECTS_DATA = [
           body: 'Once the base geometry was validated, scaled to 10× and added the smaller surface details: chest logos, face features, helmet markings. These couldn\'t be added at 5× (too small to print cleanly) but needed to be right before the final run.',
           blockAfter: {
             type: 'split',
-            left:  { type: 'video', url: 'https://www.youtube.com/embed/n6bRrRhsyjE', autoplay: true, mute: true, controls: false },
-            right: { type: 'video', url: 'https://www.youtube.com/embed/hLLRDKRHqJ8', autoplay: true, mute: true, controls: false },
+            left:  { type: 'image', url: 'https://res.cloudinary.com/dlxdxu3ac/image/upload/v1777745418/brown-astronaut-minifig-chest-emblem-no-background_qv75yw.png' },
+            right: { type: 'image', url: 'https://res.cloudinary.com/dlxdxu3ac/image/upload/v1777745414/Original_10_drvwlu.png' },
           },
         },
         {
@@ -100,6 +100,11 @@ window.PROJECTS_DATA = [
         {
           title: 'Full print run and assembly',
           body: 'Final build: 90+ hours of print time across both figures. Parts assembled in the designed sequence — joints clicked in, figures posed. No adhesive, no hardware.',
+          blockAfter: {
+            type: 'split',
+            left:  { type: 'video', url: 'https://www.youtube.com/embed/n6bRrRhsyjE', autoplay: true, mute: true, controls: false },
+            right: { type: 'video', url: 'https://www.youtube.com/embed/hLLRDKRHqJ8', autoplay: true, mute: true, controls: false },
+          },
         },
       ],
     },
