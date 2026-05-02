@@ -71,8 +71,8 @@ window.PROJECTS_DATA = [
           body: 'Built both figures in CAD from the original LEGO set as reference. The focus was on capturing the geometry accurately including the proportions, joint shapes, and connection interfaces.',
           blockAfter: {
             type: 'split',
-            left:  { type: 'video', url: 'https://www.youtube.com/embed/h5ZbaEFdA68', autoplay: true, mute: true },
-            right: { type: 'video', url: 'https://www.youtube.com/embed/ir0tKuCpMhQ', autoplay: true, mute: true },
+            left:  { type: 'video', url: 'https://www.youtube.com/embed/h5ZbaEFdA68', autoplay: true, mute: true, controls: false },
+            right: { type: 'video', url: 'https://www.youtube.com/embed/ir0tKuCpMhQ', autoplay: true, mute: true, controls: false },
           },
         },
         {
@@ -89,8 +89,8 @@ window.PROJECTS_DATA = [
           body: 'Once the base geometry was validated, scaled to 10× and added the smaller surface details: chest logos, face features, helmet markings. These couldn\'t be added at 5× (too small to print cleanly) but needed to be right before the final run.',
           blockAfter: {
             type: 'split',
-            left:  { type: 'video', url: 'https://www.youtube.com/embed/n6bRrRhsyjE', autoplay: true, mute: true },
-            right: { type: 'video', url: 'https://www.youtube.com/embed/hLLRDKRHqJ8', autoplay: true, mute: true },
+            left:  { type: 'video', url: 'https://www.youtube.com/embed/n6bRrRhsyjE', autoplay: true, mute: true, controls: false },
+            right: { type: 'video', url: 'https://www.youtube.com/embed/hLLRDKRHqJ8', autoplay: true, mute: true, controls: false },
           },
         },
         {

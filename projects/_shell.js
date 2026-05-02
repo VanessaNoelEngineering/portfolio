@@ -51,8 +51,9 @@ function imageZone(images, layout, size) {
 function videoSrc(v) {
   let url = v.url || '';
   const params = [];
-  if (v.autoplay) params.push('autoplay=1');
-  if (v.mute)     params.push('mute=1');
+  if (v.autoplay)          params.push('autoplay=1');
+  if (v.mute)              params.push('mute=1');
+  if (v.controls === false) params.push('controls=0');
   if (params.length) url += (url.includes('?') ? '&' : '?') + params.join('&');
   const allow = ['fullscreen', v.autoplay ? 'autoplay' : ''].filter(Boolean).join('; ');
   return { url, allow };
