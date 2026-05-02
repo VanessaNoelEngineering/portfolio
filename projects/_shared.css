@@ -68,7 +68,7 @@ body{font-family:var(--ff);background:var(--dark);color:#F0F0F8;cursor:none;over
 /* ── HERO ────────────────────────────────────────────────────── */
 .hero{
   display:flex;flex-direction:column;justify-content:center;
-  padding:5rem 2.5rem 3rem;
+  padding:6.5rem 2.5rem 3.5rem;
   position:relative;overflow:hidden;
 }
 .hero-bg{
