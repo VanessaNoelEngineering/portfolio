@@ -68,7 +68,7 @@ body{font-family:var(--ff);background:var(--dark);color:#F0F0F8;cursor:none;over
 /* ── HERO ────────────────────────────────────────────────────── */
 .hero{
   display:flex;flex-direction:column;justify-content:center;
-  padding:7.5rem 2.5rem 4rem;
+  padding:10rem 2.5rem 4rem;
   position:relative;overflow:hidden;
 }
 .hero-bg{
@@ -368,7 +368,7 @@ footer p{font-family:var(--fm);font-size:.65rem;color:rgba(255,255,255,.18);}
 /* ── RESPONSIVE ──────────────────────────────────────────────── */
 @media(max-width:768px){
   .top-nav,.tab-nav{padding-left:1.5rem;padding-right:1.5rem;}
-  .hero{padding:7rem 1.5rem 3rem;}
+  .hero{padding:9rem 1.5rem 3rem;}
   .section{padding:4rem 1.5rem;}
   .img-grid{grid-template-columns:1fr;}
   .img-grid-3{grid-template-columns:1fr 1fr;}
