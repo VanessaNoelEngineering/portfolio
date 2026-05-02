@@ -355,7 +355,9 @@ footer p{font-family:var(--fm);font-size:.63rem;color:rgba(255,255,255,.17);lett
 /* ── PROJECT PREVIEW MODAL ── */
 #proj-preview {
   position:fixed; inset:0; z-index:400;
-  display:flex; align-items:center; justify-content:center;
+  display:flex; align-items:flex-start; justify-content:center;
+  padding:5vh 1rem 5vh;
+  overflow-y:auto;
   background:rgba(8,8,16,.8);
   backdrop-filter:blur(8px);
   opacity:0; pointer-events:none;
@@ -368,9 +370,7 @@ footer p{font-family:var(--fm);font-size:.63rem;color:rgba(255,255,255,.17);lett
   border:1px solid rgba(232,85,154,.2);
   border-radius:12px;
   box-shadow:0 30px 80px rgba(0,0,0,.6);
-  width:min(680px,90vw);
-  max-height:85vh;
-  overflow-y:auto;
+  width:min(720px,92vw);
   transform:translateY(20px) scale(.97);
   transition:transform .35s cubic-bezier(.23,1,.32,1);
   position:relative;
@@ -1573,8 +1573,7 @@ function closePreview() {
   if (activeCard) { activeCard.classList.remove('selected'); activeCard = null; }
 }
 
-preview.addEventListener('wheel', e => e.preventDefault(), {passive:false});
-preview.addEventListener('touchmove', e => e.preventDefault(), {passive:false});
+// overlay scrolls naturally — no preventDefault needed
 
 document.addEventListener('click', e => {
   const card = e.target.closest('[data-project]');
