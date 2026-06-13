@@ -719,16 +719,16 @@ window.PROJECTS_DATA = [
       steps: [
         { type: "year", title: "2023" },
         {
-          title: "Satellite design",
-          body: "Built around an Arduino Nano Every for its small footprint and low power draw. Logged data locally via SD card — no downlink capability, so reliable storage was critical. Used a BMP180 pressure sensor that technically operated outside its rated range at altitude but was accurate enough given our budget. A precision thermistor let us measure and account for the error.",
+          title: "Sensor selection",
+          body: "The stratosphere sits well outside the rated operating range of most consumer sensors. I wanted to see how they'd hold up and whether the data would still be usable. I used a pressure sensor knowing it would be operating outside spec, and paired it with a precision thermistor so we could quantify the error.",
         },
         {
-          title: "Pre-launch validation",
-          body: "Validated all sensor harnesses end-to-end before enclosure. Confirmed data logging was functioning correctly across the full expected range. Structural design prioritized lightweight materials and survivability through balloon burst and descent.",
+          title: "Reliability",
+          body: "We had one shot. No downlink, no second chance. If the SD card failed, the code crashed, or the Nano powered off in the cold, we'd come back with nothing. I validated the sensor harness end-to-end, stress-tested the data logging across the full expected temperature range, and made sure we weren't going to run out of storage mid-flight.",
         },
         {
-          title: "Launch and data recovery",
-          body: "Eggo flew to 48.4km (30.1 miles) — 90 minutes up, 41 minutes down. Collected temperature, pressure, and altitude data across the full flight envelope. All data recovered from SD card post-landing. That launch was the foundation for everything that came after.",
+          title: "The data",
+          body: "Eggo flew to 48.4km (30.1 miles); 90 minutes up, 41 minutes down. Temperature ranged from -28 to 20.7°C, pressure from 1007 to 14 hPa.",
         },
         { type: "year", title: "2024" },
         {
