@@ -200,18 +200,13 @@ body{font-family:var(--ff);background:var(--dark);color:#F0F0F8;cursor:none;over
 .step-content p+p{margin-top:.75rem;}
 
 /* ── YEAR / SECTION HEADER ───────────────────────────────────── */
-.step-year-header{
-  display:flex;align-items:center;gap:1.25rem;
-  margin-top:3rem;padding-top:2.5rem;
-  border-top:1px solid rgba(255,255,255,.08);
-}
-.step-year-header:first-child{margin-top:2rem;padding-top:0;border-top:none;}
+.step-year-header{margin-top:3rem;}
+.step-year-header:first-child{margin-top:2rem;}
 .step-year-label{
   font-family:var(--ff);font-weight:900;
   font-size:clamp(1.4rem,3vw,1.9rem);letter-spacing:-.04em;
-  color:var(--accent);flex-shrink:0;
+  color:var(--accent);display:block;
 }
-.step-year-line{flex:1;height:1px;background:rgba(255,255,255,.08);}
 
 /* ── IMPACT STATS ────────────────────────────────────────────── */
 .impact-grid{
