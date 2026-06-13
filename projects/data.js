@@ -732,24 +732,23 @@ window.PROJECTS_DATA = [
         },
         { type: "year", title: "2024" },
         {
-          title: "Leading the QSET subteam",
-          body: "Led 50 students through Space School and into building the second satellite. One student wanted to investigate radon at altitude — an unusual research question that hadn't been explored much at stratospheric heights — so that became her project and made it onto the payload alongside cameras and weather sensors.",
+          title: "Teaching the fundamentals",
+          body: "Both programs ran in parallel — university students through Space School, high schoolers through Connections to Space. Two different programs that taught the same skills: embedded systems, circuit design, soldering, and CAD.",
         },
         {
-          title: "Helium transport safety protocol",
-          body: "Developed a formal helium transport procedure that satisfied regulatory requirements for moving pressurized gas to the launch site. This hadn't existed before. It streamlined approval for the 2024 launch and became the standard for future QSET launches.",
+          title: "Logistics & approvals",
+          body: "There was no procedure for transporting pressurized helium to the launch site, which meant no clear path to regulatory approval. I wrote one from scratch. It satisfied the school's requirements, unblocked the launch, and became the standard for every QSET launch after it.",
         },
         {
-          title: "Building the outreach program",
-          body: "Wrote the grant that secured $50K from the Canadian Space Agency. Designed the curriculum from scratch: embedded systems basics, sensor integration, circuit wiring and soldering, CAD, satellite structure design. First half of the program was all teaching — how to think about hardware that has to survive conditions it wasn't designed for. Second half was building.",
+          title: "Building the hardware",
+          body: "Students in both groups picked what excited them, designed their modules, and wired everything themselves. Missions ranged widely — one student wanted to measure radon at different altitudes, another set up cameras to capture images during the ascent.",
         },
         {
-          title: "Youth satellite build",
-          body: "The kids chose their own mission, designed their modules, and wired everything themselves. Supported them through debugging — the goal was for them to own the technical decisions, not just assemble a kit. On launch day they showed up with hardware they'd built from scratch.",
-        },
-        {
-          title: "Launch",
-          body: "One balloon. Two satellites. Both came back.",
+          title: "Launch day",
+          body: [
+            "Launch windows are weather-dependent. Wind speed, direction, and upper atmosphere conditions all determine whether you can go that day. Once we got the green light, we were up before dawn — transporting the helium, filling the balloon on-site. Both satellites went up on the same balloon.",
+            "Then we waited, and drove. The payload had a GPS tracker and for about two hours we followed it across the map, watching altitude climb in real time. When it burst and started descending we figured out where it was going to land and drove to meet it. We found it in a field, still intact.",
+          ],
         },
       ],
     },
