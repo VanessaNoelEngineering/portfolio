@@ -732,19 +732,19 @@ window.PROJECTS_DATA = [
         },
         { type: "year", title: "2024" },
         {
-          title: "Teaching the fundamentals",
+          title: "Teaching the Fundamentals",
           body: "Both programs ran in parallel — university students through Space School, high schoolers through Connections to Space. Two different programs that taught the same skills: embedded systems, circuit design, soldering, and CAD.",
         },
         {
-          title: "Logistics & approvals",
+          title: "Logistics & Approvals",
           body: "There was no procedure for transporting pressurized helium to the launch site, which meant no clear path to regulatory approval. I wrote one from scratch. It satisfied the school's requirements, unblocked the launch, and became the standard for every QSET launch after it.",
         },
         {
-          title: "Building the hardware",
+          title: "Building the Hardware",
           body: "Students in both groups picked what excited them, designed their modules, and wired everything themselves. Missions ranged widely — one student wanted to measure radon at different altitudes, another set up cameras to capture images during the ascent.",
         },
         {
-          title: "Launch day",
+          title: "Launch Day",
           body: [
             "Launch windows are weather-dependent. Wind speed, direction, and upper atmosphere conditions all determine whether you can go that day. Once we got the green light, we were up before dawn — transporting the helium, filling the balloon on-site. Both satellites went up on the same balloon.",
             "Then we waited, and drove. The payload had a GPS tracker and for about two hours we followed it across the map, watching altitude climb in real time. When it burst and started descending we figured out where it was going to land and drove to meet it. We found it in a field, still intact.",
