@@ -716,22 +716,39 @@ window.PROJECTS_DATA = [
       heading: "How I <em>built it.</em>",
       summary: "Two launches, two years, two programs running in parallel.",
       steps: [
+        { section: true, title: "2023" },
         {
-          tag: "2023",
-          title: "Eggo",
-          body: [
-            "Eggo was our first satellite. The mission was straightforward: get hardware to the stratosphere, collect atmospheric data — temperature, pressure, altitude — and bring it back. We built around an Arduino Nano Every for its small footprint and low power draw, logged data locally via SD card since we had no downlink capability, and used a BMP180 pressure sensor that technically operated outside its rated range at altitude but was accurate enough given our budget. A precision thermistor let us measure and account for the error.",
-            "Eggo flew to 48.4km (30.1 miles) and came back. That launch was the foundation for everything that came after.",
-          ],
+          title: "Satellite design",
+          body: "Built around an Arduino Nano Every for its small footprint and low power draw. Logged data locally via SD card — no downlink capability, so reliable storage was critical. Used a BMP180 pressure sensor that technically operated outside its rated range at altitude but was accurate enough given our budget. A precision thermistor let us measure and account for the error.",
         },
         {
-          tag: "2024",
-          title: "Two Satellites, One Balloon",
-          body: [
-            "The 2024 launch ran two tracks at once. With QSET, I led 50 students through building a second satellite. One student wanted to investigate radon at altitude — an unusual research question that hadn't been explored much at stratospheric heights — so that became her project and made it onto the payload alongside cameras and weather sensors. I also developed a helium transport safety protocol that streamlined our regulatory approval and became the standard for future QSET launches.",
-            "In parallel, I was running the youth program. First half: teaching. Embedded systems, circuit design, how to think about hardware that has to work in conditions it wasn't designed for. All hands-on. Second half: building. The kids chose their own mission, designed their modules, and wired everything themselves. On launch day they showed up with hardware they'd built from scratch.",
-            "One balloon. Two satellites. Both came back.",
-          ],
+          title: "Pre-launch validation",
+          body: "Validated all sensor harnesses end-to-end before enclosure. Confirmed data logging was functioning correctly across the full expected range. Structural design prioritized lightweight materials and survivability through balloon burst and descent.",
+        },
+        {
+          title: "Launch and data recovery",
+          body: "Eggo flew to 48.4km (30.1 miles) — 90 minutes up, 41 minutes down. Collected temperature, pressure, and altitude data across the full flight envelope. All data recovered from SD card post-landing. That launch was the foundation for everything that came after.",
+        },
+        { section: true, title: "2024" },
+        {
+          title: "Leading the QSET subteam",
+          body: "Led 50 students through Space School and into building the second satellite. One student wanted to investigate radon at altitude — an unusual research question that hadn't been explored much at stratospheric heights — so that became her project and made it onto the payload alongside cameras and weather sensors.",
+        },
+        {
+          title: "Helium transport safety protocol",
+          body: "Developed a formal helium transport procedure that satisfied regulatory requirements for moving pressurized gas to the launch site. This hadn't existed before. It streamlined approval for the 2024 launch and became the standard for future QSET launches.",
+        },
+        {
+          title: "Building the outreach program",
+          body: "Wrote the grant that secured $50K from the Canadian Space Agency. Designed the curriculum from scratch: embedded systems basics, sensor integration, circuit wiring and soldering, CAD, satellite structure design. First half of the program was all teaching — how to think about hardware that has to survive conditions it wasn't designed for. Second half was building.",
+        },
+        {
+          title: "Youth satellite build",
+          body: "The kids chose their own mission, designed their modules, and wired everything themselves. Supported them through debugging — the goal was for them to own the technical decisions, not just assemble a kit. On launch day they showed up with hardware they'd built from scratch.",
+        },
+        {
+          title: "Launch",
+          body: "One balloon. Two satellites. Both came back.",
         },
       ],
     },

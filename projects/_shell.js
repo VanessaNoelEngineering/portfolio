@@ -192,11 +192,19 @@ function renderPage() {
   const processEl = document.getElementById('process-content');
   if (processEl && p.process) {
     const d = p.process;
-    // Build steps, splitting into groups when a blockAfter is encountered
+    // Build steps, handling year/section headers and blockAfter breaks
     let stepsContent = '';
     let group = [];
-    (d.steps || []).forEach((s, i) => {
-      const num = s.tag || String(i + 1).padStart(2, '0');
+    let stepNum = 0;
+    (d.steps || []).forEach(s => {
+      if (s.section) {
+        if (group.length) { stepsContent += `<div class="steps reveal">${group.join('')}</div>`; group = []; }
+        stepNum = 0;
+        stepsContent += `<div class="step-year-header reveal"><span class="step-year-label">${s.title}</span><span class="step-year-line"></span></div>`;
+        return;
+      }
+      stepNum++;
+      const num = s.tag || String(stepNum).padStart(2, '0');
       const bodyHtml = Array.isArray(s.body)
         ? s.body.map(t => `<p>${t}</p>`).join('')
         : `<p>${s.body}</p>`;
