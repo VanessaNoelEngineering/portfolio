@@ -708,8 +708,9 @@ window.PROJECTS_DATA = [
     purpose: {
       heading: "Why I <em>built this.</em>",
       body: [
-        "Queen's Space Engineering Team (QSET) is a student aerospace team with a rocketry division and a satellite division. I was on the satellite side, running Space School — a program that teaches new members the fundamentals they need to actually contribute: electronics, coding, CAD, embedded systems. About 50 students came through it every year, and it culminated in a real satellite launch.",
-        "After our first launch in 2023, I wanted to bring that experience outside the university. Most people never get anywhere near this kind of hands-on aerospace work. I wrote a grant, was awarded $50K from the Canadian Space Agency, and built a free program for at-risk youth — giving them the same experience my QSET students were getting. The 2024 launch carried both.",
+        "Queen's Space Engineering Team (QSET) is a student aerospace team. I joined a sub-team called Space School in 2023 — the goal was to equip students with the skills they needed to join the larger team: embedded software, circuit design, soldering, and CAD. The lessons were good but heavily guided. Step-by-step, not a lot of room to struggle. I knew there was a better way.",
+        "In 2024 I took over and changed the approach. Students picked problems that interested them, even if I had no idea how to solve them either. We figured it out together. The goal wasn't just to prepare them for the satellite team. It was to teach them how to think, how to problem solve, how to sit with something hard and keep going. Retention increased by over 40%.",
+        "At the same time, I'd been teaching robotics and coding to kids through Connections, Queen's engineering outreach department, since 2021. I saw an opportunity to connect the two. QSET had the aerospace expertise. Connections had the reach. I wrote a grant, secured $50K from the Canadian Space Agency, and built the Connections to Space Program: at-risk youth choosing their own missions, building real hardware, and launching it to the stratosphere.",
       ],
     },
     process: {
