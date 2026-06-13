@@ -716,7 +716,7 @@ window.PROJECTS_DATA = [
       heading: "How I <em>built it.</em>",
       summary: "Two launches, two years, two programs running in parallel.",
       steps: [
-        { section: true, title: "2023" },
+        { type: "year", title: "2023" },
         {
           title: "Satellite design",
           body: "Built around an Arduino Nano Every for its small footprint and low power draw. Logged data locally via SD card — no downlink capability, so reliable storage was critical. Used a BMP180 pressure sensor that technically operated outside its rated range at altitude but was accurate enough given our budget. A precision thermistor let us measure and account for the error.",
@@ -729,7 +729,7 @@ window.PROJECTS_DATA = [
           title: "Launch and data recovery",
           body: "Eggo flew to 48.4km (30.1 miles) — 90 minutes up, 41 minutes down. Collected temperature, pressure, and altitude data across the full flight envelope. All data recovered from SD card post-landing. That launch was the foundation for everything that came after.",
         },
-        { section: true, title: "2024" },
+        { type: "year", title: "2024" },
         {
           title: "Leading the QSET subteam",
           body: "Led 50 students through Space School and into building the second satellite. One student wanted to investigate radon at altitude — an unusual research question that hadn't been explored much at stratospheric heights — so that became her project and made it onto the payload alongside cameras and weather sensors.",
