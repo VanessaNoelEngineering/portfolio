@@ -708,51 +708,35 @@ window.PROJECTS_DATA = [
     purpose: {
       heading: "Why I <em>built this.</em>",
       body: [
-        "As manager of Queen's Space Engineering Team, I led end-to-end development of stratospheric balloon payloads across two launch cycles. The goal was twofold: give QSET design team members real experience with end-to-end satellite development, and generate flight data that could actually inform future missions. These weren't demonstrations — the hardware had to survive real conditions, operate autonomously at altitude, and return usable data.",
-        "But the work gave me something else: direct access to aerospace engineering experience that most people never get. I had a relationship with the Canadian Space Agency through QSET, connections at a local robotics lab, and the technical background to teach it. I didn't want to keep that to myself. So alongside the QSET work, I wrote a $50K grant and built a free satellite program for at-risk youth — the same experience, opened up to kids who wouldn't stumble into it on their own.",
+        "Queen's Space Engineering Team (QSET) is a student aerospace team with a rocketry division and a satellite division. I was on the satellite side, running Space School — a program that teaches new members the fundamentals they need to actually contribute: electronics, coding, CAD, embedded systems. About 50 students came through it every year, and it culminated in a real satellite launch.",
+        "After our first launch in 2023, I wanted to bring that experience outside the university. Most people never get anywhere near this kind of hands-on aerospace work. I wrote a grant, was awarded $50K from the Canadian Space Agency, and built a free program for at-risk youth — giving them the same experience my QSET students were getting. The 2024 launch carried both.",
       ],
     },
     process: {
       heading: "How I <em>built it.</em>",
-      summary:
-        "Two parallel tracks: advancing QSET's launch capability, and building a program to share that capability with at-risk youth.",
+      summary: "Two launches, two years, two programs running in parallel.",
       steps: [
         {
-          title: "QSET satellite design",
-          body: "Designed the payload \"Eggo\" around lightweight, cost-effective components. Arduino Nano Every as core controller — compact, low power. BMP180 for barometric pressure, temperature, and altitude (operated outside its rated range but validated as reasonably accurate for the mission profile). TMP36 and precision thermistor for temperature redundancy. SD card reader for local data logging — no downlink, so reliable storage was critical.",
+          title: "2023 — Eggo",
+          body: "Eggo was our first satellite. The mission was straightforward: get hardware to the stratosphere, collect atmospheric data — temperature, pressure, altitude — and bring it back. We built around an Arduino Nano Every for its small footprint and low power draw, logged data locally via SD card since we had no downlink capability, and used a BMP180 pressure sensor that technically operated outside its rated range at altitude but was accurate enough given our budget. A precision thermistor let us measure and account for the error.\n\nEggo flew to 48.4km (30.1 miles) and came back. That launch was the foundation for everything that came after.",
         },
         {
-          title: "Safety standards and pre-launch validation",
-          body: "Developed a helium transport safety standard for QSET — a formal procedure that satisfied regulatory requirements for moving pressurized gas to the launch site. This hadn't existed before. It streamlined approval for both the 2023 and 2024 launches and established a reusable process for future teams. All sensor harnesses validated end-to-end before enclosure.",
-        },
-        {
-          title: "QSET launch and data recovery",
-          body: "2023 mission: 90-minute ascent, 41-minute descent, peak altitude 48.4km. Temperature range -28°C to +20.7°C; pressure 14.2 to 1007.2 hPa across the full flight envelope. All data recovered from SD card post-landing. Analyzed in Python/Colab and fed into weather prediction modeling to refine the 2024 mission — cost reduced 15% year-over-year through improved trajectory planning and launch timing.",
-        },
-        {
-          title: "Writing the $50K grant",
-          body: "Wrote the proposal that secured $50K from the Canadian Space Agency to fund the at-risk youth program. The grant covered all program costs — components, tools, launch logistics — so participants paid nothing. Making the case meant articulating educational value, partnership structure, and the technical feasibility of putting student-built hardware into the stratosphere.",
-        },
-        {
-          title: "Building the youth program",
-          body: "Established a formal partnership between Connections (Queen's engineering outreach), the CSA, and the Robotics Lab. Designed the curriculum from scratch: embedded systems basics, sensor integration, circuit wiring and soldering, CAD, and satellite structure design — built to work for students with no prior engineering background. Ran the program with participants designing and assembling their own payload systems, owning the technical decisions and learning through iteration.",
-        },
-        {
-          title: "Youth launch",
-          body: "Student-built hardware launched via stratospheric balloon and returned with data. For most participants, it was their first time soldering, reading a datasheet, or seeing their code interact with real hardware — and they got to experience all of that in the context of a real launch. The program established a model for ongoing STEM-space collaboration between QSET and Connections, with future launches planned.",
+          title: "2024 — Two Satellites, One Balloon",
+          body: "The 2024 launch ran two tracks at once. With QSET, I led 50 students through building a second satellite. One student wanted to investigate radon at altitude — an unusual research question that hadn't been explored much at stratospheric heights — so that became her project and made it onto the payload alongside cameras and weather sensors. I also developed a helium transport safety protocol that streamlined our regulatory approval and became the standard for future QSET launches.\n\nIn parallel, I was running the youth program. First half: teaching. Embedded systems, circuit design, how to think about hardware that has to work in conditions it wasn't designed for. All hands-on. Second half: building. The kids chose their own mission, designed their modules, and wired everything themselves. On launch day they showed up with hardware they'd built from scratch.\n\nOne balloon. Two satellites. Both came back.",
         },
       ],
     },
     result: {
       heading: "What I <em>made.</em>",
       body: [
-        "Two successful QSET launches, data recovered from both, and a 15% cost reduction between cycles driven by in-flight data analysis. A helium safety standard that's now a reusable process for future teams. And a free satellite program that gave at-risk youth end-to-end aerospace engineering experience — from their first solder joint to watching their hardware come back from the stratosphere. The most important outcome wasn't any single data point. It was demonstrating that access to this kind of experience doesn't have to be limited to people who happen to join the right university team.",
+        "The 2024 launch established an ongoing partnership between QSET and Connections, with future launches planned. The helium safety protocol is now standard for QSET. The $50K grant covered everything — no cost to participants.",
+        "The most important outcome wasn't the data the satellites collected. It was watching kids who'd never touched a circuit board realize they can build whatever they can imagine.",
       ],
       stats: [
-        { val: "48.4 km", label: "Peak Altitude" },
-        { val: "3", label: "Satellites Launched (QSET + youth program)" },
-        { val: "$50K", label: "Grant Secured" },
-        { val: "15%", label: "Cost Reduction YoY" },
+        { val: "48.4 km", label: "Altitude (30.1 mi)" },
+        { val: "−28 to 20.7°C", label: "Temperature range" },
+        { val: "90 + 41 min", label: "Ascent + descent" },
+        { val: "1007 → 14 hPa", label: "Pressure range" },
       ],
     },
     blocks: [],
