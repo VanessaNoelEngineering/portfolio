@@ -196,11 +196,14 @@ function renderPage() {
     let stepsContent = '';
     let group = [];
     (d.steps || []).forEach((s, i) => {
-      const num = String(i + 1).padStart(2, '0');
+      const num = s.tag || String(i + 1).padStart(2, '0');
+      const bodyHtml = Array.isArray(s.body)
+        ? s.body.map(t => `<p>${t}</p>`).join('')
+        : `<p>${s.body}</p>`;
       group.push(
         `<div class="step">` +
           `<div class="step-num">${num}</div>` +
-          `<div class="step-content"><h3>${s.title}</h3><p>${s.body}</p></div>` +
+          `<div class="step-content"><h3>${s.title}</h3>${bodyHtml}</div>` +
         `</div>`
       );
       if (s.blockAfter) {

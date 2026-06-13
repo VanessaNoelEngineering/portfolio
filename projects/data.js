@@ -717,12 +717,21 @@ window.PROJECTS_DATA = [
       summary: "Two launches, two years, two programs running in parallel.",
       steps: [
         {
-          title: "2023 — Eggo",
-          body: "Eggo was our first satellite. The mission was straightforward: get hardware to the stratosphere, collect atmospheric data — temperature, pressure, altitude — and bring it back. We built around an Arduino Nano Every for its small footprint and low power draw, logged data locally via SD card since we had no downlink capability, and used a BMP180 pressure sensor that technically operated outside its rated range at altitude but was accurate enough given our budget. A precision thermistor let us measure and account for the error.\n\nEggo flew to 48.4km (30.1 miles) and came back. That launch was the foundation for everything that came after.",
+          tag: "2023",
+          title: "Eggo",
+          body: [
+            "Eggo was our first satellite. The mission was straightforward: get hardware to the stratosphere, collect atmospheric data — temperature, pressure, altitude — and bring it back. We built around an Arduino Nano Every for its small footprint and low power draw, logged data locally via SD card since we had no downlink capability, and used a BMP180 pressure sensor that technically operated outside its rated range at altitude but was accurate enough given our budget. A precision thermistor let us measure and account for the error.",
+            "Eggo flew to 48.4km (30.1 miles) and came back. That launch was the foundation for everything that came after.",
+          ],
         },
         {
-          title: "2024 — Two Satellites, One Balloon",
-          body: "The 2024 launch ran two tracks at once. With QSET, I led 50 students through building a second satellite. One student wanted to investigate radon at altitude — an unusual research question that hadn't been explored much at stratospheric heights — so that became her project and made it onto the payload alongside cameras and weather sensors. I also developed a helium transport safety protocol that streamlined our regulatory approval and became the standard for future QSET launches.\n\nIn parallel, I was running the youth program. First half: teaching. Embedded systems, circuit design, how to think about hardware that has to work in conditions it wasn't designed for. All hands-on. Second half: building. The kids chose their own mission, designed their modules, and wired everything themselves. On launch day they showed up with hardware they'd built from scratch.\n\nOne balloon. Two satellites. Both came back.",
+          tag: "2024",
+          title: "Two Satellites, One Balloon",
+          body: [
+            "The 2024 launch ran two tracks at once. With QSET, I led 50 students through building a second satellite. One student wanted to investigate radon at altitude — an unusual research question that hadn't been explored much at stratospheric heights — so that became her project and made it onto the payload alongside cameras and weather sensors. I also developed a helium transport safety protocol that streamlined our regulatory approval and became the standard for future QSET launches.",
+            "In parallel, I was running the youth program. First half: teaching. Embedded systems, circuit design, how to think about hardware that has to work in conditions it wasn't designed for. All hands-on. Second half: building. The kids chose their own mission, designed their modules, and wired everything themselves. On launch day they showed up with hardware they'd built from scratch.",
+            "One balloon. Two satellites. Both came back.",
+          ],
         },
       ],
     },
