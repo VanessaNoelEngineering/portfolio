@@ -719,11 +719,11 @@ window.PROJECTS_DATA = [
       steps: [
         { type: "year", title: "2023" },
         {
-          title: "Sensor selection",
+          title: "Satellite Design",
           body: "The stratosphere sits well outside the rated operating range of most consumer sensors. I wanted to see how they'd hold up and whether the data would still be usable. I used a pressure sensor knowing it would be operating outside spec, and paired it with a precision thermistor so we could quantify the error.",
         },
         {
-          title: "Reliability",
+          title: "Validation",
           body: "We had one shot. No downlink, no second chance. If the SD card failed, the code crashed, or the Nano powered off in the cold, we'd come back with nothing. I validated the sensor harness end-to-end, stress-tested the data logging across the full expected temperature range, and made sure we weren't going to run out of storage mid-flight.",
         },
         {
