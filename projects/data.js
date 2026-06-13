@@ -191,7 +191,7 @@ window.PROJECTS_DATA = [
 
   {
     id: "csa-outreach",
-    published: true,
+    published: false,
     type: "both",
     tabs: ["led", "launched"],
     title: "Free Satellite Launching Program for At-Risk Youth",
@@ -600,7 +600,7 @@ window.PROJECTS_DATA = [
         { val: "1", label: "Program built from scratch" },
         { val: "6+", label: "Projects designed and taught" },
         { val: "1000s", label: "Students reached" },
-        { val: "$50K", label: "Grant funding secured" },
+        { val: "$50K", label: "CSA Grant (see Satellite Launches)" },
       ],
     },
     blocks: [],
@@ -681,16 +681,16 @@ window.PROJECTS_DATA = [
   {
     id: "qset-launches",
     published: true,
-    type: "hw",
-    tabs: ["built", "led"],
-    title: "Stratospheric Satellite Launches",
+    type: "both",
+    tabs: ["built", "led", "launched"],
+    title: "Satellite Launches & Space Outreach",
     emoji: "🛰️",
     thumbnail:
       "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1776392473/satellite-thumbnail-no-background_ur8htb.png",
-    label: "Led · Hardware · Aerospace",
-    desc: "Two real satellite launches to the stratosphere — 48.4km altitude, multi-cycle missions, data feeding future launches.",
+    label: "Led · Hardware · Aerospace · Community",
+    desc: "Two QSET stratospheric launches to 48.4km — and a $50K CSA-funded program that put at-risk youth through the same experience.",
     previewDesc:
-      "As manager of Queen's Space Engineering Team, I led end-to-end development of stratospheric payloads across two launch cycles, from structural design and component selection through sensor integration, system validation, and post-flight data analysis.\n\nThe satellite \"Eggo\" flew to 48.4km, surviving temperatures from -28°C to +20.7°C over a 90-minute ascent, collecting pressure, temperature, and altitude data that directly informed the following year's mission. I used in-flight data and weather modeling to optimize future launches, reducing mission costs 15% year-over-year.\n\nI also developed a helium transport safety standard that streamlined regulatory approval for QSET's launches — reducing preparation delays and setting a reusable process for future teams.",
+      "As manager of QSET, I led two stratospheric balloon launches to 48.4km — designing hardware, developing safety standards, and reducing mission costs 15% year-over-year through data-driven planning.\n\nThe same work gave me a platform to do something else. I secured a $50K CSA grant and built a free satellite program for at-risk youth from scratch — teaching embedded systems, circuit design, and launch operations to kids who'd never touched a circuit board, then launching their satellite to the stratosphere and watching them get their data back.",
     tags: [
       "Embedded Systems",
       "Arduino",
@@ -698,54 +698,61 @@ window.PROJECTS_DATA = [
       "Sensor Integration",
       "Mission Planning",
       "Data Analysis",
+      "Grant Writing",
+      "Program Design",
+      "CSA Partnership",
     ],
     url: "projects/qset-launches.html",
 
-    heroTitle: "Stratospheric Satellite <em>Launches.</em>",
+    heroTitle: "Satellite Launches & <em>Outreach.</em>",
     purpose: {
       heading: "Why I <em>built this.</em>",
       body: [
-        "As manager of Queen's Space Engineering Team, I led the development of stratospheric balloon payloads across two launch cycles. The goal was twofold: give QSET design team members real experience with end-to-end satellite development, and generate flight data that could actually inform future missions.",
-        'These weren\'t demonstrations. The hardware had to survive launch conditions, operate autonomously at altitude, and return usable data. The satellite nicknamed "Eggo" flew to 48.4km — well into the stratosphere — where temperatures swing from +20.7°C at launch to -28°C at peak altitude, and pressure drops to near nothing.',
+        "As manager of Queen's Space Engineering Team, I led end-to-end development of stratospheric balloon payloads across two launch cycles. The goal was twofold: give QSET design team members real experience with end-to-end satellite development, and generate flight data that could actually inform future missions. These weren't demonstrations — the hardware had to survive real conditions, operate autonomously at altitude, and return usable data.",
+        "But the work gave me something else: direct access to aerospace engineering experience that most people never get. I had a relationship with the Canadian Space Agency through QSET, connections at a local robotics lab, and the technical background to teach it. I didn't want to keep that to myself. So alongside the QSET work, I wrote a $50K grant and built a free satellite program for at-risk youth — the same experience, opened up to kids who wouldn't stumble into it on their own.",
       ],
     },
     process: {
       heading: "How I <em>built it.</em>",
       summary:
-        "Full mission lifecycle, twice — design, build, validate, launch, analyze, improve.",
+        "Two parallel tracks: advancing QSET's launch capability, and building a program to share that capability with at-risk youth.",
       steps: [
         {
-          title: "System design and component selection",
-          body: "Chose components for reliability and cost-effectiveness within the team's constraints. Arduino Nano Every as core controller — compact, low power. BMP180 for barometric pressure, temperature, and altitude (operated outside its rated range but validated as reasonably accurate for the mission profile). TMP36 and precision thermistor for temperature redundancy. SD card reader for local data logging — no downlink capability, so reliable storage was critical.",
+          title: "QSET satellite design",
+          body: "Designed the payload \"Eggo\" around lightweight, cost-effective components. Arduino Nano Every as core controller — compact, low power. BMP180 for barometric pressure, temperature, and altitude (operated outside its rated range but validated as reasonably accurate for the mission profile). TMP36 and precision thermistor for temperature redundancy. SD card reader for local data logging — no downlink, so reliable storage was critical.",
         },
         {
-          title: "Build and integration",
-          body: "Assembled and integrated all systems into the payload structure. Wired sensor harnesses, validated all connections, confirmed data logging was functioning correctly before enclosure. Structural design prioritized lightweight materials and survivability through the balloon burst and descent.",
+          title: "Safety standards and pre-launch validation",
+          body: "Developed a helium transport safety standard for QSET — a formal procedure that satisfied regulatory requirements for moving pressurized gas to the launch site. This hadn't existed before. It streamlined approval for both the 2023 and 2024 launches and established a reusable process for future teams. All sensor harnesses validated end-to-end before enclosure.",
         },
         {
-          title: "Pre-launch validation and safety protocols",
-          body: "Developed a helium transport safety standard for QSET — a formal procedure that satisfied regulatory requirements for moving pressurized gas to the launch site. This hadn't existed before. It streamlined approval for the 2024 launch and established a reusable process for future teams.",
+          title: "QSET launch and data recovery",
+          body: "2023 mission: 90-minute ascent, 41-minute descent, peak altitude 48.4km. Temperature range -28°C to +20.7°C; pressure 14.2 to 1007.2 hPa across the full flight envelope. All data recovered from SD card post-landing. Analyzed in Python/Colab and fed into weather prediction modeling to refine the 2024 mission — cost reduced 15% year-over-year through improved trajectory planning and launch timing.",
         },
         {
-          title: "Launch and flight",
-          body: "2023 mission: 90-minute ascent, 41-minute descent, peak altitude 48.4km. Payload collected temperature, pressure, and altitude data across the full flight envelope. All data recovered successfully from SD card post-landing.",
+          title: "Writing the $50K grant",
+          body: "Wrote the proposal that secured $50K from the Canadian Space Agency to fund the at-risk youth program. The grant covered all program costs — components, tools, launch logistics — so participants paid nothing. Making the case meant articulating educational value, partnership structure, and the technical feasibility of putting student-built hardware into the stratosphere.",
         },
         {
-          title: "Data analysis and mission improvement",
-          body: "Analyzed flight data in Python/Colab — temperature range -28°C to +20.7°C, pressure 14.2 to 1007.2 hPa. Used data alongside weather prediction modeling to refine the 2024 mission plan. Cost reduced 15% year-over-year through improved trajectory modeling and launch timing decisions.",
+          title: "Building the youth program",
+          body: "Established a formal partnership between Connections (Queen's engineering outreach), the CSA, and the Robotics Lab. Designed the curriculum from scratch: embedded systems basics, sensor integration, circuit wiring and soldering, CAD, and satellite structure design — built to work for students with no prior engineering background. Ran the program with participants designing and assembling their own payload systems, owning the technical decisions and learning through iteration.",
+        },
+        {
+          title: "Youth launch",
+          body: "Student-built hardware launched via stratospheric balloon and returned with data. For most participants, it was their first time soldering, reading a datasheet, or seeing their code interact with real hardware — and they got to experience all of that in the context of a real launch. The program established a model for ongoing STEM-space collaboration between QSET and Connections, with future launches planned.",
         },
       ],
     },
     result: {
       heading: "What I <em>made.</em>",
       body: [
-        "Two successful launches, data recovered from both, and a 15% cost reduction between cycles. The helium safety standard created for this program has since been adopted as a reusable process for future QSET launches. The 2024 mission also incorporated an on-board camera, adding visual documentation to the sensor data. The data from both flights is publicly available.",
+        "Two successful QSET launches, data recovered from both, and a 15% cost reduction between cycles driven by in-flight data analysis. A helium safety standard that's now a reusable process for future teams. And a free satellite program that gave at-risk youth end-to-end aerospace engineering experience — from their first solder joint to watching their hardware come back from the stratosphere. The most important outcome wasn't any single data point. It was demonstrating that access to this kind of experience doesn't have to be limited to people who happen to join the right university team.",
       ],
       stats: [
         { val: "48.4 km", label: "Peak Altitude" },
-        { val: "2", label: "Successful Launches" },
+        { val: "3", label: "Satellites Launched (QSET + youth program)" },
+        { val: "$50K", label: "Grant Secured" },
         { val: "15%", label: "Cost Reduction YoY" },
-        { val: "90 min", label: "Ascent Duration" },
       ],
     },
     blocks: [],
