@@ -407,7 +407,7 @@ window.PROJECTS_DATA = [
         {
           title: "Breadboard Prototype - Control Unit",
           body: "Added potentiometers to the breadboard to control intensity, duration, and pause between pulses in real time. Tested the full system end-to-end, confirming adjustments reflected immediately in both tapper units. Simple interface, but enough to validate that the configurability worked before committing to a PCB.",
-          blockAfter: { type: "video", url: "https://www.youtube.com/embed/77ge4Z0GrW0", portrait: true },
+          blockAfter: { type: "video", url: "https://www.youtube.com/embed/77ge4Z0GrW0", portrait: true, autoplay: true },
         },
         {
           title: "PCB Design (In-progress)",
