@@ -396,23 +396,23 @@ window.PROJECTS_DATA = [
         "Validated the core tapper experience on breadboard first; PCB and enclosure in progress.",
       steps: [
         {
-          title: "Defining the spec",
-          body: "Commercial tappers offer vibration, LED light bars, and audio tones — all configurable in intensity and frequency. The goal was to match that feature set at a fraction of the cost, using components anyone can source and assemble. Researched existing open-source EMDR projects to understand the gaps, then defined a target spec: bilateral vibration motors, RGB LEDs, configurable timing, sub-$50 BOM.",
+          title: "Defining the Features",
+          body: "Traditional tappers include vibration and light stimulation. The goal was to match that full feature set with a BOM under $50. The vibration intensity, duration, and pause between bilateral pulses all needed to be adjustable to fit each user's needs.",
         },
         {
-          title: "Breadboard prototype: tapper units",
-          body: "Built the tapper units on breadboard — two handheld controllers, each with a vibration motor and LED, driven by a microcontroller. Tested the bilateral timing loop: motor and LED fire on one side, pause, fire on the other. Core functionality validated. The haptic feedback was the critical test — the sensation needs to feel distinct and rhythmic, not just vibration.",
+          title: "Breadboard Prototype - Tapper Units",
+          body: "Built two handheld tapper units on breadboard, each with a vibration motor and LED. The core test was the bilateral timing loop: one side fires, pauses, then the other fires. This required the tapper enclosures to be designed and 3D printed to properly test the haptic feedback.",
         },
         {
-          title: "Breadboard prototype: control unit",
-          body: "Built the control unit: interface for setting frequency, intensity, and mode. Tested the full system end-to-end — control signals passing reliably to both tapper units, adjustments reflected in real time.",
+          title: "Breadboard Prototype - Control Unit",
+          body: "Added potentiometers to the breadboard to control intensity, duration, and pause between pulses in real time. Tested the full system end-to-end, confirming adjustments reflected immediately in both tapper units. Simple interface, but enough to validate that the configurability worked before committing to a PCB.",
         },
         {
-          title: "PCB design (in progress)",
+          title: "PCB Design (In-progress)",
           body: "Moving off breadboard onto a custom PCB to make the design reproducible and compact. The breadboard version proved the circuit; the PCB makes it something someone else can actually build.",
         },
         {
-          title: "Enclosure design (in progress)",
+          title: "Enclosure Design (In-progress)",
           body: "Designing the physical enclosure for both the tapper units and the control box. Needs to be comfortable to hold, durable enough for regular use, and simple enough to 3D print at home.",
         },
       ],
