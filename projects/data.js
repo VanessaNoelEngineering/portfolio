@@ -272,7 +272,7 @@ window.PROJECTS_DATA = [
     label: "Hardware · Robotics",
     desc: "A robotic lotus that opens to your touch — capacitive sensing driving servo actuation, built to feel alive.",
     previewDesc:
-      "A mechanical lotus that opens, lights up, and closes on touch. The trigger is a capacitive sensor, made from a spoon. The hard part wasn't the electronics, it was making the motion feel organic. Getting the mechanism right so it unfolds slowly and naturally, took iteration on both the CAD and the code.",
+      "A mechanical lotus that opens and lights up when touched. The trigger is a capacitive sensor, made from a spoon. The hard part wasn't the electronics, it was making the motion feel organic. Getting the mechanism right so it unfolds slowly and naturally, took iteration on the design and controls.",
     tags: [
       "Arduino",
       "C++",
