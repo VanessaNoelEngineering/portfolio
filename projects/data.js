@@ -293,24 +293,19 @@ window.PROJECTS_DATA = [
     },
     process: {
       heading: "How I <em>built it.</em>",
-      summary:
-        "Sensor first, then mechanics, then the long work of making the motion feel right.",
+      summary: "I started with the circuit design then refined the mechanism.",
       steps: [
         {
-          title: "DIY capacitive touch sensor",
-          body: "Rather than using an off-the-shelf touch module, I built a capacitive touch sensor from a spoon and a resistor — wired directly to an Arduino Uno analog pin. The spoon acts as the sensing electrode; when a hand gets close, the capacitance changes enough to trigger the input. Cheap, effective, and a good lesson in how touch sensing actually works at the circuit level.",
+          title: "Circuit Design",
+          body: "A capacitive sensor activates an LED and triggers the servo. First touch: the flower opens and the center lights up. Second touch: it closes and the LED turns off.",
         },
         {
-          title: "Servo and LED circuit",
-          body: "A single servo motor drives the petal opening mechanism. First touch: servo rotates, petals open, LED turns on. Second touch: reverse. The circuit was tested and validated before any mechanical assembly — catching a wiring issue with the LED early that would have been much harder to debug inside the assembled flower.",
+          title: "CAD and Mechanism",
+          body: "The petals attach to the center via string. As the servo rotates, the string pulls the petals inward to close the flower - releasing the tension opens the flower.",
         },
         {
-          title: "CAD and petal linkage",
-          body: "All inner structural components were modeled and printed from scratch. The outer petal profile came from an existing file, but the stem, inner flower housing, and LED mount were original. Getting the linkage geometry right — so the petals open smoothly rather than snapping — took several print-and-test iterations, adjusting the pivot point positions each time.",
-        },
-        {
-          title: "Assembly and tuning",
-          body: "Once all parts fit, the circuit was soldered (fixing the LED issue found in step 02), the servo was calibrated to the correct rotation range, and the capacitive threshold was tuned so the sensor responded reliably to a nearby hand without false triggers.",
+          title: "Motion",
+          body: "The speed, acceleration profile, and torque were all tuned until the movement felt fluid. Tensioners on the center let me dial in the tension to give the petals a more natural feel.",
         },
       ],
     },
