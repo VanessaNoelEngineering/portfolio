@@ -793,10 +793,18 @@ window.PROJECTS_DATA = [
         {
           title: "Logistics & Approvals",
           body: "There was no procedure for transporting pressurized helium to the launch site, which meant no clear path to regulatory approval. I wrote one from scratch. It satisfied the school's requirements, unblocked the launch, and became the standard for every QSET launch after it.",
+          blockAfter: {
+            type: "image",
+            url: "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781456506/helium-transport-safe_wvmstl.png",
+          },
         },
         {
           title: "Building the Hardware",
           body: "Students in both groups picked what excited them, designed their modules, and wired everything themselves. Missions ranged widely — one student wanted to measure radon at different altitudes, another set up cameras to capture images during the ascent.",
+          blockAfter: {
+            type: "image",
+            url: "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781456791/connections-proto-to-solder_pvszri.png",
+          },
         },
         {
           title: "Launch Day",
@@ -804,6 +812,10 @@ window.PROJECTS_DATA = [
             "Launch windows are weather-dependent. Wind speed, direction, and upper atmosphere conditions all determine whether you can go that day. Once we got the green light, we were up before dawn — transporting the helium, filling the balloon on-site. Both satellites went up on the same balloon.",
             "Then we waited, and drove. The payload had a GPS tracker and for about two hours we followed it across the map, watching altitude climb in real time. When it burst and started descending we figured out where it was going to land and drove to meet it. We found it in a field, still intact.",
           ],
+          blockAfter: {
+            type: "image",
+            url: "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781457476/connections-launch-day_rxhfnx.png",
+          },
         },
       ],
     },
