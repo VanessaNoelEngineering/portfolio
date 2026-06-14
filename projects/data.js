@@ -729,6 +729,10 @@ window.PROJECTS_DATA = [
         {
           title: "The Launch",
           body: "This was our first time doing this. Finding a launch site meant scouting locations clear enough of trees, power lines, and structures nothing would pop the balloon on its way up. Filling a weather balloon with the right amount of helium is a balance. Underfilling meant it wouldn't reach altitude, overfilling meant it would burst too early.",
+          blockAfter: {
+            type: "image",
+            url: "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781456241/eggo-launch_bggjep.png",
+          },
         },
         {
           title: "The Data",
