@@ -754,11 +754,10 @@ window.PROJECTS_DATA = [
         "I created a program that gave at-risk youth a real aerospace engineering experience. I built a partnership between a student engineering team and a university outreach department that is still intact today, years later. And I wrote a safety protocol that enabled future launches.",
       ],
       stats: [
-        { val: "75", label: "Students" },
         { val: "2", label: "Launches" },
+        { val: "75", label: "Students" },
         { val: "↑40%", label: "Retention" },
         { val: "↓15%", label: "Mission Costs" },
-        { val: "30 mi (48km)", label: "Altitude" },
       ],
     },
     blocks: [],
