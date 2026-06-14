@@ -755,14 +755,14 @@ window.PROJECTS_DATA = [
     result: {
       heading: "What I <em>made.</em>",
       body: [
-        "The 2024 launch established an ongoing partnership between QSET and Connections, with future launches planned. The helium safety protocol is now standard for QSET. The $50K grant covered everything — no cost to participants.",
-        "The most important outcome wasn't the data the satellites collected. It was watching kids who'd never touched a circuit board realize they can build whatever they can imagine.",
+        "I created a program that gave at-risk youth a real aerospace engineering experience. I built a partnership between a student engineering team and a university outreach department that is still intact today, years later. And I wrote a safety protocol that enabled future launches.",
       ],
       stats: [
-        { val: "48.4 km", label: "Altitude (30.1 mi)" },
-        { val: "−28 to 20.7°C", label: "Temperature range" },
-        { val: "90 + 41 min", label: "Ascent + descent" },
-        { val: "1007 → 14 hPa", label: "Pressure range" },
+        { val: "75", label: "Students" },
+        { val: "2", label: "Launches" },
+        { val: "↑40%", label: "Retention" },
+        { val: "↓15%", label: "Mission Costs" },
+        { val: "30 mi (48km)", label: "Altitude" },
       ],
     },
     blocks: [],
