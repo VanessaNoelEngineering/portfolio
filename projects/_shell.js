@@ -82,9 +82,9 @@ const BLOCK_RENDERERS = {
     const heading = b.heading ? `<h2 class="section-title reveal">${b.heading}</h2>` : '';
     const { url, allow } = videoSrc(b);
     if (b.portrait) {
-      return `${label}${heading}<div class="reveal" style="display:flex;justify-content:center;margin:2rem 0;"><div style="position:relative;width:100%;max-width:360px;aspect-ratio:9/16;border-radius:8px;overflow:hidden;background:#000;"><iframe src="${url}" title="Project demo" allow="${allow}" allowfullscreen loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;border:none;"></iframe></div></div>`;
+      return `${label}${heading}<div class="reveal" style="display:flex;justify-content:center;margin:2rem 0;"><div style="position:relative;width:100%;max-width:360px;aspect-ratio:9/16;border-radius:8px;overflow:hidden;background:#000;"><iframe src="${url}" title="Project demo" allow="${allow}" allowfullscreen muted loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;border:none;"></iframe></div></div>`;
     }
-    return `${label}${heading}<div class="video-wrap reveal"><iframe src="${url}" title="Project demo" allow="${allow}" allowfullscreen loading="lazy"></iframe></div>`;
+    return `${label}${heading}<div class="video-wrap reveal"><iframe src="${url}" title="Project demo" allow="${allow}" allowfullscreen muted loading="lazy"></iframe></div>`;
   },
 
   gallery: b => {

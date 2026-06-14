@@ -332,13 +332,27 @@ window.PROJECTS_DATA = [
     },
     result: {
       heading: "What I <em>made.</em>",
-      body: [
-        "A fully functional robotic lotus that opens and closes in response to human touch. The motion is slow and deliberate — more flower than machine. The DIY capacitive sensor proved reliable across repeated use, and the overall build cost was minimal. The most valuable outcome was the iteration on the linkage: learning how small changes in pivot geometry change the feel of motion entirely.",
-      ],
-      stats: [
-        { val: "1", label: "Sensor (DIY, no module)" },
-        { val: "2", label: "Touch States" },
-        { val: "4", label: "Linkage Iterations" },
+      blocks: [
+        {
+          type: "video",
+          url: "https://www.youtube.com/embed/FKMpCWM2qtU",
+          autoplay: true,
+          mute: true,
+          portrait: true,
+        },
+        {
+          type: "gallery",
+          layout: "collage",
+          images: [
+            "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781462041/IMG_1202_abi2e1.jpg",
+            "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781462037/IMG_1210_ai73kb.jpg",
+            "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781462040/IMG_1211_oelmfi.jpg",
+            "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781462039/IMG_1216_gpfwkm.jpg",
+            "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781462041/IMG_1213_nhfqh7.jpg",
+            "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781462040/IMG_1271_1_tbpzd4.jpg",
+            "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781462034/IMG_1283_px34q7.jpg",
+          ],
+        },
       ],
     },
     blocks: [],
