@@ -369,7 +369,7 @@ window.PROJECTS_DATA = [
     thumbnail:
       "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1776611532/happy-tappy-thumbnail_tzkunz.png",
     label: "Hardware · Open Source · Community",
-    desc: "Open-source EMDR tappers — therapeutic hardware that costs $500 commercially. This version costs under $50.",
+    desc: "Open-source EMDR tappers. These therapeutic devices are typically sold for $500, mine has a target BOM of $50.",
     previewDesc:
       "EMDR (Eye Movement Desensitization and Reprocessing) tappers deliver bilateral stimulation — alternating vibration, light, or sound — used in trauma therapy. Commercial devices are hundreds of dollars, which puts them out of reach for a lot of people who could benefit.\n\nHappy Tappy is an open-source alternative: configurable vibration, light, and audio feedback with adjustable intensity, frequency, and color. Built from readily available components, target BOM under $50. The tapper units are breadboarded and validated. PCB design and enclosure are in progress. The goal is something anyone can build, modify, improve, and share.",
     tags: [
