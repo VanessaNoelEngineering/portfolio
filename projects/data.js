@@ -727,6 +727,10 @@ window.PROJECTS_DATA = [
           body: "We had one shot. No downlink, no second chance. If the SD card failed, the code crashed, or the Nano powered off in the cold, we'd come back with nothing. I validated the sensor harness end-to-end, stress-tested the data logging across the full expected temperature range, and made sure we weren't going to run out of storage mid-flight.",
         },
         {
+          title: "The Launch",
+          body: "This was our first time doing this. Finding a launch site meant scouting locations clear enough of trees, power lines, and structures nothing would pop the balloon on its way up. Filling a weather balloon with the right amount of helium is a balance. Underfilling meant it wouldn't reach altitude, overfilling meant it would burst too early.",
+        },
+        {
           title: "The Data",
           body: "Eggo flew to 48.4km (30.1 miles); 90 minutes up, 41 minutes down. Temperature ranged from -28 to 20.7°C, pressure from 1007 to 14 hPa.",
           blockAfter: {
