@@ -42,6 +42,22 @@ function imageZone(images, layout, size) {
   return `<div class="img-placeholder reveal"><span class="ph-icon">🖼</span>Add your image here</div>`;
 }
 
+/* ── SCRIPT EXECUTOR ─────────────────────────────────────────────
+   Re-executes <script> tags injected via innerHTML (they don't run
+   automatically). Used after any innerHTML assignment that may
+   contain an html block with embedded scripts.
+──────────────────────────────────────────────────────────────── */
+function executeScripts(el) {
+  el.querySelectorAll('script').forEach(function(old) {
+    var s = document.createElement('script');
+    Array.prototype.slice.call(old.attributes).forEach(function(a) {
+      s.setAttribute(a.name, a.value);
+    });
+    s.textContent = old.textContent;
+    old.parentNode.replaceChild(s, old);
+  });
+}
+
 /* ── BLOCK RENDERERS ─────────────────────────────────────────────
    Each receives the block data object and returns an HTML string.
 ──────────────────────────────────────────────────────────────── */
@@ -99,6 +115,8 @@ const BLOCK_RENDERERS = {
       (b.caption ? `<figcaption>${b.caption}</figcaption>` : '') +
     `</figure>`;
   },
+
+  html: b => b.content || '',
 
   split: b => {
     function sideAlign(s) {
@@ -228,6 +246,7 @@ function renderPage() {
       stepsContent +
       imageZone(d.images, 'grid', d.imageSize) +
       renderBlocks(d.blocks);
+    executeScripts(processEl);
   }
 
   /* — Result — */
