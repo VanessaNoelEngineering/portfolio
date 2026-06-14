@@ -688,19 +688,15 @@ window.PROJECTS_DATA = [
     thumbnail:
       "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1776392473/satellite-thumbnail-no-background_ur8htb.png",
     label: "Led · Hardware · Aerospace · Community",
-    desc: "Two QSET stratospheric launches to 48.4km — and a $50K CSA-funded program that put at-risk youth through the same experience.",
+    desc: "Launched 2 satellites, taught 75 students how to do the same, and raised $50K to bring the same experience to at-risk youth, for free.",
     previewDesc:
       "As manager of QSET, I led two stratospheric balloon launches to 48.4km — designing hardware, developing safety standards, and reducing mission costs 15% year-over-year through data-driven planning.\n\nThe same work gave me a platform to do something else. I secured a $50K CSA grant and built a free satellite program for at-risk youth from scratch — teaching embedded systems, circuit design, and launch operations to kids who'd never touched a circuit board, then launching their satellite to the stratosphere and watching them get their data back.",
     tags: [
       "Embedded Systems",
-      "Arduino",
       "C++",
-      "Sensor Integration",
       "Mission Planning",
       "Data Analysis",
       "Grant Writing",
-      "Program Design",
-      "CSA Partnership",
     ],
     url: "projects/qset-launches.html",
 
