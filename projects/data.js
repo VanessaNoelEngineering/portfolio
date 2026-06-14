@@ -579,13 +579,12 @@ window.PROJECTS_DATA = [
     },
     result: {
       heading: "What I <em>made.</em>",
-      body: [
-        "Three finished props, each one the product of a different process path. The Deku Mask's multi-stage finishing taught the most — understanding how Bondo, clay, and paint interact as a system rather than as separate steps is a skill that transfers directly to any multi-material surface work. The Chicken is the most structurally interesting. Majora's Mask is the most visually striking.",
-      ],
-      stats: [
-        { val: "3", label: "Props Built" },
-        { val: "3", label: "Distinct Finishing Processes" },
-        { val: "1", label: "From-scratch Geometry (Chicken)" },
+      blocks: [
+        { type: "gallery", layout: "collage", images: [
+          "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781466738/majoras-mask-final_vpulu8.png",
+          "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781466780/deku-mask-final_zop8n4.png",
+          "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781466880/minecraft-chicken-final_bx8egu.png",
+        ]},
       ],
     },
     blocks: [],
