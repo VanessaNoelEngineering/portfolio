@@ -402,10 +402,12 @@ window.PROJECTS_DATA = [
         {
           title: "Breadboard Prototype - Tapper Units",
           body: "Built two handheld tapper units on breadboard, each with a vibration motor and LED. The core test was the bilateral timing loop: one side fires, pauses, then the other fires. This required the tapper enclosures to be designed and 3D printed to properly test the haptic feedback.",
+          blockAfter: { type: "image", url: "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781464149/IMG_0700_nv2kqs.jpg" },
         },
         {
           title: "Breadboard Prototype - Control Unit",
           body: "Added potentiometers to the breadboard to control intensity, duration, and pause between pulses in real time. Tested the full system end-to-end, confirming adjustments reflected immediately in both tapper units. Simple interface, but enough to validate that the configurability worked before committing to a PCB.",
+          blockAfter: { type: "video", url: "https://www.youtube.com/embed/77ge4Z0GrW0", portrait: true },
         },
         {
           title: "PCB Design (In-progress)",
@@ -414,6 +416,7 @@ window.PROJECTS_DATA = [
         {
           title: "Enclosure Design (In-progress)",
           body: "Designing the physical enclosure for both the tapper units and the control box. Needs to be comfortable to hold, durable enough for regular use, and simple enough to 3D print at home.",
+          blockAfter: { type: "image", url: "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781464083/IMG_0707_uzuaid.jpg" },
         },
       ],
     },
