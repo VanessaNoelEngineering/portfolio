@@ -298,14 +298,35 @@ window.PROJECTS_DATA = [
         {
           title: "Circuit Design",
           body: "A capacitive sensor activates an LED and triggers the servo. First touch: the flower opens and the center lights up. Second touch: it closes and the LED turns off.",
+          blockAfter: {
+            type: "video",
+            url: "https://www.youtube.com/embed/MjCLjo2a0is",
+            autoplay: true,
+            mute: true,
+            portrait: true,
+          },
         },
         {
           title: "CAD and Mechanism",
           body: "The petals attach to the center via string. As the servo rotates, the string pulls the petals inward to close the flower - releasing the tension opens the flower.",
+          blockAfter: {
+            type: "video",
+            url: "https://www.youtube.com/embed/7-owcD9T7bw",
+            autoplay: true,
+            mute: true,
+            portrait: true,
+          },
         },
         {
           title: "Motion",
           body: "The speed, acceleration profile, and torque were all tuned until the movement felt fluid. Tensioners on the center let me dial in the tension to give the petals a more natural feel.",
+          blockAfter: {
+            type: "video",
+            url: "https://www.youtube.com/embed/VV4vQyzlydE",
+            autoplay: true,
+            mute: true,
+            portrait: true,
+          },
         },
       ],
     },
