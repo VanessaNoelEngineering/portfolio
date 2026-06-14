@@ -385,9 +385,9 @@ window.PROJECTS_DATA = [
     purpose: {
       heading: "Why I <em>built this.</em>",
       body: [
-        "EMDR (Eye Movement Desensitization and Reprocessing) is a trauma therapy technique that uses bilateral stimulation — alternating sensory input on the left and right sides of the body — to help process difficult memories. Tappers are the hardware that delivers this stimulation: small handheld devices that vibrate alternately, sometimes paired with light or audio cues.",
-        "Commercial EMDR tappers cost hundreds of dollars. That price isn't justified by the electronics inside — it's a market access problem, not a complexity problem. A close friend benefited significantly from EMDR therapy, and watching the cost of the equipment be a barrier for other people made this project feel necessary.",
-        "Happy Tappy is an open-source alternative: full bilateral vibration, configurable light and audio feedback, adjustable intensity and frequency, target BOM under $50. Everything documented, everything modifiable, everything shareable.",
+        "EMDR is a trauma therapy technique that uses bilateral stimulation, alternating sensory input on each side of the body, to help process difficult memories. Tappers are the handheld devices that deliver it.",
+        "Commercial tappers cost hundreds of dollars. That price isn't justified by the electronics inside and makes these devices inaccessible to many who could benefit. A close friend benefited significantly from EMDR therapy, and I want to make sure anyone who needs this can get it.",
+        "Happy Tappy is the open-source alternative. Full bilateral vibration, configurable light and audio, adjustable intensity and frequency. Everything documented, everything modifiable. Target BOM: $50, buildable with tools found in any makerspace.",
       ],
     },
     process: {
