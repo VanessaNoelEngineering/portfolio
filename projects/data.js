@@ -514,7 +514,7 @@ window.PROJECTS_DATA = [
     thumbnail:
       "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1776541582/Untitled_design_1_f2sfld.png",
     label: "Hardware · Fabrication",
-    desc: "Majora's Mask, the Deku Mask, and a life-sized Minecraft Chicken — built for fun, finished like they mean it.",
+    desc: "Recreating props from games I love.",
     previewDesc:
       "Three very different objects, one shared discipline: getting from a digital model to a physical thing that looks right.\n\nMajora's Mask exceeded my printer's build volume, so I split it into registered parts, printed separately, and joined them. Painted from scratch.\n\nThe Deku Mask went further — 3D printed base, Bondo applied and sanded, thin clay layer hand-sculpted to restore organic surface detail lost in the print, then painted. Each stage of finishing directly affects the next, so the process has to be planned as a whole, not step by step.\n\nThe Minecraft Chicken is a study in translating voxel geometry — a deliberately blocky digital asset — into a printable object with actual surfaces and structural integrity. Life-sized. All files modeled from scratch.",
     tags: ["CAD", "3D Printing", "Surface Finishing", "Multi-part Assembly"],
@@ -524,8 +524,7 @@ window.PROJECTS_DATA = [
     purpose: {
       heading: "Why I <em>built these.</em>",
       body: [
-        "These projects exist because I wanted to, which is a perfectly good reason. But the skills involved are real: part splitting, print registration, multi-stage surface finishing, and the discipline to see a process through to a result that actually looks finished rather than just printed.",
-        "Replica work is unforgiving in a specific way — you're working toward a known reference, so there's no hiding a bad decision. Every stage either moves you closer to the target or compounds the error.",
+        "I used to love video games, specifically Zelda and Minecraft. Making physical replicas of things from games I loved was a good excuse to learn new fabrication techniques! Each prop pushed me to try something new.",
       ],
     },
     process: {
@@ -533,17 +532,48 @@ window.PROJECTS_DATA = [
       summary:
         "Three props, three different finishing challenges — each one pushing a different part of the fabrication process.",
       steps: [
+        { type: "year", title: "Majora's Mask" },
         {
-          title: "Majora's Mask: part splitting for oversized geometry",
-          body: "The mask exceeded my printer's build volume. The solution: split the model into sections at natural seam lines, print separately, and join with registration features to ensure alignment. Painted after assembly. The challenge is planning the splits so the seams are invisible in the final result.",
+          title: "Model and Test Print",
+          body: "My first CAD model. Printed at a small scale first to validate the proportions and make sure it looked right before committing to a full-size print.",
+          blockAfter: { type: "image", url: "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781465510/IMG_8854_ly6on3.jpg" },
         },
         {
-          title: "Deku Mask: multi-stage surface finishing",
-          body: "The Deku Mask went through a full finishing pipeline. 3D printed base → Bondo body filler applied and sanded to remove layer lines and refine the form → thin clay layer hand-sculpted over the Bondo to restore organic surface detail that the print couldn't capture → painted. Each material layer has to be planned in sequence because each one affects what comes next. You can't fix a bad Bondo stage with clay.",
+          title: "Full-scale Print and Assembly",
+          body: "The mask exceeded my printer's build volume so I split it into multiple parts and joined them together then sanded them.",
         },
         {
-          title: "Minecraft Chicken: voxel geometry to physical object",
-          body: "The Chicken is a different problem — translating a deliberately blocky, voxel-based game asset into a real object that holds together structurally at life size. All geometry modeled from scratch. The design challenge is that voxel objects have no organic curves to hide seams in — every face is flat, every edge is sharp, so print quality and part joins are fully exposed.",
+          title: "Prime and Paint",
+          body: "I first primed the print, then painted it.",
+          blockAfter: { type: "gallery", layout: "collage", images: [
+            "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781465511/IMG_8878_w4kkwr.jpg",
+            "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781465510/63582699740__E91C4293-6594-4A44-98E0-B9AC12269ED1_edited_oqx5zt.jpg",
+          ]},
+        },
+        { type: "year", title: "Deku's Mask" },
+        {
+          title: "Model and Print",
+          body: "Modeled the base geometry and printed it full scale in parts, then joined and sanded them together.",
+          blockAfter: { type: "image", url: "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781465765/IMG_9456_1_q9jea6.jpg" },
+        },
+        {
+          title: "Clay Sculpting",
+          body: "Applied clay over the printed base and hand sculpted the surface details.",
+          blockAfter: { type: "gallery", layout: "collage", images: [
+            "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781465742/IMG_9460_t0wsrw.heic",
+            "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781465741/IMG_9487_m2ekhs.heic",
+          ]},
+        },
+        {
+          title: "Prime and Paint",
+          body: "Primed and painted once the clay was set.",
+          blockAfter: { type: "image", url: "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781465741/IMG_9540_s0c5ol.heic" },
+        },
+        { type: "year", title: "Minecraft Chicken" },
+        {
+          title: "Model and Print",
+          body: "Modeled and printed full scale.",
+          blockAfter: { type: "image", url: "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781465902/IMG_9664_dl7x1k.heic" },
         },
       ],
     },
