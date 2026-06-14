@@ -287,8 +287,8 @@ window.PROJECTS_DATA = [
     purpose: {
       heading: "Why I <em>built this.</em>",
       body: [
-        "The goal was to make something mechanical feel organic. Not just functional — genuinely responsive in a way that felt natural rather than programmed. A flower that opens when you touch it sounds simple. Getting it to feel right is the harder problem.",
-        "The sensor needed to respond to human presence without physical buttons. The motion needed to feel like unfolding, not actuating. Both of those constraints shaped every decision in the design.",
+        "I was making a gift for a friend. The idea was to capture the beauty of a flower blossoming. To do that I needed something to trigger the bloom, and the motion had to feel natural, not robotic.",
+        "I settled on a spoon as the trigger (an inside joke) then refined the mechanism and the code until the movement felt natural. In the end, the flower would open and light up when the spoon was touched. If it was touched again, the light would turn off and it would close.",
       ],
     },
     process: {
