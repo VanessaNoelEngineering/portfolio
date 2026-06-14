@@ -536,23 +536,23 @@ window.PROJECTS_DATA = [
         {
           title: "Model and Test Print",
           body: "My first CAD model. Printed at a small scale first to validate the proportions and make sure it looked right before committing to a full-size print.",
-          blockAfter: { type: "image", url: "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781465510/IMG_8854_ly6on3.jpg" },
+          blockAfter: { type: "image", size: "md", url: "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781465510/IMG_8854_ly6on3.jpg" },
         },
         {
           title: "Full-scale Print and Assembly",
           body: "The mask exceeded my printer's build volume so I split it into multiple parts and joined them together then sanded them.",
-          blockAfter: { type: "image", url: "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781465511/IMG_8878_w4kkwr.jpg" },
+          blockAfter: { type: "image", size: "md", url: "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781465511/IMG_8878_w4kkwr.jpg" },
         },
         {
           title: "Prime and Paint",
           body: "I first primed the print, then painted it.",
-          blockAfter: { type: "image", url: "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781465510/63582699740__E91C4293-6594-4A44-98E0-B9AC12269ED1_edited_oqx5zt.jpg" },
+          blockAfter: { type: "image", size: "md", url: "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781465510/63582699740__E91C4293-6594-4A44-98E0-B9AC12269ED1_edited_oqx5zt.jpg" },
         },
         { type: "year", title: "Deku's Mask" },
         {
           title: "Model and Print",
           body: "Modeled the base geometry and printed it full scale in parts, then joined and sanded them together.",
-          blockAfter: { type: "image", url: "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781465765/IMG_9456_1_q9jea6.jpg" },
+          blockAfter: { type: "image", size: "md", url: "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781465765/IMG_9456_1_q9jea6.jpg" },
         },
         {
           title: "Clay Sculpting",
@@ -565,13 +565,13 @@ window.PROJECTS_DATA = [
         {
           title: "Prime and Paint",
           body: "Primed and painted once the clay was set.",
-          blockAfter: { type: "image", url: "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781465741/IMG_9540_s0c5ol.jpg" },
+          blockAfter: { type: "image", size: "md", url: "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781465741/IMG_9540_s0c5ol.jpg" },
         },
         { type: "year", title: "Minecraft Chicken" },
         {
           title: "Model and Print",
           body: "Modeled and printed full scale.",
-          blockAfter: { type: "image", url: "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781465902/IMG_9664_dl7x1k.jpg" },
+          blockAfter: { type: "image", size: "md", url: "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781465902/IMG_9664_dl7x1k.jpg" },
         },
       ],
     },
