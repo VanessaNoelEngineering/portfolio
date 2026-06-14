@@ -434,7 +434,7 @@ window.PROJECTS_DATA = [
 
   {
     id: "project-sonder",
-    published: true,
+    published: false,
     type: "both",
     tabs: ["built", "led", "launched"],
     wip: true,
