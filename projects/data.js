@@ -272,7 +272,7 @@ window.PROJECTS_DATA = [
     label: "Hardware · Robotics",
     desc: "A robotic lotus that opens to your touch — capacitive sensing driving servo actuation, built to feel alive.",
     previewDesc:
-      "The technical challenge here was small but specific: make something mechanical feel organic. A DIY capacitive touch sensor (literally a spoon, wired to an Arduino Uno) detects the presence of a hand. First touch: the servo opens the petals and the LED blooms. Second touch: it closes and goes dark.\n\nThe harder part was the motion. Getting the petal linkage geometry right so the flower opens slowly and smoothly — not snapping open like a mechanism, but unfolding like a real flower — required iteration on both the CAD and the code. All models were designed and printed from scratch, except the outer petal profile.",
+      "A mechanical lotus that opens, lights up, and closes on touch. The trigger is a capacitive sensor, made from a spoon. The hard part wasn't the electronics, it was making the motion feel organic. Getting the mechanism right so it unfolds slowly and naturally, took iteration on both the CAD and the code.",
     tags: [
       "Arduino",
       "C++",
