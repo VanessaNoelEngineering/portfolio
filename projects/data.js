@@ -717,6 +717,10 @@ window.PROJECTS_DATA = [
         {
           title: "Satellite Design",
           body: "The stratosphere sits well outside the rated operating range of most consumer sensors. I wanted to see how they'd hold up and whether the data would still be usable. I used a pressure sensor knowing it would be operating outside spec, and paired it with a precision thermistor so we could quantify the error.",
+          blockAfter: {
+            type: "image",
+            url: "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781454527/Copy_of_Copy_of_Copy_of_My_satellite_mwy2fm.png",
+          },
         },
         {
           title: "Validation",
