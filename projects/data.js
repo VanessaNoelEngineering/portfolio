@@ -270,7 +270,7 @@ window.PROJECTS_DATA = [
     thumbnail:
       "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1776391800/mechanical-flower-full-size-no-background_ity0qm.png",
     label: "Hardware · Robotics",
-    desc: "A robotic lotus that opens to your touch — capacitive sensing driving servo actuation, built to feel alive.",
+    desc: "A touch-responsive robotic flower.",
     previewDesc:
       "A mechanical lotus that opens and lights up when touched. The trigger is a capacitive sensor, made from a spoon. The hard part wasn't the electronics, it was making the motion feel organic. Getting the mechanism right so it unfolds slowly and naturally, took iteration on the design and controls.",
     tags: [
