@@ -516,7 +516,7 @@ window.PROJECTS_DATA = [
     label: "Hardware · Fabrication",
     desc: "Recreating props from games I love.",
     previewDesc:
-      "Three very different objects, one shared discipline: getting from a digital model to a physical thing that looks right.\n\nMajora's Mask exceeded my printer's build volume, so I split it into registered parts, printed separately, and joined them. Painted from scratch.\n\nThe Deku Mask went further — 3D printed base, Bondo applied and sanded, thin clay layer hand-sculpted to restore organic surface detail lost in the print, then painted. Each stage of finishing directly affects the next, so the process has to be planned as a whole, not step by step.\n\nThe Minecraft Chicken is a study in translating voxel geometry — a deliberately blocky digital asset — into a printable object with actual surfaces and structural integrity. Life-sized. All files modeled from scratch.",
+      "Three props from games I love. Majora's Mask was split across multiple prints and painted. Deku's Mask had a 3D printed base with hand-sculpted clay on top. The Minecraft Chicken was modeled and 3D-printed in life size!",
     tags: ["CAD", "3D Printing", "Surface Finishing", "Multi-part Assembly"],
     url: "projects/masks.html",
 
