@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sonder — A Letter For You</title>
+  <!-- v2 -->
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:      #fffaf3;
+      --warm:       #fef3e2;
+      --pink:       #f9c4d0;
+      --lavender:   #ddd6f3;
+      --mint:       #c8ecd9;
+      --env-body:   #fdefd8;
+      --env-flap:   #f9e0b8;
+      --env-shade:  #f0d0a0;
+      --ink:        #3d2b1f;
+      --ink-light:  #8a6a5e;
+      --shadow:     rgba(61,43,31,0.12);
+    }
+
+    body {
+      background: linear-gradient(150deg, #fde8ee 0%, #f0edfa 50%, #e8f7f0 100%);
+      background-attachment: fixed;
+      font-family: 'Lora', serif;
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* Fixed atmosphere blobs */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 10% 15%, rgba(249,196,208,0.35) 0%, transparent 45%),
+        radial-gradient(circle at 90% 75%, rgba(221,214,243,0.4)  0%, transparent 45%),
+        radial-gradient(circle at 50% 95%, rgba(200,236,217,0.3)  0%, transparent 40%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Floating decorations */
+    .deco {
+      position: fixed;
+      opacity: 0.15;
+      pointer-events: none;
+      animation: float 6s ease-in-out infinite;
+      font-size: 1.5rem;
+      z-index: 0;
+    }
+    .d1 { top:6%;    left:5%;   font-size:2rem;   animation-delay:0s; }
+    .d2 { top:10%;   right:7%;  font-size:1.1rem; animation-delay:1.2s; }
+    .d3 { top:35%;   left:3%;                     animation-delay:2.1s; }
+    .d4 { top:60%;   right:4%;  font-size:1.8rem; animation-delay:0.6s; }
+    .d5 { bottom:18%;left:6%;                     animation-delay:1.8s; }
+    .d6 { bottom:7%; right:9%;  font-size:1.9rem; animation-delay:3.3s; }
+    .d7 { top:78%;   left:2%;   font-size:1rem;   animation-delay:2.7s; }
+    .d8 { top:48%;   right:2%;  font-size:0.9rem; animation-delay:4.1s; }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0) rotate(-4deg); }
+      50%      { transform: translateY(-11px) rotate(4deg); }
+    }
+
+    /* ══════════════════════════════════════════
+       SCROLL DRIVER
+    ══════════════════════════════════════════ */
+    #scroll-driver {
+      position: relative;
+      height: 320vh;
+      z-index: 1;
+    }
+
+    #sticky-env {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.25rem;
+    }
+
+    .site-tagline {
+      font-family: 'Caveat', cursive;
+      font-size: 1.05rem;
+      color: var(--ink-light);
+    }
+
+    /* Scroll hint + bouncing arrow */
+    .scroll-hint {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+      font-family: 'Caveat', cursive;
+      font-size: 1rem;
+      color: var(--ink-light);
+      transition: opacity 0.3s;
+    }
+    .scroll-hint .arrow {
+      font-size: 1.2rem;
+      animation: bounce 1.6s ease-in-out infinite;
+    }
+    @keyframes bounce {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(6px); }
+    }
+
+    /* ══════════════════════════════════════════
+       ENVELOPE
+    ══════════════════════════════════════════ */
+    .env-perspective {
+      perspective: 900px;
+      perspective-origin: 50% 50%;
+    }
+
+    /* Flip wrapper — rotates on Y axis */
+    .env-flip {
+      position: relative;
+      width: 300px;
+      height: 195px;
+      transform-style: preserve-3d;
+    }
+
+    /* Shared face styles */
+    .env-face {
+      position: absolute;
+      inset: 0;
+      border-radius: 4px;
+      backface-visibility: hidden;
+      box-shadow: 0 8px 28px rgba(61,43,31,0.18);
+    }
+
+    /* ── Front face (address side) ── */
+    .env-face-front {
+      background: var(--env-body);
+    }
+
+    .front-stamp {
+      position: absolute;
+      top: 10px; right: 12px;
+      width: 40px; height: 48px;
+      border: 1.5px dashed rgba(139,90,60,0.28);
+      border-radius: 2px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+    }
+
+    .stamp-name {
+      font-family: 'Caveat', cursive;
+      font-size: 0.6rem;
+      color: var(--ink-light);
+      text-align: center;
+      letter-spacing: 0.04em;
+      line-height: 1;
+    }
+
+    .front-address {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.2rem;
+    }
+    .addr-to {
+      font-family: 'Caveat', cursive;
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .addr-from {
+      font-family: 'Caveat', cursive;
+      font-size: 1rem;
+      color: var(--ink-light);
+      font-style: italic;
+    }
+
+    /* ── Back face (flap/envelope side) ── */
+    .env-face-back {
+      transform: rotateY(180deg);
+      perspective: 900px;
+    }
+
+    /* Back face */
+    .env-back {
+      position: absolute;
+      inset: 0;
+      background: var(--env-body);
+      border-radius: 4px;
+    }
+    .env-back::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--env-shade);
+      clip-path: polygon(0 100%, 50% 44%, 100% 100%);
+      border-radius: 0 0 4px 4px;
+    }
+
+    /* Letter paper */
+    .env-paper {
+      position: absolute;
+      left: 9%; right: 9%;
+      bottom: 5%;
+      height: 85%;
+      background: #fffdf8;
+      border-radius: 3px 3px 0 0;
+      z-index: 2;
+      /* lined paper */
+      background-image: repeating-linear-gradient(
+        to bottom,
+        transparent, transparent 23px,
+        rgba(200,185,170,0.18) 23px, rgba(200,185,170,0.18) 24px
+      );
+    }
+
+    /* Front left/right diagonal folds */
+    .env-front {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      pointer-events: none;
+    }
+    .env-front::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--env-body);
+      clip-path: polygon(0 0, 47% 46%, 0 100%);
+    }
+    .env-front::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--env-flap);
+      clip-path: polygon(100% 0, 53% 46%, 100% 100%);
+    }
+
+    /* Bottom front flap */
+    .env-bottom {
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      pointer-events: none;
+      background: var(--env-body);
+      clip-path: polygon(0 100%, 50% 46%, 100% 100%);
+      border-radius: 0 0 4px 4px;
+    }
+
+    /* Top flap — JS controls transform */
+    .env-flap {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 55%;
+      background: var(--env-flap);
+      clip-path: polygon(0 0, 100% 0, 50% 92%);
+      border-radius: 4px 4px 0 0;
+      z-index: 5;
+      transform-origin: 50% 0%;
+      backface-visibility: hidden;
+      will-change: transform;
+    }
+
+    /* ══════════════════════════════════════════
+       MAIN CONTENT (post-reveal)
+    ══════════════════════════════════════════ */
+    #main-content,
+    #write-first-wrap {
+      display: none;
+      min-height: 100vh;
+      padding: 2rem 1rem 5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .wrapper {
+      max-width: 560px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .page-header {
+      text-align: center;
+      font-family: 'Caveat', cursive;
+      font-size: 1.05rem;
+      color: var(--ink-light);
+      padding-top: 0.5rem;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--cream);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 4px 24px var(--shadow), 0 1px 4px rgba(0,0,0,0.06);
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      top:0; left:0; right:0;
+      height: 5px;
+      border-radius: 16px 16px 0 0;
+    }
+    .card.pink::before     { background: linear-gradient(90deg,#f9c4d0,#fde8ee); }
+    .card.mint::before     { background: linear-gradient(90deg,#c8ecd9,#e8f7f0); }
+    .card.lavender::before { background: linear-gradient(90deg,#ddd6f3,#f0edfa); }
+
+    .lined {
+      background-image: repeating-linear-gradient(
+        to bottom,
+        transparent, transparent 31px,
+        rgba(200,185,170,0.15) 31px, rgba(200,185,170,0.15) 32px
+      );
+      line-height: 32px;
+    }
+
+    .card-label {
+      font-family: 'Caveat', cursive;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-bottom: 1rem;
+    }
+    .letter-from { font-family:'Caveat',cursive; font-size:1.45rem; font-weight:700; margin-bottom:0.5rem; }
+    .letter-date { font-family:'Caveat',cursive; font-size:0.9rem; color:var(--ink-light); margin-bottom:1.25rem; }
+    .letter-body { font-family:'Caveat',cursive; font-size:1.25rem; line-height:2rem; white-space:pre-wrap; word-break:break-word; }
+    .letter-seal { text-align:right; margin-top:1.25rem; font-family:'Caveat',cursive; font-size:1rem; color:var(--ink-light); font-style:italic; }
+
+    /* Divider */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: 'Caveat', cursive;
+      font-size: 1rem;
+      color: var(--ink-light);
+      width: 100%;
+    }
+    .divider::before, .divider::after {
+      content: ''; flex: 1; height: 1px;
+      background: rgba(200,185,170,0.35);
+    }
+
+    /* Form */
+    .form-group { margin-bottom: 1.2rem; }
+    label {
+      display: block;
+      font-family: 'Caveat', cursive;
+      font-size: 1rem; font-weight: 600;
+      color: var(--ink-light); margin-bottom: 0.4rem;
+    }
+    input[type="text"], textarea {
+      font-family: 'Caveat', cursive;
+      font-size: 1.2rem; color: var(--ink);
+      background: var(--warm);
+      border: 2px solid transparent; border-radius: 10px;
+      padding: 0.7rem 0.9rem; width: 100%;
+      outline: none; resize: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    input[type="text"]:focus, textarea:focus {
+      border-color: var(--pink);
+      box-shadow: 0 0 0 3px rgba(249,196,208,0.3);
+    }
+    textarea {
+      min-height: 160px; line-height: 1.65;
+      background-image:
+        linear-gradient(var(--warm) 0%, var(--warm) 100%),
+        repeating-linear-gradient(to bottom, transparent, transparent 31px, rgba(200,185,170,0.2) 31px, rgba(200,185,170,0.2) 32px);
+    }
+    .char-count {
+      font-family:'Caveat',cursive; font-size:0.85rem;
+      color:var(--ink-light); text-align:right; margin-top:0.3rem;
+    }
+    .char-count.warn { color:#d97070; }
+
+    .submit-btn {
+      width: 100%;
+      font-family: 'Caveat', cursive; font-size: 1.2rem; font-weight: 700;
+      color: var(--ink);
+      background: linear-gradient(135deg,#f9c4d0 0%,#ddd6f3 60%,#c8ecd9 100%);
+      border: none; border-radius: 50px;
+      padding: 0.85rem 1.5rem; cursor: pointer; margin-top: 0.25rem;
+      box-shadow: 0 3px 14px rgba(249,196,208,0.5);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .submit-btn:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(249,196,208,0.65); }
+    .submit-btn:active { transform:scale(0.98); }
+    .submit-btn:disabled { opacity:0.6; cursor:default; transform:none; }
+
+    .error-msg {
+      font-family:'Caveat',cursive; font-size:1rem;
+      color:#c0504d; text-align:center; margin-top:0.5rem; display:none;
+    }
+    .error-msg.show { display:block; }
+
+    /* Thank you */
+    #thank-you { display:none; width:100%; }
+    #thank-you .big-emoji { font-size:3.5rem; display:block; margin-bottom:0.75rem; }
+    #thank-you h2 { font-family:'Caveat',cursive; font-size:2rem; font-weight:700; margin-bottom:0.5rem; }
+    #thank-you p  { font-family:'Caveat',cursive; font-size:1.1rem; color:var(--ink-light); line-height:1.6; }
+    .again-btn {
+      display:inline-block; margin-top:1.5rem;
+      font-family:'Caveat',cursive; font-size:1rem;
+      color:var(--ink-light); text-decoration:underline dotted;
+      cursor:pointer; background:none; border:none; padding:0;
+    }
+    .again-btn:hover { color:var(--ink); }
+
+    .sonder-quote {
+      width: 100%;
+      text-align: center;
+      padding: 1.5rem 1rem 0.5rem;
+      opacity: 0.55;
+    }
+    .sonder-quote p {
+      font-family: 'Lora', serif;
+      font-style: italic;
+      font-size: 0.85rem;
+      line-height: 1.75;
+      color: var(--ink-light);
+    }
+
+    /* ── Closing envelope (post-submit) ── */
+    .env-close-scene {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.2rem;
+      width: 100%;
+      min-height: 100vh;
+    }
+    .swipe-hint {
+      font-family: 'Caveat', cursive;
+      font-size: 1.15rem;
+      color: var(--ink-light);
+      opacity: 0;
+      animation: nudgeUp 1.8s ease-in-out infinite;
+    }
+    @keyframes nudgeUp {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-8px); }
+    }
+    /* Sonder reveal — overlays the whole scene */
+    .sonder-reveal {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2.5rem 2rem;
+      opacity: 0;
+      pointer-events: none;
+      text-align: center;
+    }
+    /* Sub-panels inside the reveal */
+    .sonder-sent-panel,
+    .sonder-text-panel {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.2rem;
+      width: 100%;
+    }
+    .sonder-sent-title {
+      font-family: 'Caveat', cursive;
+      font-size: 2.1rem;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: 0.02em;
+    }
+    .gary-sent-label {
+      font-family: 'Caveat', cursive;
+      font-size: 1rem;
+      color: var(--ink-light);
+      margin-top: -0.4rem;
+    }
+    .sonder-reveal-word {
+      font-family: 'Caveat', cursive;
+      font-size: 5.5rem !important;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: 0.06em;
+      line-height: 1.1;
+    }
+
+    .sonder-reveal-def {
+      font-family: 'Lora', serif !important;
+      font-style: italic !important;
+      font-size: 3rem !important;
+      font-weight: 400;
+      line-height: 2 !important;
+      color: var(--ink);
+      max-width: 760px;
+      letter-spacing: 0.015em;
+      padding: 0 1rem;
+      white-space: pre-line;
+    }
+    @media (max-width: 600px) {
+      .sonder-reveal-word {
+        font-size: 3.8rem !important;
+      }
+      .sonder-reveal-def {
+        font-size: 2rem !important;
+        line-height: 1.9 !important;
+      }
+    }
+    .sonder-reveal-thanks {
+      font-family: 'Caveat', cursive;
+      font-size: 1.15rem;
+      color: var(--ink-light);
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+    /* Envelope is clickable once hint shows */
+    .env-close-scene.ready #ty-container,
+    .env-close-scene.ready #ty-container-f {
+      cursor: pointer;
+    }
+    .env-close-flip {
+      position: relative;
+      width: 300px;
+      height: 195px;
+      transform-style: preserve-3d;
+    }
+    .env-close-back {
+      perspective: 900px;
+      background: var(--env-body);
+    }
+    .env-close-front {
+      transform: rotateY(180deg);
+      background: var(--env-body);
+    }
+    .env-close-paper {
+      position: absolute;
+      left: 9%; right: 9%;
+      bottom: 5%; height: 85%;
+      background: #fffdf8;
+      border-radius: 3px 3px 0 0;
+      z-index: 2;
+      transform: translateY(-70%);
+      background-image: repeating-linear-gradient(
+        to bottom,
+        transparent, transparent 23px,
+        rgba(200,185,170,0.18) 23px, rgba(200,185,170,0.18) 24px
+      );
+    }
+    .env-close-flap {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 55%;
+      background: var(--env-flap);
+      clip-path: polygon(0 0, 100% 0, 50% 92%);
+      border-radius: 4px 4px 0 0;
+      z-index: 5;
+      transform-origin: 50% 0%;
+      transform: rotateX(172deg);
+      backface-visibility: hidden;
+    }
+    .ty-tagline {
+      font-family: 'Caveat', cursive;
+      font-size: 1.4rem;
+      color: var(--ink-light);
+    }
+
+    /* Animations */
+    .fade-up { animation: fadeUp 0.55s ease both; }
+    .fade-up-2 { animation: fadeUp 0.55s 0.12s ease both; }
+    .fade-up-3 { animation: fadeUp 0.55s 0.24s ease both; }
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(14px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+    @keyframes popIn {
+      from { opacity:0; transform:scale(0.85); }
+      to   { opacity:1; transform:scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+  <span class="deco d1">✿</span>
+  <span class="deco d2">✦</span>
+  <span class="deco d3">♡</span>
+  <span class="deco d4">✿</span>
+  <span class="deco d5">✦</span>
+  <span class="deco d6">♡</span>
+  <span class="deco d7">✿</span>
+  <span class="deco d8">✦</span>
+
+  <!-- ── Scroll-driven envelope ── -->
+  <div id="scroll-driver">
+    <div id="sticky-env">
+      <p class="site-tagline">a little something left just for you &#x2665;</p>
+      <div class="scroll-hint" id="scroll-hint">
+        <span id="hint-text">scroll to open your letter</span>
+        <span class="arrow">&#x2193;</span>
+      </div>
+      <div class="env-perspective">
+        <div class="env-flip" id="env-flip">
+
+          <!-- Front face: address side -->
+          <div class="env-face env-face-front">
+            <div class="front-stamp">
+              <svg viewBox="0 0 34 24" width="28" height="20" xmlns="http://www.w3.org/2000/svg">
+                <!-- Shell -->
+                <circle cx="21" cy="13" r="8.5" fill="#6dbf6d"/>
+                <circle cx="21" cy="13" r="6" fill="#8fd48f"/>
+                <circle cx="21" cy="13" r="3.5" fill="#6dbf6d"/>
+                <circle cx="21" cy="13" r="1.5" fill="#8fd48f"/>
+                <!-- Body -->
+                <ellipse cx="14" cy="20" rx="11" ry="4" fill="#8fd48f"/>
+                <!-- Head -->
+                <ellipse cx="4.5" cy="18" rx="4.5" ry="4" fill="#8fd48f"/>
+                <!-- Antennae -->
+                <line x1="2.5" y1="15" x2="1" y2="9" stroke="#6dbf6d" stroke-width="1.3" stroke-linecap="round"/>
+                <line x1="6" y1="14" x2="8" y2="8" stroke="#6dbf6d" stroke-width="1.3" stroke-linecap="round"/>
+                <!-- Eye dots -->
+                <circle cx="1" cy="8" r="1.6" fill="#2a5a2a"/>
+                <circle cx="8.2" cy="7" r="1.6" fill="#2a5a2a"/>
+              </svg>
+              <span class="stamp-name">Gary</span>
+            </div>
+            <div class="front-address">
+              <span class="addr-to">To: You</span>
+              <span class="addr-from">From: A Stranger</span>
+            </div>
+          </div>
+
+          <!-- Back face: envelope with flap -->
+          <div class="env-face env-face-back">
+            <div class="env-back"></div>
+            <div class="env-paper"  id="env-paper"></div>
+            <div class="env-front"></div>
+            <div class="env-bottom"></div>
+            <div class="env-flap"   id="env-flap"></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Main content (shown after envelope reveal) ── -->
+  <div id="main-content">
+    <div class="wrapper">
+      <p class="page-header fade-up" id="main-header">a letter arrived for you &#x1F48C;</p>
+
+      <div class="card pink lined fade-up fade-up-2" id="letter-card">
+        <div class="card-label">&#x1F48C; a letter for you</div>
+        <div class="letter-from" id="letter-from"></div>
+        <div class="letter-date" id="letter-date"></div>
+        <div class="letter-body" id="letter-body"></div>
+        <div class="letter-seal">
+          <svg viewBox="0 0 34 24" width="28" height="20" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="21" cy="13" r="8.5" fill="#6dbf6d"/>
+            <circle cx="21" cy="13" r="6" fill="#8fd48f"/>
+            <circle cx="21" cy="13" r="3.5" fill="#6dbf6d"/>
+            <circle cx="21" cy="13" r="1.5" fill="#8fd48f"/>
+            <ellipse cx="14" cy="20" rx="11" ry="4" fill="#8fd48f"/>
+            <ellipse cx="4.5" cy="18" rx="4.5" ry="4" fill="#8fd48f"/>
+            <line x1="2.5" y1="15" x2="1" y2="9" stroke="#6dbf6d" stroke-width="1.3" stroke-linecap="round"/>
+            <line x1="6" y1="14" x2="8" y2="8" stroke="#6dbf6d" stroke-width="1.3" stroke-linecap="round"/>
+            <circle cx="1" cy="8" r="1.6" fill="#2a5a2a"/>
+            <circle cx="8.2" cy="7" r="1.6" fill="#2a5a2a"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="divider fade-up fade-up-3" id="turn-divider">now it&#x2019;s your turn</div>
+
+      <div class="card mint fade-up fade-up-3" id="write-card">
+        <div class="card-label">leave your letter</div>
+        <div class="form-group">
+          <label for="name">your name (or keep the mystery)</label>
+          <input type="text" id="name" placeholder="e.g. Luna, A Stranger, Your Biggest Fan..." maxlength="40" autocomplete="off">
+        </div>
+        <div class="form-group">
+          <label for="message">your note</label>
+          <textarea id="message" placeholder="Write anything &#x2014; a memory, a wish, a secret, a hello..." maxlength="600"></textarea>
+          <div class="char-count" id="char-count">0 / 600</div>
+        </div>
+        <button class="submit-btn" id="submit-btn"><svg viewBox="0 0 34 24" width="18" height="13" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;margin-right:4px"><circle cx="21" cy="13" r="8.5" fill="#6dbf6d"/><circle cx="21" cy="13" r="6" fill="#8fd48f"/><circle cx="21" cy="13" r="3.5" fill="#6dbf6d"/><circle cx="21" cy="13" r="1.5" fill="#8fd48f"/><ellipse cx="14" cy="20" rx="11" ry="4" fill="#8fd48f"/><ellipse cx="4.5" cy="18" rx="4.5" ry="4" fill="#8fd48f"/><line x1="2.5" y1="15" x2="1" y2="9" stroke="#6dbf6d" stroke-width="1.3" stroke-linecap="round"/><line x1="6" y1="14" x2="8" y2="8" stroke="#6dbf6d" stroke-width="1.3" stroke-linecap="round"/><circle cx="1" cy="8" r="1.6" fill="#2a5a2a"/><circle cx="8.2" cy="7" r="1.6" fill="#2a5a2a"/></svg>seal</button>
+        <div class="error-msg" id="error-msg">please write something first!</div>
+      </div>
+
+      <div id="thank-you" style="display:none;width:100%">
+        <div class="env-close-scene">
+          <div id="ty-container">
+            <div class="env-perspective">
+              <div class="env-close-flip" id="ty-flip">
+                <div class="env-face env-close-back">
+                  <div class="env-back"></div>
+                  <div class="env-close-paper" id="ty-paper"></div>
+                  <div class="env-front"></div>
+                  <div class="env-bottom"></div>
+                  <div class="env-close-flap" id="ty-flap"></div>
+                </div>
+                <div class="env-face env-close-front">
+                  <div class="front-stamp">
+                    <svg viewBox="0 0 34 24" width="28" height="20" xmlns="http://www.w3.org/2000/svg"><circle cx="21" cy="13" r="8.5" fill="#6dbf6d"/><circle cx="21" cy="13" r="6" fill="#8fd48f"/><circle cx="21" cy="13" r="3.5" fill="#6dbf6d"/><circle cx="21" cy="13" r="1.5" fill="#8fd48f"/><ellipse cx="14" cy="20" rx="11" ry="4" fill="#8fd48f"/><ellipse cx="4.5" cy="18" rx="4.5" ry="4" fill="#8fd48f"/><line x1="2.5" y1="15" x2="1" y2="9" stroke="#6dbf6d" stroke-width="1.3" stroke-linecap="round"/><line x1="6" y1="14" x2="8" y2="8" stroke="#6dbf6d" stroke-width="1.3" stroke-linecap="round"/><circle cx="1" cy="8" r="1.6" fill="#2a5a2a"/><circle cx="8.2" cy="7" r="1.6" fill="#2a5a2a"/></svg>
+                    <span class="stamp-name">Gary</span>
+                  </div>
+                  <div class="front-address">
+                    <span class="addr-to">To: A Stranger</span>
+                    <span class="addr-from">From: You &#x2665;</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="swipe-hint" id="ty-hint">swipe up to send &#x2191;</p>
+          <div class="sonder-reveal" id="ty-sonder">
+            <!-- Panel 1: sent confirmation -->
+            <div class="sonder-sent-panel" id="ty-sent-panel">
+              <p class="sonder-sent-title">Your letter has been sent</p>
+              <svg viewBox="0 0 34 24" width="90" height="64" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="21" cy="13" r="8.5" fill="#6dbf6d"/>
+                <circle cx="21" cy="13" r="6" fill="#8fd48f"/>
+                <circle cx="21" cy="13" r="3.5" fill="#6dbf6d"/>
+                <circle cx="21" cy="13" r="1.5" fill="#8fd48f"/>
+                <ellipse cx="14" cy="20" rx="11" ry="4" fill="#8fd48f"/>
+                <ellipse cx="4.5" cy="18" rx="4.5" ry="4" fill="#8fd48f"/>
+                <line x1="2.5" y1="15" x2="1" y2="9" stroke="#6dbf6d" stroke-width="1.3" stroke-linecap="round"/>
+                <line x1="6" y1="14" x2="8" y2="8" stroke="#6dbf6d" stroke-width="1.3" stroke-linecap="round"/>
+                <circle cx="1" cy="8" r="1.6" fill="#2a5a2a"/>
+                <circle cx="8.2" cy="7" r="1.6" fill="#2a5a2a"/>
+              </svg>
+            </div>
+            <!-- Panel 2: sonder definition (typewriter) -->
+            <div class="sonder-text-panel" id="ty-text-panel" style="display:none">
+              <p class="sonder-reveal-word">sonder</p>
+              <p class="sonder-reveal-def" id="ty-def"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Write-first (no letters in DB yet) ── -->
+  <div id="write-first-wrap">
+    <div class="wrapper">
+      <p class="page-header fade-up">you found a blank page &#x2728;</p>
+      <div class="card lavender fade-up fade-up-2">
+        <p style="font-family:'Caveat',cursive;font-size:1.3rem;line-height:1.6;text-align:center">
+          No one has written here yet &#x2014; be the first.<br><br>
+          Your note will be the letter the next person opens.
+        </p>
+      </div>
+      <div class="card mint fade-up fade-up-3" id="write-card-f">
+        <div class="card-label">write the first letter</div>
+        <div class="form-group">
+          <label for="name-f">your name (or keep the mystery)</label>
+          <input type="text" id="name-f" placeholder="e.g. Luna, A Stranger, Your Biggest Fan..." maxlength="40" autocomplete="off">
+        </div>
+        <div class="form-group">
+          <label for="message-f">your note</label>
+          <textarea id="message-f" placeholder="Write anything &#x2014; a memory, a wish, a secret, a hello..." maxlength="600"></textarea>
+          <div class="char-count" id="char-count-f">0 / 600</div>
+        </div>
+        <button class="submit-btn" id="submit-btn-f"><svg viewBox="0 0 34 24" width="18" height="13" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;margin-right:4px"><circle cx="21" cy="13" r="8.5" fill="#6dbf6d"/><circle cx="21" cy="13" r="6" fill="#8fd48f"/><circle cx="21" cy="13" r="3.5" fill="#6dbf6d"/><circle cx="21" cy="13" r="1.5" fill="#8fd48f"/><ellipse cx="14" cy="20" rx="11" ry="4" fill="#8fd48f"/><ellipse cx="4.5" cy="18" rx="4.5" ry="4" fill="#8fd48f"/><line x1="2.5" y1="15" x2="1" y2="9" stroke="#6dbf6d" stroke-width="1.3" stroke-linecap="round"/><line x1="6" y1="14" x2="8" y2="8" stroke="#6dbf6d" stroke-width="1.3" stroke-linecap="round"/><circle cx="1" cy="8" r="1.6" fill="#2a5a2a"/><circle cx="8.2" cy="7" r="1.6" fill="#2a5a2a"/></svg>seal</button>
+        <div class="error-msg" id="error-msg-f">please write something first!</div>
+      </div>
+      <div id="thank-you-f" style="display:none;width:100%">
+        <div class="env-close-scene">
+          <div id="ty-container-f">
+            <div class="env-perspective">
+              <div class="env-close-flip" id="ty-flip-f">
+                <div class="env-face env-close-back">
+                  <div class="env-back"></div>
+                  <div class="env-close-paper" id="ty-paper-f"></div>
+                  <div class="env-front"></div>
+                  <div class="env-bottom"></div>
+                  <div class="env-close-flap" id="ty-flap-f"></div>
+                </div>
+                <div class="env-face env-close-front">
+                  <div class="front-stamp">
+                    <svg viewBox="0 0 34 24" width="28" height="20" xmlns="http://www.w3.org/2000/svg"><circle cx="21" cy="13" r="8.5" fill="#6dbf6d"/><circle cx="21" cy="13" r="6" fill="#8fd48f"/><circle cx="21" cy="13" r="3.5" fill="#6dbf6d"/><circle cx="21" cy="13" r="1.5" fill="#8fd48f"/><ellipse cx="14" cy="20" rx="11" ry="4" fill="#8fd48f"/><ellipse cx="4.5" cy="18" rx="4.5" ry="4" fill="#8fd48f"/><line x1="2.5" y1="15" x2="1" y2="9" stroke="#6dbf6d" stroke-width="1.3" stroke-linecap="round"/><line x1="6" y1="14" x2="8" y2="8" stroke="#6dbf6d" stroke-width="1.3" stroke-linecap="round"/><circle cx="1" cy="8" r="1.6" fill="#2a5a2a"/><circle cx="8.2" cy="7" r="1.6" fill="#2a5a2a"/></svg>
+                    <span class="stamp-name">Gary</span>
+                  </div>
+                  <div class="front-address">
+                    <span class="addr-to">To: A Stranger</span>
+                    <span class="addr-from">From: You &#x2665;</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="swipe-hint" id="ty-hint-f">swipe up to send &#x2191;</p>
+          <div class="sonder-reveal" id="ty-sonder-f">
+            <!-- Panel 1: sent confirmation -->
+            <div class="sonder-sent-panel" id="ty-sent-panel-f">
+              <p class="sonder-sent-title">Your letter has been sent</p>
+              <svg viewBox="0 0 34 24" width="90" height="64" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="21" cy="13" r="8.5" fill="#6dbf6d"/>
+                <circle cx="21" cy="13" r="6" fill="#8fd48f"/>
+                <circle cx="21" cy="13" r="3.5" fill="#6dbf6d"/>
+                <circle cx="21" cy="13" r="1.5" fill="#8fd48f"/>
+                <ellipse cx="14" cy="20" rx="11" ry="4" fill="#8fd48f"/>
+                <ellipse cx="4.5" cy="18" rx="4.5" ry="4" fill="#8fd48f"/>
+                <line x1="2.5" y1="15" x2="1" y2="9" stroke="#6dbf6d" stroke-width="1.3" stroke-linecap="round"/>
+                <line x1="6" y1="14" x2="8" y2="8" stroke="#6dbf6d" stroke-width="1.3" stroke-linecap="round"/>
+                <circle cx="1" cy="8" r="1.6" fill="#2a5a2a"/>
+                <circle cx="8.2" cy="7" r="1.6" fill="#2a5a2a"/>
+              </svg>
+            </div>
+            <!-- Panel 2: sonder definition (typewriter) -->
+            <div class="sonder-text-panel" id="ty-text-panel-f" style="display:none">
+              <p class="sonder-reveal-word">sonder</p>
+              <p class="sonder-reveal-def" id="ty-def-f"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+
+    // ── Helpers ───────────────────────────────────────────────────────────────
+    function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
+    function progress(p, start, end) { return clamp((p - start) / (end - start), 0, 1); }
+    function formatDate(iso) {
+      return new Date(iso).toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
+    }
+
+    // ── Elements ──────────────────────────────────────────────────────────────
+    const envFlip   = document.getElementById('env-flip');
+    const envFlap   = document.getElementById('env-flap');
+    const envPaper  = document.getElementById('env-paper');
+    const hintEl    = document.getElementById('scroll-hint');
+    const hintText  = document.getElementById('hint-text');
+    const driver    = document.getElementById('scroll-driver');
+
+    // ── Scroll animation ──────────────────────────────────────────────────────
+    let revealed = false;
+
+    function applyScroll() {
+      if (revealed) return;
+      const totalScroll = driver.offsetHeight - window.innerHeight;
+      const p = clamp(window.scrollY / totalScroll, 0, 1);
+
+      // Phase 1 — flip envelope over: p 0 → 0.38
+      const flipAngle = 180 * progress(p, 0, 0.38);
+      envFlip.style.transform = `rotateY(${flipAngle}deg)`;
+
+      // Phase 2 — flap opens: p 0.40 → 0.72
+      const flapAngle = 172 * progress(p, 0.40, 0.72);
+      envFlap.style.transform = `rotateX(${flapAngle}deg)`;
+
+      // Phase 3 — paper slides up: p 0.48 → 0.85
+      const paperY = -70 * progress(p, 0.48, 0.85);
+      envPaper.style.transform = `translateY(${paperY}%)`;
+
+      // Hint text
+      const hintOpacity = 1 - progress(p, 0, 0.10);
+      hintEl.style.opacity = hintOpacity;
+      if (p < 0.38)       hintText.textContent = 'scroll to see who it\'s from';
+      else if (p < 0.65)  hintText.textContent = 'keep going \u2665';
+      else                hintText.textContent = 'almost there \u2665';
+
+      // Trigger full reveal
+      if (p >= 0.92) triggerReveal();
+    }
+
+    window.addEventListener('scroll', applyScroll, { passive: true });
+
+    // ── Reveal transition ─────────────────────────────────────────────────────
+    function triggerReveal() {
+      if (revealed) return;
+      revealed = true;
+      driver.style.transition = 'opacity 0.4s ease';
+      driver.style.opacity = '0';
+      setTimeout(() => {
+        driver.style.display = 'none';
+        window.scrollTo({ top: 0, behavior: 'instant' });
+        document.getElementById('main-content').style.display = 'block';
+      }, 400);
+    }
+
+    // ── Fetch random letter ───────────────────────────────────────────────────
+    async function init() {
+      let letter = null;
+      try {
+        const res = await fetch('/api/random-letter');
+        if (res.ok) {
+          const data = await res.json();
+          if (!data.empty) letter = data;
+        }
+      } catch { /* local preview — no API */ }
+
+      if (!letter) {
+        driver.style.display = 'none';
+        document.getElementById('write-first-wrap').style.display = 'block';
+        wireForm('name-f','message-f','char-count-f','submit-btn-f','error-msg-f','thank-you-f', true);
+        return;
+      }
+
+      // Populate letter
+      document.getElementById('letter-from').textContent =
+        letter.name ? `Dear you, from ${letter.name}` : 'Dear you,';
+      document.getElementById('letter-date').textContent = formatDate(letter.created_at);
+      document.getElementById('letter-body').textContent = letter.message;
+
+      wireForm('name','message','char-count','submit-btn','error-msg','thank-you', false);
+    }
+
+    // ── Closing envelope animation ────────────────────────────────────────────
+    function animateEnvelopeClose(flipId, paperId, flapId, containerId, hintId, sonderId) {
+      const flip  = document.getElementById(flipId);
+      const paper = document.getElementById(paperId);
+      const flap  = document.getElementById(flapId);
+      // Paper slides back in
+      paper.style.transition = 'transform 0.5s ease-in';
+      paper.style.transform  = 'translateY(0%)';
+      // Flap swings closed
+      setTimeout(() => {
+        flap.style.transition = 'transform 0.45s ease-in-out';
+        flap.style.transform  = 'rotateX(0deg)';
+      }, 450);
+      // Envelope flips to show sealed front
+      setTimeout(() => {
+        flip.style.transition = 'transform 0.6s ease-in-out';
+        flip.style.transform  = 'rotateY(180deg)';
+      }, 850);
+      // Swipe hint fades in
+      setTimeout(() => {
+        const hint = document.getElementById(hintId);
+        hint.style.transition = 'opacity 0.4s';
+        hint.style.opacity    = '1';
+        setupClickToSend(containerId, hintId, sonderId);
+      }, 1600);
+    }
+
+    function setupClickToSend(containerId, hintId, sonderId) {
+      // Lock page scroll while on the send screen
+      document.body.style.overflow = 'hidden';
+
+      const container = document.getElementById(containerId);
+      container.closest('.env-close-scene').classList.add('ready');
+
+      let sent = false;
+      function tryToSend() {
+        if (sent) return;
+        sent = true;
+        container.style.cursor = 'default';
+        container.closest('.env-close-scene').classList.remove('ready');
+        container.removeEventListener('click', tryToSend);
+        window.removeEventListener('wheel',      onWheel,      false);
+        window.removeEventListener('touchstart', onTouchStart, false);
+        window.removeEventListener('touchend',   onTouchEnd,   false);
+        // Small delay so it feels like a gesture is being processed
+        setTimeout(() => sendLetter(containerId, hintId, sonderId), 380);
+      }
+
+      // Click the envelope
+      container.addEventListener('click', tryToSend);
+
+      // Trackpad / mouse scroll up (natural scrolling: deltaY > 0 = fingers moving up)
+      function onWheel(e) {
+        if (e.deltaY > 0) { e.preventDefault(); tryToSend(); }
+      }
+
+      // Touch swipe up (mobile)
+      let touchStartY = null;
+      function onTouchStart(e) { touchStartY = e.touches[0].clientY; }
+      function onTouchEnd(e) {
+        if (touchStartY === null) return;
+        const dy = e.changedTouches[0].clientY - touchStartY;
+        touchStartY = null;
+        if (dy < -50) tryToSend();
+      }
+
+      window.addEventListener('wheel',      onWheel,      { passive: false });
+      window.addEventListener('touchstart', onTouchStart, { passive: true  });
+      window.addEventListener('touchend',   onTouchEnd,   { passive: true  });
+    }
+
+    function sendLetter(containerId, hintId, sonderId) {
+      const container  = document.getElementById(containerId);
+      const hint       = document.getElementById(hintId);
+      const sonder     = document.getElementById(sonderId);
+      // Derive sub-panel IDs from sonderId (e.g. "ty-sonder" → "ty-sent-panel", "ty-text-panel")
+      const suffix     = sonderId.replace('ty-sonder', '');  // '' or '-f'
+      const sentPanel  = document.getElementById('ty-sent-panel'  + suffix);
+      const textPanel  = document.getElementById('ty-text-panel'  + suffix);
+      const defEl      = document.getElementById('ty-def'         + suffix);
+
+      // Hint fades out instantly
+      hint.style.transition = 'opacity 0.2s';
+      hint.style.opacity    = '0';
+
+      // Envelope floats up and fades out
+      container.style.transition = 'transform 0.65s ease-in, opacity 0.4s 0.22s';
+      container.style.transform  = 'translateY(-52px)';
+      container.style.opacity    = '0';
+
+      // Phase 1 — "your letter has been sent" + Gary
+      setTimeout(() => {
+        sonder.style.transition = 'opacity 0.7s ease';
+        sonder.style.opacity    = '1';
+        sonder.style.pointerEvents = 'none';
+      }, 650);
+
+      // Phase 2 — cross-fade to sonder typewriter (~2.2s after it fades in)
+      setTimeout(() => {
+        sentPanel.style.transition = 'opacity 0.5s ease';
+        sentPanel.style.opacity    = '0';
+        setTimeout(() => {
+          sentPanel.style.display = 'none';
+          textPanel.style.display = 'flex';
+          textPanel.style.opacity = '0';
+          textPanel.style.transition = 'opacity 0.55s ease';
+          // Trigger reflow then fade in
+          requestAnimationFrame(() => requestAnimationFrame(() => {
+            textPanel.style.opacity = '1';
+          }));
+          const def = '\u201cThe realization that each random passerby\nis living a life as vivid and complex as your own \u2014\n\nwith their own ambitions, worries, and quiet struggles, \nin which you are merely a background character.\u201d';
+          typewriterText(defEl, def, 10000);
+        }, 500);
+      }, 1800); // show sent panel for ~1.15s after it fades in
+    }
+
+    function typewriterText(el, text, duration, onDone) {
+      el.textContent = '';
+      const interval = duration / text.length;
+      let i = 0;
+      function tick() {
+        if (i >= text.length) { if (onDone) onDone(); return; }
+        el.textContent += text[i];
+        i++;
+        setTimeout(tick, interval);
+      }
+      tick();
+    }
+
+    // ── Form wiring ───────────────────────────────────────────────────────────
+    function wireForm(nameId, msgId, countId, btnId, errId, tyId, isFirst) {
+      const msgEl  = document.getElementById(msgId);
+      const charEl = document.getElementById(countId);
+      const btn    = document.getElementById(btnId);
+      const err    = document.getElementById(errId);
+
+      msgEl.addEventListener('input', () => {
+        const len = msgEl.value.length;
+        charEl.textContent = `${len} / 600`;
+        charEl.classList.toggle('warn', len > 550);
+      });
+
+      btn.addEventListener('click', async () => {
+        const name    = document.getElementById(nameId).value.trim();
+        const message = msgEl.value.trim();
+        if (!message) {
+          err.classList.add('show');
+          msgEl.focus();
+          msgEl.style.borderColor = '#f4a0b0';
+          setTimeout(() => { msgEl.style.borderColor = ''; err.classList.remove('show'); }, 2000);
+          return;
+        }
+        btn.disabled = true;
+        btn.textContent = 'sending...';
+        try {
+          const res = await fetch('/api/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, message, source: window.__tagSource || null }),
+          });
+          if (!res.ok) throw new Error();
+          // Hide everything except the closing envelope
+          ['write-card', 'write-card-f', 'main-header', 'letter-card', 'turn-divider'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.style.display = 'none';
+          });
+          const sq = document.querySelector('.sonder-quote');
+          if (sq) sq.style.display = 'none';
+          // Show closing envelope and animate
+          const tyEl = document.getElementById(tyId);
+          tyEl.style.display = 'flex';
+          tyEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          animateEnvelopeClose(
+            isFirst ? 'ty-flip-f'      : 'ty-flip',
+            isFirst ? 'ty-paper-f'     : 'ty-paper',
+            isFirst ? 'ty-flap-f'      : 'ty-flap',
+            isFirst ? 'ty-container-f' : 'ty-container',
+            isFirst ? 'ty-hint-f'      : 'ty-hint',
+            isFirst ? 'ty-sonder-f'    : 'ty-sonder'
+          );
+        } catch {
+          btn.disabled = false;
+          btn.innerHTML = '<svg viewBox="0 0 34 24" width="18" height="13" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;margin-right:4px"><circle cx="21" cy="13" r="8.5" fill="#6dbf6d"/><circle cx="21" cy="13" r="6" fill="#8fd48f"/><circle cx="21" cy="13" r="3.5" fill="#6dbf6d"/><circle cx="21" cy="13" r="1.5" fill="#8fd48f"/><ellipse cx="14" cy="20" rx="11" ry="4" fill="#8fd48f"/><ellipse cx="4.5" cy="18" rx="4.5" ry="4" fill="#8fd48f"/><line x1="2.5" y1="15" x2="1" y2="9" stroke="#6dbf6d" stroke-width="1.3" stroke-linecap="round"/><line x1="6" y1="14" x2="8" y2="8" stroke="#6dbf6d" stroke-width="1.3" stroke-linecap="round"/><circle cx="1" cy="8" r="1.6" fill="#2a5a2a"/><circle cx="8.2" cy="7" r="1.6" fill="#2a5a2a"/></svg>seal';
+          err.textContent = 'something went wrong — please try again!';
+          err.classList.add('show');
+          setTimeout(() => err.classList.remove('show'), 3000);
+        }
+      });
+
+    }
+
+    // Disable browser scroll restoration so it doesn't jump back after our scrollTo
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
+
+    // Read NFC tag source from URL (e.g. ?tag=brooklyn-cafe)
+    window.__tagSource = new URLSearchParams(window.location.search).get('tag') || null;
+
+    init();
+  </script>
+</body>
+</html>

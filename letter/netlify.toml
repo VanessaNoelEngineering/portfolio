@@ -1,0 +1,31 @@
+[build]
+  publish = "."
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+[[headers]]
+  for = "/"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+
+[[redirects]]
+  from = "/api/submit"
+  to = "/.netlify/functions/submit"
+  status = 200
+
+[[redirects]]
+  from = "/api/letters"
+  to = "/.netlify/functions/letters"
+  status = 200
+
+[[redirects]]
+  from = "/api/random-letter"
+  to = "/.netlify/functions/random-letter"
+  status = 200
