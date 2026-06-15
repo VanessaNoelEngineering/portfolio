@@ -140,6 +140,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;padding:1.1rem 2.5rem;displa
 #term-output::-webkit-scrollbar-thumb{background:rgba(232,85,154,.3);border-radius:2px;}
 
 .term-line{margin:0;white-space:pre-wrap;word-break:break-all;}
+.term-blank{margin-bottom:.55rem;}
 .term-line.prompt::before{content:'vanessa@portfolio:~$ ';color:var(--sw);}
 .term-line.prompt.cwd::before{content:attr(data-cwd);}
 .term-line.out{color:rgba(240,240,255,.6);}
@@ -1314,7 +1315,11 @@ function appendPromptLine(cmd){
   p.textContent = cmd;
   termOutput.appendChild(p);
 }
-function blank(){appendLine('out dim','');}
+function blank(){
+  const p = document.createElement('p');
+  p.className = 'term-line term-blank';
+  termOutput.appendChild(p);
+}
 
 function updatePrompt(){
   termPromptLbl.textContent = cwd==='~' ? 'vanessa@portfolio:~$' : `vanessa@portfolio:${cwd}$`;
@@ -1333,15 +1338,18 @@ function runCmd(raw){
   if(c==='whoami'){
     blank();
     appendLine('out bold','Vanessa Noel');
-    appendLine('out','Mechatronics & Robotics Engineer');
-    appendLine('out dim','Queen\'s University BASc · Graduating 2025');
-    appendLine('out dim','Currently @ Launchpad Build, California');
+    appendLine('out','Mechatronics engineer, chronic builder, and LEGO collector.');
     blank();
-    appendLine('out rust','★  $50K CSA grant secured');
-    appendLine('out rust','★  99.2% automation time savings');
-    appendLine('out rust','★  9+ projects built');
+    appendLine('out','I got into engineering because I like making things! I\'ve stayed in it');
+    appendLine('out','because every project is a chance to learn something new.');
     blank();
-    appendLine('out dim','linkedin: vanessa-noel-engineering');
+    appendLine('out','I love to learn how things (and people) work. As much as I love a good');
+    appendLine('out','mechanism, I\'m also fascinated by psychology, philosophy, and the world');
+    appendLine('out','in general. If I could be anything, I\'d be a lifelong student. The');
+    appendLine('out','excitement (and sometimes misery) of learning something new never gets old.');
+    blank();
+    appendLine('out','I am a dedicated cat mom to two adorable cats, Snoo Snoo and Bug.');
+    appendLine('out','They don\'t help with the robots, but they are cute :)');
     blank();
     return;
   }
