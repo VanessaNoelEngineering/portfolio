@@ -189,6 +189,83 @@ window.PROJECTS_DATA = [
   },
 
   {
+    id: "happy-tappy",
+    published: true,
+    type: "hw",
+    tabs: ["built", "launched"],
+    wip: true,
+    title: "Happy Tappy",
+    emoji: "ðŸ’™",
+    thumbnail:
+      "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1776611532/happy-tappy-thumbnail_tzkunz.png",
+    label: "Hardware Â· Open Source Â· Community",
+    desc: "Open-source EMDR tappers. These therapeutic devices are typically sold for $500, mine has a target BOM of $50.",
+    previewDesc:
+      "EMDR (Eye Movement Desensitization and Reprocessing) tappers deliver bilateral stimulation â€” alternating vibration, light, or sound â€” used in trauma therapy. Commercial devices are hundreds of dollars, which puts them out of reach for a lot of people who could benefit.\n\nHappy Tappy is an open-source alternative: configurable vibration, light, and audio feedback with adjustable intensity, frequency, and color. Built from readily available components, target BOM under $50. The tapper units are breadboarded and validated. PCB design and enclosure are in progress. The goal is something anyone can build, modify, improve, and share.",
+    tags: [
+      "Arduino",
+      "PCB Design",
+      "Embedded Systems",
+      "Open Source",
+      "Accessibility",
+    ],
+    url: "projects/happytappy.html",
+
+    heroTitle: "Happy <em>Tappy.</em>",
+    purpose: {
+      heading: "Why I <em>built this.</em>",
+      body: [
+        "EMDR is a trauma therapy technique that uses bilateral stimulation, alternating sensory input on each side of the body, to help process difficult memories. Tappers are the handheld devices that deliver it.",
+        "Commercial tappers cost hundreds of dollars. That price isn't justified by the electronics inside and makes these devices inaccessible to many who could benefit. A close friend benefited significantly from EMDR therapy, and I want to make sure anyone who needs this can get it.",
+        "Happy Tappy is the open-source alternative. Full bilateral vibration, configurable light and audio, adjustable intensity and frequency. Everything documented, everything modifiable. Target BOM: $50, buildable with tools found in any makerspace.",
+      ],
+    },
+    process: {
+      heading: "How I <em>built it.</em>",
+      summary:
+        "Validated the core tapper experience on breadboard first; PCB and enclosure in progress.",
+      steps: [
+        {
+          title: "Defining the Features",
+          body: "Traditional tappers include vibration and light stimulation. The goal was to match that full feature set with a BOM under $50. The vibration intensity, duration, and pause between bilateral pulses all needed to be adjustable to fit each user's needs.",
+        },
+        {
+          title: "Breadboard Prototype - Tapper Units",
+          body: "Built two handheld tapper units on breadboard, each with a vibration motor and LED. The core test was the bilateral timing loop: one side fires, pauses, then the other fires. This required the tapper enclosures to be designed and 3D printed to properly test the haptic feedback.",
+          blockAfter: { type: "image", url: "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781464149/IMG_0700_nv2kqs.jpg" },
+        },
+        {
+          title: "Breadboard Prototype - Control Unit",
+          body: "Added potentiometers to the breadboard to control intensity, duration, and pause between pulses in real time. Tested the full system end-to-end, confirming adjustments reflected immediately in both tapper units. Simple interface, but enough to validate that the configurability worked before committing to a PCB.",
+          blockAfter: { type: "video", url: "https://www.youtube.com/embed/77ge4Z0GrW0", portrait: true, autoplay: true },
+        },
+        {
+          title: "PCB Design (In-progress)",
+          body: "Moving off breadboard onto a custom PCB to make the design reproducible and compact. The breadboard version proved the circuit; the PCB makes it something someone else can actually build.",
+        },
+        {
+          title: "Enclosure Design (In-progress)",
+          body: "Designing the physical enclosure for both the tapper units and the control box. Needs to be comfortable to hold, durable enough for regular use, and simple enough to 3D print at home.",
+          blockAfter: { type: "image", url: "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781464083/IMG_0707_uzuaid.jpg" },
+        },
+      ],
+    },
+    result: {
+      heading: "What I <em>made.</em>",
+      body: [
+        "The tapper units are breadboarded and validated â€” the core experience works. PCB layout and enclosure design are the remaining steps before this becomes something anyone can build from the documentation. The project is ongoing. When it ships, all files will be open-source: schematics, PCB layout, firmware, enclosure STLs, and a full build guide.",
+      ],
+      stats: [
+        { val: "&lt;$50", label: "Target BOM Cost" },
+        { val: "$500+", label: "Commercial Equivalent" },
+        { val: "3", label: "Feedback Modalities (vibration, light, audio)" },
+        { val: "100%", label: "Open Source" },
+      ],
+    },
+    blocks: [],
+  },
+
+  {
     id: "lego-minifig",
     published: true,
     type: "hw",
@@ -509,83 +586,6 @@ window.PROJECTS_DATA = [
             "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781462034/IMG_1283_px34q7.jpg",
           ],
         },
-      ],
-    },
-    blocks: [],
-  },
-
-  {
-    id: "happy-tappy",
-    published: true,
-    type: "hw",
-    tabs: ["built", "launched"],
-    wip: true,
-    title: "Happy Tappy",
-    emoji: "ðŸ’™",
-    thumbnail:
-      "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1776611532/happy-tappy-thumbnail_tzkunz.png",
-    label: "Hardware Â· Open Source Â· Community",
-    desc: "Open-source EMDR tappers. These therapeutic devices are typically sold for $500, mine has a target BOM of $50.",
-    previewDesc:
-      "EMDR (Eye Movement Desensitization and Reprocessing) tappers deliver bilateral stimulation â€” alternating vibration, light, or sound â€” used in trauma therapy. Commercial devices are hundreds of dollars, which puts them out of reach for a lot of people who could benefit.\n\nHappy Tappy is an open-source alternative: configurable vibration, light, and audio feedback with adjustable intensity, frequency, and color. Built from readily available components, target BOM under $50. The tapper units are breadboarded and validated. PCB design and enclosure are in progress. The goal is something anyone can build, modify, improve, and share.",
-    tags: [
-      "Arduino",
-      "PCB Design",
-      "Embedded Systems",
-      "Open Source",
-      "Accessibility",
-    ],
-    url: "projects/happytappy.html",
-
-    heroTitle: "Happy <em>Tappy.</em>",
-    purpose: {
-      heading: "Why I <em>built this.</em>",
-      body: [
-        "EMDR is a trauma therapy technique that uses bilateral stimulation, alternating sensory input on each side of the body, to help process difficult memories. Tappers are the handheld devices that deliver it.",
-        "Commercial tappers cost hundreds of dollars. That price isn't justified by the electronics inside and makes these devices inaccessible to many who could benefit. A close friend benefited significantly from EMDR therapy, and I want to make sure anyone who needs this can get it.",
-        "Happy Tappy is the open-source alternative. Full bilateral vibration, configurable light and audio, adjustable intensity and frequency. Everything documented, everything modifiable. Target BOM: $50, buildable with tools found in any makerspace.",
-      ],
-    },
-    process: {
-      heading: "How I <em>built it.</em>",
-      summary:
-        "Validated the core tapper experience on breadboard first; PCB and enclosure in progress.",
-      steps: [
-        {
-          title: "Defining the Features",
-          body: "Traditional tappers include vibration and light stimulation. The goal was to match that full feature set with a BOM under $50. The vibration intensity, duration, and pause between bilateral pulses all needed to be adjustable to fit each user's needs.",
-        },
-        {
-          title: "Breadboard Prototype - Tapper Units",
-          body: "Built two handheld tapper units on breadboard, each with a vibration motor and LED. The core test was the bilateral timing loop: one side fires, pauses, then the other fires. This required the tapper enclosures to be designed and 3D printed to properly test the haptic feedback.",
-          blockAfter: { type: "image", url: "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781464149/IMG_0700_nv2kqs.jpg" },
-        },
-        {
-          title: "Breadboard Prototype - Control Unit",
-          body: "Added potentiometers to the breadboard to control intensity, duration, and pause between pulses in real time. Tested the full system end-to-end, confirming adjustments reflected immediately in both tapper units. Simple interface, but enough to validate that the configurability worked before committing to a PCB.",
-          blockAfter: { type: "video", url: "https://www.youtube.com/embed/77ge4Z0GrW0", portrait: true, autoplay: true },
-        },
-        {
-          title: "PCB Design (In-progress)",
-          body: "Moving off breadboard onto a custom PCB to make the design reproducible and compact. The breadboard version proved the circuit; the PCB makes it something someone else can actually build.",
-        },
-        {
-          title: "Enclosure Design (In-progress)",
-          body: "Designing the physical enclosure for both the tapper units and the control box. Needs to be comfortable to hold, durable enough for regular use, and simple enough to 3D print at home.",
-          blockAfter: { type: "image", url: "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781464083/IMG_0707_uzuaid.jpg" },
-        },
-      ],
-    },
-    result: {
-      heading: "What I <em>made.</em>",
-      body: [
-        "The tapper units are breadboarded and validated â€” the core experience works. PCB layout and enclosure design are the remaining steps before this becomes something anyone can build from the documentation. The project is ongoing. When it ships, all files will be open-source: schematics, PCB layout, firmware, enclosure STLs, and a full build guide.",
-      ],
-      stats: [
-        { val: "&lt;$50", label: "Target BOM Cost" },
-        { val: "$500+", label: "Commercial Equivalent" },
-        { val: "3", label: "Feedback Modalities (vibration, light, audio)" },
-        { val: "100%", label: "Open Source" },
       ],
     },
     blocks: [],
@@ -1052,5 +1052,5 @@ window.PROJECTS_DATA = [
       stats: [],
     },
     blocks: [],
-  },
+  }
 ];
