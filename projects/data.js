@@ -670,7 +670,7 @@ window.PROJECTS_DATA = [
 
   {
     id: "first-robotics",
-    published: true,
+    published: false,
     type: "hw",
     tabs: ["led", "launched"],
     title: "FIRST Robotics — Team 19528",
@@ -898,7 +898,7 @@ window.PROJECTS_DATA = [
 
   {
     id: "gesture-car",
-    published: true,
+    published: false,
     type: "sw",
     tabs: ["built", "led"],
     title: "Gesture Controlled Car",
@@ -960,7 +960,7 @@ window.PROJECTS_DATA = [
 
   {
     id: "baymax",
-    published: true,
+    published: false,
     type: "hw",
     tabs: ["built"],
     title: "Baymax Robotic Arm",
