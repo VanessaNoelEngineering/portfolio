@@ -1,4 +1,4 @@
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+﻿/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    PROJECTS DATA â€” single source of truth for every project
    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
@@ -41,7 +41,7 @@ window.PROJECTS_DATA = [
     emoji: "ðŸ›°ï¸",
     thumbnail:
       "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1776392473/satellite-thumbnail-no-background_ur8htb.png",
-    label: "Led · Hardware · Aerospace · Community",
+    label: "Led Â· Hardware Â· Aerospace Â· Community",
     desc: "Launched 2 satellites, taught 75 students how to do the same, and raised $50K to bring the same experience to at-risk youth, for free.",
     previewDesc:
       "As manager of QSET, I led two stratospheric balloon launches to 48.4km â€” designing hardware, developing safety standards, and reducing mission costs 15% year-over-year through data-driven planning.\n\nThe same work gave me a platform to do something else. I secured a $50K CSA grant and built a free satellite program for at-risk youth from scratch â€” teaching embedded systems, circuit design, and launch operations to kids who'd never touched a circuit board, then launching their satellite to the stratosphere and watching them get their data back.",
@@ -90,7 +90,7 @@ window.PROJECTS_DATA = [
         },
         {
           title: "The Data",
-          body: "Eggo flew to 48.4km (30.1 miles); 90 minutes up, 41 minutes down. Temperature ranged from -28 to 20.7°C, pressure from 1007 to 14 hPa.",
+          body: "Eggo flew to 48.4km (30.1 miles); 90 minutes up, 41 minutes down. Temperature ranged from -28 to 20.7Â°C, pressure from 1007 to 14 hPa.",
           blockAfter: {
             type: "html",
             content: `<div class="reveal" style="margin:2rem 0;">
@@ -105,9 +105,9 @@ window.PROJECTS_DATA = [
   </span>
 </div>
 <div style="position:relative;width:100%;height:200px;margin-bottom:4px;">
-  <canvas id="qset-temp-chart" role="img" aria-label="Temperature over 721 samples. Rises from 6°C to 20°C before launch, drops to -28°C at peak altitude, then recovers after landing.">Thermistor and BMP180 temperature across the full flight.</canvas>
+  <canvas id="qset-temp-chart" role="img" aria-label="Temperature over 721 samples. Rises from 6Â°C to 20Â°C before launch, drops to -28Â°C at peak altitude, then recovers after landing.">Thermistor and BMP180 temperature across the full flight.</canvas>
 </div>
-<div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(240,240,248,0.25);text-align:right;margin-bottom:1rem;letter-spacing:.05em;">TEMPERATURE (°C)</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(240,240,248,0.25);text-align:right;margin-bottom:1rem;letter-spacing:.05em;">TEMPERATURE (Â°C)</div>
 <div style="position:relative;width:100%;height:180px;margin-bottom:4px;">
   <canvas id="qset-press-chart" role="img" aria-label="Absolute pressure over 721 samples on a log scale. Drops from 979 hPa at launch to 14 hPa at peak, then climbs back to 1006 hPa after landing.">Absolute pressure across the full flight, log scale.</canvas>
 </div>
@@ -132,7 +132,7 @@ window.PROJECTS_DATA = [
   }};
   var tip={backgroundColor:'#13131E',borderColor:'rgba(46,140,240,0.4)',borderWidth:1,titleColor:'rgba(240,240,248,0.5)',bodyColor:'#F0F0F8',titleFont:{family:'JetBrains Mono',size:10},bodyFont:{family:'JetBrains Mono',size:11}};
   var xScale={ticks:{color:tc,font:{family:'JetBrains Mono',size:9},maxTicksLimit:10},grid:{color:g},border:{color:g}};
-  new Chart(document.getElementById('qset-temp-chart'),{type:'line',plugins:[phases],data:{labels:labels,datasets:[{label:'Thermistor (°C)',data:t1,borderColor:'#2E8CF0',borderWidth:1.5,tension:0.3,pointRadius:0},{label:'BMP180 (°C)',data:t2,borderColor:'#5AAEFF',borderWidth:1.5,borderDash:[4,3],tension:0.3,pointRadius:0}]},options:{responsive:true,maintainAspectRatio:false,animation:false,plugins:{legend:{display:false},tooltip:tip},scales:{x:xScale,y:{ticks:{color:tc,font:{family:'JetBrains Mono',size:9},callback:function(v){return v.toFixed(0)+'°'}},grid:{color:g},border:{color:g}}}}});
+  new Chart(document.getElementById('qset-temp-chart'),{type:'line',plugins:[phases],data:{labels:labels,datasets:[{label:'Thermistor (Â°C)',data:t1,borderColor:'#2E8CF0',borderWidth:1.5,tension:0.3,pointRadius:0},{label:'BMP180 (Â°C)',data:t2,borderColor:'#5AAEFF',borderWidth:1.5,borderDash:[4,3],tension:0.3,pointRadius:0}]},options:{responsive:true,maintainAspectRatio:false,animation:false,plugins:{legend:{display:false},tooltip:tip},scales:{x:xScale,y:{ticks:{color:tc,font:{family:'JetBrains Mono',size:9},callback:function(v){return v.toFixed(0)+'Â°'}},grid:{color:g},border:{color:g}}}}});
   new Chart(document.getElementById('qset-press-chart'),{type:'line',plugins:[phases],data:{labels:labels,datasets:[{label:'Pressure (hPa)',data:pr,borderColor:'#2E8CF0',borderWidth:1.5,tension:0.3,pointRadius:0,fill:true,backgroundColor:'rgba(46,140,240,0.06)'}]},options:{responsive:true,maintainAspectRatio:false,animation:false,plugins:{legend:{display:false},tooltip:tip},scales:{x:xScale,y:{type:'logarithmic',ticks:{color:tc,font:{family:'JetBrains Mono',size:9},callback:function(v){return v>=100?Math.round(v):v.toFixed(0)}},grid:{color:g},border:{color:g}}}}});
 })();
 </script>
@@ -198,7 +198,7 @@ window.PROJECTS_DATA = [
     emoji: "ðŸ’™",
     thumbnail:
       "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1776611532/happy-tappy-thumbnail_tzkunz.png",
-    label: "Hardware · Open Source · Community",
+    label: "Hardware Â· Open Source Â· Community",
     desc: "Open-source EMDR tappers. These therapeutic devices are typically sold for $500, mine has a target BOM of $50.",
     previewDesc:
       "EMDR (Eye Movement Desensitization and Reprocessing) tappers deliver bilateral stimulation â€” alternating vibration, light, or sound â€” used in trauma therapy. Commercial devices are hundreds of dollars, which puts them out of reach for a lot of people who could benefit.\n\nHappy Tappy is an open-source alternative: configurable vibration, light, and audio feedback with adjustable intensity, frequency, and color. Built from readily available components, target BOM under $50. The tapper units are breadboarded and validated. PCB design and enclosure are in progress. The goal is something anyone can build, modify, improve, and share.",
@@ -274,10 +274,10 @@ window.PROJECTS_DATA = [
     emoji: "ðŸ§±",
     thumbnail:
       "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1776389372/Untitled_design_uiqoq8.png",
-    label: "Hardware · 3D Printing",
-    desc: "A 10× scale, fully posable, LEGO Space Minifigure!",
+    label: "Hardware Â· 3D Printing",
+    desc: "A 10Ã— scale, fully posable, LEGO Space Minifigure!",
     previewDesc:
-      "LEGO's tolerances are engineered for injection molding at millimeter scale. Scaling to 10× doesn't just make things bigger, it changes how materials flex, how joints wear, and how much force you need to actually click something into place. The goal: posable joints that still feel satisfying and hold their position years later, and figures that actually feel like LEGO.",
+      "LEGO's tolerances are engineered for injection molding at millimeter scale. Scaling to 10Ã— doesn't just make things bigger, it changes how materials flex, how joints wear, and how much force you need to actually click something into place. The goal: posable joints that still feel satisfying and hold their position years later, and figures that actually feel like LEGO.",
     tags: ["CAD", "3D Printing", "Tolerance Design", "FDM"],
     url: "projects/lego-minifig.html",
 
@@ -308,7 +308,7 @@ window.PROJECTS_DATA = [
     process: {
       heading: "How I <em>built it.</em>",
       summary:
-        "Methodical scale-up with a 5× validation step before committing to the full 10× print.",
+        "Methodical scale-up with a 5Ã— validation step before committing to the full 10Ã— print.",
       steps: [
         {
           title: "CAD model from reference",
@@ -332,8 +332,8 @@ window.PROJECTS_DATA = [
           },
         },
         {
-          title: "5× prototype to validate proportions",
-          body: "Before committing to the full 10× print, I printed at 5× to check that the proportions read correctly and that the assembly logic worked. Caught fit issues at this stage that would have cost days of print time at full scale.",
+          title: "5Ã— prototype to validate proportions",
+          body: "Before committing to the full 10Ã— print, I printed at 5Ã— to check that the proportions read correctly and that the assembly logic worked. Caught fit issues at this stage that would have cost days of print time at full scale.",
           blockAfter: {
             type: "split",
             left: {
@@ -347,8 +347,8 @@ window.PROJECTS_DATA = [
           },
         },
         {
-          title: "Detail pass at 10×",
-          body: "Once the base geometry was validated, scaled to 10× and added the smaller surface details: chest logos, face features, helmet markings. These couldn't be added at 5× (too small to print cleanly) but needed to be right before the final run.",
+          title: "Detail pass at 10Ã—",
+          body: "Once the base geometry was validated, scaled to 10Ã— and added the smaller surface details: chest logos, face features, helmet markings. These couldn't be added at 5Ã— (too small to print cleanly) but needed to be right before the final run.",
           blockAfter: {
             type: "split",
             left: {
@@ -387,10 +387,10 @@ window.PROJECTS_DATA = [
     result: {
       heading: "What I <em>made.</em>",
       body: [
-        "Two fully posable 10× LEGO minifigures that behave like the originals â€” joints click, limbs move, helmets come off. The 5× validation step was the key decision: it found problems cheaply that would have been expensive at full scale. The project is a good example of how DFM thinking applies even to personal builds.",
+        "Two fully posable 10Ã— LEGO minifigures that behave like the originals â€” joints click, limbs move, helmets come off. The 5Ã— validation step was the key decision: it found problems cheaply that would have been expensive at full scale. The project is a good example of how DFM thinking applies even to personal builds.",
       ],
       stats: [
-        { val: "10×", label: "Scale" },
+        { val: "10Ã—", label: "Scale" },
         { val: "90+", label: "Hours of Print Time" },
         { val: "2", label: "Figures Built" },
         { val: "0", label: "Adhesives or Fasteners" },
@@ -431,7 +431,7 @@ window.PROJECTS_DATA = [
     emoji: "ðŸš€",
     thumbnail:
       "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1776611690/IMG_5809_zkihvi.jpg",
-    label: "Led · Community · Aerospace",
+    label: "Led Â· Community Â· Aerospace",
     desc: "A free satellite program for at-risk youth, built in partnership with the CSA â€” and I wrote the $50K grant that funded it.",
     previewDesc:
       "At-risk youth designing, wiring, and launching real satellites. I founded this program from scratch, funded by a $50K grant I wrote during my internship.\n\nThe first half of the program was all teaching: embedded systems, circuit design, designing for robustness, how to think about hardware that has to survive real conditions. All hands-on. The second half was building â€” participants designed and assembled functional satellite modules from scratch, then launched them via stratospheric balloon to ~19 miles altitude, collected real data, and brought them back down.",
@@ -502,7 +502,7 @@ window.PROJECTS_DATA = [
     emoji: "ðŸŒ¸",
     thumbnail:
       "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1776391800/mechanical-flower-full-size-no-background_ity0qm.png",
-    label: "Hardware · Robotics",
+    label: "Hardware Â· Robotics",
     desc: "A touch-responsive robotic flower.",
     previewDesc:
       "A mechanical lotus that opens and lights up when touched. The trigger is a capacitive sensor, made from a spoon. The hard part wasn't the electronics, it was making the motion feel organic. Getting the mechanism right so it unfolds slowly and naturally, took iteration on the design and controls.",
@@ -601,7 +601,7 @@ window.PROJECTS_DATA = [
     emoji: "âœ‰ï¸",
     thumbnail:
       "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1776611627/project-sonder-thumbnail_l4rqce.png",
-    label: "Hardware · Software · Community",
+    label: "Hardware Â· Software Â· Community",
     desc: "3D-printed letters with NFC tags, placed in mailboxes around LA. Scan it, read a stranger's note, leave your own.",
     previewDesc:
       "Sonder is named for the realization that every person you pass has a life as vivid and complex as your own. The project is a physical-digital system built around that idea.\n\nA 3D-printed letter sits in a handmade mailbox somewhere in Los Angeles. You find it, scan the NFC tag or QR code, and a web app serves you a letter written by a complete stranger â€” then asks you to write one back. No algorithm decides what you get. No filters on what people write. Just what someone actually left for you.\n\nThe backend is fully built and live â€” database, letter routing, the whole scroll-to-open envelope interaction. The physical letters and mailboxes are in production. First installations go up in LA soon.",
@@ -669,7 +669,7 @@ window.PROJECTS_DATA = [
     emoji: "ðŸŽ­",
     thumbnail:
       "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1776541582/Untitled_design_1_f2sfld.png",
-    label: "Hardware · Fabrication",
+    label: "Hardware Â· Fabrication",
     desc: "Recreating props from games I love.",
     previewDesc:
       "Three props from games I love. Majora's Mask was split across multiple prints and painted. Deku's Mask had a 3D printed base with hand-sculpted clay on top. The Minecraft Chicken was modeled and 3D-printed in life size!",
@@ -753,7 +753,7 @@ window.PROJECTS_DATA = [
     emoji: "âš¡",
     thumbnail:
       "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1776611945/STEM-outreach-thumbnail-no-background_iw66vx.png",
-    label: "Led · Community · Hardware",
+    label: "Led Â· Community Â· Hardware",
     desc: "From participant to program lead, I built mechatronics curricula that reached thousands of students, teaching them about space, engineering, and robotics.",
     previewDesc:
       "I joined Connections as an instructor and advanced to Mechatronics Engineer, building a program that hadn't existed before. Recognizing there was no hands-on mechatronics offering for high school students, I designed and launched one from scratch. It sold out.\n\nThe curriculum spanned Arduino robotics, Python and machine learning, 3D modeling and fabrication, and space engineering. Projects I designed and taught include a gesture-controlled car (highest-rated project in 20+ summer programs), a functional seismometer used in live bridge-testing workshops, a servo-actuated prosthetic hand, and a LEGO Canadarm with three control modalities.\n\nThe shaker table workshop: participants built earthquake-proof structures, then tested them on the motorized shaker table while their seismometers detected simulated seismic events in real time.",
@@ -833,7 +833,7 @@ window.PROJECTS_DATA = [
     emoji: "ðŸ†",
     thumbnail:
       "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1776612649/IMG_3124_oa4xnt.png",
-    label: "Led · Community · Robotics",
+    label: "Led Â· Community Â· Robotics",
     desc: "Two years mentoring Team 19528 â€” tools, wiring, CAD, debugging, mechanisms, algorithms, and four competition awards.",
     previewDesc:
       "I mentored Team 19528 (Tech Comet Lancers) for two full years, showing up 2â€“3 times a week through both build season and off-season. Also served as a competition judge.\n\nWhat I taught: safe use of hand tools and power tools, circuit wiring and multimeter debugging, component selection, mechanism design, control algorithm development, and CAD. About 10 students, consistently, over two years.\n\nYear 1 â€” Judges' Choice Award + 2nd Place Motivate Award. Winning awards in a rookie FTC year is rare and reflects how quickly the team developed both technically and culturally.\n\nYear 2 â€” Design Award + Connect Award. A meaningful jump in technical maturity and strategic presentation between seasons.",
@@ -890,7 +890,7 @@ window.PROJECTS_DATA = [
         { val: "2", label: "Seasons Mentored" },
         { val: "~10", label: "Students, Consistently" },
         { val: "4", label: "Competition Awards" },
-        { val: "2â€“3×", label: "Weekly Commitment (year-round)" },
+        { val: "2â€“3Ã—", label: "Weekly Commitment (year-round)" },
       ],
     },
     blocks: [],
@@ -905,7 +905,7 @@ window.PROJECTS_DATA = [
     emoji: "ðŸš—",
     thumbnail:
       "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1776392702/gesture-controlled-car-no-background_gdzrps.png",
-    label: "Software · Embedded",
+    label: "Software Â· Embedded",
     desc: "A vehicle controlled entirely by wrist orientation â€” built for engineering outreach, now one of its most popular programs ever.",
     previewDesc:
       "This started with data. I analyzed participant feedback trends from previous years at Connections and saw a clear signal: students wanted more technically advanced projects. So I designed one from scratch.\n\nThe goal: control a car's movement by tilting your wrist, no buttons. An MPU-6050 accelerometer on a wrist controller reads pitch and roll, translating orientation directly into drive commands sent via Arduino to an H-bridge motor controller driving four DC wheels.\n\nThe first prototype was wireless with three motors. Testing showed it was too unreliable and complex for participants to replicate in a workshop setting. I redesigned it: four motors, wired control, simpler and more robust. The right call for the context.\n\nThe result became the highest-rated project in 20+ summer programs at Connections, with 95% participant satisfaction. Its success directly led to the expansion of the mechatronics program.",
@@ -967,7 +967,7 @@ window.PROJECTS_DATA = [
     emoji: "ðŸ¤–",
     thumbnail:
       "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1776392198/baymaxArmColor-removebg-preview_xh1guw.png",
-    label: "Hardware · Mechanisms",
+    label: "Hardware Â· Mechanisms",
     desc: "A life-sized soft robotic arm designed for human interaction â€” engineered so it physically cannot hurt you.",
     previewDesc:
       "I owned the elbow of a soft Baymax replica â€” 2 DOF, foldable, proportionally faithful, inherently safe to touch.\n\nFirst design: cable-driven universal joint. Simulation showed it would compromise arm proportions. Second design: belt-driven differential with motors relocated to the shoulder, reducing forearm torque and keeping the joint slim.\n\nFinal arm: carbon fiber core, inflatable outer segments, pressurized polyethylene cover. No rigid surface ever exposed to a user â€” the material is the safety system.",
@@ -989,7 +989,7 @@ window.PROJECTS_DATA = [
       steps: [
         {
           title: "Cable-driven universal joint (first iteration)",
-          body: "My initial design used a cable-driven universal joint at the elbow: three cables spaced 120° apart, running through a hollow carbon fiber core, controlled by linear actuators in the upper arm. The top cable controlled vertical lift; the two side cables controlled lateral rotation, enabling a hug. Technically sound on paper â€” but simulation revealed it would compromise the arm's proportions to fit all the components.",
+          body: "My initial design used a cable-driven universal joint at the elbow: three cables spaced 120Â° apart, running through a hollow carbon fiber core, controlled by linear actuators in the upper arm. The top cable controlled vertical lift; the two side cables controlled lateral rotation, enabling a hug. Technically sound on paper â€” but simulation revealed it would compromise the arm's proportions to fit all the components.",
         },
         {
           title: "Belt-driven differential (second iteration)",
@@ -1024,7 +1024,7 @@ window.PROJECTS_DATA = [
     title: "Survey Automation Tool",
     emoji: "ðŸ",
     thumbnail: null,
-    label: "Software · Python",
+    label: "Software Â· Python",
     desc: "A Python tool that turned a 4-hour manual process into a 2-minute one. 99.2% of the work, gone.",
     previewDesc:
       "The process was survey data collection and participant management for engineering outreach programs â€” done manually each cycle, taking roughly 4 hours. I built a Python tool that automated ingestion, parsing, analysis, and output generation end-to-end. No external services, no dependencies beyond Python.\n\nThe result was a 99.2% reduction in processing time and a process that now runs consistently without error. The tool also freed up staff time that had been spent on data entry, redirecting it toward actual program work. Sometimes the most impactful engineering is the kind that makes something tedious just disappear.",
