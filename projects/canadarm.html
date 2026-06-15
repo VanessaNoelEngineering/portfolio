@@ -1,170 +1,170 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>LEGO Canadarm ââ‚¬â€ Vanessa Noel</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;700;800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="_shared.css"/>
-</head>
-<body>
-
-<script>
-window.PROJECT_CONFIG = { type: 'sw', blocks: [] };
-const _p={hw:['#2E8CF0','#5AAEFF'],sw:['#E8559A','#FF80BF'],both:['#7B5CEA','#A480FF']}[PROJECT_CONFIG.type];
-document.documentElement.style.setProperty('--accent',_p[0]);
-document.documentElement.style.setProperty('--accent2',_p[1]);
-document.documentElement.style.setProperty('--accent-glow',
-  PROJECT_CONFIG.type==='hw'?'rgba(46,140,240,.12)':
-  PROJECT_CONFIG.type==='sw'?'rgba(232,85,154,.12)':'rgba(123,92,234,.12)');
-</script>
-
-<div id="cur"></div>
-<div id="cur2"></div>
-
-<!-- TOP NAV -->
-<nav class="top-nav">
-  <a href="../index.html" class="nav-back">Back to Portfolio</a>
-  <div class="nav-title">Vanessa Noel</div>
-</nav>
-
-<!-- SECTION TABS -->
-<div class="tab-nav">
-  <a href="#purpose" class="tab-link" data-section="purpose">Purpose</a>
-  <a href="#process" class="tab-link" data-section="process">Process</a>
-  <a href="#result"  class="tab-link" data-section="result">Result</a>
-</div>
-
-<!-- HERO -->
-<section class="hero" id="top">
-  <div class="hero-bg"></div>
-  <div class="hero-pattern"></div>
-  <div class="hero-accent-bg"></div>
-  <div class="hero-content">
-    <h1 class="hero-title">LEGO Canadarm</h1>
-    <p class="hero-desc">A LEGO Canadarm prototype with wheel-motor joint control, colour-sensor height adjustment, and force-sensitive gripper activation ââ‚¬â€ three sensor modalities in one arm.</p>
-    <div class="hero-tags">
-      <span class="htag">Arduino</span>
-      <span class="htag">C++</span>
-      <span class="htag">Control Systems</span>
-      <span class="htag">Sensor Fusion</span>
-      <span class="htag">LEGO</span>
-      <span class="htag">Robotics</span>
-      <span class="htag">Force Sensing</span>
-    </div>
-  </div>
-</section>
-
-<!-- PURPOSE -->
-<section class="section" id="purpose">
-  <div class="section-label reveal">Purpose</div>
-  <h2 class="section-title reveal">Why I <em>built this.</em></h2>
-  <div class="section-body reveal">
-    <p>Inspired by the iconic Canadarm on the International Space Station, this project built a LEGO-based robotic arm that uses three different sensing modalities to control its three main functions ââ‚¬â€ a more sophisticated control scheme than most student robot projects attempt.</p>
-  </div>
-  <div class="img-placeholder reveal"><span class="ph-icon">ðŸâ€“¼</span>Add your image here</div>
-</section>
-
-<!-- PROCESS -->
-<section class="section" id="process">
-  <div class="section-label reveal">Process</div>
-  <h2 class="section-title reveal">How I <em>built it.</em></h2>
-  <div class="section-body reveal">Three independent control systems ââ‚¬â€ rotary encoder, colour sensor, and force-sensitive resistor ââ‚¬â€ each handle one aspect of arm behaviour.</div>
-  <div class="steps reveal">
-    <div class="step">
-      <div class="step-num">01</div>
-      <div class="step-content">
-        <h3>Arm Structure</h3>
-        <p>Built the physical arm structure in LEGO Technic, designing the joint geometry for smooth rotation and a functional gripper mechanism.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-num">02</div>
-      <div class="step-content">
-        <h3>Wheel-Motor Joint Control</h3>
-        <p>Implemented wheel-motor interface for the main joint rotation ââ‚¬â€ turning a wheel physically drives the arm joint, with encoder feedback for position control.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-num">03</div>
-      <div class="step-content">
-        <h3>Colour Sensor Height Adjustment</h3>
-        <p>Mounted a colour sensor to detect floor surface colours ââ‚¬â€ different colours map to different target heights, enabling pre-programmed positioning.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-num">04</div>
-      <div class="step-content">
-        <h3>Force-Sensitive Gripper</h3>
-        <p>Integrated FSR sensors in the gripper fingers ââ‚¬â€ the gripper closes until a target force is detected, then holds. Prevents crushing objects.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-num">05</div>
-      <div class="step-content">
-        <h3>Arduino Integration</h3>
-        <p>Wrote the unified control firmware that coordinates all three sensing modalities simultaneously without conflicts.</p>
-      </div>
-    </div>
-  </div>
-  <div class="img-grid reveal">
-    <div class="img-placeholder"><span class="ph-icon">ðŸâ€“¼</span>Process photo</div>
-    <div class="img-placeholder"><span class="ph-icon">ðŸâ€“¼</span>Process photo</div>
-  </div>
-</section>
-
-<!-- OPTIONAL BLOCKS -->
-<div id="optional-blocks"></div>
-
-<!-- RESULT -->
-<section class="section" id="result">
-  <div class="section-label reveal">Result</div>
-  <h2 class="section-title reveal">What I <em>made.</em></h2>
-  <div class="section-body reveal"><p>A fully functional robotic arm demonstrating multi-modal sensing and control. The three independent systems work together seamlessly, demonstrating the complexity that arises when integrating multiple sensing and actuation systems in a single robot.</p></div>
-  <div class="impact-grid reveal">
-    <div class="impact-stat">
-      <span class="impact-val">3</span>
-      <span class="impact-label">Sensing Modalities</span>
-    </div>
-    <div class="impact-stat">
-      <span class="impact-val">Force-Limited</span>
-      <span class="impact-label">Gripper</span>
-    </div>
-    <div class="impact-stat">
-      <span class="impact-val">Position-Controlled</span>
-      <span class="impact-label">Joint</span>
-    </div>
-  </div>
-  <div class="img-grid reveal">
-    <div class="img-placeholder"><span class="ph-icon">ðŸâ€“¼</span>Final result</div>
-    <div class="img-placeholder"><span class="ph-icon">ðŸâ€“¼</span>Final result</div>
-  </div>
-</section>
-
-<!-- PREV / NEXT -->
-<nav class="proj-nav">
-  <a href="gesture-car.html" class="proj-nav-link prev">
-    <span class="proj-nav-dir">ââ€ Â Previous</span>
-    <span class="proj-nav-name">Gesture Controlled Car</span>
-  </a>
-  <a href="happytappy.html" class="proj-nav-link next">
-    <span class="proj-nav-dir">Next ââ€ â€™</span>
-    <span class="proj-nav-name">Happy Tappy</span>
-  </a>
-</nav>
-
-<footer>
-  <p>Â© 2025 Vanessa Noel</p>
-  <div class="foot-links">
-    <a href="http://www.linkedin.com/in/vanessa-noel-engineering" target="_blank">LinkedIn</a>
-    <a href="../index.html">Portfolio</a>
-    <a href="https://drive.google.com/uc?export=download&id=131lQYNBJ5ARIR6ctfGMtkI_jaZ1D5dqs" target="_blank">Resume</a>
-  </div>
-</footer>
-
-<script src="data.js"></script>
-<script src="_shell.js"></script>
-</body>
-</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LEGO Canadarm â€â€ Vanessa Noel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;700;800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="_shared.css"/>
+</head>
+<body>
+
+<script>
+window.PROJECT_CONFIG = { type: 'sw', blocks: [] };
+const _p={hw:['#2E8CF0','#5AAEFF'],sw:['#E8559A','#FF80BF'],both:['#7B5CEA','#A480FF']}[PROJECT_CONFIG.type];
+document.documentElement.style.setProperty('--accent',_p[0]);
+document.documentElement.style.setProperty('--accent2',_p[1]);
+document.documentElement.style.setProperty('--accent-glow',
+  PROJECT_CONFIG.type==='hw'?'rgba(46,140,240,.12)':
+  PROJECT_CONFIG.type==='sw'?'rgba(232,85,154,.12)':'rgba(123,92,234,.12)');
+</script>
+
+<div id="cur"></div>
+<div id="cur2"></div>
+
+<!-- TOP NAV -->
+<nav class="top-nav">
+  <a href="../index.html" class="nav-back">Back to Portfolio</a>
+  <div class="nav-title">Vanessa Noel</div>
+</nav>
+
+<!-- SECTION TABS -->
+<div class="tab-nav">
+  <a href="#purpose" class="tab-link" data-section="purpose">Purpose</a>
+  <a href="#process" class="tab-link" data-section="process">Process</a>
+  <a href="#result"  class="tab-link" data-section="result">Result</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-pattern"></div>
+  <div class="hero-accent-bg"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">LEGO Canadarm</h1>
+    <p class="hero-desc">A LEGO Canadarm prototype with wheel-motor joint control, colour-sensor height adjustment, and force-sensitive gripper activation â€â€ three sensor modalities in one arm.</p>
+    <div class="hero-tags">
+      <span class="htag">Arduino</span>
+      <span class="htag">C++</span>
+      <span class="htag">Control Systems</span>
+      <span class="htag">Sensor Fusion</span>
+      <span class="htag">LEGO</span>
+      <span class="htag">Robotics</span>
+      <span class="htag">Force Sensing</span>
+    </div>
+  </div>
+</section>
+
+<!-- PURPOSE -->
+<section class="section" id="purpose">
+  <div class="section-label reveal">Purpose</div>
+  <h2 class="section-title reveal">Why I <em>built this.</em></h2>
+  <div class="section-body reveal">
+    <p>Inspired by the iconic Canadarm on the International Space Station, this project built a LEGO-based robotic arm that uses three different sensing modalities to control its three main functions â€â€ a more sophisticated control scheme than most student robot projects attempt.</p>
+  </div>
+  <div class="img-placeholder reveal"><span class="ph-icon">ðŸ–¼</span>Add your image here</div>
+</section>
+
+<!-- PROCESS -->
+<section class="section" id="process">
+  <div class="section-label reveal">Process</div>
+  <h2 class="section-title reveal">How I <em>built it.</em></h2>
+  <div class="section-body reveal">Three independent control systems â€â€ rotary encoder, colour sensor, and force-sensitive resistor â€â€ each handle one aspect of arm behaviour.</div>
+  <div class="steps reveal">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-content">
+        <h3>Arm Structure</h3>
+        <p>Built the physical arm structure in LEGO Technic, designing the joint geometry for smooth rotation and a functional gripper mechanism.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-content">
+        <h3>Wheel-Motor Joint Control</h3>
+        <p>Implemented wheel-motor interface for the main joint rotation â€â€ turning a wheel physically drives the arm joint, with encoder feedback for position control.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-content">
+        <h3>Colour Sensor Height Adjustment</h3>
+        <p>Mounted a colour sensor to detect floor surface colours â€â€ different colours map to different target heights, enabling pre-programmed positioning.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-content">
+        <h3>Force-Sensitive Gripper</h3>
+        <p>Integrated FSR sensors in the gripper fingers â€â€ the gripper closes until a target force is detected, then holds. Prevents crushing objects.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">05</div>
+      <div class="step-content">
+        <h3>Arduino Integration</h3>
+        <p>Wrote the unified control firmware that coordinates all three sensing modalities simultaneously without conflicts.</p>
+      </div>
+    </div>
+  </div>
+  <div class="img-grid reveal">
+    <div class="img-placeholder"><span class="ph-icon">ðŸ–¼</span>Process photo</div>
+    <div class="img-placeholder"><span class="ph-icon">ðŸ–¼</span>Process photo</div>
+  </div>
+</section>
+
+<!-- OPTIONAL BLOCKS -->
+<div id="optional-blocks"></div>
+
+<!-- RESULT -->
+<section class="section" id="result">
+  <div class="section-label reveal">Result</div>
+  <h2 class="section-title reveal">What I <em>made.</em></h2>
+  <div class="section-body reveal"><p>A fully functional robotic arm demonstrating multi-modal sensing and control. The three independent systems work together seamlessly, demonstrating the complexity that arises when integrating multiple sensing and actuation systems in a single robot.</p></div>
+  <div class="impact-grid reveal">
+    <div class="impact-stat">
+      <span class="impact-val">3</span>
+      <span class="impact-label">Sensing Modalities</span>
+    </div>
+    <div class="impact-stat">
+      <span class="impact-val">Force-Limited</span>
+      <span class="impact-label">Gripper</span>
+    </div>
+    <div class="impact-stat">
+      <span class="impact-val">Position-Controlled</span>
+      <span class="impact-label">Joint</span>
+    </div>
+  </div>
+  <div class="img-grid reveal">
+    <div class="img-placeholder"><span class="ph-icon">ðŸ–¼</span>Final result</div>
+    <div class="img-placeholder"><span class="ph-icon">ðŸ–¼</span>Final result</div>
+  </div>
+</section>
+
+<!-- PREV / NEXT -->
+<nav class="proj-nav">
+  <a href="gesture-car.html" class="proj-nav-link prev">
+    <span class="proj-nav-dir">â†Â Previous</span>
+    <span class="proj-nav-name">Gesture Controlled Car</span>
+  </a>
+  <a href="happytappy.html" class="proj-nav-link next">
+    <span class="proj-nav-dir">Next →</span>
+    <span class="proj-nav-name">Happy Tappy</span>
+  </a>
+</nav>
+
+<footer>
+  <p>© 2025 Vanessa Noel</p>
+  <div class="foot-links">
+    <a href="http://www.linkedin.com/in/vanessa-noel-engineering" target="_blank">LinkedIn</a>
+    <a href="../index.html">Portfolio</a>
+    <a href="https://drive.google.com/uc?export=download&id=131lQYNBJ5ARIR6ctfGMtkI_jaZ1D5dqs" target="_blank">Resume</a>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script src="_shell.js"></script>
+</body>
+</html>
