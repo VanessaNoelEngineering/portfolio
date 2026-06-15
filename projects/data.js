@@ -598,7 +598,7 @@ window.PROJECTS_DATA = [
     thumbnail:
       "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1776611945/STEM-outreach-thumbnail-no-background_iw66vx.png",
     label: "Led · Community · Hardware",
-    desc: "A sold-out mechatronics program built from nothing — reaching thousands of students across robotics, space, and embedded systems.",
+    desc: "From participant to program lead, I built mechatronics curricula that reached thousands of students, teaching them about space, engineering, and robotics.",
     previewDesc:
       "I joined Connections as an instructor and advanced to Mechatronics Engineer, building a program that hadn't existed before. Recognizing there was no hands-on mechatronics offering for high school students, I designed and launched one from scratch. It sold out.\n\nThe curriculum spanned Arduino robotics, Python and machine learning, 3D modeling and fabrication, and space engineering. Projects I designed and taught include a gesture-controlled car (highest-rated project in 20+ summer programs), a functional seismometer used in live bridge-testing workshops, a servo-actuated prosthetic hand, and a LEGO Canadarm with three control modalities.\n\nThe shaker table workshop: participants built earthquake-proof structures, then tested them on the motorized shaker table while their seismometers detected simulated seismic events in real time.",
     tags: [
@@ -616,52 +616,54 @@ window.PROJECTS_DATA = [
     purpose: {
       heading: "Why I <em>built this.</em>",
       body: [
-        "When I joined Connections, the engineering outreach department at Queen's University, there was no mechatronics programming. Students could learn about bridges and mouse-trap cars. They couldn't build robots or write code for hardware that did something interesting.",
-        "I saw a gap and built into it. Starting with Python and machine learning courses during the pandemic, then expanding to a full mechatronics program once in-person teaching resumed. The test of whether it worked: it sold out.",
+        "I went through the Connections engineering outreach program as a student and left feeling like it hadn't pushed me enough. The lessons were surface-level, a lot of it stuff I already knew. When I got the chance to come back as an instructor, I wanted to change that.",
+        "The goal was to give students something real to struggle with. Not step-by-step instructions where you follow along and end up with something that works without understanding why. Actually making things, hitting problems, and figuring them out. That philosophy shaped every project and curriculum I built there.",
       ],
     },
     process: {
-      heading: "How I <em>built it.</em>",
-      summary:
-        "Built the program in stages — curriculum first, then iterating each project based on what actually worked in the room with students.",
+      heading: "My <em>timeline.</em>",
+      summary: "",
       steps: [
+        { type: "year", title: "Summer 2021 — Instructor" },
         {
-          title: "Python and machine learning curriculum (2021–2022)",
-          body: "Started with free online courses during the pandemic: Python fundamentals, ML applications (letter recognition, animal classification), and building a virtual assistant. Designed to be accessible with no prior coding experience, and to show students that machine learning wasn't magic — it was pattern matching they could understand and implement.",
+          title: "",
+          body: "Taught my first summer at Connections, focusing on coding fundamentals, machine learning, and data scraping. All Python, all beginner-friendly, designed for students with no prior experience.",
         },
+        { type: "year", title: "2021–2022 — Content Creator" },
         {
-          title: "Mechatronics program development (2022 onwards)",
-          body: "Designed the hands-on mechatronics curriculum from scratch: Arduino-based robotics, sensor integration, circuit wiring, and hardware debugging. The core question for each project was the same: does this teach something real, and does it feel like real engineering to a 16-year-old?",
+          title: "",
+          body: "Built three courses: Python fundamentals, ML for object detection, and web scraping and data analysis. Designed to be accessible but not shallow — students trained their own vision models and built their own scrapers.",
         },
+        { type: "year", title: "Summer 2022 — Lead Instructor" },
         {
-          title: "Gesture-controlled car",
-          body: "Designed the gesture-controlled car project from participant feedback data (see full project page). It became the highest-rated project in 20+ summer programs. Its success demonstrated that advanced embedded systems content worked in an outreach context, and directly expanded the program.",
+          title: "",
+          body: "Took on a lead role and shifted focus toward robotics and electronics. Started volunteering with a local FIRST robotics team, helping students learn to code, solder, and wire.",
         },
+        { type: "year", title: "2022–2023 — Mechatronics Intern" },
         {
-          title: "Seismometer and shaker table workshop",
-          body: "Built a motorized LEGO shaker table and designed a workshop around it: participants built earthquake-proof structures from spaghetti/marshmallows or LEGO bricks, then wired and coded their own Arduino seismometers. The seismometer detected the simulated seismic events from the shaker table in real time, triggering an LED and buzzer alert. Real feedback loop, real engineering judgment required.",
+          title: "",
+          body: "Designed the gesture-controlled car from participant feedback data — it became the highest-rated project in 20+ summer programs. Also developed a series of LEGO-based projects focused on lunar exploration.",
         },
+        { type: "year", title: "Summer 2023 — Mechatronics Engineer" },
         {
-          title: "LEGO Canadarm and prosthetic hand",
-          body: "Designed two more projects exploring robotics and human-machine interaction. The LEGO Canadarm used three sensing modalities creatively: a wheel mapped to base rotation, a color sensor controlling arm height (red = lower, green = raise), and a force sensor driving the gripper (partial press = open, hard press = close). The prosthetic hand used the open-source e-NABLE framework, driven by Arduino and servo motors, with individual fingers controlled by buttons.",
+          title: "",
+          body: "Launched the new programs, including the seismometer and shaker table workshop and the LEGO Canadarm. Also launched the Connections to Space satellite program in partnership with QSET and the Canadian Space Agency.",
         },
+        { type: "year", title: "2023–2024 — Mechatronics Engineer" },
         {
-          title: "Connections to Space",
-          body: "Brought the satellite program into Connections — high school students learning mechatronics and space engineering, culminating in a launch. See the CSA Outreach project page for the full story.",
+          title: "",
+          body: "Continued part-time while finishing my degree, supporting program delivery and ongoing development.",
         },
       ],
     },
     result: {
       heading: "What I <em>made.</em>",
       body: [
-        "A sold-out program that didn't exist when I started. Thousands of students reached across multiple years of delivery. Projects that were designed for the room — tested against real students, iterated based on what actually landed — rather than what seemed interesting on paper. The gesture-controlled car expansion, the seismometer workshop, and the satellite program are all downstream of decisions made about what real engineering education looks like for a high schooler who's never soldered anything.",
+        "I built programs that didn't exist when I started. Thousands of students learned engineering, data analysis, robotics, and programming through them. My programs averaged 9.2/10, compared to 7.1/10 across other programs at Connections.",
+        "Mechatronics had never been taught there before. It became the best-selling program, sold out every session it was offered, while every other program had empty slots. The gesture-controlled car was the highest-rated individual project across 20+ summer programs, with 95% participant satisfaction.",
+        "The Connections to Space Program put 25 at-risk youth through a real satellite launch, funded by a $50K CSA grant. The FIRST robotics volunteering gave students hands-on skills they took directly into competition.",
       ],
-      stats: [
-        { val: "1", label: "Program built from scratch" },
-        { val: "6+", label: "Projects designed and taught" },
-        { val: "1000s", label: "Students reached" },
-        { val: "$50K", label: "CSA Grant (see Satellite Launches)" },
-      ],
+      stats: [],
     },
     blocks: [],
   },
