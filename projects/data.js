@@ -38,7 +38,7 @@ window.PROJECTS_DATA = [
     type: "both",
     tabs: ["built", "led", "launched"],
     title: "Satellite Launches & Space Outreach",
-    emoji: "ðŸ›°�",
+    emoji: "ðŸ›°ï¸",
     thumbnail:
       "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1776392473/satellite-thumbnail-no-background_ur8htb.png",
     label: "Led · Hardware · Aerospace · Community",
@@ -275,9 +275,9 @@ window.PROJECTS_DATA = [
     thumbnail:
       "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1776389372/Untitled_design_uiqoq8.png",
     label: "Hardware · 3D Printing",
-    desc: "A 10Ã— scale, fully posable, LEGO Space Minifigure!",
+    desc: "A 10× scale, fully posable, LEGO Space Minifigure!",
     previewDesc:
-      "LEGO's tolerances are engineered for injection molding at millimeter scale. Scaling to 10Ã— doesn't just make things bigger, it changes how materials flex, how joints wear, and how much force you need to actually click something into place. The goal: posable joints that still feel satisfying and hold their position years later, and figures that actually feel like LEGO.",
+      "LEGO's tolerances are engineered for injection molding at millimeter scale. Scaling to 10× doesn't just make things bigger, it changes how materials flex, how joints wear, and how much force you need to actually click something into place. The goal: posable joints that still feel satisfying and hold their position years later, and figures that actually feel like LEGO.",
     tags: ["CAD", "3D Printing", "Tolerance Design", "FDM"],
     url: "projects/lego-minifig.html",
 
@@ -308,7 +308,7 @@ window.PROJECTS_DATA = [
     process: {
       heading: "How I <em>built it.</em>",
       summary:
-        "Methodical scale-up with a 5Ã— validation step before committing to the full 10Ã— print.",
+        "Methodical scale-up with a 5× validation step before committing to the full 10× print.",
       steps: [
         {
           title: "CAD model from reference",
@@ -332,8 +332,8 @@ window.PROJECTS_DATA = [
           },
         },
         {
-          title: "5Ã— prototype to validate proportions",
-          body: "Before committing to the full 10Ã— print, I printed at 5Ã— to check that the proportions read correctly and that the assembly logic worked. Caught fit issues at this stage that would have cost days of print time at full scale.",
+          title: "5× prototype to validate proportions",
+          body: "Before committing to the full 10× print, I printed at 5× to check that the proportions read correctly and that the assembly logic worked. Caught fit issues at this stage that would have cost days of print time at full scale.",
           blockAfter: {
             type: "split",
             left: {
@@ -347,8 +347,8 @@ window.PROJECTS_DATA = [
           },
         },
         {
-          title: "Detail pass at 10Ã—",
-          body: "Once the base geometry was validated, scaled to 10Ã— and added the smaller surface details: chest logos, face features, helmet markings. These couldn't be added at 5Ã— (too small to print cleanly) but needed to be right before the final run.",
+          title: "Detail pass at 10×",
+          body: "Once the base geometry was validated, scaled to 10× and added the smaller surface details: chest logos, face features, helmet markings. These couldn't be added at 5× (too small to print cleanly) but needed to be right before the final run.",
           blockAfter: {
             type: "split",
             left: {
@@ -387,10 +387,10 @@ window.PROJECTS_DATA = [
     result: {
       heading: "What I <em>made.</em>",
       body: [
-        "Two fully posable 10Ã— LEGO minifigures that behave like the originals â€” joints click, limbs move, helmets come off. The 5Ã— validation step was the key decision: it found problems cheaply that would have been expensive at full scale. The project is a good example of how DFM thinking applies even to personal builds.",
+        "Two fully posable 10× LEGO minifigures that behave like the originals â€” joints click, limbs move, helmets come off. The 5× validation step was the key decision: it found problems cheaply that would have been expensive at full scale. The project is a good example of how DFM thinking applies even to personal builds.",
       ],
       stats: [
-        { val: "10Ã—", label: "Scale" },
+        { val: "10×", label: "Scale" },
         { val: "90+", label: "Hours of Print Time" },
         { val: "2", label: "Figures Built" },
         { val: "0", label: "Adhesives or Fasteners" },
@@ -598,7 +598,7 @@ window.PROJECTS_DATA = [
     tabs: ["built", "led", "launched"],
     wip: true,
     title: "Project Sonder",
-    emoji: "âœ‰�",
+    emoji: "âœ‰ï¸",
     thumbnail:
       "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1776611627/project-sonder-thumbnail_l4rqce.png",
     label: "Hardware · Software · Community",
@@ -890,7 +890,7 @@ window.PROJECTS_DATA = [
         { val: "2", label: "Seasons Mentored" },
         { val: "~10", label: "Students, Consistently" },
         { val: "4", label: "Competition Awards" },
-        { val: "2â€“3Ã—", label: "Weekly Commitment (year-round)" },
+        { val: "2â€“3×", label: "Weekly Commitment (year-round)" },
       ],
     },
     blocks: [],
