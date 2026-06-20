@@ -220,7 +220,6 @@ function renderPage() {
     (d.steps || []).forEach(s => {
       if (s.type === 'year') {
         if (group.length) { stepsContent += `<div class="steps reveal">${group.join('')}</div>`; group = []; }
-        stepNum = 0;
         stepsContent += `<div class="step-year-header reveal"><span class="step-year-label">${s.title}</span></div>`;
         return;
       }
