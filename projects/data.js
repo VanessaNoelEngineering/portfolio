@@ -2462,21 +2462,22 @@ window.PROJECTS_DATA = [
 
 
       stats: [],
+      blocks: [
+        {
+          type: "gallery",
+          columns: 2,
+          images: [
+            "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781970137/IMG_5953_ff5lqi.jpg",
+            "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781970138/IMG_0941_c90txa.jpg",
+            "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781970141/IMG_0947_bgffcw.jpg",
+            "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781970193/IMG_0958_h8gvu8.jpg",
+            "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781970196/IMG_1341_ixj2lo.jpg",
+            "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781970196/IMG_0966_wg3jor.jpg",
+          ],
+        },
+      ],
     },
-    blocks: [
-      {
-        type: "gallery",
-        columns: 2,
-        images: [
-          "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781970137/IMG_5953_ff5lqi.jpg",
-          "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781970138/IMG_0941_c90txa.jpg",
-          "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781970141/IMG_0947_bgffcw.jpg",
-          "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781970193/IMG_0958_h8gvu8.jpg",
-          "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781970196/IMG_1341_ixj2lo.jpg",
-          "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781970196/IMG_0966_wg3jor.jpg",
-        ],
-      },
-    ],
+    blocks: [],
   },
 
   {
