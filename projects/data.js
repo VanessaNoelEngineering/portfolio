@@ -2317,20 +2317,17 @@ window.PROJECTS_DATA = [
       heading: "Why I <em>built this.</em>",
 
 
-      body: [
-
-
-        "I went through the Connections engineering outreach program as a student and left feeling like it hadn't pushed me enough. The lessons were surface-level, a lot of it stuff I already knew. When I got the chance to come back as an instructor, I wanted to change that.",
-
-
-        "The goal was to give students something real to struggle with. Not step-by-step instructions where you follow along and end up with something that works without understanding why. Actually making things, hitting problems, and figuring them out. That philosophy shaped every project and curriculum I built there.",
-
-
-      ],
+      body: [],
       blocks: [
         {
           type: "split",
-          left: { type: "text", body: [] },
+          left: {
+            type: "text",
+            body: [
+              "I went through the Connections engineering outreach program as a student and left feeling like it hadn't pushed me enough. The lessons were surface-level, a lot of it stuff I already knew. When I got the chance to come back as an instructor, I wanted to change that.",
+              "The goal was to give students something real to struggle with. Not step-by-step instructions where you follow along and end up with something that works without understanding why. Actually making things, hitting problems, and figuring them out. That philosophy shaped every project and curriculum I built there.",
+            ],
+          },
           right: {
             type: "video",
             url: "https://www.youtube.com/embed/2YRdjdkbQ2M",
