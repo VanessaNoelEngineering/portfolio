@@ -2334,6 +2334,7 @@ window.PROJECTS_DATA = [
             autoplay: true,
             mute: true,
             portrait: true,
+            align: "center",
           },
         },
       ],
