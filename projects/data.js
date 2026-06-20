@@ -2393,8 +2393,16 @@ window.PROJECTS_DATA = [
 
 
           body: "Took on a lead role and shifted focus toward robotics and electronics. Started volunteering with a local FIRST robotics team, helping students learn to code, solder, and wire.",
-
-
+          blockAfter: {
+            type: "gallery",
+            columns: 2,
+            images: [
+              "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781971196/IMG_4068_w0toj3.jpg",
+              "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781971197/IMG_4067_bqlfi2.jpg",
+              "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781971198/IMG_4066_1_gviucj.jpg",
+              "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781971274/IMG_3128_1_bxkcp2.jpg",
+            ],
+          },
         },
 
 
