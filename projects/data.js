@@ -2408,8 +2408,7 @@ window.PROJECTS_DATA = [
 
 
           body: "Designed the gesture-controlled car from participant feedback data — it became the highest-rated project in 20+ summer programs. Also developed a series of LEGO-based projects focused on lunar exploration.",
-
-
+          blockAfter: { type: "video", url: "https://www.youtube.com/embed/L8JdQbXY6Tw", autoplay: true, mute: true },
         },
 
 
@@ -2423,8 +2422,7 @@ window.PROJECTS_DATA = [
 
 
           body: "Launched the new programs, including the seismometer and shaker table workshop and the LEGO Canadarm. Also launched the Connections to Space satellite program in partnership with QSET and the Canadian Space Agency.",
-
-
+          blockAfter: { type: "video", url: "https://www.youtube.com/embed/W3EpoG-hxMI", autoplay: true, mute: true, portrait: true },
         },
 
 
