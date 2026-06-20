@@ -2444,8 +2444,7 @@ window.PROJECTS_DATA = [
 
 
           body: "Continued part-time while finishing my degree, supporting program delivery and ongoing development.",
-
-
+          blockAfter: { type: "image", url: "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781970137/IMG_5953_ff5lqi.jpg" },
         },
 
 
@@ -2482,7 +2481,6 @@ window.PROJECTS_DATA = [
           type: "gallery",
           columns: 2,
           images: [
-            "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781970137/IMG_5953_ff5lqi.jpg",
             "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781970138/IMG_0941_c90txa.jpg",
             "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781970141/IMG_0947_bgffcw.jpg",
             "https://res.cloudinary.com/dlxdxu3ac/image/upload/v1781970193/IMG_0958_h8gvu8.jpg",
