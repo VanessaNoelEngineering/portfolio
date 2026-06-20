@@ -2327,8 +2327,19 @@ window.PROJECTS_DATA = [
 
 
       ],
-
-
+      blocks: [
+        {
+          type: "split",
+          left: { type: "text", body: [] },
+          right: {
+            type: "video",
+            url: "https://www.youtube.com/embed/2YRdjdkbQ2M",
+            autoplay: true,
+            mute: true,
+            portrait: true,
+          },
+        },
+      ],
     },
 
 
